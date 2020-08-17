@@ -32,148 +32,220 @@ Partial Public Class Securitychecktool
     Protected WithEvents lbstatus As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''choice1 control.
+    '''select_imp1_1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents choice1 As Global.System.Web.UI.HtmlControls.HtmlSelect
+    Protected WithEvents select_imp1_1 As Global.System.Web.UI.HtmlControls.HtmlSelect
     
     '''<summary>
-    '''tbpb1 control.
+    '''tb_imp1_1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbpb1 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents tb_imp1_1 As Global.System.Web.UI.HtmlControls.HtmlInputText
     
     '''<summary>
-    '''tbresp1 control.
+    '''select_str1_1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbresp1 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents select_str1_1 As Global.System.Web.UI.HtmlControls.HtmlSelect
     
     '''<summary>
-    '''tbdt1 control.
+    '''tb_str1_1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbdt1 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents tb_str1_1 As Global.System.Web.UI.HtmlControls.HtmlInputText
     
     '''<summary>
-    '''choice2 control.
+    '''select_imp1_2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents choice2 As Global.System.Web.UI.HtmlControls.HtmlSelect
+    Protected WithEvents select_imp1_2 As Global.System.Web.UI.HtmlControls.HtmlSelect
     
     '''<summary>
-    '''tbpb2 control.
+    '''tb_imp1_2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbpb2 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents tb_imp1_2 As Global.System.Web.UI.HtmlControls.HtmlInputText
     
     '''<summary>
-    '''tbresp2 control.
+    '''select_str1_2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbresp2 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents select_str1_2 As Global.System.Web.UI.HtmlControls.HtmlSelect
     
     '''<summary>
-    '''tbdt2 control.
+    '''tb_str1_2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbdt2 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents tb_str1_2 As Global.System.Web.UI.HtmlControls.HtmlInputText
     
     '''<summary>
-    '''choice3 control.
+    '''select_imp1_A control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents choice3 As Global.System.Web.UI.HtmlControls.HtmlSelect
+    Protected WithEvents select_imp1_A As Global.System.Web.UI.HtmlControls.HtmlSelect
     
     '''<summary>
-    '''tbpb3 control.
+    '''tb_imp1_A control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbpb3 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents tb_imp1_A As Global.System.Web.UI.HtmlControls.HtmlInputText
     
     '''<summary>
-    '''tbresp3 control.
+    '''select_str1_A control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbresp3 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents select_str1_A As Global.System.Web.UI.HtmlControls.HtmlSelect
     
     '''<summary>
-    '''tbdt3 control.
+    '''tb_str1_A control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbdt3 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents tb_str1_A As Global.System.Web.UI.HtmlControls.HtmlInputText
     
     '''<summary>
-    '''choice4 control.
+    '''select_imp1_3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents choice4 As Global.System.Web.UI.HtmlControls.HtmlSelect
+    Protected WithEvents select_imp1_3 As Global.System.Web.UI.HtmlControls.HtmlSelect
     
     '''<summary>
-    '''tbpb4 control.
+    '''tb_imp1_3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbpb4 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents tb_imp1_3 As Global.System.Web.UI.HtmlControls.HtmlInputText
     
     '''<summary>
-    '''tbresp4 control.
+    '''select_str1_3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbresp4 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents select_str1_3 As Global.System.Web.UI.HtmlControls.HtmlSelect
     
     '''<summary>
-    '''tbdt4 control.
+    '''tb_str1_3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbdt4 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents tb_str1_3 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    
+    '''<summary>
+    '''select_imp1_4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents select_imp1_4 As Global.System.Web.UI.HtmlControls.HtmlSelect
+    
+    '''<summary>
+    '''tb_imp1_4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tb_imp1_4 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    
+    '''<summary>
+    '''select_str1_4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents select_str1_4 As Global.System.Web.UI.HtmlControls.HtmlSelect
+    
+    '''<summary>
+    '''tb_str1_4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tb_str1_4 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    
+    '''<summary>
+    '''select_imp1_5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents select_imp1_5 As Global.System.Web.UI.HtmlControls.HtmlSelect
+    
+    '''<summary>
+    '''tb_imp1_5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tb_imp1_5 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    
+    '''<summary>
+    '''select_str1_5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents select_str1_5 As Global.System.Web.UI.HtmlControls.HtmlSelect
+    
+    '''<summary>
+    '''tb_str1_5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tb_str1_5 As Global.System.Web.UI.HtmlControls.HtmlInputText
     
     '''<summary>
     '''choice5 control.

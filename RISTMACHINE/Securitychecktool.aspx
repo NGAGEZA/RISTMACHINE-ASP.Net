@@ -79,7 +79,7 @@
         <div class="row fd_animate">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">ส่วนที่ขับเคลื่อน</h3>
+                    <h3 class="panel-title">1.Raw Material, Sub-Material, และวัตถุอื่นๆที่เกี่ยวข้องกับความปลอดภัย</h3>
                     <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                 </div>
                 <div class="panel-body">
@@ -88,97 +88,178 @@
                             <table class="table table-responsive table-bordered">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">หัวข้อการตรวจสอบ</th>
-                                        <th class="text-center">ประเมิน</th>
-                                        <th class="text-center">ปัญหาที่พบ</th>
-                                        <th class="text-center">ผู้รับผิดชอบ</th>
-                                        <th class="text-center">กำหนดแล้วเสร็จ</th>
+                                        <th class="text-center">หัวข้อการตรวจเช็ค</th>
+                                        <th class="text-center">การตัดสินก่อนนำเข้า</th>
+                                        <th class="text-center">หมายเหตุ</th>
+                                        <th class="text-center">การตัดสินก่อนเริ่มใช้งาน</th>
+                                        <th class="text-center">หมายเหตุ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <tr>
+                                    <th colspan="5">① มาตรการความปลอดภัยเกี่ยบกับ Raw Material, Sub Material และวัตถุอื่นๆที่ใช้งาน</th>
+                                </tr>
                                     <tr>
-                                        <td>ส่วนที่มีการหมุนและเป็นอันตรายเปิดโล่งไว้โดยไม่มีสิ่งป้องกันหรือไม่</td>
+                                        <td>①-1) มีระบบการผนึกแน่นไม่ให้อากาศเข้า, เครื่อง Exhaust หรือไม่</td>
                                         <td>
-                                            <select id="choice1" runat="server" name="choice1" class="form-control input-sm">
+                                            <select id="select_imp1_1" runat="server" name="select_imp1_1" class="form-control input-sm">
                                                 <option value="" selected disabled hidden>Choose here</option>
-                                                <option value="1">ไม่มีปัญหา</option>
-                                                <option value="2">มีปัญหาเล็กน้อยแต่ไม่เป็นอุปสรรค</option>
-                                                <option value="3">มีปัญหาจำเป็นต้องแก้ไข</option>
-                                                <option value="4">ไม่จำเป็นต้องประเมิน</option>
+                                                <option value="1">ดี</option>
+                                                <option value="2">ไม่ดี</option>
+                                                <option value="3">ไม่สอดคล้อง</option>
+                                                <option value="4">ไม่สามารถตรวจสอบก่อนนำเข้าได้</option>
                                             </select>
 
                                         </td>
                                         <td>
-                                            <input id="tbpb1" type="text" name="tbpb1" class="form-control input-sm" placeholder="" runat="server"/>
+                                            <input id="tb_imp1_1" type="text" name="tb_imp1_1" class="form-control input-sm" placeholder="" runat="server"/>
                                         </td>
                                         <td>
-                                            <input id="tbresp1" type="text" name="tbresp1" class="form-control input-sm" placeholder="" runat="server"/>
-                                        </td>
-                                        <td>
-                                            <input id="tbdt1" type="text" name="tbdt1" class="form-control input-sm datepix"  placeholder="" runat="server"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>มีโอกาสที่ส่วนใดส่วนหนึ่งของร่างกายจะถูกเกียร์  เฟือง ดูดหรือพันเข้าไปหรือไม่</td>
-                                        <td>
-                                            <select id="choice2" runat="server" name="choice2" class="form-control input-sm">
+                                            <select id="select_str1_1" runat="server" name="select_str1_1" class="form-control input-sm">
                                                 <option value="" selected disabled hidden>Choose here</option>
-                                                <option value="1">ไม่มีปัญหา</option>
-                                                <option value="2">มีปัญหาเล็กน้อยแต่ไม่เป็นอุปสรรค</option>
-                                                <option value="3">มีปัญหาจำเป็นต้องแก้ไข</option>
-                                                <option value="4">ไม่จำเป็นต้องประเมิน</option>
+                                                <option value="1">ดี</option>
+                                                <option value="2">ไม่ดี</option>
+                                                <option value="3">ไม่สอดคล้อง</option>
+                                                <option value="4">ไม่สามารถตรวจสอบก่อนนำเข้าได้</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <input id="tbpb2" type="text" name="tbpb2" class="form-control input-sm" placeholder="" runat="server"/>
-                                        </td>
-                                        <td>
-                                            <input id="tbresp2" type="text" name="tbresp2" class="form-control input-sm"  placeholder="" runat="server"/>
-                                        </td>
-                                        <td>
-                                            <input id="tbdt2" type="text" name="tbdt2" class="form-control input-sm datepix"  placeholder="" runat="server"/>
+                                            <input id="tb_str1_1" type="text" name="tb_str1_1" class="form-control input-sm"  placeholder="" runat="server"/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>ถึงแม้จะมีที่จับ (Handle) แต่เวลาเดินเครื่องก็ยังเป็นอันตรายหรือไม่</td>
+                                        <td>①-2）เครื่อง Exhaust นั้นถูกต้องเหมาะสมตามกฎหมายหรือไม่</td>
                                         <td>
-                                            <select id="choice3" runat="server" name="choice3" class="form-control input-sm">
+                                            <select id="select_imp1_2" runat="server" name="select_imp1_2" class="form-control input-sm">
                                                 <option value="" selected disabled hidden>Choose here</option>
-                                                <option value="1">ไม่มีปัญหา</option>
-                                                <option value="2">มีปัญหาเล็กน้อยแต่ไม่เป็นอุปสรรค</option>
-                                                <option value="3">มีปัญหาจำเป็นต้องแก้ไข</option>
-                                                <option value="4">ไม่จำเป็นต้องประเมิน</option>
+                                                <option value="1">ดี</option>
+                                                <option value="2">ไม่ดี</option>
+                                                <option value="3">ไม่สอดคล้อง</option>
+                                                <option value="4">ไม่สามารถตรวจสอบก่อนนำเข้าได้</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <input id="tbpb3" type="text" name="tbpb3" class="form-control input-sm" placeholder="" runat="server"/>
+                                            <input id="tb_imp1_2" type="text" name="tb_imp1_2" class="form-control input-sm" placeholder="" runat="server"/>
                                         </td>
                                         <td>
-                                            <input id="tbresp3" type="text" name="tbresp3" class="form-control input-sm" placeholder="" runat="server"/>
+                                            <select id="select_str1_2" runat="server" name="select_str1_2" class="form-control input-sm">
+                                                <option value="" selected disabled hidden>Choose here</option>
+                                                <option value="1">ดี</option>
+                                                <option value="2">ไม่ดี</option>
+                                                <option value="3">ไม่สอดคล้อง</option>
+                                                <option value="4">ไม่สามารถตรวจสอบก่อนนำเข้าได้</option>
+                                            </select>
                                         </td>
                                         <td>
-                                            <input id="tbdt3" type="text" name="tbdt3" class="form-control input-sm datepix" placeholder="" runat="server"/>
+                                            <input id="tb_str1_2" type="text" name="tb_str1_2" class="form-control input-sm"  placeholder="" runat="server"/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>เมื่อกดปุ่ม Off แล้ว Cylinder, Slider หยุดอย่างปลอดภัยหรือไม่</td>
+                                        <td>A）มีความสามารถในการระบายอากาศ, จำกัดความเร็วลมเพื่อไม่ให้เกินค่าความหนาแน่นที่กำหนดไว้หรือไม่</td>
                                         <td>
-                                            <select id="choice4" runat="server" name="choice4" class="form-control input-sm">
+                                            <select id="select_imp1_A" runat="server" name="select_imp1_A" class="form-control input-sm">
                                                 <option value="" selected disabled hidden>Choose here</option>
-                                                <option value="1">ไม่มีปัญหา</option>
-                                                <option value="2">มีปัญหาเล็กน้อยแต่ไม่เป็นอุปสรรค</option>
-                                                <option value="3">มีปัญหาจำเป็นต้องแก้ไข</option>
-                                                <option value="4">ไม่จำเป็นต้องประเมิน</option>
+                                                <option value="1">ดี</option>
+                                                <option value="2">ไม่ดี</option>
+                                                <option value="3">ไม่สอดคล้อง</option>
+                                                <option value="4">ไม่สามารถตรวจสอบก่อนนำเข้าได้</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <input id="tbpb4" type="text" name="tbpb4" class="form-control input-sm" placeholder="" runat="server"/>
+                                            <input id="tb_imp1_A" type="text" name="tb_imp1_A" class="form-control input-sm" placeholder="" runat="server"/>
                                         </td>
                                         <td>
-                                            <input id="tbresp4" type="text" name="tbresp4" class="form-control input-sm" placeholder="" runat="server"/>
+                                            <select id="select_str1_A" runat="server" name="select_str1_A" class="form-control input-sm">
+                                                <option value="" selected disabled hidden>Choose here</option>
+                                                <option value="1">ดี</option>
+                                                <option value="2">ไม่ดี</option>
+                                                <option value="3">ไม่สอดคล้อง</option>
+                                                <option value="4">ไม่สามารถตรวจสอบก่อนนำเข้าได้</option>
+                                            </select>
                                         </td>
                                         <td>
-                                            <input id="tbdt4" type="text" name="tbdt4" class="form-control input-sm datepix" placeholder="" runat="server"/>
+                                            <input id="tb_str1_A" type="text" name="tb_str1_A" class="form-control input-sm" placeholder="" runat="server"/>
+                                        </td>
+                                    </tr>
+                                   <tr>
+                                        <td>①-3）มีมาตรการป้องกันเช่นป้องกันการรั่วไหลหรือแก๊สรั่ว หรือไม่</td>
+                                        <td>
+                                            <select id="select_imp1_3" runat="server" name="select_imp1_3" class="form-control input-sm">
+                                                <option value="" selected disabled hidden>Choose here</option>
+                                                <option value="1">ดี</option>
+                                                <option value="2">ไม่ดี</option>
+                                                <option value="3">ไม่สอดคล้อง</option>
+                                                <option value="4">ไม่สามารถตรวจสอบก่อนนำเข้าได้</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input id="tb_imp1_3" type="text" name="tb_imp1_3" class="form-control input-sm" placeholder="" runat="server"/>
+                                        </td>
+                                        <td>
+                                            <select id="select_str1_3" runat="server" name="select_str1_3" class="form-control input-sm">
+                                                <option value="" selected disabled hidden>Choose here</option>
+                                                <option value="1">ดี</option>
+                                                <option value="2">ไม่ดี</option>
+                                                <option value="3">ไม่สอดคล้อง</option>
+                                                <option value="4">ไม่สามารถตรวจสอบก่อนนำเข้าได้</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input id="tb_str1_3" type="text" name="tb_str1_3" class="form-control input-sm" placeholder="" runat="server"/>
+                                        </td>
+                                    </tr>
+                                   <tr>
+                                        <td>①-4）มีมาตรการป้องกันกลิ่นจากท่อนํ้าเสียทั้งหมด และมาตรการป้องกันการไหลย้อนหรือไม่</td>
+                                        <td>
+                                            <select id="select_imp1_4" runat="server" name="select_imp1_4" class="form-control input-sm">
+                                                <option value="" selected disabled hidden>Choose here</option>
+                                                <option value="1">ดี</option>
+                                                <option value="2">ไม่ดี</option>
+                                                <option value="3">ไม่สอดคล้อง</option>
+                                                <option value="4">ไม่สามารถตรวจสอบก่อนนำเข้าได้</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input id="tb_imp1_4" type="text" name="tb_imp1_4" class="form-control input-sm" placeholder="" runat="server"/>
+                                        </td>
+                                        <td>
+                                            <select id="select_str1_4" runat="server" name="select_str1_4" class="form-control input-sm">
+                                                <option value="" selected disabled hidden>Choose here</option>
+                                                <option value="1">ดี</option>
+                                                <option value="2">ไม่ดี</option>
+                                                <option value="3">ไม่สอดคล้อง</option>
+                                                <option value="4">ไม่สามารถตรวจสอบก่อนนำเข้าได้</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input id="tb_str1_4" type="text" name="tb_str1_4" class="form-control input-sm" placeholder="" runat="server"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>①-5）มีการติดตั้ง Safety Cover, Safety Device, Safety Valve ไว้ในจุดที่มีการใช้วัตถุดิบที่มีความอันตรายหรือไม่</td>
+                                        <td>
+                                            <select id="select_imp1_5" runat="server" name="select_imp1_5" class="form-control input-sm">
+                                                <option value="" selected disabled hidden>Choose here</option>
+                                                <option value="1">ดี</option>
+                                                <option value="2">ไม่ดี</option>
+                                                <option value="3">ไม่สอดคล้อง</option>
+                                                <option value="4">ไม่สามารถตรวจสอบก่อนนำเข้าได้</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input id="tb_imp1_5" type="text" name="tb_imp1_5" class="form-control input-sm" placeholder="" runat="server"/>
+                                        </td>
+                                        <td>
+                                            <select id="select_str1_5" runat="server" name="select_str1_5" class="form-control input-sm">
+                                                <option value="" selected disabled hidden>Choose here</option>
+                                                <option value="1">ดี</option>
+                                                <option value="2">ไม่ดี</option>
+                                                <option value="3">ไม่สอดคล้อง</option>
+                                                <option value="4">ไม่สามารถตรวจสอบก่อนนำเข้าได้</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input id="tb_str1_5" type="text" name="tb_str1_5" class="form-control input-sm" placeholder="" runat="server"/>
                                         </td>
                                     </tr>
                                 </tbody>
