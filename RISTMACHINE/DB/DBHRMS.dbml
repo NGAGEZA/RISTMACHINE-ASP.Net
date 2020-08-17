@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WorkRequest" Class="DBHRMSDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=10.29.1.90;Initial Catalog=WorkRequest;Persist Security Info=True;User ID=sa" SettingsObjectName="RISTMACHINE.My.MySettings" SettingsPropertyName="WorkRequestConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.vewHrmsOPID" Member="vewHrmsOPIDs">
+    <Type Name="vewHrmsOPID">
+      <Column Name="CODEMPID" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="NAMEMPT" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="NAMEMPE" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="COMPANY" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="DIVISION" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="SECTION" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="DEPARTMENT" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="DEPARTMENT2" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="DEPARTMENT3" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ORGANIZATIONNAME" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="POSITION" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="EMPLEVEL" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DTEBIRTH" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="AGE" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="PASSPORT" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="NATIONALITY" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

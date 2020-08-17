@@ -1,0 +1,38 @@
+{
+  "name": "rmodal",
+  "main": "rmodal.js",
+  "version": "1.0.31",
+  "authors": [
+    "Iskren Slavov <iskren.s@gmail.com>"
+  ],
+  "description": "A simple modal dialog with no external dependencies. IE9+ supported.",
+  "keywords": [
+    "modal",
+    "dialog",
+    "javascript",
+    "simple",
+    "plain",
+    "browser",
+    "browserify"
+  ],
+  "dependencies": {},
+  "license": "MIT",
+  "homepage": "http://rmodal.js.org/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "1.0.31",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.31",
+    "commit": "5462790a0adb9b286020153b8260120a7e233d4b"
+  },
+  "_source": "https://github.com/zewish/rmodal.js.git",
+  "_target": "1.0.31",
+  "_originalSource": "rmodal",
+  "_direct": true
+}

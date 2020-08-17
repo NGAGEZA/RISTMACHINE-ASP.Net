@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.5, 30" name="DBRISTMC">
+  <DataContextMoniker Name="/DBRISTMCDataContext" />
+  <nestedChildShapes>
+    <classShape Id="7f59bee9-0a28-41ba-a78b-7db2553dfd92" isExpanded="false" absoluteBounds="3.75, 0.75, 2, 0.45">
+      <DataClassMoniker Name="/DBRISTMCDataContext/TB_FLOW_REQUEST" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9b8ac1df-dc80-45f8-899c-358555ed3c97" absoluteBounds="3.7650000000000006, 1.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4b0e8821-15f9-480c-8787-5dbcf1eea3dd" absoluteBounds="6, 0.75, 3.125, 24.077862955729167">
+      <DataClassMoniker Name="/DBRISTMCDataContext/TB_MACHINE_DATA" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a649e2b5-04ec-4a34-8494-5143b6533838" absoluteBounds="6.015, 1.21, 3.0949999999999998, 23.517862955729164" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="78fd1106-4b8a-441d-b68f-e227627c9bef" isExpanded="false" absoluteBounds="1.25, 0.875, 2, 0.45">
+      <DataClassMoniker Name="/DBRISTMCDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ec752af1-576b-4d9f-a012-e0a203d1c363" absoluteBounds="1.2650000000000001, 1.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="611181f4-55eb-41f5-baee-1b0547980de9" isExpanded="false" absoluteBounds="8.75, 1.375, 2, 0.45">
+      <DataClassMoniker Name="/DBRISTMCDataContext/TB_FLOW_SAFETY" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3f6fe878-045f-43d6-b606-cfc2024058c2" absoluteBounds="8.765, 1.835, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dbe30441-44dd-42d9-a84a-9d5b74967649" absoluteBounds="1.875, 2, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/DBRISTMCDataContext/TB_EQUIPMENT_CHECK" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c1a58817-d71d-4efc-869d-6702a693b3de" absoluteBounds="1.8899999999999997, 2.46, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1ad76a8f-69eb-4bb9-9201-cafef536d393" absoluteBounds="5.25, 2.125, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/DBRISTMCDataContext/TB_FILE_ATTACH" />
+      <nestedChildShapes>
+        <elementListCompartment Id="72b28735-2f1c-475f-89e6-e59080e86b95" absoluteBounds="5.265, 2.585, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0eca9523-e672-4f89-b525-08a87a2d40f3" absoluteBounds="10.25, 2.5, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/DBRISTMCDataContext/TB_EQUIPMENT_DETAIL" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4d2b00be-d8e1-4c5d-bb18-5618474d158b" absoluteBounds="10.265, 2.96, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="946f3cbb-9766-4cc4-94e2-d081edd06e4a" absoluteBounds="3.875, 5.625, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/DBRISTMCDataContext/V_PAGE_1" />
+      <nestedChildShapes>
+        <elementListCompartment Id="26d3c1bd-e485-4c5e-9b9b-3da10bf3b101" absoluteBounds="3.89, 6.085, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7c920a51-df22-483d-a7a9-a9f9705142cc" isExpanded="false" absoluteBounds="1.75, 7.25, 2, 0.45">
+      <DataClassMoniker Name="/DBRISTMCDataContext/V_PAGE_2" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3f9fa4fa-fa0b-4d3d-a10d-aa96bca7175a" absoluteBounds="1.7650000000000001, 7.7100000000000009, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="361f210d-afa2-4e88-8587-d707a38bcef9" isExpanded="false" absoluteBounds="1.75, 8, 2, 0.45">
+      <DataClassMoniker Name="/DBRISTMCDataContext/V_PAGE_3" />
+      <nestedChildShapes>
+        <elementListCompartment Id="25a5ad56-1197-4bca-ba9f-6a78733e5f77" absoluteBounds="1.7650000000000001, 8.46, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="80ddc84a-3fc5-44f2-80af-90254f092551" isExpanded="false" absoluteBounds="1.75, 8.625, 2, 0.45">
+      <DataClassMoniker Name="/DBRISTMCDataContext/V_PAGE_4" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2d1d778c-10ff-4a6e-af77-3462c1c7a6d9" absoluteBounds="1.7650000000000006, 9.085, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f9509453-c410-4c99-8e76-f09a47e22926" absoluteBounds="10.25, 6.625, 2, 23.116355794270834">
+      <DataClassMoniker Name="/DBRISTMCDataContext/TMP_REPORT2" />
+      <nestedChildShapes>
+        <elementListCompartment Id="93ef4e21-c3cb-4521-b976-71fa0ca03e2d" absoluteBounds="10.265, 7.085, 1.9700000000000002, 22.556355794270832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c79b2426-e9d1-4e45-87ce-2cdbbc60a351" isExpanded="false" absoluteBounds="1.625, 5.875, 2, 0.45">
+      <DataClassMoniker Name="/DBRISTMCDataContext/TB_SECURITY" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b1c86ed6-9a53-4a65-8dd2-d30400180c96" absoluteBounds="1.6400000000000001, 6.335, 1.9700000000000002, 33.325236002604164" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

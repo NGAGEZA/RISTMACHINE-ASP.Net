@@ -1,0 +1,613 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DBRISTMC" Class="DBRISTMCDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=10.29.1.86;Initial Catalog=DBRISTMC;Persist Security Info=True;User ID=sa" SettingsObjectName="RISTMACHINE.My.MySettings" SettingsPropertyName="DBRISTMCConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TB_FLOW_REQUEST" Member="TB_FLOW_REQUESTs">
+    <Type Name="TB_FLOW_REQUEST">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="REQUEST_OP" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SECT_MGR_OP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SECT_MGR_EMAIL" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="SECT_MGR_STAMP" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DEPT_MGR_OP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DEPT_MGR_EMAIL" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="DEPT_MGR_STAMP" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DIV_MGR_OP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DIV_MGR_EMAIL" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="DIV_MGR_STAMP" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="RATING" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ADMIN_OP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_MACHINE_DATA" Member="TB_MACHINE_DATAs">
+    <Type Name="TB_MACHINE_DATA">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MC_NO" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="REGISTER_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="REGISTER_NEW_MC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CANCEL_MC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CATEGORY1_NEW_MC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CATEGORY1_TF_MC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CATEGORY1_OTH_MC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CATEGORY1_MC_OTHER_DETAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CATEGORY2_NEW_MODEL_MC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CATEGORY2_ORIGINAL_MODEL_MC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CATEGORY2_OTH_MODEL_MC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CATEGORY2_MC_OTHER_DETAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MAKER" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="COUNTRY" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="SUPPLIER" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="PROVIDER" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="TEL" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="TYPE_MC" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="SIZE_HP_MC" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DIVISION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DEPARTMENT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SECTION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MC_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MC_NO1" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MC_NO2" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MC_NO3" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MC_NO4" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MC_NO5" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MC_NO6" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MC_NO7" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MC_NO8" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MC_NO9" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MC_NO10" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DANGER_CHEME_1" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DANGER_CHEME_2" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DANGER_CHEME_3" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DANGER_CHEME_4" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DANGER_CHEME_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CAS_NO" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FLAMMABLE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CORROSIVE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="POISON" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="GAS" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SUBSTANCE_OTHER" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SUBSTANCE_OTHER_DETAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OBJ_POWDER" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OBJ_HEAT" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OBJ_NOISE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OBJ_VIBRATE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OBJ_POISONGAS" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OBJ_WASTE_WATER" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OBJ_RAY" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OBJ_SMOKE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OBJ_ELECTRIC_WAVE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OBJ_OTHER" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OBJ_OTHER_DETAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OBJ_CHEME_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EQUIPMENT_HELMET" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_GLASSES" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_CHEMICAL_MASK" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_BIB_PROTECT_CHEMECAL" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_CHEMICAL_GLOVES" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_HEAT_RESISTANT_GLOVES" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_CUT_PROTECT_GLOVES" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_EYE_COVER" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_FACE_SHIELD" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_DUST_MASK" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_CHEMICAL_PACK" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_ELECTRIC_GLOVES" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_OTHER" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EQUIPMENT_OTHER_DETAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LAW_MC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LAW_CHEMECALS" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LAW_ENVIRONMENTAL" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LAW_HIGH_PRESSURE_GAS" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LAW_PREVENT_STOP_FIRE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LAW_FACTORY" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LAW_FUEL_REGULATORY" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LAW_OTHER" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LAW_OTHER_DETAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LAW_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LAW_NOTICE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LAW_NOTICE_DETAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LAW_APPROVE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LAW_APPROVE_DETAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LAW_CHECK" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LAW_CHECK_DETAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IMG_TEMP_STAMP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IMG_TEMP_STAMP_CONTENT_TYPE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IMG_TEMP_STAMP_DATA" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="REQUEST_NAME_APPROVE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="REQUEST_APPROVE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SECT_MGR_NAME_APPROVE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SECT_MGR_APPROVE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DEPT_MGR_NAME_APPROVE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DEPT_MGR_APPROVE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DIV_MGR_NAME_APPROVE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DIV_MGR_APPROVE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MCEQ_SUBCOM_NAME_APPROVE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MCEQ_SUBCOM_APPROVE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SAFETY_OFFICER_NAME_APPROVE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SAFETY_OFFICER_APPROVE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SAFETY_MGR_NAME_APPROVE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SAFETY_MGR_APPROVE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OPNO_ADD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DATE_ADD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OPNO_UPDATE" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DATE_UPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STATUS_NAME" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="IP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DOCUMENT_ATTACH_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DOCUMENT_ATTACH_CONTENT_TYPE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DOCUMENT_ATTACH_DATA" Type="System.Byte[]" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="IMAGE_ATTACH_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IMAGE_ATTACH_CONTENT_TYPE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IMAGE_ATTACH_DATA" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LAYOUT_ATTACH_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LAYOUT_ATTACH_CONTENT_TYPE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LAYOUT_ATTACH_DATA" Type="System.Byte[]" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OperatorNo" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastLoginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Permission" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_FLOW_SAFETY" Member="TB_FLOW_SAFETies">
+    <Type Name="TB_FLOW_SAFETY">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MCESUBCOM_OP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MCESUBCOM_EMAIL" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="MCESUBCOM_STAMP" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SAFETYOFF_OP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SAFETYOFF_EMAIL" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="SAFETYOFF_STAMP" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SAFETYMGR_OP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SAFETYMGR_EMAIL" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="SAFETYMGR_STAMP" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="RATING" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CREATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ADMIN_OP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_EQUIPMENT_CHECK" Member="TB_EQUIPMENT_CHECKs">
+    <Type Name="TB_EQUIPMENT_CHECK">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MC_NO" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title_No" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Detail_topic" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IP" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="OPNO_ADD" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DATE_ADD" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="OPNO_UPDATE" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DATE_UPDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FLAG" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_FILE_ATTACH" Member="TB_FILE_ATTACHes">
+    <Type Name="TB_FILE_ATTACH">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MC_NO" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="FILE_ATTACH_NO_GROUP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FILE_ATTACH_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FILE_ATTACH_CONTENT_TYPE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FILE_ATTACH_DATA" Type="System.Byte[]" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="OPNO_ADD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DATE_ADD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OPNO_UPDATE" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DATE_UPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_EQUIPMENT_DETAIL" Member="TB_EQUIPMENT_DETAILs">
+    <Type Name="TB_EQUIPMENT_DETAIL">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MC_NO" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MC_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MC_NUMBER" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DIVISION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DEPARTMENT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SECTION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BUILDING" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FLOOR" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PROCESS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OPNO_ADD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DATE_ADD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OPNO_UPDATE" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DATE_UPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FLAG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.V_PAGE2" Member="V_PAGE_1s">
+    <Type Name="V_PAGE_1">
+      <Column Name="MC_NO" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MC_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MC_NUMBER" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Title" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Title_No" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Detail_topic" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DIVISION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DEPARTMENT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SECTION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BUILDING" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FLOOR" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PROCESS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.V_PAGE2" Member="V_PAGE_2s">
+    <Type Name="V_PAGE_2">
+      <Column Name="MC_NO" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MC_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MC_NUMBER" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Title" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title_No" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Detail_topic" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DIVISION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DEPARTMENT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SECTION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BUILDING" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FLOOR" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PROCESS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.V_PAGE2" Member="V_PAGE_3s">
+    <Type Name="V_PAGE_3">
+      <Column Name="MC_NO" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MC_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MC_NUMBER" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Title" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title_No" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Detail_topic" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DIVISION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DEPARTMENT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SECTION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BUILDING" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FLOOR" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PROCESS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.V_PAGE2" Member="V_PAGE_4s">
+    <Type Name="V_PAGE_4">
+      <Column Name="MC_NO" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MC_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MC_NUMBER" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Title" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title_No" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Detail_topic" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DIVISION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DEPARTMENT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SECTION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BUILDING" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FLOOR" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PROCESS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TMP_REPORT2" Member="TMP_REPORT2s">
+    <Type Name="TMP_REPORT2">
+      <Column Name="ID_NO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MC_NO" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MC_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MC_NUMBER" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T1_1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T1_2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T1_3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T1_4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T1_5" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T1_6" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T1_7" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T1_8" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Number_T1_1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T1_2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T1_3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T1_4" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T1_5" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T1_6" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T1_7" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T1_8" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsSelected_T1_1" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T1_2" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T1_3" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T1_4" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T1_5" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T1_6" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T1_7" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T1_8" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Detail_T2_1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T2_2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T2_3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T2_4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T2_5" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T2_6" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T2_7" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T2_8" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Number_T2_1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T2_2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T2_3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T2_4" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T2_5" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T2_6" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T2_7" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T2_8" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsSelected_T2_1" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T2_2" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T2_3" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T2_4" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T2_5" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T2_6" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T2_7" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T2_8" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Detail_T3_1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T3_2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T3_3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T3_4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T3_5" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T3_6" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T3_7" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T3_8" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Number_T3_1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T3_2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T3_3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T3_4" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T3_5" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T3_6" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T3_7" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T3_8" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsSelected_T3_1" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T3_2" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T3_3" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T3_4" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T3_5" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T3_6" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T3_7" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T3_8" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Detail_T4_1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T4_2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T4_3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T4_4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T4_5" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T4_6" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T4_7" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Detail_T4_8" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Number_T4_1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T4_2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T4_3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T4_4" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T4_5" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T4_6" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T4_7" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_T4_8" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsSelected_T4_1" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T4_2" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T4_3" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T4_4" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T4_5" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T4_6" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T4_7" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsSelected_T4_8" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Division" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Department" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Section" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Building" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Floor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Process" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FILE_ATTACH_NAME_1" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FILE_ATTACH_CONTENT_TYPE_1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FILE_ATTACH_DATA_1" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FILE_ATTACH_NAME_2" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FILE_ATTACH_CONTENT_TYPE_2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FILE_ATTACH_DATA_2" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FILE_ATTACH_NAME_3" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FILE_ATTACH_CONTENT_TYPE_3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FILE_ATTACH_DATA_3" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DATE_ADD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_SECURITY" Member="TB_SECURITies">
+    <Type Name="TB_SECURITY">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MC_NO" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="R_1" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB1" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS1" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_2" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB2" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS2" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_3" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB3" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS3" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT3" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_4" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB4" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS4" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT4" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_5" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB5" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS5" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT5" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_6" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB6" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS6" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT6" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_7" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB7" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS7" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT7" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_8" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB8" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS8" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT8" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_9" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB9" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS9" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT9" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_10" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB10" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS10" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT10" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_11" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB11" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS11" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT11" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_12" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB12" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS12" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT12" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_13" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB13" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS13" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT13" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_14" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB14" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS14" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT14" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_15" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB15" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS15" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT15" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_16" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB16" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS16" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT16" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_17" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB17" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS17" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT17" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_18" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB18" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS18" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT18" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_19" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB19" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS19" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT19" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_20" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB20" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS20" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT20" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_21" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB21" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS21" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT21" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_22" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB22" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS22" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT22" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_23" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB23" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS23" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT23" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_24" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB24" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS24" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT24" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_25" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB25" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS25" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT25" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_26" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB26" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS26" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT26" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_27" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB27" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS27" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT27" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_28" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB28" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS28" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT28" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_29" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB29" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS29" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT29" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_30" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB30" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS30" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT30" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_31" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB31" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS31" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT31" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_32" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB32" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS32" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT32" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_33" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB33" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS33" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT33" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_34" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB34" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS34" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT34" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_35" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB35" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS35" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT35" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_36" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB36" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS36" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT36" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_37" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB37" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS37" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT37" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_38" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB38" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS38" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT38" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_39" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB39" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS39" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT39" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_40" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB40" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS40" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT40" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="R_41" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PB41" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="RS41" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DT41" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OPNO_ADD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DATE_ADD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OPNO_UPDATE" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DATE_UPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FLAG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.Insert_User" Method="Insert_User">
+    <Parameter Name="OperatorNo" Parameter="operatorNo" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(30)" />
+    <ElementType Name="Insert_UserResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Validate_User" Method="Validate_User">
+    <Parameter Name="OperatorNo" Parameter="operatorNo" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(20)" />
+    <ElementType Name="Validate_UserResult">
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

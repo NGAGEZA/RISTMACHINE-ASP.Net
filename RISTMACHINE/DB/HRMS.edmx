@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ModelHRMS.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'CODEMPID' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'NAMEMPT' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'NAMEMPE' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'COMPANY' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'DIVISION' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'SECTION' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'DEPARTMENT' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'DEPARTMENT2' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'DEPARTMENT3' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'ORGANIZATIONNAME' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'POSITION' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'EMPLEVEL' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'EMAIL' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'DTEBIRTH' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'AGE' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'PASSPORT' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6005: The data type 'undefined' is currently not supported for the target Entity Framework version; the column 'NATIONALITY' in the table 'RIST.V_EMPMAIL' was excluded.
+warning 6013: The table/view 'RIST.V_EMPMAIL' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="V_EMPMAIL" />-->
+        <EntityContainer Name="ModelHRMSStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModelHRMS" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="HRMS" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Entity1" EntityType="ModelHRMS.Entity1" />
+        </EntityContainer>
+        <EntityType Name="Entity1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelHRMSStoreContainer" CdmEntityContainer="HRMS" />
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
