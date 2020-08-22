@@ -8,9 +8,9 @@
             $("#btnpage2").bind("click",
                 function() {
                     //debugger;
-                    var e = document.getElementById(('<%= lbmcno.ClientID %>'));
-                    var ep2Mcno = e.textContent;
-                    var url = "EquipmentCheck.aspx?ep2mcno=" + ep2Mcno;
+                    const e = document.getElementById(('<%= lbmcno.ClientID %>'));
+                    const ep2Mcno = e.textContent;
+                    const url = "EquipmentCheck.aspx?ep2mcno=" + ep2Mcno;
                     window.location.href = url;
 
                    

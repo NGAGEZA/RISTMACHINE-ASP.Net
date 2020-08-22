@@ -980,7 +980,8 @@ Public Class EquipmentCheck
             End Try
         End Using
     End Sub
-    Protected Sub Getdata()
+
+    Private Sub Getdata()
         
         Mcno = Request.QueryString("ep2mcno")
 
