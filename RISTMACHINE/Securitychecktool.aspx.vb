@@ -1,9 +1,14 @@
-﻿Imports System.Net
+﻿Option Strict On
+Option Explicit On
+Imports System.Net
 
 Public Class Securitychecktool
     Inherits Page
-    Protected Property Mcno() As String
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Property Mcno() As String
+
+
+
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not Page.User.Identity.IsAuthenticated Then
             FormsAuthentication.RedirectToLoginPage()
 
@@ -31,15 +36,16 @@ Public Class Securitychecktool
 
         End If
     End Sub
-    Public Function FindMcno(fmcno As String) As Integer
+
+    Private Function FindMcno(fmcno As String) As Integer
         ' local variable declaration */
         Dim result As Integer
         Using db As New DBRISTMCDataContext
             Try
 
-                Dim getdata = db.TB_SECURITies.Where(Function(x) x.MC_NO = fmcno).ToList()
+                Dim getdata = db.TB_MACHINE_TOOL_CHECK_P3s.Count(Function (x) x.MC_NO = fmcno)
 
-                result = getdata.Count
+                result = getdata
 
             Catch ex As Exception
                 Dim message As String = $"Message: {ex.Message}\n\n"
@@ -48,7 +54,7 @@ Public Class Securitychecktool
                 message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
 
                     
-                NotifySticker(message,4,624)
+                
 
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
             Finally
@@ -70,7 +76,7 @@ Public Class Securitychecktool
             Try
 
                 
-                Dim getdata = db.TB_SECURITies.Where(Function(x) x.MC_NO = Mcno).ToList()
+                Dim getdata = db.TB_MACHINE_TOOL_CHECK_P3s.Where(Function(x) x.MC_NO = Mcno).ToList()
 
 
                 'If getdata IsNot Nothing Then
@@ -311,13 +317,6 @@ Public Class Securitychecktool
     '    'Return true
     'End Function
 
-    Public Function DbNullOrStringValue(value As String) As Object
-        If DbNullOrStringValue(value) Then
-            Return value = ""
-        Else
-            Return value
-        End If
-    End Function
     Protected Sub UpdateData
         Using db = New DBRISTMCDataContext
 
@@ -333,7 +332,7 @@ Public Class Securitychecktool
                 Dim ipcookie As HttpCookie = Request.Cookies("ip")
                 Dim ip as String = If(ipcookie IsNot Nothing, ipcookie.Value.Split("="c)(1), "undefined")
 
-                Dim se = db.TB_SECURITies.FirstOrDefault(Function (x) x.MC_NO = Mcno)
+                Dim se = db.TB_MACHINE_TOOL_CHECK_P3s.FirstOrDefault(Function (x) x.MC_NO = Mcno)
 
                 'If se IsNot Nothing
 
@@ -663,387 +662,165 @@ Public Class Securitychecktool
         End Using
 
     End Sub
-  
+
     Protected Sub InsertData
      
 
         Using db = New DBRISTMCDataContext
 
-            'Try
+            Try
 
-            '    Dim opnocookie As HttpCookie = Request.Cookies("opno")
-            '    Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
-                
-
-            '    Dim ipcookie As HttpCookie = Request.Cookies("ip")
-            '    Dim ip as String = If(ipcookie IsNot Nothing, ipcookie.Value.Split("="c)(1), "undefined")
-            '    Mcno = Request.QueryString("ep3mcno")
-            '    'function insert TB_SECURITY
-            '    Dim se = New TB_SECURITY()
-
-                
-            '    Dim dt As Date
-               
-
-            '    se.MC_NO = Mcno
-
-            '    se.R_1 = choice1.Value
-            '    se.PB1 = tbpb1.Value
-            '    se.RS1 = tbresp1.Value
-            '    If Date.TryParse(tbdt1.Value, dt) Then
-            '        se.DT1 = dt
-            '    End If
-
-            '    se.R_2 = choice2.Value
-            '    se.PB2 = tbpb2.Value
-            '    se.RS2 = tbresp2.Value
-            '    If Date.TryParse(tbdt2.Value, dt) Then
-            '        se.DT2 = dt
-            '    End If
-
-            '    se.R_3 = choice3.Value
-            '    se.PB3 = tbpb3.Value
-            '    se.RS3 = tbresp3.Value
-            '    If Date.TryParse(tbdt3.Value, dt) Then
-            '        se.DT3 = dt
-            '    End If
-
-            '    se.R_4 = choice4.Value
-            '    se.PB4 = tbpb4.Value
-            '    se.RS4 = tbresp4.Value
-            '    If Date.TryParse(tbdt4.Value, dt) Then
-            '        se.DT4 = dt
-            '    End If
-
-            '    se.R_4 = choice4.Value
-            '    se.PB4 = tbpb4.Value
-            '    se.RS4 = tbresp4.Value
-            '    If Date.TryParse(tbdt4.Value, dt) Then
-            '        se.DT4 = dt
-            '    End If
-
-            '    se.R_5 = choice5.Value
-            '    se.PB5 = tbpb5.Value
-            '    se.RS5 = tbresp5.Value
-            '    If Date.TryParse(tbdt5.Value, dt) Then
-            '        se.DT5 = dt
-            '    End If
-
-            '    se.R_6 = choice6.Value
-            '    se.PB6 = tbpb6.Value
-            '    se.RS6 = tbresp6.Value
-            '    If Date.TryParse(tbdt6.Value, dt) Then
-            '        se.DT6 = dt
-            '    End If
-               
-            '    se.R_7 = choice7.Value
-            '    se.PB7 = tbpb7.Value
-            '    se.RS7 = tbresp7.Value
-            '    If Date.TryParse(tbdt7.Value, dt) Then
-            '        se.DT7 = dt
-            '    End If
-
-            '    se.R_8 = choice8.Value
-            '    se.PB8 = tbpb8.Value
-            '    se.RS8 = tbresp8.Value
-            '    If Date.TryParse(tbdt8.Value, dt) Then
-            '        se.DT8 = dt
-            '    End If
-
-            '    se.R_9 = choice9.Value
-            '    se.PB9 = tbpb9.Value
-            '    se.RS9 = tbresp9.Value
-            '    If Date.TryParse(tbdt9.Value, dt) Then
-            '        se.DT9 = dt
-            '    End If
-
-            '    se.R_10 = choicex10.Value
-            '    se.PB10 = tbpbx10.Value
-            '    se.RS10 = tbrespx10.Value
-            '    If Date.TryParse(tbdtx10.Value, dt) Then
-            '        se.DT10 = dt
-            '    End If
-
-            '    se.R_11 = choicex11.Value
-            '    se.PB11 = tbpbx11.Value
-            '    se.RS11 = tbrespx11.Value
-            '    If Date.TryParse(tbdtx11.Value, dt) Then
-            '        se.DT11 = dt
-            '    End If
-
-            '    se.R_12 = choiceb12.Value
-            '    se.PB12 = tbpbb12.Value
-            '    se.RS12 = tbrespb12.Value
-            '    If Date.TryParse(tbdtb12.Value, dt) Then
-            '        se.DT12 = dt
-            '    End If
-
-            '    se.R_13 = choicec13.Value
-            '    se.PB13 = tbpbc13.Value
-            '    se.RS13 = tbrespc13.Value
-            '    If Date.TryParse(tbdtc13.Value, dt) Then
-            '        se.DT13 = dt
-            '    End If
-
-            '    se.R_14 = choiced14.Value
-            '    se.PB14 = tbpbd14.Value
-            '    se.RS14 = tbrespd14.Value
-            '    If Date.TryParse(tbdtd14.Value, dt) Then
-            '        se.DT14 = dt
-            '    End If
-
-            '    se.R_15 = choicee15.Value
-            '    se.PB15 = tbpbe15.Value
-            '    se.RS15 = tbrespe15.Value
-            '    If Date.TryParse(tbdte15.Value, dt) Then
-            '        se.DT15 = dt
-            '    End If
-
-            '    se.R_16 = choicef16.Value
-            '    se.PB16 = tbpbf16.Value
-            '    se.RS16 = tbrespf16.Value
-            '    If Date.TryParse(tbdtf16.Value, dt) Then
-            '        se.DT16 = dt
-            '    End If
-
-            '    se.R_17 = choiceg17.Value
-            '    se.PB17 = tbpbg17.Value
-            '    se.RS17 = tbrespg17.Value
-            '    If Date.TryParse(tbdtg17.Value, dt) Then
-            '        se.DT17 = dt
-            '    End If
-
-            '    se.R_18 = choiceh18.Value
-            '    se.PB18 = tbpbh18.Value
-            '    se.RS18 = tbresph18.Value
-            '    If Date.TryParse(tbdth18.Value, dt) Then
-            '        se.DT18 = dt
-            '    End If
-
-            '    se.R_19 = choicei19.Value
-            '    se.PB19 = tbpbi19.Value
-            '    se.RS19 = tbrespi19.Value
-            '    If Date.TryParse(tbdti19.Value, dt) Then
-            '        se.DT19 = dt
-            '    End If
-
-            '    se.R_20 = choicej20.Value
-            '    se.PB20 = tbpbj20.Value
-            '    se.RS20 = tbrespj20.Value
-            '    If Date.TryParse(tbdtj20.Value, dt) Then
-            '        se.DT20 = dt
-            '    End If
-
-            '    se.R_21 = choicek21.Value
-            '    se.PB21 = tbpbk21.Value
-            '    se.RS21 = tbrespk21.Value
-            '    If Date.TryParse(tbdtk21.Value, dt) Then
-            '        se.DT21 = dt
-            '    End If
-
-            '    se.R_22 = choicel22.Value
-            '    se.PB22 = tbpbl22.Value
-            '    se.RS22 = tbrespl22.Value
-            '    If Date.TryParse(tbdtl22.Value, dt) Then
-            '        se.DT22 = dt
-            '    End If
-
-            '    se.R_23 = choicem23.Value
-            '    se.PB23 = tbpbm23.Value
-            '    se.RS23 = tbrespm23.Value
-            '    If Date.TryParse(tbdtm23.Value, dt) Then
-            '        se.DT23 = dt
-            '    End If
-
-            '    se.R_24 = choicen24.Value
-            '    se.PB24 = tbpbn24.Value
-            '    se.RS24 = tbrespn24.Value
-            '    If Date.TryParse(tbdtn24.Value, dt) Then
-            '        se.DT24 = dt
-            '    End If
-
-            '    se.R_25 = choiceo25.Value
-            '    se.PB25 = tbpbo25.Value
-            '    se.RS25 = tbrespo25.Value
-            '    If Date.TryParse(tbdto25.Value, dt) Then
-            '        se.DT25 = dt
-            '    End If
-
-            '    se.R_26 = choicep26.Value
-            '    se.PB26 = tbpbp26.Value
-            '    se.RS26 = tbrespp26.Value
-            '    If Date.TryParse(tbdtp26.Value, dt) Then
-            '        se.DT26 = dt
-            '    End If
-
-            '    se.R_27 = choiceq27.Value
-            '    se.PB27 = tbpbq27.Value
-            '    se.RS27 = tbrespq27.Value
-            '    If Date.TryParse(tbdtq27.Value, dt) Then
-            '        se.DT27 = dt
-            '    End If
-
-            '    se.R_28 = choicer28.Value
-            '    se.PB28 = tbpbr28.Value
-            '    se.RS28 = tbrespr28.Value
-            '    If Date.TryParse(tbdtr28.Value, dt) Then
-            '        se.DT28 = dt
-            '    End If
-
-            '    se.R_29 = choices29.Value
-            '    se.PB29 = tbpbs29.Value
-            '    se.RS29 = tbresps29.Value
-            '    If Date.TryParse(tbdts29.Value, dt) Then
-            '        se.DT29 = dt
-            '    End If
-
-            '    se.R_30 = choicet30.Value
-            '    se.PB30 = tbpbt30.Value
-            '    se.RS30 = tbrespt30.Value
-            '    If Date.TryParse(tbdtt30.Value, dt) Then
-            '        se.DT30 = dt
-            '    End If
-
-            '    se.R_31 = choiceu31.Value
-            '    se.PB31 = tbpbu31.Value
-            '    se.RS31 = tbrespu31.Value
-            '    If Date.TryParse(tbdtu31.Value, dt) Then
-            '        se.DT31 = dt
-            '    End If
-
-            '    se.R_32 = choicev32.Value
-            '    se.PB32 = tbpbv32.Value
-            '    se.RS32 = tbrespv32.Value
-            '    If Date.TryParse(tbdtv32.Value, dt) Then
-            '        se.DT32 = dt
-            '    End If
-
-            '    se.R_33 = choicew33.Value
-            '    se.PB33 = tbpbw33.Value
-            '    se.RS33 = tbrespw33.Value
-            '    If Date.TryParse(tbdtw33.Value, dt) Then
-            '        se.DT33 = dt
-            '    End If
-
-            '    se.R_34 = choicex34.Value
-            '    se.PB34 = tbpbx34.Value
-            '    se.RS34 = tbrespx34.Value
-            '    If Date.TryParse(tbdtx34.Value, dt) Then
-            '        se.DT34 = dt
-            '    End If
-
-            '    se.R_35 = choicey35.Value
-            '    se.PB35 = tbpby35.Value
-            '    se.RS35 = tbrespy35.Value
-            '    If Date.TryParse(tbdty35.Value, dt) Then
-            '        se.DT35 = dt
-            '    End If
-
-            '    se.R_36 = choicez36.Value
-            '    se.PB36 = tbpbz36.Value
-            '    se.RS36 = tbrespz36.Value
-            '    If Date.TryParse(tbdtz36.Value, dt) Then
-            '        se.DT36 = dt
-            '    End If
-
-            '    se.R_37 = choiceza37.Value
-            '    se.PB37 = tbpbza37.Value
-            '    se.RS37 = tbrespza37.Value
-            '    If Date.TryParse(tbdtza37.Value, dt) Then
-            '        se.DT37 = dt
-            '    End If
-
-            '    se.R_38 = choicezx38.Value
-            '    se.PB38 = tbpbzx38.Value
-            '    se.RS38 = tbrespzx38.Value
-            '    If Date.TryParse(tbdtzx38.Value, dt) Then
-            '        se.DT38 = dt
-            '    End If
-
-            '    se.R_39 = choicezc39.Value
-            '    se.PB39 = tbpbzc39.Value
-            '    se.RS39 = tbrespzc39.Value
-            '    If Date.TryParse(tbdtzc39.Value, dt) Then
-            '        se.DT39 = dt
-            '    End If
-
-            '    se.R_40 = choicezv40.Value
-            '    se.PB40 = tbpbzv40.Value
-            '    se.RS40 = tbrespzv40.Value
-            '    If Date.TryParse(tbdtzv40.Value, dt) Then
-            '        se.DT40 = dt
-            '    End If
-
-            '    se.R_41 = choicezs41.Value
-            '    se.PB41 = tbpbzs41.Value
-            '    se.RS41 = tbrespzs41.Value
-            '    If Date.TryParse(tbdtzs41.Value, dt) Then
-            '        se.DT41 = dt
-            '    End If
+                Dim opnocookie As HttpCookie = Request.Cookies("opno")
+                Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
 
 
+                Dim ipcookie As HttpCookie = Request.Cookies("ip")
+                Dim ip as String = If(ipcookie IsNot Nothing, ipcookie.Value.Split("="c)(1), "undefined")
+                Mcno = Request.QueryString("ep3mcno")
 
-            '    db.TB_SECURITies.InsertOnSubmit(se)
-            '    db.SubmitChanges()
+                'function insert TB_MACHINE_TOOL_CHECK_P3
+                Dim p3 = New TB_MACHINE_TOOL_CHECK_P3()
 
 
-            '    NotifySticker("Insert Data Ok",4,624)
-           
+                Dim dt As Date
+
+
+                p3.MC_NO = Mcno
+
+                p3.A1_1_BEFORE_IMPORT = CType(select_imp1_1.Items(select_imp1_1.SelectedIndex).Value, Integer?)
+                p3.A1_1_BEFORE_IMPORT_NOTE = tb_imp1_1.Value
+                p3.A1_1_BEFORE_START_WORK = CType(select_str1_1.Items(select_str1_1.SelectedIndex).Value, Integer?)
+                p3.A1_1_BEFORE_START_WORK_NOTE = tb_str1_1.Value
+
+
+                p3.A1_2_BEFORE_IMPORT = CType(select_imp1_2.Items(select_imp1_2.SelectedIndex).Value, Integer?)
+                p3.A1_2_BEFORE_IMPORT_NOTE = tb_imp1_2.Value
+                p3.A1_2_BEFORE_START_WORK = CType(select_str1_2.Items(select_str1_2.SelectedIndex).Value, Integer?)
+                p3.A1_2_BEFORE_START_WORK_NOTE = tb_str1_2.Value
+
+
+                p3.A1_A_BEFORE_IMPORT = CType(select_imp1_A.Items(select_imp1_A.SelectedIndex).Value, Integer?)
+                p3.A1_A_BEFORE_IMPORT_NOTE = tb_imp1_A.Value
+                p3.A1_A_BEFORE_START_WORK = CType(select_str1_A.Items(select_str1_A.SelectedIndex).Value, Integer?)
+                p3.A1_A_BEFORE_START_WORK_NOTE = tb_str1_A.Value
+
+                p3.A1_3_BEFORE_IMPORT = CType(select_imp1_3.Items(select_imp1_3.SelectedIndex).Value, Integer?)
+                p3.A1_3_BEFORE_IMPORT_NOTE = tb_imp1_3.Value
+                p3.A1_3_BEFORE_START_WORK = CType(select_str1_3.Items(select_str1_3.SelectedIndex).Value, Integer?)
+                p3.A1_3_BEFORE_START_WORK_NOTE = tb_str1_3.Value
+
+                p3.A1_4_BEFORE_IMPORT = CType(select_imp1_4.Items(select_imp1_4.SelectedIndex).Value, Integer?)
+                p3.A1_4_BEFORE_IMPORT_NOTE = tb_imp1_4.Value
+                p3.A1_4_BEFORE_START_WORK = CType(select_str1_4.Items(select_str1_4.SelectedIndex).Value, Integer?)
+                p3.A1_4_BEFORE_START_WORK_NOTE = tb_str1_4.Value
+
+                p3.A1_5_BEFORE_IMPORT = CType(select_imp1_5.Items(select_imp1_5.SelectedIndex).Value, Integer?)
+                p3.A1_5_BEFORE_IMPORT_NOTE = tb_imp1_5.Value
+                p3.A1_5_BEFORE_START_WORK = CType(select_str1_5.Items(select_str1_5.SelectedIndex).Value, Integer?)
+                p3.A1_5_BEFORE_START_WORK_NOTE = tb_str1_5.Value
+
+                p3.A1_6_BEFORE_IMPORT = CType(select_imp1_6.Items(select_imp1_6.SelectedIndex).Value, Integer?)
+                p3.A1_6_BEFORE_IMPORT_NOTE = tb_imp1_6.Value
+                p3.A1_6_BEFORE_START_WORK = CType(select_str1_6.Items(select_str1_6.SelectedIndex).Value, Integer?)
+                p3.A1_6_BEFORE_START_WORK_NOTE = tb_str1_6.Value
+
+                p3.A1_7_BEFORE_IMPORT = CType(select_imp1_7.Items(select_imp1_7.SelectedIndex).Value, Integer?)
+                p3.A1_7_BEFORE_IMPORT_NOTE = tb_imp1_7.Value
+                p3.A1_7_BEFORE_START_WORK = CType(select_str1_7.Items(select_str1_7.SelectedIndex).Value, Integer?)
+                p3.A1_7_BEFORE_START_WORK_NOTE = tb_str1_7.Value
+
+                p3.A1_8_BEFORE_IMPORT = CType(select_imp1_8.Items(select_imp1_8.SelectedIndex).Value, Integer?)
+                p3.A1_8_BEFORE_IMPORT_NOTE = tb_imp1_8.Value
+                p3.A1_8_BEFORE_START_WORK = CType(select_str1_8.Items(select_str1_8.SelectedIndex).Value, Integer?)
+                p3.A1_8_BEFORE_START_WORK_NOTE = tb_str1_8.Value
+
+                p3.A1_9_BEFORE_IMPORT = CType(select_imp1_9.Items(select_imp1_9.SelectedIndex).Value, Integer?)
+                p3.A1_9_BEFORE_IMPORT_NOTE = tb_imp1_9.Value
+                p3.A1_9_BEFORE_START_WORK = CType(select_str1_9.Items(select_str1_9.SelectedIndex).Value, Integer?)
+                p3.A1_9_BEFORE_START_WORK_NOTE = tb_str1_9.Value
+
+                p3.A1_10_BEFORE_IMPORT = CType(select_imp1_10.Items(select_imp1_10.SelectedIndex).Value, Integer?)
+                p3.A1_10_BEFORE_IMPORT_NOTE = tb_imp1_10.Value
+                p3.A1_10_BEFORE_START_WORK = CType(select_str1_10.Items(select_str1_10.SelectedIndex).Value, Integer?)
+                p3.A1_10_BEFORE_START_WORK_NOTE = tb_str1_10.Value
+
+                p3.A1_11_BEFORE_IMPORT = CType(select_imp1_11.Items(select_imp1_11.SelectedIndex).Value, Integer?)
+                p3.A1_11_BEFORE_IMPORT_NOTE = tb_imp1_11.Value
+                p3.A1_11_BEFORE_START_WORK = CType(select_str1_11.Items(select_str1_11.SelectedIndex).Value, Integer?)
+                p3.A1_11_BEFORE_START_WORK_NOTE = tb_str1_11.Value
+
               
-                
-            '    Catch ex As Exception
-            '        Dim message As String = $"Message: {ex.Message}\n\n"
-            '        message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
-            '        message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
-            '        message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
 
-                    
-            '        NotifySticker(message,4,624)
 
-            '        ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
-            '    Finally
-            '        db.Dispose()
-            '        ClientScript.RegisterStartupScript(Me.GetType(), "alert", "UpdateComplete()", True)
-            '    End Try
+
+
+
+
+
+
+
+
+                db.TB_MACHINE_TOOL_CHECK_P3s.InsertOnSubmit(p3)
+                db.SubmitChanges()
+
+
+                'NotifySticker("Insert Data Ok", 4, 624)
+
+
+
+            Catch ex As Exception
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+
+                'NotifySticker(message, 4, 624)
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+            Finally
+                db.Dispose()
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "UpdateComplete()", True)
+            End Try
         End Using
     End Sub
 
 
    
-    Private Shared Sub NotifySticker(linemsg As String,stickerPackageId  As Integer, stickerId As Integer)
-        _lineNotify(linemsg,stickerPackageId,stickerId)
-    End Sub
+    'Private Shared Sub NotifySticker(linemsg As String,stickerPackageId  As Integer, stickerId As Integer)
+    '    _lineNotify(linemsg,stickerPackageId,stickerId)
+    'End Sub
 
    
-    Private Shared Sub _lineNotify(strmsg As String, stkpkgid As Integer, stkid As Integer)
+    'Private Shared Sub _lineNotify(strmsg As String, stkpkgid As Integer, stkid As Integer)
 
-        Const token As String = "thhDkG5yQg5EBjXY5U4s5URbN72C83DCYSBTtJFjvbb"
+    '    Const token As String = "thhDkG5yQg5EBjXY5U4s5URbN72C83DCYSBTtJFjvbb"
 
-        Try
-            Dim request = CType(WebRequest.Create("https://notify-api.line.me/api/notify"), HttpWebRequest)
-            Dim postData = $"message={strmsg}"
+    '    Try
+    '        Dim request = CType(WebRequest.Create("https://notify-api.line.me/api/notify"), HttpWebRequest)
+    '        Dim postData = $"message={strmsg}"
 
-            If stkpkgid > 0 AndAlso stkid > 0 Then
-                Dim stickerPackageId = $"stickerPackageId={stkpkgid}"
-                Dim stickerId = $"stickerId={stkid}"
-                postData += "&" & stickerPackageId & "&" & stickerId
-            End If
+    '        If stkpkgid > 0 AndAlso stkid > 0 Then
+    '            Dim stickerPackageId = $"stickerPackageId={stkpkgid}"
+    '            Dim stickerId = $"stickerId={stkid}"
+    '            postData += "&" & stickerPackageId & "&" & stickerId
+    '        End If
 
-            Dim data = Encoding.UTF8.GetBytes(postData)
-            request.Method = "POST"
-            request.ContentType = "application/x-www-form-urlencoded"
-            request.ContentLength = data.Length
-            request.Headers.Add("Authorization", "Bearer " & token)
+    '        Dim data = Encoding.UTF8.GetBytes(postData)
+    '        request.Method = "POST"
+    '        request.ContentType = "application/x-www-form-urlencoded"
+    '        request.ContentLength = data.Length
+    '        request.Headers.Add("Authorization", "Bearer " & token)
 
-            Using stream = request.GetRequestStream()
-                stream.Write(data, 0, data.Length)
-            End Using
+    '        Using stream = request.GetRequestStream()
+    '            stream.Write(data, 0, data.Length)
+    '        End Using
 
          
-        Catch ex As Exception
-            Console.WriteLine(ex.ToString())
-        End Try
-    End Sub
+    '    Catch ex As Exception
+    '        Console.WriteLine(ex.ToString())
+    '    End Try
+    'End Sub
 
    
 End Class

@@ -109,6 +109,12 @@ Partial Public Class DBRISTMCDataContext
     End Sub
   Partial Private Sub DeleteTB_SECURITY(instance As TB_SECURITY)
     End Sub
+  Partial Private Sub InsertTB_MACHINE_TOOL_CHECK_P3(instance As TB_MACHINE_TOOL_CHECK_P3)
+    End Sub
+  Partial Private Sub UpdateTB_MACHINE_TOOL_CHECK_P3(instance As TB_MACHINE_TOOL_CHECK_P3)
+    End Sub
+  Partial Private Sub DeleteTB_MACHINE_TOOL_CHECK_P3(instance As TB_MACHINE_TOOL_CHECK_P3)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -211,6 +217,12 @@ Partial Public Class DBRISTMCDataContext
 	Public ReadOnly Property TB_SECURITies() As System.Data.Linq.Table(Of TB_SECURITY)
 		Get
 			Return Me.GetTable(Of TB_SECURITY)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TB_MACHINE_TOOL_CHECK_P3s() As System.Data.Linq.Table(Of TB_MACHINE_TOOL_CHECK_P3)
+		Get
+			Return Me.GetTable(Of TB_MACHINE_TOOL_CHECK_P3)
 		End Get
 	End Property
 	
@@ -12751,6 +12763,1300 @@ Partial Public Class TB_SECURITY
 				Me._FLAG = value
 				Me.SendPropertyChanged("FLAG")
 				Me.OnFLAGChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TB_MACHINE_TOOL_CHECK_P3")>  _
+Partial Public Class TB_MACHINE_TOOL_CHECK_P3
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ID As Integer
+	
+	Private _MC_NO As String
+	
+	Private _A1_1_BEFORE_IMPORT As System.Nullable(Of Integer)
+	
+	Private _A1_1_BEFORE_IMPORT_NOTE As String
+	
+	Private _A1_1_BEFORE_START_WORK As System.Nullable(Of Integer)
+	
+	Private _A1_1_BEFORE_START_WORK_NOTE As String
+	
+	Private _A1_2_BEFORE_IMPORT As System.Nullable(Of Integer)
+	
+	Private _A1_2_BEFORE_IMPORT_NOTE As String
+	
+	Private _A1_2_BEFORE_START_WORK As System.Nullable(Of Integer)
+	
+	Private _A1_2_BEFORE_START_WORK_NOTE As String
+	
+	Private _A1_A_BEFORE_IMPORT As System.Nullable(Of Integer)
+	
+	Private _A1_A_BEFORE_IMPORT_NOTE As String
+	
+	Private _A1_A_BEFORE_START_WORK As System.Nullable(Of Integer)
+	
+	Private _A1_A_BEFORE_START_WORK_NOTE As String
+	
+	Private _A1_3_BEFORE_IMPORT As System.Nullable(Of Integer)
+	
+	Private _A1_3_BEFORE_IMPORT_NOTE As String
+	
+	Private _A1_3_BEFORE_START_WORK As System.Nullable(Of Integer)
+	
+	Private _A1_3_BEFORE_START_WORK_NOTE As String
+	
+	Private _A1_4_BEFORE_IMPORT As System.Nullable(Of Integer)
+	
+	Private _A1_4_BEFORE_IMPORT_NOTE As String
+	
+	Private _A1_4_BEFORE_START_WORK As System.Nullable(Of Integer)
+	
+	Private _A1_4_BEFORE_START_WORK_NOTE As String
+	
+	Private _A1_5_BEFORE_IMPORT As System.Nullable(Of Integer)
+	
+	Private _A1_5_BEFORE_IMPORT_NOTE As String
+	
+	Private _A1_5_BEFORE_START_WORK As System.Nullable(Of Integer)
+	
+	Private _A1_5_BEFORE_START_WORK_NOTE As String
+	
+	Private _A1_6_BEFORE_IMPORT As System.Nullable(Of Integer)
+	
+	Private _A1_6_BEFORE_IMPORT_NOTE As String
+	
+	Private _A1_6_BEFORE_START_WORK As System.Nullable(Of Integer)
+	
+	Private _A1_6_BEFORE_START_WORK_NOTE As String
+	
+	Private _A1_7_BEFORE_IMPORT As System.Nullable(Of Integer)
+	
+	Private _A1_7_BEFORE_IMPORT_NOTE As String
+	
+	Private _A1_7_BEFORE_START_WORK As System.Nullable(Of Integer)
+	
+	Private _A1_7_BEFORE_START_WORK_NOTE As String
+	
+	Private _A1_8_BEFORE_IMPORT As System.Nullable(Of Integer)
+	
+	Private _A1_8_BEFORE_IMPORT_NOTE As String
+	
+	Private _A1_8_BEFORE_START_WORK As System.Nullable(Of Integer)
+	
+	Private _A1_8_BEFORE_START_WORK_NOTE As String
+	
+	Private _A1_9_BEFORE_IMPORT As System.Nullable(Of Integer)
+	
+	Private _A1_9_BEFORE_IMPORT_NOTE As String
+	
+	Private _A1_9_BEFORE_START_WORK As System.Nullable(Of Integer)
+	
+	Private _A1_9_BEFORE_START_WORK_NOTE As String
+	
+	Private _A1_10_BEFORE_IMPORT As System.Nullable(Of Integer)
+	
+	Private _A1_10_BEFORE_IMPORT_NOTE As String
+	
+	Private _A1_10_BEFORE_START_WORK As System.Nullable(Of Integer)
+	
+	Private _A1_10_BEFORE_START_WORK_NOTE As String
+	
+	Private _A1_11_BEFORE_IMPORT As System.Nullable(Of Integer)
+	
+	Private _A1_11_BEFORE_IMPORT_NOTE As String
+	
+	Private _A1_11_BEFORE_START_WORK As System.Nullable(Of Integer)
+	
+	Private _A1_11_BEFORE_START_WORK_NOTE As String
+	
+	Private _OPNO_ADD As String
+	
+	Private _DATE_ADD As System.Nullable(Of Date)
+	
+	Private _OPNO_UPDATE As String
+	
+	Private _DATE_UPDATE As System.Nullable(Of Date)
+	
+	Private _STATUS_ID As System.Nullable(Of Integer)
+	
+	Private _STATUS_NAME As String
+	
+	Private _IP As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIDChanged()
+    End Sub
+    Partial Private Sub OnMC_NOChanging(value As String)
+    End Sub
+    Partial Private Sub OnMC_NOChanged()
+    End Sub
+    Partial Private Sub OnA1_1_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_1_BEFORE_IMPORTChanged()
+    End Sub
+    Partial Private Sub OnA1_1_BEFORE_IMPORT_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_1_BEFORE_IMPORT_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_1_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_1_BEFORE_START_WORKChanged()
+    End Sub
+    Partial Private Sub OnA1_1_BEFORE_START_WORK_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_1_BEFORE_START_WORK_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_2_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_2_BEFORE_IMPORTChanged()
+    End Sub
+    Partial Private Sub OnA1_2_BEFORE_IMPORT_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_2_BEFORE_IMPORT_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_2_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_2_BEFORE_START_WORKChanged()
+    End Sub
+    Partial Private Sub OnA1_2_BEFORE_START_WORK_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_2_BEFORE_START_WORK_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_A_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_A_BEFORE_IMPORTChanged()
+    End Sub
+    Partial Private Sub OnA1_A_BEFORE_IMPORT_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_A_BEFORE_IMPORT_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_A_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_A_BEFORE_START_WORKChanged()
+    End Sub
+    Partial Private Sub OnA1_A_BEFORE_START_WORK_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_A_BEFORE_START_WORK_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_3_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_3_BEFORE_IMPORTChanged()
+    End Sub
+    Partial Private Sub OnA1_3_BEFORE_IMPORT_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_3_BEFORE_IMPORT_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_3_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_3_BEFORE_START_WORKChanged()
+    End Sub
+    Partial Private Sub OnA1_3_BEFORE_START_WORK_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_3_BEFORE_START_WORK_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_4_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_4_BEFORE_IMPORTChanged()
+    End Sub
+    Partial Private Sub OnA1_4_BEFORE_IMPORT_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_4_BEFORE_IMPORT_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_4_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_4_BEFORE_START_WORKChanged()
+    End Sub
+    Partial Private Sub OnA1_4_BEFORE_START_WORK_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_4_BEFORE_START_WORK_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_5_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_5_BEFORE_IMPORTChanged()
+    End Sub
+    Partial Private Sub OnA1_5_BEFORE_IMPORT_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_5_BEFORE_IMPORT_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_5_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_5_BEFORE_START_WORKChanged()
+    End Sub
+    Partial Private Sub OnA1_5_BEFORE_START_WORK_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_5_BEFORE_START_WORK_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_6_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_6_BEFORE_IMPORTChanged()
+    End Sub
+    Partial Private Sub OnA1_6_BEFORE_IMPORT_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_6_BEFORE_IMPORT_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_6_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_6_BEFORE_START_WORKChanged()
+    End Sub
+    Partial Private Sub OnA1_6_BEFORE_START_WORK_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_6_BEFORE_START_WORK_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_7_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_7_BEFORE_IMPORTChanged()
+    End Sub
+    Partial Private Sub OnA1_7_BEFORE_IMPORT_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_7_BEFORE_IMPORT_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_7_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_7_BEFORE_START_WORKChanged()
+    End Sub
+    Partial Private Sub OnA1_7_BEFORE_START_WORK_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_7_BEFORE_START_WORK_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_8_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_8_BEFORE_IMPORTChanged()
+    End Sub
+    Partial Private Sub OnA1_8_BEFORE_IMPORT_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_8_BEFORE_IMPORT_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_8_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_8_BEFORE_START_WORKChanged()
+    End Sub
+    Partial Private Sub OnA1_8_BEFORE_START_WORK_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_8_BEFORE_START_WORK_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_9_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_9_BEFORE_IMPORTChanged()
+    End Sub
+    Partial Private Sub OnA1_9_BEFORE_IMPORT_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_9_BEFORE_IMPORT_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_9_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_9_BEFORE_START_WORKChanged()
+    End Sub
+    Partial Private Sub OnA1_9_BEFORE_START_WORK_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_9_BEFORE_START_WORK_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_10_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_10_BEFORE_IMPORTChanged()
+    End Sub
+    Partial Private Sub OnA1_10_BEFORE_IMPORT_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_10_BEFORE_IMPORT_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_10_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_10_BEFORE_START_WORKChanged()
+    End Sub
+    Partial Private Sub OnA1_10_BEFORE_START_WORK_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_10_BEFORE_START_WORK_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_11_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_11_BEFORE_IMPORTChanged()
+    End Sub
+    Partial Private Sub OnA1_11_BEFORE_IMPORT_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_11_BEFORE_IMPORT_NOTEChanged()
+    End Sub
+    Partial Private Sub OnA1_11_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnA1_11_BEFORE_START_WORKChanged()
+    End Sub
+    Partial Private Sub OnA1_11_BEFORE_START_WORK_NOTEChanging(value As String)
+    End Sub
+    Partial Private Sub OnA1_11_BEFORE_START_WORK_NOTEChanged()
+    End Sub
+    Partial Private Sub OnOPNO_ADDChanging(value As String)
+    End Sub
+    Partial Private Sub OnOPNO_ADDChanged()
+    End Sub
+    Partial Private Sub OnDATE_ADDChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnDATE_ADDChanged()
+    End Sub
+    Partial Private Sub OnOPNO_UPDATEChanging(value As String)
+    End Sub
+    Partial Private Sub OnOPNO_UPDATEChanged()
+    End Sub
+    Partial Private Sub OnDATE_UPDATEChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnDATE_UPDATEChanged()
+    End Sub
+    Partial Private Sub OnSTATUS_IDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnSTATUS_IDChanged()
+    End Sub
+    Partial Private Sub OnSTATUS_NAMEChanging(value As String)
+    End Sub
+    Partial Private Sub OnSTATUS_NAMEChanged()
+    End Sub
+    Partial Private Sub OnIPChanging(value As String)
+    End Sub
+    Partial Private Sub OnIPChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property ID() As Integer
+		Get
+			Return Me._ID
+		End Get
+		Set
+			If ((Me._ID = value)  _
+						= false) Then
+				Me.OnIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ID = value
+				Me.SendPropertyChanged("ID")
+				Me.OnIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MC_NO", DbType:="VarChar(10) NOT NULL", CanBeNull:=false)>  _
+	Public Property MC_NO() As String
+		Get
+			Return Me._MC_NO
+		End Get
+		Set
+			If (String.Equals(Me._MC_NO, value) = false) Then
+				Me.OnMC_NOChanging(value)
+				Me.SendPropertyChanging
+				Me._MC_NO = value
+				Me.SendPropertyChanged("MC_NO")
+				Me.OnMC_NOChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_1_BEFORE_IMPORT", DbType:="Int")>  _
+	Public Property A1_1_BEFORE_IMPORT() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_1_BEFORE_IMPORT
+		End Get
+		Set
+			If (Me._A1_1_BEFORE_IMPORT.Equals(value) = false) Then
+				Me.OnA1_1_BEFORE_IMPORTChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_1_BEFORE_IMPORT = value
+				Me.SendPropertyChanged("A1_1_BEFORE_IMPORT")
+				Me.OnA1_1_BEFORE_IMPORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_1_BEFORE_IMPORT_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_1_BEFORE_IMPORT_NOTE() As String
+		Get
+			Return Me._A1_1_BEFORE_IMPORT_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_1_BEFORE_IMPORT_NOTE, value) = false) Then
+				Me.OnA1_1_BEFORE_IMPORT_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_1_BEFORE_IMPORT_NOTE = value
+				Me.SendPropertyChanged("A1_1_BEFORE_IMPORT_NOTE")
+				Me.OnA1_1_BEFORE_IMPORT_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_1_BEFORE_START_WORK", DbType:="Int")>  _
+	Public Property A1_1_BEFORE_START_WORK() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_1_BEFORE_START_WORK
+		End Get
+		Set
+			If (Me._A1_1_BEFORE_START_WORK.Equals(value) = false) Then
+				Me.OnA1_1_BEFORE_START_WORKChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_1_BEFORE_START_WORK = value
+				Me.SendPropertyChanged("A1_1_BEFORE_START_WORK")
+				Me.OnA1_1_BEFORE_START_WORKChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_1_BEFORE_START_WORK_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_1_BEFORE_START_WORK_NOTE() As String
+		Get
+			Return Me._A1_1_BEFORE_START_WORK_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_1_BEFORE_START_WORK_NOTE, value) = false) Then
+				Me.OnA1_1_BEFORE_START_WORK_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_1_BEFORE_START_WORK_NOTE = value
+				Me.SendPropertyChanged("A1_1_BEFORE_START_WORK_NOTE")
+				Me.OnA1_1_BEFORE_START_WORK_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_2_BEFORE_IMPORT", DbType:="Int")>  _
+	Public Property A1_2_BEFORE_IMPORT() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_2_BEFORE_IMPORT
+		End Get
+		Set
+			If (Me._A1_2_BEFORE_IMPORT.Equals(value) = false) Then
+				Me.OnA1_2_BEFORE_IMPORTChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_2_BEFORE_IMPORT = value
+				Me.SendPropertyChanged("A1_2_BEFORE_IMPORT")
+				Me.OnA1_2_BEFORE_IMPORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_2_BEFORE_IMPORT_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_2_BEFORE_IMPORT_NOTE() As String
+		Get
+			Return Me._A1_2_BEFORE_IMPORT_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_2_BEFORE_IMPORT_NOTE, value) = false) Then
+				Me.OnA1_2_BEFORE_IMPORT_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_2_BEFORE_IMPORT_NOTE = value
+				Me.SendPropertyChanged("A1_2_BEFORE_IMPORT_NOTE")
+				Me.OnA1_2_BEFORE_IMPORT_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_2_BEFORE_START_WORK", DbType:="Int")>  _
+	Public Property A1_2_BEFORE_START_WORK() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_2_BEFORE_START_WORK
+		End Get
+		Set
+			If (Me._A1_2_BEFORE_START_WORK.Equals(value) = false) Then
+				Me.OnA1_2_BEFORE_START_WORKChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_2_BEFORE_START_WORK = value
+				Me.SendPropertyChanged("A1_2_BEFORE_START_WORK")
+				Me.OnA1_2_BEFORE_START_WORKChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_2_BEFORE_START_WORK_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_2_BEFORE_START_WORK_NOTE() As String
+		Get
+			Return Me._A1_2_BEFORE_START_WORK_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_2_BEFORE_START_WORK_NOTE, value) = false) Then
+				Me.OnA1_2_BEFORE_START_WORK_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_2_BEFORE_START_WORK_NOTE = value
+				Me.SendPropertyChanged("A1_2_BEFORE_START_WORK_NOTE")
+				Me.OnA1_2_BEFORE_START_WORK_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_A_BEFORE_IMPORT", DbType:="Int")>  _
+	Public Property A1_A_BEFORE_IMPORT() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_A_BEFORE_IMPORT
+		End Get
+		Set
+			If (Me._A1_A_BEFORE_IMPORT.Equals(value) = false) Then
+				Me.OnA1_A_BEFORE_IMPORTChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_A_BEFORE_IMPORT = value
+				Me.SendPropertyChanged("A1_A_BEFORE_IMPORT")
+				Me.OnA1_A_BEFORE_IMPORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_A_BEFORE_IMPORT_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_A_BEFORE_IMPORT_NOTE() As String
+		Get
+			Return Me._A1_A_BEFORE_IMPORT_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_A_BEFORE_IMPORT_NOTE, value) = false) Then
+				Me.OnA1_A_BEFORE_IMPORT_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_A_BEFORE_IMPORT_NOTE = value
+				Me.SendPropertyChanged("A1_A_BEFORE_IMPORT_NOTE")
+				Me.OnA1_A_BEFORE_IMPORT_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_A_BEFORE_START_WORK", DbType:="Int")>  _
+	Public Property A1_A_BEFORE_START_WORK() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_A_BEFORE_START_WORK
+		End Get
+		Set
+			If (Me._A1_A_BEFORE_START_WORK.Equals(value) = false) Then
+				Me.OnA1_A_BEFORE_START_WORKChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_A_BEFORE_START_WORK = value
+				Me.SendPropertyChanged("A1_A_BEFORE_START_WORK")
+				Me.OnA1_A_BEFORE_START_WORKChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_A_BEFORE_START_WORK_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_A_BEFORE_START_WORK_NOTE() As String
+		Get
+			Return Me._A1_A_BEFORE_START_WORK_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_A_BEFORE_START_WORK_NOTE, value) = false) Then
+				Me.OnA1_A_BEFORE_START_WORK_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_A_BEFORE_START_WORK_NOTE = value
+				Me.SendPropertyChanged("A1_A_BEFORE_START_WORK_NOTE")
+				Me.OnA1_A_BEFORE_START_WORK_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_3_BEFORE_IMPORT", DbType:="Int")>  _
+	Public Property A1_3_BEFORE_IMPORT() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_3_BEFORE_IMPORT
+		End Get
+		Set
+			If (Me._A1_3_BEFORE_IMPORT.Equals(value) = false) Then
+				Me.OnA1_3_BEFORE_IMPORTChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_3_BEFORE_IMPORT = value
+				Me.SendPropertyChanged("A1_3_BEFORE_IMPORT")
+				Me.OnA1_3_BEFORE_IMPORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_3_BEFORE_IMPORT_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_3_BEFORE_IMPORT_NOTE() As String
+		Get
+			Return Me._A1_3_BEFORE_IMPORT_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_3_BEFORE_IMPORT_NOTE, value) = false) Then
+				Me.OnA1_3_BEFORE_IMPORT_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_3_BEFORE_IMPORT_NOTE = value
+				Me.SendPropertyChanged("A1_3_BEFORE_IMPORT_NOTE")
+				Me.OnA1_3_BEFORE_IMPORT_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_3_BEFORE_START_WORK", DbType:="Int")>  _
+	Public Property A1_3_BEFORE_START_WORK() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_3_BEFORE_START_WORK
+		End Get
+		Set
+			If (Me._A1_3_BEFORE_START_WORK.Equals(value) = false) Then
+				Me.OnA1_3_BEFORE_START_WORKChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_3_BEFORE_START_WORK = value
+				Me.SendPropertyChanged("A1_3_BEFORE_START_WORK")
+				Me.OnA1_3_BEFORE_START_WORKChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_3_BEFORE_START_WORK_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_3_BEFORE_START_WORK_NOTE() As String
+		Get
+			Return Me._A1_3_BEFORE_START_WORK_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_3_BEFORE_START_WORK_NOTE, value) = false) Then
+				Me.OnA1_3_BEFORE_START_WORK_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_3_BEFORE_START_WORK_NOTE = value
+				Me.SendPropertyChanged("A1_3_BEFORE_START_WORK_NOTE")
+				Me.OnA1_3_BEFORE_START_WORK_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_4_BEFORE_IMPORT", DbType:="Int")>  _
+	Public Property A1_4_BEFORE_IMPORT() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_4_BEFORE_IMPORT
+		End Get
+		Set
+			If (Me._A1_4_BEFORE_IMPORT.Equals(value) = false) Then
+				Me.OnA1_4_BEFORE_IMPORTChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_4_BEFORE_IMPORT = value
+				Me.SendPropertyChanged("A1_4_BEFORE_IMPORT")
+				Me.OnA1_4_BEFORE_IMPORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_4_BEFORE_IMPORT_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_4_BEFORE_IMPORT_NOTE() As String
+		Get
+			Return Me._A1_4_BEFORE_IMPORT_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_4_BEFORE_IMPORT_NOTE, value) = false) Then
+				Me.OnA1_4_BEFORE_IMPORT_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_4_BEFORE_IMPORT_NOTE = value
+				Me.SendPropertyChanged("A1_4_BEFORE_IMPORT_NOTE")
+				Me.OnA1_4_BEFORE_IMPORT_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_4_BEFORE_START_WORK", DbType:="Int")>  _
+	Public Property A1_4_BEFORE_START_WORK() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_4_BEFORE_START_WORK
+		End Get
+		Set
+			If (Me._A1_4_BEFORE_START_WORK.Equals(value) = false) Then
+				Me.OnA1_4_BEFORE_START_WORKChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_4_BEFORE_START_WORK = value
+				Me.SendPropertyChanged("A1_4_BEFORE_START_WORK")
+				Me.OnA1_4_BEFORE_START_WORKChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_4_BEFORE_START_WORK_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_4_BEFORE_START_WORK_NOTE() As String
+		Get
+			Return Me._A1_4_BEFORE_START_WORK_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_4_BEFORE_START_WORK_NOTE, value) = false) Then
+				Me.OnA1_4_BEFORE_START_WORK_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_4_BEFORE_START_WORK_NOTE = value
+				Me.SendPropertyChanged("A1_4_BEFORE_START_WORK_NOTE")
+				Me.OnA1_4_BEFORE_START_WORK_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_5_BEFORE_IMPORT", DbType:="Int")>  _
+	Public Property A1_5_BEFORE_IMPORT() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_5_BEFORE_IMPORT
+		End Get
+		Set
+			If (Me._A1_5_BEFORE_IMPORT.Equals(value) = false) Then
+				Me.OnA1_5_BEFORE_IMPORTChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_5_BEFORE_IMPORT = value
+				Me.SendPropertyChanged("A1_5_BEFORE_IMPORT")
+				Me.OnA1_5_BEFORE_IMPORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_5_BEFORE_IMPORT_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_5_BEFORE_IMPORT_NOTE() As String
+		Get
+			Return Me._A1_5_BEFORE_IMPORT_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_5_BEFORE_IMPORT_NOTE, value) = false) Then
+				Me.OnA1_5_BEFORE_IMPORT_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_5_BEFORE_IMPORT_NOTE = value
+				Me.SendPropertyChanged("A1_5_BEFORE_IMPORT_NOTE")
+				Me.OnA1_5_BEFORE_IMPORT_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_5_BEFORE_START_WORK", DbType:="Int")>  _
+	Public Property A1_5_BEFORE_START_WORK() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_5_BEFORE_START_WORK
+		End Get
+		Set
+			If (Me._A1_5_BEFORE_START_WORK.Equals(value) = false) Then
+				Me.OnA1_5_BEFORE_START_WORKChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_5_BEFORE_START_WORK = value
+				Me.SendPropertyChanged("A1_5_BEFORE_START_WORK")
+				Me.OnA1_5_BEFORE_START_WORKChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_5_BEFORE_START_WORK_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_5_BEFORE_START_WORK_NOTE() As String
+		Get
+			Return Me._A1_5_BEFORE_START_WORK_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_5_BEFORE_START_WORK_NOTE, value) = false) Then
+				Me.OnA1_5_BEFORE_START_WORK_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_5_BEFORE_START_WORK_NOTE = value
+				Me.SendPropertyChanged("A1_5_BEFORE_START_WORK_NOTE")
+				Me.OnA1_5_BEFORE_START_WORK_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_6_BEFORE_IMPORT", DbType:="Int")>  _
+	Public Property A1_6_BEFORE_IMPORT() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_6_BEFORE_IMPORT
+		End Get
+		Set
+			If (Me._A1_6_BEFORE_IMPORT.Equals(value) = false) Then
+				Me.OnA1_6_BEFORE_IMPORTChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_6_BEFORE_IMPORT = value
+				Me.SendPropertyChanged("A1_6_BEFORE_IMPORT")
+				Me.OnA1_6_BEFORE_IMPORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_6_BEFORE_IMPORT_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_6_BEFORE_IMPORT_NOTE() As String
+		Get
+			Return Me._A1_6_BEFORE_IMPORT_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_6_BEFORE_IMPORT_NOTE, value) = false) Then
+				Me.OnA1_6_BEFORE_IMPORT_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_6_BEFORE_IMPORT_NOTE = value
+				Me.SendPropertyChanged("A1_6_BEFORE_IMPORT_NOTE")
+				Me.OnA1_6_BEFORE_IMPORT_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_6_BEFORE_START_WORK", DbType:="Int")>  _
+	Public Property A1_6_BEFORE_START_WORK() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_6_BEFORE_START_WORK
+		End Get
+		Set
+			If (Me._A1_6_BEFORE_START_WORK.Equals(value) = false) Then
+				Me.OnA1_6_BEFORE_START_WORKChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_6_BEFORE_START_WORK = value
+				Me.SendPropertyChanged("A1_6_BEFORE_START_WORK")
+				Me.OnA1_6_BEFORE_START_WORKChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_6_BEFORE_START_WORK_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_6_BEFORE_START_WORK_NOTE() As String
+		Get
+			Return Me._A1_6_BEFORE_START_WORK_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_6_BEFORE_START_WORK_NOTE, value) = false) Then
+				Me.OnA1_6_BEFORE_START_WORK_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_6_BEFORE_START_WORK_NOTE = value
+				Me.SendPropertyChanged("A1_6_BEFORE_START_WORK_NOTE")
+				Me.OnA1_6_BEFORE_START_WORK_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_7_BEFORE_IMPORT", DbType:="Int")>  _
+	Public Property A1_7_BEFORE_IMPORT() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_7_BEFORE_IMPORT
+		End Get
+		Set
+			If (Me._A1_7_BEFORE_IMPORT.Equals(value) = false) Then
+				Me.OnA1_7_BEFORE_IMPORTChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_7_BEFORE_IMPORT = value
+				Me.SendPropertyChanged("A1_7_BEFORE_IMPORT")
+				Me.OnA1_7_BEFORE_IMPORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_7_BEFORE_IMPORT_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_7_BEFORE_IMPORT_NOTE() As String
+		Get
+			Return Me._A1_7_BEFORE_IMPORT_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_7_BEFORE_IMPORT_NOTE, value) = false) Then
+				Me.OnA1_7_BEFORE_IMPORT_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_7_BEFORE_IMPORT_NOTE = value
+				Me.SendPropertyChanged("A1_7_BEFORE_IMPORT_NOTE")
+				Me.OnA1_7_BEFORE_IMPORT_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_7_BEFORE_START_WORK", DbType:="Int")>  _
+	Public Property A1_7_BEFORE_START_WORK() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_7_BEFORE_START_WORK
+		End Get
+		Set
+			If (Me._A1_7_BEFORE_START_WORK.Equals(value) = false) Then
+				Me.OnA1_7_BEFORE_START_WORKChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_7_BEFORE_START_WORK = value
+				Me.SendPropertyChanged("A1_7_BEFORE_START_WORK")
+				Me.OnA1_7_BEFORE_START_WORKChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_7_BEFORE_START_WORK_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_7_BEFORE_START_WORK_NOTE() As String
+		Get
+			Return Me._A1_7_BEFORE_START_WORK_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_7_BEFORE_START_WORK_NOTE, value) = false) Then
+				Me.OnA1_7_BEFORE_START_WORK_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_7_BEFORE_START_WORK_NOTE = value
+				Me.SendPropertyChanged("A1_7_BEFORE_START_WORK_NOTE")
+				Me.OnA1_7_BEFORE_START_WORK_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_8_BEFORE_IMPORT", DbType:="Int")>  _
+	Public Property A1_8_BEFORE_IMPORT() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_8_BEFORE_IMPORT
+		End Get
+		Set
+			If (Me._A1_8_BEFORE_IMPORT.Equals(value) = false) Then
+				Me.OnA1_8_BEFORE_IMPORTChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_8_BEFORE_IMPORT = value
+				Me.SendPropertyChanged("A1_8_BEFORE_IMPORT")
+				Me.OnA1_8_BEFORE_IMPORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_8_BEFORE_IMPORT_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_8_BEFORE_IMPORT_NOTE() As String
+		Get
+			Return Me._A1_8_BEFORE_IMPORT_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_8_BEFORE_IMPORT_NOTE, value) = false) Then
+				Me.OnA1_8_BEFORE_IMPORT_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_8_BEFORE_IMPORT_NOTE = value
+				Me.SendPropertyChanged("A1_8_BEFORE_IMPORT_NOTE")
+				Me.OnA1_8_BEFORE_IMPORT_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_8_BEFORE_START_WORK", DbType:="Int")>  _
+	Public Property A1_8_BEFORE_START_WORK() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_8_BEFORE_START_WORK
+		End Get
+		Set
+			If (Me._A1_8_BEFORE_START_WORK.Equals(value) = false) Then
+				Me.OnA1_8_BEFORE_START_WORKChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_8_BEFORE_START_WORK = value
+				Me.SendPropertyChanged("A1_8_BEFORE_START_WORK")
+				Me.OnA1_8_BEFORE_START_WORKChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_8_BEFORE_START_WORK_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_8_BEFORE_START_WORK_NOTE() As String
+		Get
+			Return Me._A1_8_BEFORE_START_WORK_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_8_BEFORE_START_WORK_NOTE, value) = false) Then
+				Me.OnA1_8_BEFORE_START_WORK_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_8_BEFORE_START_WORK_NOTE = value
+				Me.SendPropertyChanged("A1_8_BEFORE_START_WORK_NOTE")
+				Me.OnA1_8_BEFORE_START_WORK_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_9_BEFORE_IMPORT", DbType:="Int")>  _
+	Public Property A1_9_BEFORE_IMPORT() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_9_BEFORE_IMPORT
+		End Get
+		Set
+			If (Me._A1_9_BEFORE_IMPORT.Equals(value) = false) Then
+				Me.OnA1_9_BEFORE_IMPORTChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_9_BEFORE_IMPORT = value
+				Me.SendPropertyChanged("A1_9_BEFORE_IMPORT")
+				Me.OnA1_9_BEFORE_IMPORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_9_BEFORE_IMPORT_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_9_BEFORE_IMPORT_NOTE() As String
+		Get
+			Return Me._A1_9_BEFORE_IMPORT_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_9_BEFORE_IMPORT_NOTE, value) = false) Then
+				Me.OnA1_9_BEFORE_IMPORT_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_9_BEFORE_IMPORT_NOTE = value
+				Me.SendPropertyChanged("A1_9_BEFORE_IMPORT_NOTE")
+				Me.OnA1_9_BEFORE_IMPORT_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_9_BEFORE_START_WORK", DbType:="Int")>  _
+	Public Property A1_9_BEFORE_START_WORK() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_9_BEFORE_START_WORK
+		End Get
+		Set
+			If (Me._A1_9_BEFORE_START_WORK.Equals(value) = false) Then
+				Me.OnA1_9_BEFORE_START_WORKChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_9_BEFORE_START_WORK = value
+				Me.SendPropertyChanged("A1_9_BEFORE_START_WORK")
+				Me.OnA1_9_BEFORE_START_WORKChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_9_BEFORE_START_WORK_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_9_BEFORE_START_WORK_NOTE() As String
+		Get
+			Return Me._A1_9_BEFORE_START_WORK_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_9_BEFORE_START_WORK_NOTE, value) = false) Then
+				Me.OnA1_9_BEFORE_START_WORK_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_9_BEFORE_START_WORK_NOTE = value
+				Me.SendPropertyChanged("A1_9_BEFORE_START_WORK_NOTE")
+				Me.OnA1_9_BEFORE_START_WORK_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_10_BEFORE_IMPORT", DbType:="Int")>  _
+	Public Property A1_10_BEFORE_IMPORT() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_10_BEFORE_IMPORT
+		End Get
+		Set
+			If (Me._A1_10_BEFORE_IMPORT.Equals(value) = false) Then
+				Me.OnA1_10_BEFORE_IMPORTChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_10_BEFORE_IMPORT = value
+				Me.SendPropertyChanged("A1_10_BEFORE_IMPORT")
+				Me.OnA1_10_BEFORE_IMPORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_10_BEFORE_IMPORT_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_10_BEFORE_IMPORT_NOTE() As String
+		Get
+			Return Me._A1_10_BEFORE_IMPORT_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_10_BEFORE_IMPORT_NOTE, value) = false) Then
+				Me.OnA1_10_BEFORE_IMPORT_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_10_BEFORE_IMPORT_NOTE = value
+				Me.SendPropertyChanged("A1_10_BEFORE_IMPORT_NOTE")
+				Me.OnA1_10_BEFORE_IMPORT_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_10_BEFORE_START_WORK", DbType:="Int")>  _
+	Public Property A1_10_BEFORE_START_WORK() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_10_BEFORE_START_WORK
+		End Get
+		Set
+			If (Me._A1_10_BEFORE_START_WORK.Equals(value) = false) Then
+				Me.OnA1_10_BEFORE_START_WORKChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_10_BEFORE_START_WORK = value
+				Me.SendPropertyChanged("A1_10_BEFORE_START_WORK")
+				Me.OnA1_10_BEFORE_START_WORKChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_10_BEFORE_START_WORK_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_10_BEFORE_START_WORK_NOTE() As String
+		Get
+			Return Me._A1_10_BEFORE_START_WORK_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_10_BEFORE_START_WORK_NOTE, value) = false) Then
+				Me.OnA1_10_BEFORE_START_WORK_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_10_BEFORE_START_WORK_NOTE = value
+				Me.SendPropertyChanged("A1_10_BEFORE_START_WORK_NOTE")
+				Me.OnA1_10_BEFORE_START_WORK_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_11_BEFORE_IMPORT", DbType:="Int")>  _
+	Public Property A1_11_BEFORE_IMPORT() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_11_BEFORE_IMPORT
+		End Get
+		Set
+			If (Me._A1_11_BEFORE_IMPORT.Equals(value) = false) Then
+				Me.OnA1_11_BEFORE_IMPORTChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_11_BEFORE_IMPORT = value
+				Me.SendPropertyChanged("A1_11_BEFORE_IMPORT")
+				Me.OnA1_11_BEFORE_IMPORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_11_BEFORE_IMPORT_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_11_BEFORE_IMPORT_NOTE() As String
+		Get
+			Return Me._A1_11_BEFORE_IMPORT_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_11_BEFORE_IMPORT_NOTE, value) = false) Then
+				Me.OnA1_11_BEFORE_IMPORT_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_11_BEFORE_IMPORT_NOTE = value
+				Me.SendPropertyChanged("A1_11_BEFORE_IMPORT_NOTE")
+				Me.OnA1_11_BEFORE_IMPORT_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_11_BEFORE_START_WORK", DbType:="Int")>  _
+	Public Property A1_11_BEFORE_START_WORK() As System.Nullable(Of Integer)
+		Get
+			Return Me._A1_11_BEFORE_START_WORK
+		End Get
+		Set
+			If (Me._A1_11_BEFORE_START_WORK.Equals(value) = false) Then
+				Me.OnA1_11_BEFORE_START_WORKChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_11_BEFORE_START_WORK = value
+				Me.SendPropertyChanged("A1_11_BEFORE_START_WORK")
+				Me.OnA1_11_BEFORE_START_WORKChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_11_BEFORE_START_WORK_NOTE", DbType:="VarChar(50)")>  _
+	Public Property A1_11_BEFORE_START_WORK_NOTE() As String
+		Get
+			Return Me._A1_11_BEFORE_START_WORK_NOTE
+		End Get
+		Set
+			If (String.Equals(Me._A1_11_BEFORE_START_WORK_NOTE, value) = false) Then
+				Me.OnA1_11_BEFORE_START_WORK_NOTEChanging(value)
+				Me.SendPropertyChanging
+				Me._A1_11_BEFORE_START_WORK_NOTE = value
+				Me.SendPropertyChanged("A1_11_BEFORE_START_WORK_NOTE")
+				Me.OnA1_11_BEFORE_START_WORK_NOTEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OPNO_ADD", DbType:="VarChar(10)")>  _
+	Public Property OPNO_ADD() As String
+		Get
+			Return Me._OPNO_ADD
+		End Get
+		Set
+			If (String.Equals(Me._OPNO_ADD, value) = false) Then
+				Me.OnOPNO_ADDChanging(value)
+				Me.SendPropertyChanging
+				Me._OPNO_ADD = value
+				Me.SendPropertyChanged("OPNO_ADD")
+				Me.OnOPNO_ADDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DATE_ADD", DbType:="DateTime")>  _
+	Public Property DATE_ADD() As System.Nullable(Of Date)
+		Get
+			Return Me._DATE_ADD
+		End Get
+		Set
+			If (Me._DATE_ADD.Equals(value) = false) Then
+				Me.OnDATE_ADDChanging(value)
+				Me.SendPropertyChanging
+				Me._DATE_ADD = value
+				Me.SendPropertyChanged("DATE_ADD")
+				Me.OnDATE_ADDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OPNO_UPDATE", DbType:="VarChar(10)")>  _
+	Public Property OPNO_UPDATE() As String
+		Get
+			Return Me._OPNO_UPDATE
+		End Get
+		Set
+			If (String.Equals(Me._OPNO_UPDATE, value) = false) Then
+				Me.OnOPNO_UPDATEChanging(value)
+				Me.SendPropertyChanging
+				Me._OPNO_UPDATE = value
+				Me.SendPropertyChanged("OPNO_UPDATE")
+				Me.OnOPNO_UPDATEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DATE_UPDATE", DbType:="DateTime")>  _
+	Public Property DATE_UPDATE() As System.Nullable(Of Date)
+		Get
+			Return Me._DATE_UPDATE
+		End Get
+		Set
+			If (Me._DATE_UPDATE.Equals(value) = false) Then
+				Me.OnDATE_UPDATEChanging(value)
+				Me.SendPropertyChanging
+				Me._DATE_UPDATE = value
+				Me.SendPropertyChanged("DATE_UPDATE")
+				Me.OnDATE_UPDATEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_STATUS_ID", DbType:="Int")>  _
+	Public Property STATUS_ID() As System.Nullable(Of Integer)
+		Get
+			Return Me._STATUS_ID
+		End Get
+		Set
+			If (Me._STATUS_ID.Equals(value) = false) Then
+				Me.OnSTATUS_IDChanging(value)
+				Me.SendPropertyChanging
+				Me._STATUS_ID = value
+				Me.SendPropertyChanged("STATUS_ID")
+				Me.OnSTATUS_IDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_STATUS_NAME", DbType:="VarChar(50)")>  _
+	Public Property STATUS_NAME() As String
+		Get
+			Return Me._STATUS_NAME
+		End Get
+		Set
+			If (String.Equals(Me._STATUS_NAME, value) = false) Then
+				Me.OnSTATUS_NAMEChanging(value)
+				Me.SendPropertyChanging
+				Me._STATUS_NAME = value
+				Me.SendPropertyChanged("STATUS_NAME")
+				Me.OnSTATUS_NAMEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IP", DbType:="VarChar(10)")>  _
+	Public Property IP() As String
+		Get
+			Return Me._IP
+		End Get
+		Set
+			If (String.Equals(Me._IP, value) = false) Then
+				Me.OnIPChanging(value)
+				Me.SendPropertyChanging
+				Me._IP = value
+				Me.SendPropertyChanged("IP")
+				Me.OnIPChanged
 			End If
 		End Set
 	End Property

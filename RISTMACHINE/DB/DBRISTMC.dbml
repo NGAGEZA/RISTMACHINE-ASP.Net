@@ -594,6 +594,67 @@
       <Column Name="FLAG" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.TB_MACHINE_TOOL_CHECK_P3" Member="TB_MACHINE_TOOL_CHECK_P3s">
+    <Type Name="TB_MACHINE_TOOL_CHECK_P3">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MC_NO" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="A1_1_BEFORE_IMPORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_1_BEFORE_IMPORT_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_1_BEFORE_START_WORK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_1_BEFORE_START_WORK_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_2_BEFORE_IMPORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_2_BEFORE_IMPORT_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_2_BEFORE_START_WORK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_2_BEFORE_START_WORK_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_A_BEFORE_IMPORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_A_BEFORE_IMPORT_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_A_BEFORE_START_WORK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_A_BEFORE_START_WORK_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_3_BEFORE_IMPORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_3_BEFORE_IMPORT_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_3_BEFORE_START_WORK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_3_BEFORE_START_WORK_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_4_BEFORE_IMPORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_4_BEFORE_IMPORT_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_4_BEFORE_START_WORK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_4_BEFORE_START_WORK_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_5_BEFORE_IMPORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_5_BEFORE_IMPORT_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_5_BEFORE_START_WORK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_5_BEFORE_START_WORK_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_6_BEFORE_IMPORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_6_BEFORE_IMPORT_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_6_BEFORE_START_WORK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_6_BEFORE_START_WORK_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_7_BEFORE_IMPORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_7_BEFORE_IMPORT_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_7_BEFORE_START_WORK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_7_BEFORE_START_WORK_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_8_BEFORE_IMPORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_8_BEFORE_IMPORT_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_8_BEFORE_START_WORK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_8_BEFORE_START_WORK_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_9_BEFORE_IMPORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_9_BEFORE_IMPORT_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_9_BEFORE_START_WORK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_9_BEFORE_START_WORK_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_10_BEFORE_IMPORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_10_BEFORE_IMPORT_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_10_BEFORE_START_WORK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_10_BEFORE_START_WORK_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_11_BEFORE_IMPORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_11_BEFORE_IMPORT_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="A1_11_BEFORE_START_WORK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="A1_11_BEFORE_START_WORK_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OPNO_ADD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DATE_ADD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OPNO_UPDATE" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DATE_UPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STATUS_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.Insert_User" Method="Insert_User">
     <Parameter Name="OperatorNo" Parameter="operatorNo" Type="System.String" DbType="NVarChar(10)" />
     <Parameter Name="Username" Parameter="username" Type="System.String" DbType="NVarChar(20)" />
