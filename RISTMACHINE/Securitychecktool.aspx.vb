@@ -1,6 +1,6 @@
 ﻿Option Strict On
 Option Explicit On
-Imports System.Net
+
 
 Public Class Securitychecktool
     Inherits Page
@@ -687,66 +687,66 @@ Public Class Securitychecktool
 
                 p3.MC_NO = Mcno
 
-                p3.A1_1_BEFORE_IMPORT = CType(select_imp1_1.Items(select_imp1_1.SelectedIndex).Value, Integer?)
+                p3.A1_1_BEFORE_IMPORT = select_imp1_1.Items(select_imp1_1.SelectedIndex).Value
                 p3.A1_1_BEFORE_IMPORT_NOTE = tb_imp1_1.Value
-                p3.A1_1_BEFORE_START_WORK = CType(select_str1_1.Items(select_str1_1.SelectedIndex).Value, Integer?)
+                p3.A1_1_BEFORE_START_WORK = select_str1_1.Items(select_str1_1.SelectedIndex).Value
                 p3.A1_1_BEFORE_START_WORK_NOTE = tb_str1_1.Value
 
 
-                p3.A1_2_BEFORE_IMPORT = CType(select_imp1_2.Items(select_imp1_2.SelectedIndex).Value, Integer?)
+                p3.A1_2_BEFORE_IMPORT = select_imp1_2.Items(select_imp1_2.SelectedIndex).Value
                 p3.A1_2_BEFORE_IMPORT_NOTE = tb_imp1_2.Value
-                p3.A1_2_BEFORE_START_WORK = CType(select_str1_2.Items(select_str1_2.SelectedIndex).Value, Integer?)
+                p3.A1_2_BEFORE_START_WORK = select_str1_2.Items(select_str1_2.SelectedIndex).Value
                 p3.A1_2_BEFORE_START_WORK_NOTE = tb_str1_2.Value
 
 
-                p3.A1_A_BEFORE_IMPORT = CType(select_imp1_A.Items(select_imp1_A.SelectedIndex).Value, Integer?)
+                p3.A1_A_BEFORE_IMPORT = select_imp1_A.Items(select_imp1_A.SelectedIndex).Value
                 p3.A1_A_BEFORE_IMPORT_NOTE = tb_imp1_A.Value
-                p3.A1_A_BEFORE_START_WORK = CType(select_str1_A.Items(select_str1_A.SelectedIndex).Value, Integer?)
+                p3.A1_A_BEFORE_START_WORK = select_str1_A.Items(select_str1_A.SelectedIndex).Value
                 p3.A1_A_BEFORE_START_WORK_NOTE = tb_str1_A.Value
 
-                p3.A1_3_BEFORE_IMPORT = CType(select_imp1_3.Items(select_imp1_3.SelectedIndex).Value, Integer?)
+                p3.A1_3_BEFORE_IMPORT = select_imp1_3.Items(select_imp1_3.SelectedIndex).Value
                 p3.A1_3_BEFORE_IMPORT_NOTE = tb_imp1_3.Value
-                p3.A1_3_BEFORE_START_WORK = CType(select_str1_3.Items(select_str1_3.SelectedIndex).Value, Integer?)
+                p3.A1_3_BEFORE_START_WORK = select_str1_3.Items(select_str1_3.SelectedIndex).Value
                 p3.A1_3_BEFORE_START_WORK_NOTE = tb_str1_3.Value
 
-                p3.A1_4_BEFORE_IMPORT = CType(select_imp1_4.Items(select_imp1_4.SelectedIndex).Value, Integer?)
+                p3.A1_4_BEFORE_IMPORT = select_imp1_4.Items(select_imp1_4.SelectedIndex).Value
                 p3.A1_4_BEFORE_IMPORT_NOTE = tb_imp1_4.Value
-                p3.A1_4_BEFORE_START_WORK = CType(select_str1_4.Items(select_str1_4.SelectedIndex).Value, Integer?)
+                p3.A1_4_BEFORE_START_WORK = select_str1_4.Items(select_str1_4.SelectedIndex).Value
                 p3.A1_4_BEFORE_START_WORK_NOTE = tb_str1_4.Value
 
-                p3.A1_5_BEFORE_IMPORT = CType(select_imp1_5.Items(select_imp1_5.SelectedIndex).Value, Integer?)
+                p3.A1_5_BEFORE_IMPORT = select_imp1_5.Items(select_imp1_5.SelectedIndex).Value
                 p3.A1_5_BEFORE_IMPORT_NOTE = tb_imp1_5.Value
-                p3.A1_5_BEFORE_START_WORK = CType(select_str1_5.Items(select_str1_5.SelectedIndex).Value, Integer?)
+                p3.A1_5_BEFORE_START_WORK = select_str1_5.Items(select_str1_5.SelectedIndex).Value
                 p3.A1_5_BEFORE_START_WORK_NOTE = tb_str1_5.Value
 
-                p3.A1_6_BEFORE_IMPORT = CType(select_imp1_6.Items(select_imp1_6.SelectedIndex).Value, Integer?)
+                p3.A1_6_BEFORE_IMPORT = select_imp1_6.Items(select_imp1_6.SelectedIndex).Value
                 p3.A1_6_BEFORE_IMPORT_NOTE = tb_imp1_6.Value
-                p3.A1_6_BEFORE_START_WORK = CType(select_str1_6.Items(select_str1_6.SelectedIndex).Value, Integer?)
+                p3.A1_6_BEFORE_START_WORK = select_str1_6.Items(select_str1_6.SelectedIndex).Value
                 p3.A1_6_BEFORE_START_WORK_NOTE = tb_str1_6.Value
 
-                p3.A1_7_BEFORE_IMPORT = CType(select_imp1_7.Items(select_imp1_7.SelectedIndex).Value, Integer?)
+                p3.A1_7_BEFORE_IMPORT = select_imp1_7.Items(select_imp1_7.SelectedIndex).Value
                 p3.A1_7_BEFORE_IMPORT_NOTE = tb_imp1_7.Value
-                p3.A1_7_BEFORE_START_WORK = CType(select_str1_7.Items(select_str1_7.SelectedIndex).Value, Integer?)
+                p3.A1_7_BEFORE_START_WORK =select_str1_7.Items(select_str1_7.SelectedIndex).Value
                 p3.A1_7_BEFORE_START_WORK_NOTE = tb_str1_7.Value
 
-                p3.A1_8_BEFORE_IMPORT = CType(select_imp1_8.Items(select_imp1_8.SelectedIndex).Value, Integer?)
+                p3.A1_8_BEFORE_IMPORT = select_imp1_8.Items(select_imp1_8.SelectedIndex).Value
                 p3.A1_8_BEFORE_IMPORT_NOTE = tb_imp1_8.Value
-                p3.A1_8_BEFORE_START_WORK = CType(select_str1_8.Items(select_str1_8.SelectedIndex).Value, Integer?)
+                p3.A1_8_BEFORE_START_WORK = select_str1_8.Items(select_str1_8.SelectedIndex).Value
                 p3.A1_8_BEFORE_START_WORK_NOTE = tb_str1_8.Value
 
-                p3.A1_9_BEFORE_IMPORT = CType(select_imp1_9.Items(select_imp1_9.SelectedIndex).Value, Integer?)
+                p3.A1_9_BEFORE_IMPORT = select_imp1_9.Items(select_imp1_9.SelectedIndex).Value
                 p3.A1_9_BEFORE_IMPORT_NOTE = tb_imp1_9.Value
-                p3.A1_9_BEFORE_START_WORK = CType(select_str1_9.Items(select_str1_9.SelectedIndex).Value, Integer?)
+                p3.A1_9_BEFORE_START_WORK = select_str1_9.Items(select_str1_9.SelectedIndex).Value
                 p3.A1_9_BEFORE_START_WORK_NOTE = tb_str1_9.Value
 
-                p3.A1_10_BEFORE_IMPORT = CType(select_imp1_10.Items(select_imp1_10.SelectedIndex).Value, Integer?)
+                p3.A1_10_BEFORE_IMPORT = select_imp1_10.Items(select_imp1_10.SelectedIndex).Value
                 p3.A1_10_BEFORE_IMPORT_NOTE = tb_imp1_10.Value
-                p3.A1_10_BEFORE_START_WORK = CType(select_str1_10.Items(select_str1_10.SelectedIndex).Value, Integer?)
+                p3.A1_10_BEFORE_START_WORK = select_str1_10.Items(select_str1_10.SelectedIndex).Value
                 p3.A1_10_BEFORE_START_WORK_NOTE = tb_str1_10.Value
 
-                p3.A1_11_BEFORE_IMPORT = CType(select_imp1_11.Items(select_imp1_11.SelectedIndex).Value, Integer?)
+                p3.A1_11_BEFORE_IMPORT = select_imp1_11.Items(select_imp1_11.SelectedIndex).Value
                 p3.A1_11_BEFORE_IMPORT_NOTE = tb_imp1_11.Value
-                p3.A1_11_BEFORE_START_WORK = CType(select_str1_11.Items(select_str1_11.SelectedIndex).Value, Integer?)
+                p3.A1_11_BEFORE_START_WORK = select_str1_11.Items(select_str1_11.SelectedIndex).Value
                 p3.A1_11_BEFORE_START_WORK_NOTE = tb_str1_11.Value
 
               

@@ -12796,99 +12796,99 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 	
 	Private _MC_NO As String
 	
-	Private _A1_1_BEFORE_IMPORT As System.Nullable(Of Integer)
+	Private _A1_1_BEFORE_IMPORT As String
 	
 	Private _A1_1_BEFORE_IMPORT_NOTE As String
 	
-	Private _A1_1_BEFORE_START_WORK As System.Nullable(Of Integer)
+	Private _A1_1_BEFORE_START_WORK As String
 	
 	Private _A1_1_BEFORE_START_WORK_NOTE As String
 	
-	Private _A1_2_BEFORE_IMPORT As System.Nullable(Of Integer)
+	Private _A1_2_BEFORE_IMPORT As String
 	
 	Private _A1_2_BEFORE_IMPORT_NOTE As String
 	
-	Private _A1_2_BEFORE_START_WORK As System.Nullable(Of Integer)
+	Private _A1_2_BEFORE_START_WORK As String
 	
 	Private _A1_2_BEFORE_START_WORK_NOTE As String
 	
-	Private _A1_A_BEFORE_IMPORT As System.Nullable(Of Integer)
+	Private _A1_A_BEFORE_IMPORT As String
 	
 	Private _A1_A_BEFORE_IMPORT_NOTE As String
 	
-	Private _A1_A_BEFORE_START_WORK As System.Nullable(Of Integer)
+	Private _A1_A_BEFORE_START_WORK As String
 	
 	Private _A1_A_BEFORE_START_WORK_NOTE As String
 	
-	Private _A1_3_BEFORE_IMPORT As System.Nullable(Of Integer)
+	Private _A1_3_BEFORE_IMPORT As String
 	
 	Private _A1_3_BEFORE_IMPORT_NOTE As String
 	
-	Private _A1_3_BEFORE_START_WORK As System.Nullable(Of Integer)
+	Private _A1_3_BEFORE_START_WORK As String
 	
 	Private _A1_3_BEFORE_START_WORK_NOTE As String
 	
-	Private _A1_4_BEFORE_IMPORT As System.Nullable(Of Integer)
+	Private _A1_4_BEFORE_IMPORT As String
 	
 	Private _A1_4_BEFORE_IMPORT_NOTE As String
 	
-	Private _A1_4_BEFORE_START_WORK As System.Nullable(Of Integer)
+	Private _A1_4_BEFORE_START_WORK As String
 	
 	Private _A1_4_BEFORE_START_WORK_NOTE As String
 	
-	Private _A1_5_BEFORE_IMPORT As System.Nullable(Of Integer)
+	Private _A1_5_BEFORE_IMPORT As String
 	
 	Private _A1_5_BEFORE_IMPORT_NOTE As String
 	
-	Private _A1_5_BEFORE_START_WORK As System.Nullable(Of Integer)
+	Private _A1_5_BEFORE_START_WORK As String
 	
 	Private _A1_5_BEFORE_START_WORK_NOTE As String
 	
-	Private _A1_6_BEFORE_IMPORT As System.Nullable(Of Integer)
+	Private _A1_6_BEFORE_IMPORT As String
 	
 	Private _A1_6_BEFORE_IMPORT_NOTE As String
 	
-	Private _A1_6_BEFORE_START_WORK As System.Nullable(Of Integer)
+	Private _A1_6_BEFORE_START_WORK As String
 	
 	Private _A1_6_BEFORE_START_WORK_NOTE As String
 	
-	Private _A1_7_BEFORE_IMPORT As System.Nullable(Of Integer)
+	Private _A1_7_BEFORE_IMPORT As String
 	
 	Private _A1_7_BEFORE_IMPORT_NOTE As String
 	
-	Private _A1_7_BEFORE_START_WORK As System.Nullable(Of Integer)
+	Private _A1_7_BEFORE_START_WORK As String
 	
 	Private _A1_7_BEFORE_START_WORK_NOTE As String
 	
-	Private _A1_8_BEFORE_IMPORT As System.Nullable(Of Integer)
+	Private _A1_8_BEFORE_IMPORT As String
 	
 	Private _A1_8_BEFORE_IMPORT_NOTE As String
 	
-	Private _A1_8_BEFORE_START_WORK As System.Nullable(Of Integer)
+	Private _A1_8_BEFORE_START_WORK As String
 	
 	Private _A1_8_BEFORE_START_WORK_NOTE As String
 	
-	Private _A1_9_BEFORE_IMPORT As System.Nullable(Of Integer)
+	Private _A1_9_BEFORE_IMPORT As String
 	
 	Private _A1_9_BEFORE_IMPORT_NOTE As String
 	
-	Private _A1_9_BEFORE_START_WORK As System.Nullable(Of Integer)
+	Private _A1_9_BEFORE_START_WORK As String
 	
 	Private _A1_9_BEFORE_START_WORK_NOTE As String
 	
-	Private _A1_10_BEFORE_IMPORT As System.Nullable(Of Integer)
+	Private _A1_10_BEFORE_IMPORT As String
 	
 	Private _A1_10_BEFORE_IMPORT_NOTE As String
 	
-	Private _A1_10_BEFORE_START_WORK As System.Nullable(Of Integer)
+	Private _A1_10_BEFORE_START_WORK As String
 	
 	Private _A1_10_BEFORE_START_WORK_NOTE As String
 	
-	Private _A1_11_BEFORE_IMPORT As System.Nullable(Of Integer)
+	Private _A1_11_BEFORE_IMPORT As String
 	
 	Private _A1_11_BEFORE_IMPORT_NOTE As String
 	
-	Private _A1_11_BEFORE_START_WORK As System.Nullable(Of Integer)
+	Private _A1_11_BEFORE_START_WORK As String
 	
 	Private _A1_11_BEFORE_START_WORK_NOTE As String
 	
@@ -12921,7 +12921,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnMC_NOChanged()
     End Sub
-    Partial Private Sub OnA1_1_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_1_BEFORE_IMPORTChanging(value As String)
     End Sub
     Partial Private Sub OnA1_1_BEFORE_IMPORTChanged()
     End Sub
@@ -12929,7 +12929,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_1_BEFORE_IMPORT_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_1_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_1_BEFORE_START_WORKChanging(value As String)
     End Sub
     Partial Private Sub OnA1_1_BEFORE_START_WORKChanged()
     End Sub
@@ -12937,7 +12937,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_1_BEFORE_START_WORK_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_2_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_2_BEFORE_IMPORTChanging(value As String)
     End Sub
     Partial Private Sub OnA1_2_BEFORE_IMPORTChanged()
     End Sub
@@ -12945,7 +12945,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_2_BEFORE_IMPORT_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_2_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_2_BEFORE_START_WORKChanging(value As String)
     End Sub
     Partial Private Sub OnA1_2_BEFORE_START_WORKChanged()
     End Sub
@@ -12953,7 +12953,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_2_BEFORE_START_WORK_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_A_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_A_BEFORE_IMPORTChanging(value As String)
     End Sub
     Partial Private Sub OnA1_A_BEFORE_IMPORTChanged()
     End Sub
@@ -12961,7 +12961,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_A_BEFORE_IMPORT_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_A_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_A_BEFORE_START_WORKChanging(value As String)
     End Sub
     Partial Private Sub OnA1_A_BEFORE_START_WORKChanged()
     End Sub
@@ -12969,7 +12969,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_A_BEFORE_START_WORK_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_3_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_3_BEFORE_IMPORTChanging(value As String)
     End Sub
     Partial Private Sub OnA1_3_BEFORE_IMPORTChanged()
     End Sub
@@ -12977,7 +12977,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_3_BEFORE_IMPORT_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_3_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_3_BEFORE_START_WORKChanging(value As String)
     End Sub
     Partial Private Sub OnA1_3_BEFORE_START_WORKChanged()
     End Sub
@@ -12985,7 +12985,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_3_BEFORE_START_WORK_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_4_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_4_BEFORE_IMPORTChanging(value As String)
     End Sub
     Partial Private Sub OnA1_4_BEFORE_IMPORTChanged()
     End Sub
@@ -12993,7 +12993,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_4_BEFORE_IMPORT_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_4_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_4_BEFORE_START_WORKChanging(value As String)
     End Sub
     Partial Private Sub OnA1_4_BEFORE_START_WORKChanged()
     End Sub
@@ -13001,7 +13001,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_4_BEFORE_START_WORK_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_5_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_5_BEFORE_IMPORTChanging(value As String)
     End Sub
     Partial Private Sub OnA1_5_BEFORE_IMPORTChanged()
     End Sub
@@ -13009,7 +13009,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_5_BEFORE_IMPORT_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_5_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_5_BEFORE_START_WORKChanging(value As String)
     End Sub
     Partial Private Sub OnA1_5_BEFORE_START_WORKChanged()
     End Sub
@@ -13017,7 +13017,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_5_BEFORE_START_WORK_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_6_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_6_BEFORE_IMPORTChanging(value As String)
     End Sub
     Partial Private Sub OnA1_6_BEFORE_IMPORTChanged()
     End Sub
@@ -13025,7 +13025,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_6_BEFORE_IMPORT_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_6_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_6_BEFORE_START_WORKChanging(value As String)
     End Sub
     Partial Private Sub OnA1_6_BEFORE_START_WORKChanged()
     End Sub
@@ -13033,7 +13033,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_6_BEFORE_START_WORK_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_7_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_7_BEFORE_IMPORTChanging(value As String)
     End Sub
     Partial Private Sub OnA1_7_BEFORE_IMPORTChanged()
     End Sub
@@ -13041,7 +13041,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_7_BEFORE_IMPORT_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_7_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_7_BEFORE_START_WORKChanging(value As String)
     End Sub
     Partial Private Sub OnA1_7_BEFORE_START_WORKChanged()
     End Sub
@@ -13049,7 +13049,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_7_BEFORE_START_WORK_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_8_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_8_BEFORE_IMPORTChanging(value As String)
     End Sub
     Partial Private Sub OnA1_8_BEFORE_IMPORTChanged()
     End Sub
@@ -13057,7 +13057,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_8_BEFORE_IMPORT_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_8_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_8_BEFORE_START_WORKChanging(value As String)
     End Sub
     Partial Private Sub OnA1_8_BEFORE_START_WORKChanged()
     End Sub
@@ -13065,7 +13065,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_8_BEFORE_START_WORK_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_9_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_9_BEFORE_IMPORTChanging(value As String)
     End Sub
     Partial Private Sub OnA1_9_BEFORE_IMPORTChanged()
     End Sub
@@ -13073,7 +13073,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_9_BEFORE_IMPORT_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_9_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_9_BEFORE_START_WORKChanging(value As String)
     End Sub
     Partial Private Sub OnA1_9_BEFORE_START_WORKChanged()
     End Sub
@@ -13081,7 +13081,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_9_BEFORE_START_WORK_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_10_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_10_BEFORE_IMPORTChanging(value As String)
     End Sub
     Partial Private Sub OnA1_10_BEFORE_IMPORTChanged()
     End Sub
@@ -13089,7 +13089,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_10_BEFORE_IMPORT_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_10_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_10_BEFORE_START_WORKChanging(value As String)
     End Sub
     Partial Private Sub OnA1_10_BEFORE_START_WORKChanged()
     End Sub
@@ -13097,7 +13097,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_10_BEFORE_START_WORK_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_11_BEFORE_IMPORTChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_11_BEFORE_IMPORTChanging(value As String)
     End Sub
     Partial Private Sub OnA1_11_BEFORE_IMPORTChanged()
     End Sub
@@ -13105,7 +13105,7 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     End Sub
     Partial Private Sub OnA1_11_BEFORE_IMPORT_NOTEChanged()
     End Sub
-    Partial Private Sub OnA1_11_BEFORE_START_WORKChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnA1_11_BEFORE_START_WORKChanging(value As String)
     End Sub
     Partial Private Sub OnA1_11_BEFORE_START_WORKChanged()
     End Sub
@@ -13181,13 +13181,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_1_BEFORE_IMPORT", DbType:="Int")>  _
-	Public Property A1_1_BEFORE_IMPORT() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_1_BEFORE_IMPORT", DbType:="VarChar(2)")>  _
+	Public Property A1_1_BEFORE_IMPORT() As String
 		Get
 			Return Me._A1_1_BEFORE_IMPORT
 		End Get
 		Set
-			If (Me._A1_1_BEFORE_IMPORT.Equals(value) = false) Then
+			If (String.Equals(Me._A1_1_BEFORE_IMPORT, value) = false) Then
 				Me.OnA1_1_BEFORE_IMPORTChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_1_BEFORE_IMPORT = value
@@ -13213,13 +13213,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_1_BEFORE_START_WORK", DbType:="Int")>  _
-	Public Property A1_1_BEFORE_START_WORK() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_1_BEFORE_START_WORK", DbType:="VarChar(2)")>  _
+	Public Property A1_1_BEFORE_START_WORK() As String
 		Get
 			Return Me._A1_1_BEFORE_START_WORK
 		End Get
 		Set
-			If (Me._A1_1_BEFORE_START_WORK.Equals(value) = false) Then
+			If (String.Equals(Me._A1_1_BEFORE_START_WORK, value) = false) Then
 				Me.OnA1_1_BEFORE_START_WORKChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_1_BEFORE_START_WORK = value
@@ -13245,13 +13245,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_2_BEFORE_IMPORT", DbType:="Int")>  _
-	Public Property A1_2_BEFORE_IMPORT() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_2_BEFORE_IMPORT", DbType:="VarChar(2)")>  _
+	Public Property A1_2_BEFORE_IMPORT() As String
 		Get
 			Return Me._A1_2_BEFORE_IMPORT
 		End Get
 		Set
-			If (Me._A1_2_BEFORE_IMPORT.Equals(value) = false) Then
+			If (String.Equals(Me._A1_2_BEFORE_IMPORT, value) = false) Then
 				Me.OnA1_2_BEFORE_IMPORTChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_2_BEFORE_IMPORT = value
@@ -13277,13 +13277,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_2_BEFORE_START_WORK", DbType:="Int")>  _
-	Public Property A1_2_BEFORE_START_WORK() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_2_BEFORE_START_WORK", DbType:="VarChar(2)")>  _
+	Public Property A1_2_BEFORE_START_WORK() As String
 		Get
 			Return Me._A1_2_BEFORE_START_WORK
 		End Get
 		Set
-			If (Me._A1_2_BEFORE_START_WORK.Equals(value) = false) Then
+			If (String.Equals(Me._A1_2_BEFORE_START_WORK, value) = false) Then
 				Me.OnA1_2_BEFORE_START_WORKChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_2_BEFORE_START_WORK = value
@@ -13309,13 +13309,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_A_BEFORE_IMPORT", DbType:="Int")>  _
-	Public Property A1_A_BEFORE_IMPORT() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_A_BEFORE_IMPORT", DbType:="VarChar(2)")>  _
+	Public Property A1_A_BEFORE_IMPORT() As String
 		Get
 			Return Me._A1_A_BEFORE_IMPORT
 		End Get
 		Set
-			If (Me._A1_A_BEFORE_IMPORT.Equals(value) = false) Then
+			If (String.Equals(Me._A1_A_BEFORE_IMPORT, value) = false) Then
 				Me.OnA1_A_BEFORE_IMPORTChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_A_BEFORE_IMPORT = value
@@ -13341,13 +13341,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_A_BEFORE_START_WORK", DbType:="Int")>  _
-	Public Property A1_A_BEFORE_START_WORK() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_A_BEFORE_START_WORK", DbType:="VarChar(2)")>  _
+	Public Property A1_A_BEFORE_START_WORK() As String
 		Get
 			Return Me._A1_A_BEFORE_START_WORK
 		End Get
 		Set
-			If (Me._A1_A_BEFORE_START_WORK.Equals(value) = false) Then
+			If (String.Equals(Me._A1_A_BEFORE_START_WORK, value) = false) Then
 				Me.OnA1_A_BEFORE_START_WORKChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_A_BEFORE_START_WORK = value
@@ -13373,13 +13373,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_3_BEFORE_IMPORT", DbType:="Int")>  _
-	Public Property A1_3_BEFORE_IMPORT() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_3_BEFORE_IMPORT", DbType:="VarChar(2)")>  _
+	Public Property A1_3_BEFORE_IMPORT() As String
 		Get
 			Return Me._A1_3_BEFORE_IMPORT
 		End Get
 		Set
-			If (Me._A1_3_BEFORE_IMPORT.Equals(value) = false) Then
+			If (String.Equals(Me._A1_3_BEFORE_IMPORT, value) = false) Then
 				Me.OnA1_3_BEFORE_IMPORTChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_3_BEFORE_IMPORT = value
@@ -13405,13 +13405,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_3_BEFORE_START_WORK", DbType:="Int")>  _
-	Public Property A1_3_BEFORE_START_WORK() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_3_BEFORE_START_WORK", DbType:="VarChar(2)")>  _
+	Public Property A1_3_BEFORE_START_WORK() As String
 		Get
 			Return Me._A1_3_BEFORE_START_WORK
 		End Get
 		Set
-			If (Me._A1_3_BEFORE_START_WORK.Equals(value) = false) Then
+			If (String.Equals(Me._A1_3_BEFORE_START_WORK, value) = false) Then
 				Me.OnA1_3_BEFORE_START_WORKChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_3_BEFORE_START_WORK = value
@@ -13437,13 +13437,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_4_BEFORE_IMPORT", DbType:="Int")>  _
-	Public Property A1_4_BEFORE_IMPORT() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_4_BEFORE_IMPORT", DbType:="VarChar(2)")>  _
+	Public Property A1_4_BEFORE_IMPORT() As String
 		Get
 			Return Me._A1_4_BEFORE_IMPORT
 		End Get
 		Set
-			If (Me._A1_4_BEFORE_IMPORT.Equals(value) = false) Then
+			If (String.Equals(Me._A1_4_BEFORE_IMPORT, value) = false) Then
 				Me.OnA1_4_BEFORE_IMPORTChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_4_BEFORE_IMPORT = value
@@ -13469,13 +13469,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_4_BEFORE_START_WORK", DbType:="Int")>  _
-	Public Property A1_4_BEFORE_START_WORK() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_4_BEFORE_START_WORK", DbType:="VarChar(2)")>  _
+	Public Property A1_4_BEFORE_START_WORK() As String
 		Get
 			Return Me._A1_4_BEFORE_START_WORK
 		End Get
 		Set
-			If (Me._A1_4_BEFORE_START_WORK.Equals(value) = false) Then
+			If (String.Equals(Me._A1_4_BEFORE_START_WORK, value) = false) Then
 				Me.OnA1_4_BEFORE_START_WORKChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_4_BEFORE_START_WORK = value
@@ -13501,13 +13501,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_5_BEFORE_IMPORT", DbType:="Int")>  _
-	Public Property A1_5_BEFORE_IMPORT() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_5_BEFORE_IMPORT", DbType:="VarChar(2)")>  _
+	Public Property A1_5_BEFORE_IMPORT() As String
 		Get
 			Return Me._A1_5_BEFORE_IMPORT
 		End Get
 		Set
-			If (Me._A1_5_BEFORE_IMPORT.Equals(value) = false) Then
+			If (String.Equals(Me._A1_5_BEFORE_IMPORT, value) = false) Then
 				Me.OnA1_5_BEFORE_IMPORTChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_5_BEFORE_IMPORT = value
@@ -13533,13 +13533,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_5_BEFORE_START_WORK", DbType:="Int")>  _
-	Public Property A1_5_BEFORE_START_WORK() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_5_BEFORE_START_WORK", DbType:="VarChar(2)")>  _
+	Public Property A1_5_BEFORE_START_WORK() As String
 		Get
 			Return Me._A1_5_BEFORE_START_WORK
 		End Get
 		Set
-			If (Me._A1_5_BEFORE_START_WORK.Equals(value) = false) Then
+			If (String.Equals(Me._A1_5_BEFORE_START_WORK, value) = false) Then
 				Me.OnA1_5_BEFORE_START_WORKChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_5_BEFORE_START_WORK = value
@@ -13565,13 +13565,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_6_BEFORE_IMPORT", DbType:="Int")>  _
-	Public Property A1_6_BEFORE_IMPORT() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_6_BEFORE_IMPORT", DbType:="VarChar(2)")>  _
+	Public Property A1_6_BEFORE_IMPORT() As String
 		Get
 			Return Me._A1_6_BEFORE_IMPORT
 		End Get
 		Set
-			If (Me._A1_6_BEFORE_IMPORT.Equals(value) = false) Then
+			If (String.Equals(Me._A1_6_BEFORE_IMPORT, value) = false) Then
 				Me.OnA1_6_BEFORE_IMPORTChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_6_BEFORE_IMPORT = value
@@ -13597,13 +13597,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_6_BEFORE_START_WORK", DbType:="Int")>  _
-	Public Property A1_6_BEFORE_START_WORK() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_6_BEFORE_START_WORK", DbType:="VarChar(2)")>  _
+	Public Property A1_6_BEFORE_START_WORK() As String
 		Get
 			Return Me._A1_6_BEFORE_START_WORK
 		End Get
 		Set
-			If (Me._A1_6_BEFORE_START_WORK.Equals(value) = false) Then
+			If (String.Equals(Me._A1_6_BEFORE_START_WORK, value) = false) Then
 				Me.OnA1_6_BEFORE_START_WORKChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_6_BEFORE_START_WORK = value
@@ -13629,13 +13629,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_7_BEFORE_IMPORT", DbType:="Int")>  _
-	Public Property A1_7_BEFORE_IMPORT() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_7_BEFORE_IMPORT", DbType:="VarChar(2)")>  _
+	Public Property A1_7_BEFORE_IMPORT() As String
 		Get
 			Return Me._A1_7_BEFORE_IMPORT
 		End Get
 		Set
-			If (Me._A1_7_BEFORE_IMPORT.Equals(value) = false) Then
+			If (String.Equals(Me._A1_7_BEFORE_IMPORT, value) = false) Then
 				Me.OnA1_7_BEFORE_IMPORTChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_7_BEFORE_IMPORT = value
@@ -13661,13 +13661,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_7_BEFORE_START_WORK", DbType:="Int")>  _
-	Public Property A1_7_BEFORE_START_WORK() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_7_BEFORE_START_WORK", DbType:="VarChar(2)")>  _
+	Public Property A1_7_BEFORE_START_WORK() As String
 		Get
 			Return Me._A1_7_BEFORE_START_WORK
 		End Get
 		Set
-			If (Me._A1_7_BEFORE_START_WORK.Equals(value) = false) Then
+			If (String.Equals(Me._A1_7_BEFORE_START_WORK, value) = false) Then
 				Me.OnA1_7_BEFORE_START_WORKChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_7_BEFORE_START_WORK = value
@@ -13693,13 +13693,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_8_BEFORE_IMPORT", DbType:="Int")>  _
-	Public Property A1_8_BEFORE_IMPORT() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_8_BEFORE_IMPORT", DbType:="VarChar(2)")>  _
+	Public Property A1_8_BEFORE_IMPORT() As String
 		Get
 			Return Me._A1_8_BEFORE_IMPORT
 		End Get
 		Set
-			If (Me._A1_8_BEFORE_IMPORT.Equals(value) = false) Then
+			If (String.Equals(Me._A1_8_BEFORE_IMPORT, value) = false) Then
 				Me.OnA1_8_BEFORE_IMPORTChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_8_BEFORE_IMPORT = value
@@ -13725,13 +13725,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_8_BEFORE_START_WORK", DbType:="Int")>  _
-	Public Property A1_8_BEFORE_START_WORK() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_8_BEFORE_START_WORK", DbType:="VarChar(2)")>  _
+	Public Property A1_8_BEFORE_START_WORK() As String
 		Get
 			Return Me._A1_8_BEFORE_START_WORK
 		End Get
 		Set
-			If (Me._A1_8_BEFORE_START_WORK.Equals(value) = false) Then
+			If (String.Equals(Me._A1_8_BEFORE_START_WORK, value) = false) Then
 				Me.OnA1_8_BEFORE_START_WORKChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_8_BEFORE_START_WORK = value
@@ -13757,13 +13757,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_9_BEFORE_IMPORT", DbType:="Int")>  _
-	Public Property A1_9_BEFORE_IMPORT() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_9_BEFORE_IMPORT", DbType:="VarChar(2)")>  _
+	Public Property A1_9_BEFORE_IMPORT() As String
 		Get
 			Return Me._A1_9_BEFORE_IMPORT
 		End Get
 		Set
-			If (Me._A1_9_BEFORE_IMPORT.Equals(value) = false) Then
+			If (String.Equals(Me._A1_9_BEFORE_IMPORT, value) = false) Then
 				Me.OnA1_9_BEFORE_IMPORTChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_9_BEFORE_IMPORT = value
@@ -13789,13 +13789,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_9_BEFORE_START_WORK", DbType:="Int")>  _
-	Public Property A1_9_BEFORE_START_WORK() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_9_BEFORE_START_WORK", DbType:="VarChar(2)")>  _
+	Public Property A1_9_BEFORE_START_WORK() As String
 		Get
 			Return Me._A1_9_BEFORE_START_WORK
 		End Get
 		Set
-			If (Me._A1_9_BEFORE_START_WORK.Equals(value) = false) Then
+			If (String.Equals(Me._A1_9_BEFORE_START_WORK, value) = false) Then
 				Me.OnA1_9_BEFORE_START_WORKChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_9_BEFORE_START_WORK = value
@@ -13821,13 +13821,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_10_BEFORE_IMPORT", DbType:="Int")>  _
-	Public Property A1_10_BEFORE_IMPORT() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_10_BEFORE_IMPORT", DbType:="VarChar(2)")>  _
+	Public Property A1_10_BEFORE_IMPORT() As String
 		Get
 			Return Me._A1_10_BEFORE_IMPORT
 		End Get
 		Set
-			If (Me._A1_10_BEFORE_IMPORT.Equals(value) = false) Then
+			If (String.Equals(Me._A1_10_BEFORE_IMPORT, value) = false) Then
 				Me.OnA1_10_BEFORE_IMPORTChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_10_BEFORE_IMPORT = value
@@ -13853,13 +13853,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_10_BEFORE_START_WORK", DbType:="Int")>  _
-	Public Property A1_10_BEFORE_START_WORK() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_10_BEFORE_START_WORK", DbType:="VarChar(2)")>  _
+	Public Property A1_10_BEFORE_START_WORK() As String
 		Get
 			Return Me._A1_10_BEFORE_START_WORK
 		End Get
 		Set
-			If (Me._A1_10_BEFORE_START_WORK.Equals(value) = false) Then
+			If (String.Equals(Me._A1_10_BEFORE_START_WORK, value) = false) Then
 				Me.OnA1_10_BEFORE_START_WORKChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_10_BEFORE_START_WORK = value
@@ -13885,13 +13885,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_11_BEFORE_IMPORT", DbType:="Int")>  _
-	Public Property A1_11_BEFORE_IMPORT() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_11_BEFORE_IMPORT", DbType:="VarChar(2)")>  _
+	Public Property A1_11_BEFORE_IMPORT() As String
 		Get
 			Return Me._A1_11_BEFORE_IMPORT
 		End Get
 		Set
-			If (Me._A1_11_BEFORE_IMPORT.Equals(value) = false) Then
+			If (String.Equals(Me._A1_11_BEFORE_IMPORT, value) = false) Then
 				Me.OnA1_11_BEFORE_IMPORTChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_11_BEFORE_IMPORT = value
@@ -13917,13 +13917,13 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_11_BEFORE_START_WORK", DbType:="Int")>  _
-	Public Property A1_11_BEFORE_START_WORK() As System.Nullable(Of Integer)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_A1_11_BEFORE_START_WORK", DbType:="VarChar(2)")>  _
+	Public Property A1_11_BEFORE_START_WORK() As String
 		Get
 			Return Me._A1_11_BEFORE_START_WORK
 		End Get
 		Set
-			If (Me._A1_11_BEFORE_START_WORK.Equals(value) = false) Then
+			If (String.Equals(Me._A1_11_BEFORE_START_WORK, value) = false) Then
 				Me.OnA1_11_BEFORE_START_WORKChanging(value)
 				Me.SendPropertyChanging
 				Me._A1_11_BEFORE_START_WORK = value

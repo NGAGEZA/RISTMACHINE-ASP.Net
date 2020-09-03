@@ -8,7 +8,7 @@
         $(document).on('click',
             '.panel-heading span.clickable',
             function() {
-                var $this = $(this);
+                const $this = $(this);
                 if (!$this.hasClass('panel-collapsed')) {
                     $this.parents('.panel').find('.panel-body').slideUp();
                     $this.addClass('panel-collapsed');
@@ -59,7 +59,7 @@
 
     </script>
     
-   
+    <script src="Scripts/select-enable-input.js"></script>
     <script src="Scripts/select-disabled.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
