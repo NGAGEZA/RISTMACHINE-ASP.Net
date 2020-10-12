@@ -1232,7 +1232,7 @@ Public Class Main
         End Using
     End sub
 
-    Protected sub SendEmailToDeptMgr
+    Private sub SendEmailToDeptMgr
         Dim emaildeptEnc As string = String.Empty
         Dim emaildept As string = String.Empty
         Dim opnodept As string = String.Empty
@@ -1241,17 +1241,25 @@ Public Class Main
             Try
                 'searchflow step for deptmgr with req opno
                 Dim opreq As String
-                Dim reqno = From c In db.TB_MACHINE_DATAs
-                        Where c.MC_NO = Mcno
-                        Select New With {c.OPNO_ADD}
+
+
+
+                'Dim reqno = From c In db.TB_MACHINE_DATAs
+                '        Where c.MC_NO = Mcno
+                '        Select New With {c.OPNO_ADD}
                          
+                Dim reqno = db.TB_MACHINE_DATAs.Where(Function(c) c.MC_NO = Mcno).Select(Function(x) New With{x.OPNO_ADD}).ToList()
+
                 For Each x In reqno
                     opreq = x.OPNO_ADD
                 Next
 
-                Dim d = From t In db.TB_FLOW_REQUESTs
-                        Where t.REQUEST_OP = opreq
-                        Select t
+                'Dim d = From t In db.TB_FLOW_REQUESTs
+                '        Where t.REQUEST_OP = opreq
+                '        Select t
+
+                Dim d = db.TB_FLOW_REQUESTs.Where(Function(c) c.REQUEST_OP = opreq).ToList()
+
 
                 For Each e In d
                     opnodept = e.DEPT_MGR_STAMP

@@ -1017,12 +1017,6 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Report\RegisterReport-Page3 - Copy.vb">
-      <DependentUpon>RegisterReport-Page3 - Copy.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Report\RegisterReport-Page3.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1192,10 +1186,6 @@
     <EmbeddedResource Include="Report\RegisterReport-Page2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RegisterReport-Page2.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\RegisterReport-Page3 - Copy.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RegisterReport-Page3 - Copy.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\RegisterReport-Page3.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

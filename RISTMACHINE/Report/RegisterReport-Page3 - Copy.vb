@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class RegisterReport_Page3
+Public Class RegisterReport_Page3___Copy
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class RegisterReport_Page3
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "RegisterReport-Page3.rpt"
+            Return "RegisterReport-Page3 - Copy.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class RegisterReport_Page3
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "RISTMACHINE.RegisterReport-Page3.rpt"
+            Return "RISTMACHINE.RegisterReport-Page3 - Copy.rpt"
         End Get
         Set
             'Do nothing
@@ -94,7 +94,7 @@ Public Class RegisterReport_Page3
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedRegisterReport_Page3
+Public Class CachedRegisterReport_Page3___Copy
     Inherits Component
     Implements ICachedReport
     
@@ -136,7 +136,7 @@ Public Class CachedRegisterReport_Page3
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As RegisterReport_Page3 = New RegisterReport_Page3()
+        Dim rpt As RegisterReport_Page3___Copy = New RegisterReport_Page3___Copy()
         rpt.Site = Me.Site
         Return rpt
     End Function
