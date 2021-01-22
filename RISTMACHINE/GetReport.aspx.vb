@@ -7,10 +7,10 @@ Imports CrystalDecisions.Shared
 
 Public Class GetReport
     Inherits Page
-    Dim _rpt As New ReportDocument()
-    Dim _rpt2 As New ReportDocument()
+    Dim ReadOnly _rpt As New ReportDocument()
+    Dim ReadOnly _rpt2 As New ReportDocument()
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not Page.User.Identity.IsAuthenticated Then
             FormsAuthentication.RedirectToLoginPage()
         Else 
@@ -26,7 +26,7 @@ Public Class GetReport
                         Case "2"
                             Printpage2()
                         Case "3"
-                            'Printpage3()
+                            Printpage3()
 
                     End Select
 
@@ -97,7 +97,8 @@ Public Class GetReport
         _rpt.Dispose()
         GC.Collect()
     End Sub
-    Protected Sub Printpage1()
+
+    Private Sub Printpage1()
         Try
             Dim mcno As String
             mcno = Request.QueryString("pmcno")
@@ -107,10 +108,14 @@ Public Class GetReport
             _rpt.Load(Server.MapPath("~/Report/RegisterReport.rpt"))
             Dim dsmc As DSMachine = GetData("SELECT * FROM TB_MACHINE_DATA WITH(NOLOCK) WHERE MC_NO = '" & mcno & "'")
             _rpt.SetDataSource(dsmc)
-            Dim namefile As String = "Report_" + mcno
+            Dim namefile As String = "Report_Page1_" + mcno
             _rpt.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, True, namefile)
             Response.[End]()
         Catch ex As Exception
+            dim errorSend = New ExceptionLogging()
+            errorSend.SendErrorTomail(ex)
+            'Write Error to Log.txt
+            ExceptionLogging.LogError(ex)
             Dim message As String = $"Message: {ex.Message}\n\n"
             message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
             message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -119,7 +124,8 @@ Public Class GetReport
             ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
         End Try
     End Sub
-      Protected Sub Printpage2()
+
+    Private Sub Printpage2()
         
             Try
                 Dim mcno As String
@@ -683,11 +689,15 @@ Public Class GetReport
                 _rpt2.Load(Server.MapPath("~/Report/RegisterReport-Page2.rpt"))
                 Dim dsmc2 As DSMachine = GetDatapage2("SELECT * FROM TMP_REPORT2 WITH(NOLOCK) WHERE MC_NO = '" & mcno & "'")
                 _rpt2.SetDataSource(dsmc2)
-                Dim namefile2 As String = "Report_Page2" + mcno
+                Dim namefile2 As String = "Report_Page2_" + mcno
                 _rpt2.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, True, namefile2)
                 Response.[End]()
             
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -698,23 +708,53 @@ Public Class GetReport
             End Try
       
     End Sub
+    Private Sub Printpage3()
+        Try
+            Dim mcno As String
+            mcno = Request.QueryString("pmcno")
 
-    Protected Sub Export()
-        Dim mcno As String 
-        mcno = Request.QueryString("pmcno")
-        _rpt.Load(Server.MapPath("~/Report/RegisterReport.rpt"))
-        Dim dsmc As DSMachine = GetData("SELECT * FROM TB_MACHINE_DATA WHERE MC_NO = '" & mcno & "'")
-        _rpt.SetDataSource(dsmc)
-        Dim namefile As String = "Report_" + mcno
-        _rpt.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, True, namefile)
-        Response.[End]()
+
+            'For Page 3
+            _rpt.Load(Server.MapPath("~/Report/RegisterReport-Page3.rpt"))
+            Dim dsmc As DSMachine = GetDatapage3("SELECT * FROM TB_MACHINE_TOOL_CHECK_P3 WITH(NOLOCK) WHERE MC_NO = '" & mcno & "'")
+            _rpt.SetDataSource(dsmc)
+            Dim namefile As String = "Report_Page3_" + mcno
+            _rpt.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, False, namefile)
+            Response.[End]()
+        Catch unusedThreadAbortException1 As Threading.ThreadAbortException
+
+        Catch ex As Exception
+            dim errorSend = New ExceptionLogging()
+            errorSend.SendErrorTomail(ex)
+            'Write Error to Log.txt
+            ExceptionLogging.LogError(ex)
+
+            Dim message As String = $"Message: {ex.Message}\n\n"
+            message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+            message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+            message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+            ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+            Throw
+        End Try
     End Sub
 
+    'Protected Sub Export()
+    '    Dim mcno As String 
+    '    mcno = Request.QueryString("pmcno")
+    '    _rpt.Load(Server.MapPath("~/Report/RegisterReport.rpt"))
+    '    Dim dsmc As DSMachine = GetData("SELECT * FROM TB_MACHINE_DATA WHERE MC_NO = '" & mcno & "'")
+    '    _rpt.SetDataSource(dsmc)
+    '    Dim namefile As String = "Report_" + mcno
+    '    _rpt.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, True, namefile)
+    '    Response.[End]()
+    'End Sub
 
-    Private Function GetDataVpage() As DataTable
+
+    Private Shared Function GetDataVpage() As DataTable
         Dim dt As New DataTable()
         Dim constr As String = ConfigurationManager.ConnectionStrings("ConMC").ConnectionString
-        Dim sql As String = "SELECT * FROM V_PAGE2 WITH(NOLOCK)"
+        Const sql = "SELECT * FROM V_PAGE2 WITH(NOLOCK)"
         Using conn As New SqlConnection(constr)
             Using cmd As New SqlCommand(sql)
                 cmd.Connection = conn
@@ -728,7 +768,7 @@ Public Class GetReport
     End Function
 
 
-    Private Function GetData(query As String) As DSMachine
+    Private Shared Function GetData(query As String) As DSMachine
         Dim conStrMc As String = ConfigurationManager.ConnectionStrings("ConMC").ConnectionString
         Dim cmd As New SqlCommand(query)
         Using con As New SqlConnection(conStrMc)
@@ -744,7 +784,7 @@ Public Class GetReport
         End Using
     End Function
 
-    Private Function GetDatapage2(query As String) As DSMachine
+    Private Shared Function GetDatapage2(query As String) As DSMachine
         Dim conStrMc As String = ConfigurationManager.ConnectionStrings("ConMC").ConnectionString
         Dim cmd As New SqlCommand(query)
         Using con As New SqlConnection(conStrMc)
@@ -754,6 +794,21 @@ Public Class GetReport
                 sda.SelectCommand = cmd
                 Using dsmc As New DSMachine()
                     sda.Fill(dsmc, "TMP_REPORT2")
+                    Return dsmc
+                End Using
+            End Using
+        End Using
+    End Function
+    Private Shared Function GetDatapage3(query As String) As DSMachine
+        Dim conStrMc As String = ConfigurationManager.ConnectionStrings("ConMC").ConnectionString
+        Dim cmd As New SqlCommand(query)
+        Using con As New SqlConnection(conStrMc)
+            Using sda As New SqlDataAdapter()
+                cmd.Connection = con
+ 
+                sda.SelectCommand = cmd
+                Using dsmc As New DSMachine()
+                    sda.Fill(dsmc, "TB_MACHINE_TOOL_CHECK_P3")
                     Return dsmc
                 End Using
             End Using

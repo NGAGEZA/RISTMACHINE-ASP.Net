@@ -14,7 +14,7 @@
             $('.search_textbox').each(function (i) {
                 $(this).quicksearch("[id*=gvlistuser] tr:not(:has(th))", {
                     'testQuery': function (query, txt, row) {
-                        return $(row).children(":eq(" + i + ")").text().toLowerCase().indexOf(query[0].toLowerCase()) != -1;
+                        return $(row).children(":eq(" + i + ")").text().toLowerCase().indexOf(query[0].toLowerCase()) !== -1;
                     }
                 });
             });
@@ -24,7 +24,7 @@
     
     <script type="text/javascript">
         function openModalsetpermission() {
-            var modalsetpermissionadmin = new RModal(document.getElementById('modalsetpermission'), {
+            const modalsetpermissionadmin = new RModal(document.getElementById('modalsetpermission'), {
 
             });
             modalsetpermissionadmin.open();
@@ -33,8 +33,7 @@
     </script>
     <script>
         function clearMyField() {
-           
-                       
+
             window.location.href="AdminSetPermission.aspx";
         }
     </script>

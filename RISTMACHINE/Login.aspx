@@ -1,23 +1,12 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/RMaster.Master" CodeBehind="Login.aspx.vb" Inherits="RISTMACHINE.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
-    <%--<script>
-        function setFocusLoginPage(){
-            document.getElementById("txtopno").focus();
-        }
-    </script>
-    <script type="text/javascript">
-        window.onload = function () 
-        {
-            setFocusLoginPage();
-        }
-    </script>
-  --%>
+  
     <script type="text/javascript">
         
         $(document).ready(function () {
             $('[id*=btnlogin]').on("click", function () {
-                var validator = $('[id*=defaultForm]').data('bootstrapValidator');
+                const validator = $('[id*=defaultForm]').data('bootstrapValidator');
                 validator.validate();
                 return validator.isValid();
             });

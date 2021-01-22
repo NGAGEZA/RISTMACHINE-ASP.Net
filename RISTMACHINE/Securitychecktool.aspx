@@ -22,6 +22,25 @@
     </script>
     <script type="text/javascript">
 
+        function InsertComplete() {
+            bootbox.dialog({
+                message: "<h4 class='text-center'><i class='fa fa-check fa-3x text-success'></i><br/>Insert Data Complete</h4>",
+                title: "<h3 class='text-center'>RIST MACHINE SYSTEM ONLINE</h3>",
+                buttons: {
+                    danger: {
+                        label: 'OK',
+                        className: "btn-success",
+                        callback: function () {
+                            setTimeout(function () {
+                                //txtemail.focus();
+                                // window.location.href="home.aspx";
+                            }, 10);
+                        }
+                    }
+                }
+            });
+        }
+
         function UpdateComplete() {
             bootbox.dialog({
                 message: "<h4 class='text-center'><i class='fa fa-check fa-3x text-success'></i><br/>Update Data Complete</h4>",
@@ -112,7 +131,7 @@
 
                                         </td>
                                         <td>
-                                            <input id="tb_imp1_1" type="text" name="tb_imp1_1" class="form-control input-sm" placeholder="" runat="server"/>
+                                            <input id="tb_imp1_1" type="text" name="tb_imp1_1" class="form-control input-sm"  runat="server"/>
                                         </td>
                                         <td>
                                             <select id="select_str1_1" runat="server" name="select_str1_1" class="form-control input-sm">
@@ -1001,7 +1020,7 @@
                                             <input id="tb_imp31_7" type="text" name="tb_imp31_7" class="form-control input-sm" placeholder="" runat="server"/>
                                         </td>
                                         <td>
-                                            <select id="select_str3_7" runat="server" name="select_str3_7" class="form-control input-sm">
+                                            <select id="select_str31_7" runat="server" name="select_str31_7" class="form-control input-sm">
                                                 <option value="" selected disabled hidden>Choose here</option>
                                                 <option value="1">ดี</option>
                                                 <option value="2">ไม่ดี</option>

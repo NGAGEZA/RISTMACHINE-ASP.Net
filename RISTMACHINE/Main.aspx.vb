@@ -19,16 +19,14 @@ Public Class Main
 
     'Dim RegisterNewMc As Boolean = If((Request.Form("chk_regis_mc_new") = "on"), True, False)
 
-    Protected Property Divdeptsec() As String
-    Protected Property Division() As String
-    Protected Property Department() As String
-    Protected Property Section() As String
-    Protected Property Mcno() As String
+    Private Property Divdeptsec() As String
+    Private Property Division() As String
+    Private Property Department() As String
+    Private Property Section() As String
+    Private Property Mcno() As String
 
 
-
-
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not Page.User.Identity.IsAuthenticated Then
             FormsAuthentication.RedirectToLoginPage()
 
@@ -38,6 +36,7 @@ Public Class Main
 
                 If lnksave.Text <> "UPDATE"
                     Getdata()
+                    
                     lnksave.Text = "UPDATE"
                 End If
 
@@ -92,6 +91,10 @@ Public Class Main
                 lnksave.Text = "Safety Mgr Approve"
                 Exit Sub
             End If
+
+            
+            
+
             'Continue to page 2 EquipmentCheck
             If lnksave.Text = "Go to page 2" then
                 Dim reqmcnocookie As HttpCookie = Request.Cookies("ep2mcno")
@@ -99,6 +102,7 @@ Public Class Main
 
                 Response.Redirect("EquipmentCheck.aspx?ep2mcno=" + Mcno)
             End If
+
 
 
 
@@ -264,7 +268,7 @@ Public Class Main
         End Select
     End Sub
 
-    Protected Sub InsertData
+    Private Sub InsertData
       
         'Dim ip = CType(Session("IP_ADDRESS"), String)
 
@@ -278,15 +282,13 @@ Public Class Main
         Using db As New DBRISTMCDataContext()
             Try
                
-                '//function get last record mcno +1
-                'Dim getlastmc = (From tbdatamc In db.TB_MACHINE_DATAs
-                '                 Order By tbdatamc.MC_NO Descending
-                '                 Select tbdatamc).FirstOrDefault()
+                '//Generate MC NO.
                 Dim getlastmc = db.TB_MACHINE_DATAs.OrderByDescending(function(x) x.MC_NO).FirstOrDefault()
 
             
                 Dim getmc As Integer
               
+                
                 If getlastmc Is Nothing
                     Mcno = "MC-001"
                 Else 
@@ -300,10 +302,7 @@ Public Class Main
                     End Select
 
                 End If
-
-            
-                '//end function get last record
-
+                '//End Generate MC NO
 
 
                 '//Function Save Image to Database
@@ -328,45 +327,44 @@ Public Class Main
                 'Dim doccontentype As string
 
                 ''//Function Save Attach file main 2 
+                Dim uploadfileErs As HttpCookie = Request.Cookies("fileErs")
+                Dim nameuploadErs as String = If(uploadfileErs IsNot Nothing, uploadfileErs.Value.Split("="c)(1), "undefined")
+                'Dim nameuploadErs = CType(Session("fileErs"), String)
+                Dim filePathuploadErs as String
+                Dim filenameuploadErs As String
+                Dim fsuploadErs As FileStream
+                Dim bruploadErs As BinaryReader
+                Dim bytesuploadErs As Byte()
+                Dim doccontentypeErs As string
 
-                'Dim nameupload2 = CType(Session("namefile2"), String)
-                'Dim filePathupload2 as String
-                'Dim filenameupload2 As String
-                'Dim fsupload2 As FileStream
-                'Dim brupload2 As BinaryReader
-                'Dim bytesupload2 As Byte()
-                'Dim doccontentype2 As string
+               
 
-                'If nameupload1 Isnot Nothing
+                If nameuploadErs Isnot Nothing
 
-             
-                '    filePathupload1 = Server.MapPath("upload/" & nameupload1 & "")
-                '    filenameupload1 = Path.GetFileName(filePathupload1)
-                '    fsupload1 = New FileStream(filePathupload1, FileMode.Open, FileAccess.Read)
-                '    brupload1 = New BinaryReader(fsupload1)
-                '    bytesupload1 = brupload1.ReadBytes(Convert.ToInt32(fsupload1.Length))
-                '    doccontentype = "application/pdf"
-                '    brupload1.Close()
-                '    fsupload1.Close()
 
-                'End If
+                    filePathuploadErs = Server.MapPath("upload/" & nameuploadErs & "")
+                    filenameuploadErs = Path.GetFileName(filePathuploadErs)
+                    fsuploadErs = New FileStream(filePathuploadErs, FileMode.Open, FileAccess.Read)
+                    bruploadErs = New BinaryReader(fsuploadErs)
+                    bytesuploadErs = bruploadErs.ReadBytes(Convert.ToInt32(fsuploadErs.Length))
+                    doccontentypeErs = MimeMapping.GetMimeMapping(filenameuploadErs)
+                    bruploadErs.Close()
+                    fsuploadErs.Close()
 
-                'If nameupload2 Isnot Nothing
 
-             
-                '    filePathupload2 = Server.MapPath("upload/" & nameupload2 & "")
-                '    filenameupload2 = Path.GetFileName(filePathupload2)
-                '    fsupload2 = New FileStream(filePathupload2, FileMode.Open, FileAccess.Read)
-                '    brupload2 = New BinaryReader(fsupload2)
-                '    bytesupload2 = brupload2.ReadBytes(Convert.ToInt32(fsupload2.Length))
-                '    doccontentype2 = "image/jpeg"
-                '    brupload2.Close()
-                '    fsupload2.Close()
+                    'filePathupload2 = Server.MapPath("upload/" & nameupload2 & "")
+                    'filenameupload2 = Path.GetFileName(filePathupload2)
+                    'fsupload2 = New FileStream(filePathupload2, FileMode.Open, FileAccess.Read)
+                    'brupload2 = New BinaryReader(fsupload2)
+                    'bytesupload2 = brupload2.ReadBytes(Convert.ToInt32(fsupload2.Length))
+                    'doccontentype2 = MimeMapping.GetMimeMapping(filenameupload2)
+                    'brupload2.Close()
+                    'fsupload2.Close()
 
-                'End If
+                End If
 
-            
-                    Dim insertMc As New TB_MACHINE_DATA With {
+
+                Dim insertMc As New TB_MACHINE_DATA With {
                         .MC_NO = Mcno,
                         .REGISTER_DATE = Datetime.Now,
                         .REGISTER_NEW_MC = chk1.Checked,
@@ -452,7 +450,10 @@ Public Class Main
                         .DATE_ADD = DateTime.Now,
                         .STATUS_ID = 1,
                         .STATUS_NAME = statusname,
-                        .IP = ip
+                        .IP = ip,
+                        .DOCUMENT_ATTACH_NAME = filenameuploadErs,
+                        .DOCUMENT_ATTACH_CONTENT_TYPE = doccontentypeErs,
+                        .DOCUMENT_ATTACH_DATA = bytesuploadErs
                          }
 
 
@@ -463,11 +464,17 @@ Public Class Main
                     '#send mail to request entry for preview details
                     SendEmailToRequest
 
-                    SendEmailToSectMgr()
+                    'SendEmailToSectMgr()
                     'Session.Remove("opnologin")
-                    ClientScript.RegisterStartupScript(Me.GetType(), "alert", "InsertComplete()", True)
+                    ClientScript.RegisterStartupScript(Me.GetType(), "alert", "InsertCompletePage1()", True)
 
             Catch ex As Exception
+
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -482,6 +489,8 @@ Public Class Main
                 'Function
                 DataPage2
 
+                DataPage3
+               
                 lnksave.Text = "Go to page 2"
              
 
@@ -491,7 +500,7 @@ Public Class Main
         End Using
     End Sub
     'update data
-    Protected Sub UpdateData()
+    Private Sub UpdateData()
         Using db = New DBRISTMCDataContext()
             Try
                 Dim opnocookie As HttpCookie = Request.Cookies("opno")
@@ -637,12 +646,17 @@ Public Class Main
 
                 
                 End If
-
-
+                
                 db.SubmitChanges()
                 db.Dispose()
+
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "UpdateComplete()", True)
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -655,17 +669,14 @@ Public Class Main
         End Using
         
     End Sub
-    Protected Sub Getdata()
+
+    Private Sub Getdata()
         
         Mcno = Request.QueryString("emcno")
         
         Using db As New DBRISTMCDataContext()
             Try
-                'select condition
-                'Dim getdata = From d In db.TB_MACHINE_DATAs
-                '        Where d.MC_NO = Mcno
-                '        Select d
-
+                
 
                 Dim getdata As IEnumerable(Of TB_MACHINE_DATA) = db.TB_MACHINE_DATAs.Where(Function(r) r.MC_NO = Mcno).ToList()
 
@@ -700,17 +711,7 @@ Public Class Main
                         tb_type_mc.Value = l.TYPE_MC
                         tb_size_hp_mc.Value = l.SIZE_HP_MC
                         tb_organize.Value = l.DIVISION + " / " + l.DEPARTMENT + " / " + l.SECTION
-                        'tb_name_mc.Value = l.MC_NAME
-                        'tb_mcno1.Value = l.MC_NO1
-                        'tb_mcno2.Value = l.MC_NO2
-                        'tb_mcno3.Value = l.MC_NO3
-                        'tb_mcno4.Value = l.MC_NO4
-                        'tb_mcno5.Value = l.MC_NO5
-                        'tb_mcno6.Value = l.MC_NO6
-                        'tb_mcno7.Value = l.MC_NO7
-                        'tb_mcno8.Value = l.MC_NO8
-                        'tb_mcno9.Value = l.MC_NO9
-                        'tb_mcno10.Value = l.MC_NO10
+                        
                         chk7.Checked = l.DANGER_CHEME_1
                         chk8.Checked = l.DANGER_CHEME_2
                         chk9.Checked = l.DANGER_CHEME_3
@@ -787,8 +788,19 @@ Public Class Main
                         End If
                         tb_legal_investigation.Value = l.LAW_CHECK_DETAIL
 
-                      
+                       
 
+
+                        'file for download ERS File
+                        If l.DOCUMENT_ATTACH_NAME IsNot "" Then
+                            lnkdownloadERS.Visible = True
+                            lbnamefileERS.Visible = True
+                            lbnamefileERS.Text = l.DOCUMENT_ATTACH_NAME
+                        Else 
+                            lnkdownloadERS.Visible = False
+                            lbnamefileERS.Visible = False
+                        End If
+                        
                     Next
 
                 Else
@@ -797,6 +809,12 @@ Public Class Main
 
                 End If
             Catch ex As Exception
+
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -811,16 +829,14 @@ Public Class Main
 
         End Using
     End Sub
-    Protected Sub Getdatapreview()
+
+    Private Sub Getdatapreview()
         Dim mcno As String
         mcno = Decrypt(HttpUtility.UrlDecode(Request.QueryString("rmcno")))
         
         Using db As New DBRISTMCDataContext()
             Try
-                'select condition
-                'Dim getdata = From d In db.TB_MACHINE_DATAs
-                '        Where d.MC_NO = mcno
-                '        Select d
+                
                 Dim getdata As IEnumerable(Of TB_MACHINE_DATA) = db.TB_MACHINE_DATAs.Where(Function(r) r.MC_NO = Mcno).ToList()
 
                 If getdata.Any()
@@ -940,6 +956,11 @@ Public Class Main
 
                 End If
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -1088,12 +1109,11 @@ Public Class Main
         ClientScript.RegisterStartupScript(Me.GetType(), "alert", "InsertComplete()", True)
     End Sub
 
-    Protected Sub SendEmailToRequest()
+    Private Sub SendEmailToRequest()
         Dim username As String = String.Empty
        
         Dim email As String = String.Empty
         Dim rmcno As String = HttpUtility.UrlEncode(Encrypt(Mcno))
-        'Dim email as String = Request.Form("youremail")
         Dim opnocookie As HttpCookie = Request.Cookies("opno")
         Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
        
@@ -1141,6 +1161,10 @@ Public Class Main
                 End If
 
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -1158,7 +1182,7 @@ Public Class Main
         
     End Sub
 
-    Protected sub SendEmailToSectMgr
+    Private sub SendEmailToSectMgr
         Dim emailsectEnc As string 
         Dim emailsect As string 
         Dim opnosect As string
@@ -1168,9 +1192,7 @@ Public Class Main
                 'searchflow step for sectmgr with req opno
                 Dim opreq As String = String.Empty
 
-                'Dim reqno = From c In db.TB_MACHINE_DATAs
-                '            Where c.MC_NO = Mcno
-                '            Select New With {c.OPNO_ADD}
+               
 
                 Dim reqno = db.TB_MACHINE_DATAs.Where(Function(x) x.MC_NO = Mcno).Select(Function(x) New With{x.OPNO_ADD})
 
@@ -1179,14 +1201,12 @@ Public Class Main
                 Next
 
 
-                'Dim s = From t In db.TB_FLOW_REQUESTs
-                '        Where t.REQUEST_OP = opreq
-                '        Select t
+               
                 Dim s = db.TB_FLOW_REQUESTs.Where(Function(x) x.REQUEST_OP = opreq)
 
 
                 For Each e In s
-                    'opnosect = e.SECT_MGR_OP
+                    
                     opnosect = e.SECT_MGR_STAMP
                     emailsect = e.SECT_MGR_EMAIL
                     emailsectEnc = HttpUtility.UrlEncode(Encrypt(e.SECT_MGR_EMAIL))
@@ -1220,12 +1240,16 @@ Public Class Main
                 Next
 
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
 
-                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True) 
             Finally
                 db.Dispose()
             End Try
@@ -1239,14 +1263,12 @@ Public Class Main
         Dim deptmcno As String = HttpUtility.UrlEncode(Encrypt(Mcno))
         Using db As New DBRISTMCDataContext()
             Try
-                'searchflow step for deptmgr with req opno
+                
                 Dim opreq As String
 
 
 
-                'Dim reqno = From c In db.TB_MACHINE_DATAs
-                '        Where c.MC_NO = Mcno
-                '        Select New With {c.OPNO_ADD}
+               
                          
                 Dim reqno = db.TB_MACHINE_DATAs.Where(Function(c) c.MC_NO = Mcno).Select(Function(x) New With{x.OPNO_ADD}).ToList()
 
@@ -1254,9 +1276,7 @@ Public Class Main
                     opreq = x.OPNO_ADD
                 Next
 
-                'Dim d = From t In db.TB_FLOW_REQUESTs
-                '        Where t.REQUEST_OP = opreq
-                '        Select t
+               
 
                 Dim d = db.TB_FLOW_REQUESTs.Where(Function(c) c.REQUEST_OP = opreq).ToList()
 
@@ -1295,6 +1315,10 @@ Public Class Main
                 Next
 
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -1307,7 +1331,7 @@ Public Class Main
         End Using
     End sub
 
-    Protected sub SendEmailToDivMgr
+    Private sub SendEmailToDivMgr
         Dim emaildivEnc As string = String.Empty
         Dim emaildiv As string = String.Empty
         Dim opnodiv As string = String.Empty
@@ -1362,6 +1386,10 @@ Public Class Main
                 Next
 
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -1374,22 +1402,14 @@ Public Class Main
         End Using
     End sub
 
-    Protected sub SendEmailToSubCom
+    Private sub SendEmailToSubCom
         Dim emailSubcomEnc As string = String.Empty
         Dim emailSubcom As string = String.Empty
         Dim opnoSubcom As string = String.Empty
         Dim Subcommcno As String = HttpUtility.UrlEncode(Encrypt(Mcno))
         Using db As New DBRISTMCDataContext()
             Try
-                'searchflow step for divmgr with req opno
-                'Dim opreq As String
-                'Dim reqno = From c In db.TB_MACHINE_DATAs
-                '        Where c.MC_NO = Mcno
-                '        Select New With {c.OPNO_ADD}
-                         
-                'For Each x In reqno
-                '    opreq = x.OPNO_ADD
-                'Next
+                
 
                 Dim d = From t In db.TB_FLOW_SAFETies Select t
 
@@ -1427,6 +1447,10 @@ Public Class Main
                 Next
 
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -1438,22 +1462,15 @@ Public Class Main
             End Try
         End Using
     End sub
-    Protected sub SendEmailToSafetyOfficer
+
+    Private sub SendEmailToSafetyOfficer
         Dim emailSfofficerEnc As string = String.Empty
         Dim emailSfofficer As string = String.Empty
         Dim opnoSfofficer As string = String.Empty
         Dim Sfofficermcno As String = HttpUtility.UrlEncode(Encrypt(Mcno))
         Using db As New DBRISTMCDataContext()
             Try
-                'searchflow step for divmgr with req opno
-                'Dim opreq As String
-                'Dim reqno = From c In db.TB_MACHINE_DATAs
-                '        Where c.MC_NO = Mcno
-                '        Select New With {c.OPNO_ADD}
-                         
-                'For Each x In reqno
-                '    opreq = x.OPNO_ADD
-                'Next
+                
 
                 Dim d = From t In db.TB_FLOW_SAFETies Select t
 
@@ -1491,6 +1508,10 @@ Public Class Main
                 Next
 
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -1502,24 +1523,17 @@ Public Class Main
             End Try
         End Using
     End sub
-    Protected sub SendEmailToSafetyMgr
+
+    Private sub SendEmailToSafetyMgr
         Dim emailSfmgrEnc As string = String.Empty
         Dim emailSfmgr As string = String.Empty
         Dim opnoSfmgr As string = String.Empty
         Dim Sfmgrmcno As String = HttpUtility.UrlEncode(Encrypt(Mcno))
         Using db As New DBRISTMCDataContext()
             Try
-                'searchflow step for divmgr with req opno
-                'Dim opreq As String
-                'Dim reqno = From c In db.TB_MACHINE_DATAs
-                '        Where c.MC_NO = Mcno
-                '        Select New With {c.OPNO_ADD}
-                         
-                'For Each x In reqno
-                '    opreq = x.OPNO_ADD
-                'Next
-
-                Dim d = From t In db.TB_FLOW_SAFETies Select t
+                
+                Dim d = db.TB_FLOW_SAFETies.ToList()
+                'Dim d = From t In db.TB_FLOW_SAFETies Select t
 
                 For Each e In d
                     opnoSfmgr = e.SAFETYMGR_OP
@@ -1555,6 +1569,10 @@ Public Class Main
                 Next
 
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -1576,6 +1594,10 @@ Public Class Main
                         m.DIVISION, m.DEPARTMENT, m.SECTION, m.REGISTER_DATE}
                 gvDetailsMcno.DataBind()
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -1597,6 +1619,10 @@ Public Class Main
                         m.DIVISION, m.DEPARTMENT, m.SECTION, m.REGISTER_DATE,m.TYPE_MC,m.STATUS_NAME}
                 gvmailapprove.DataBind()
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -1613,7 +1639,7 @@ Public Class Main
     Public Overrides Sub VerifyRenderingInServerForm(control As Control)
         ' Verifies that the control is rendered
     End Sub
-    Private Function Encrypt(clearText As String) As String
+    Private Shared Function Encrypt(clearText As String) As String
         Dim EncryptionKey As String = "RISTMC18NOVSYS"
         Dim clearBytes As Byte() = Encoding.Unicode.GetBytes(clearText)
         Using encryptor As Aes = Aes.Create()
@@ -1632,8 +1658,8 @@ Public Class Main
         End Using
         Return clearText
     End Function
-    Private Function Decrypt(cipherText As String) As String
-        Dim EncryptionKey As String = "RISTMC18NOVSYS"
+    Private Shared Function Decrypt(cipherText As String) As String
+        Const encryptionKey As String = "RISTMC18NOVSYS"
         'If cipherText Is Nothing 
         '    Exit Function
         'Else 
@@ -1642,7 +1668,7 @@ Public Class Main
        
         Dim cipherBytes As Byte() = Convert.FromBase64String(cipherText)
         Using encryptor As Aes = Aes.Create()
-            Dim pdb As New Rfc2898DeriveBytes(EncryptionKey, New Byte() {&H49, &H76, &H61, &H6E, &H20, &H4D, _
+            Dim pdb As New Rfc2898DeriveBytes(encryptionKey, New Byte() {&H49, &H76, &H61, &H6E, &H20, &H4D, _
                                                                          &H65, &H64, &H76, &H65, &H64, &H65, _
                                                                          &H76})
             encryptor.Key = pdb.GetBytes(32)
@@ -1823,6 +1849,10 @@ Public Class Main
 
                 End If
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -1880,6 +1910,10 @@ Public Class Main
                 db.Dispose()
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "mgrapprove()", True)
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -1926,6 +1960,10 @@ Public Class Main
                 db.Dispose()
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "mgrapprove()", True)
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -2009,6 +2047,10 @@ Public Class Main
                 db.Dispose()
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "mgrapprove()", True)
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -2046,6 +2088,10 @@ Public Class Main
                 db.Dispose()
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "mgrapprove()", True)
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -2082,6 +2128,10 @@ Public Class Main
                 db.Dispose()
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "mgrapprove()", True)
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -2149,6 +2199,10 @@ Public Class Main
                         db.SubmitChanges()
 
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -2177,6 +2231,106 @@ Public Class Main
         End Using
     End Sub
     
+
+    Private Sub DataPage3()
+        Using db As New DBRISTMCDataContext
+
+            Dim ipcookie As HttpCookie = Request.Cookies("ip")
+            Dim ip as String = If(ipcookie IsNot Nothing, ipcookie.Value.Split("="c)(1), "undefined")
+            Dim opnocookie As HttpCookie = Request.Cookies("opno")
+            Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
+                
+
+           
+            Try
+                
+                Dim p3 = New TB_MACHINE_TOOL_CHECK_P3()
+
+
+                Dim dt As Date
+
+
+                p3.MC_NO = Mcno
+                p3.OPNO_ADD = opno
+                p3.DATE_ADD = DateTime.Now
+                p3.IP = ip
+
+                db.TB_MACHINE_TOOL_CHECK_P3s.InsertOnSubmit(p3)
+                db.SubmitChanges()
+
+
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+
+            Finally
+                db.Dispose()
+
+                'Create a Cookie with a suitable Key.
+                Dim mcnoCookie As New HttpCookie("ep3mcno")
+ 
+                'Set the Cookie value.
+                mcnoCookie.Values("ep3mcno") = Mcno
+ 
+                'Set the Expiry date.
+                mcnoCookie.Expires = DateTime.Now.AddHours(1)
+ 
+                'Add the Cookie to Browser.
+                Response.Cookies.Add(mcnoCookie)
+              
+                lbmcno.Text = Mcno
+               
+            End Try
+        End Using
+    End Sub
+
+    Protected Sub DownloadFileErs
+       
+        Using db As New  DBRISTMCDataContext
+            Try
+                Mcno = Request.QueryString("emcno")
+                Dim getfile As IEnumerable(Of TB_MACHINE_DATA) = db.TB_MACHINE_DATAs.Where(Function(r) r.MC_NO = Mcno).ToList()
+                If getfile IsNot Nothing Then
+
+                    For Each file In getfile
+
+                        Response.ContentType = file.DOCUMENT_ATTACH_CONTENT_TYPE
+                        Response.AddHeader("content-disposition", "attachment; filename=" & file.DOCUMENT_ATTACH_NAME)
+                        Response.BinaryWrite(file.DOCUMENT_ATTACH_DATA)
+                        Response.Flush()
+                        Response.[End]()
+                    Next
+                    
+                   
+                    'Response.Flush()
+                    'Response.[End]()
+                End If
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+            Finally
+                db.Dispose()
+            End Try
+                
+        End Using
+
+    End Sub
     
 
 End Class

@@ -16,16 +16,18 @@
             width: 400px;
         }
 
-        .wrimagecard{	
+        .wrimagecard {
             margin-top: 0;
             margin-bottom: 1.5rem;
             text-align: left;
             position: relative;
             background: #fff;
-            box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+            box-shadow: 12px 15px 20px 0 #2e3d49;
+            box-shadow: 12px 15px 20px 0 rgba(46,61,73,0.15);
             border-radius: 4px;
             transition: all 0.3s ease;
         }
+
         .wrimagecard .fa{
             position: relative;
             font-size: 70px;
@@ -34,8 +36,10 @@
             padding: 20px;
         }
         a.wrimagecard:hover, .wrimagecard-topimage:hover {
-            box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
+            box-shadow: 2px 4px 8px 0 #2e3d49;
+            box-shadow: 2px 4px 8px 0 rgba(46,61,73,0.2);
         }
+
         .wrimagecard-topimage a {
             width: 100%;
             height: 100%;
@@ -134,7 +138,7 @@
     <div class="container">  
     <div class="row">
         <div class="col-md-12">
-            <h4><strong>RIST MACHINE SYSTEM ONLINE</strong></h4>
+            <h2><strong>RIST MACHINE SYSTEM ONLINE</strong></h2>
            
         </div>
     </div>
@@ -146,7 +150,7 @@
         <div class="col-sm-3 col-xs-6 col-md-3">
             <div class="wrimagecard wrimagecard-topimage">
                 <a href="Main.aspx">
-                    <div class="wrimagecard-topimage_header" style="background-color:rgba(121, 90, 71, 0.1) ">
+                    <div class="wrimagecard-topimage_header" style="background-color:#795a47; background-color:rgba(121, 90, 71, 0.1)">
                         <div style="text-align: center;" ><i class="fa fa-server" style="color: #795a47"></i></div>
                     </div>
                     <div class="wrimagecard-topimage_title">
@@ -154,86 +158,59 @@
                     </div>
                 </a>
             </div>
-          <%--  <a href="Main.aspx">
-            <div class="tile purple">
-                <h3 class="title text-nowrap"><i class="fa fa-server" aria-hidden="true"></i> Entry</h3>
-                <p>Register Machine to system</p>
-               
-            </div>
-            </a>--%>
+        
         </div>
         <div class="col-sm-3 col-xs-6 col-md-3">
             <div class="wrimagecard wrimagecard-topimage">
                 <a href="#" id="showModaledit">
-                    <div class="wrimagecard-topimage_header" style="background-color:rgba(121, 90, 71, 0.1) ">
-                        <div style="text-align: center;" ><i class="fa fa-pencil-square-o" style="color: #795a47"></i></div>
+                    <div class="wrimagecard-topimage_header" style="background-color:#16a085; background-color:rgba(22, 160, 133, 0.1)">
+                        <div style="text-align: center;" ><i class="fa fa-pencil-square-o" style="color: #16a085"></i></div>
                     </div>
                     <div class="wrimagecard-topimage_title">
                         <h4><b>Edit</b> Update Data</h4>
                     </div>
                 </a>
             </div>
-           <%-- <a href="#" id="showModaledit">
-                <div class="tile SKYBLUE">
-                    <h3 class="title"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</h3>
-                    <p>Update Machhine Data</p>
-                </div>
-            </a>--%>
+          
         </div>
         <div class="col-sm-3 col-xs-6 col-md-3">
             <div class="wrimagecard wrimagecard-topimage">
                 <a href="#" id="showModalreport">
-                    <div class="wrimagecard-topimage_header" style="background-color:rgba(121, 90, 71, 0.1) ">
-                        <div style="text-align: center;" ><i class="fa fa-file-pdf-o" style="color: #795a47"></i></div>
+                    <div class="wrimagecard-topimage_header" style="background-color:#d50f25; background-color:rgba(213, 15, 37, 0.1)">
+                        <div style="text-align: center;" ><i class="fa fa-file-pdf-o" style="color: #d50f25"></i></div>
                     </div>
                     <div class="wrimagecard-topimage_title">
                         <h4><b>Report</b> Export Data</h4>
                     </div>
                 </a>
             </div>
-           <%-- <a href="#" id="showModalreport">
-            <div class="tile red">
-                <h3 class="title"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Report</h3>
-                <p>Export data Machine Report</p>
-            </div>
-            </a>--%>
+          
         </div>
         <div class="col-sm-3 col-xs-6 col-md-3">
             <div class="wrimagecard wrimagecard-topimage">
                 <a href="#" id="foradmin" runat="server" OnServerClick="CheckUserPermission">
-                    <div class="wrimagecard-topimage_header" style="background-color:rgba(121, 90, 71, 0.1) ">
-                        <div style="text-align: center;" ><i class="fa fa-user-secret" style="color: #795a47"></i></div>
+                    <div class="wrimagecard-topimage_header" style="background-color:#f9650a; background-color:rgba(249, 101, 10, 0.1)">
+                        <div style="text-align: center;" ><i class="fa fa-user-secret" style="color: #f9650a"></i></div>
                     </div>
                     <div class="wrimagecard-topimage_title">
                         <h4><b>Admin</b> Control Master</h4>
                     </div>
                 </a>
             </div>
-            <%--<a href="#" id="foradmin" runat="server" OnServerClick="CheckUserPermission" >
-            <div class="tile darkslategray">
-                <h3 class="title text-nowrap"> <i class="fa fa-user-secret" aria-hidden="true"></i> For Admin </h3>
-                <p>Control Master Data</p>
-            </div>
-            </a>--%>
+           
         </div>
         <div class="col-sm-3 col-xs-6 col-md-3">
             <div class="wrimagecard wrimagecard-topimage">
                 <a href="#" id="showModalViewstatus">
-                    <div class="wrimagecard-topimage_header" style="background-color:rgba(121, 90, 71, 0.1) ">
-                        <div style="text-align: center;" ><i class="fa fa-tachometer" style="color: #795a47"></i></div>
+                    <div class="wrimagecard-topimage_header" style="background-color:#78e5f0; background-color:rgba(120, 229, 240, 0.1)">
+                        <div style="text-align: center;" ><i class="fa fa-tachometer" style="color: #78e5f0"></i></div>
                     </div>
                     <div class="wrimagecard-topimage_title">
                         <h4><b>Status</b> View Status</h4>
                     </div>
                 </a>
             </div>
-            <%--<a href="#" id="showModalViewstatus">
-                <div class="tile seagreen">
-                    <h3 class="title"><i class="fa fa-tachometer" aria-hidden="true"></i> Status</h3>
-                    <p>View Status Machine</p>
-                </div>
-               
-            </a>--%>
+           
         </div>
     </div>
        

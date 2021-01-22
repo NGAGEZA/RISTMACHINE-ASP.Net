@@ -1,7 +1,10 @@
-﻿Public Class Home
+﻿Option Strict On
+Option Explicit On
+
+Public Class Home
     Inherits Page
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Me.Page.User.Identity.IsAuthenticated Then
             FormsAuthentication.RedirectToLoginPage()
             Else 
@@ -17,7 +20,7 @@
        
     End Sub
 
-    Protected Sub Getmcnoedit()
+    Private Sub Getmcnoedit()
 
         Dim opnocookie As HttpCookie = Request.Cookies("opno")
         Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
@@ -31,7 +34,8 @@
             editmcno.DataBind()
         End Using
     End Sub
-    Protected Sub Getmcnoprint()
+
+    Private Sub Getmcnoprint()
         Dim opnocookie As HttpCookie = Request.Cookies("opno")
         Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
         Using db As New DBRISTMCDataContext()
@@ -44,7 +48,8 @@
             reportmcno.DataBind()
         End Using
     End Sub
-    Protected Sub Getmcnostatus()
+
+    Private Sub Getmcnostatus()
         Dim opnocookie As HttpCookie = Request.Cookies("opno")
         Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
         Using db As New DBRISTMCDataContext()
@@ -62,9 +67,11 @@
             Try
                 Dim opnocookie As HttpCookie = Request.Cookies("opno")
                 Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
-                Dim a = From tbuser In db.Users
-                        Where tbuser.OperatorNo = opno
-                        Select tbuser
+                'Dim a = From tbuser In db.Users
+                '        Where tbuser.OperatorNo = opno
+                '        Select tbuser
+
+                Dim a = db.Users.Where(Function(x) x.OperatorNo = opno).ToList()
 
                 For Each x In a
 
@@ -84,10 +91,10 @@
                 Next
 
             Catch ex As Exception
-                Dim message As String = String.Format("Message: {0}\n\n", ex.Message)
-                message &= String.Format("StackTrace: {0}\n\n", ex.StackTrace.Replace(Environment.NewLine, String.Empty))
-                message &= String.Format("Source: {0}\n\n", ex.Source.Replace(Environment.NewLine, String.Empty))
-                message &= String.Format("TargetSite: {0}", ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty))
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
 
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
             Finally

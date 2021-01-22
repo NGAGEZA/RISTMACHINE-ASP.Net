@@ -6,14 +6,16 @@ Imports Oracle.DataAccess.Client
 
 Public Class EquipmentCheck
     Inherits Page
-    Protected Property Mcno() As String
+    Private Property Mcno() As String
+    Private Property Status() As String
     Dim ReadOnly _conStrDbhrms As String = ConfigurationManager.ConnectionStrings("CONN_HRMS").ConnectionString
 
-    Protected Property Divdeptsec() As String
-    Protected Property Division() As String
-    Protected Property Department() As String
-    Protected Property Section() As String
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+    Private Property Divdeptsec() As String
+    Private Property Division() As String
+    Private Property Department() As String
+    Private Property Section() As String
+
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not Page.User.Identity.IsAuthenticated Then
             FormsAuthentication.RedirectToLoginPage()
 
@@ -29,11 +31,19 @@ Public Class EquipmentCheck
             End If
 
            
-          
+            'Continue to page 3 Securitychecktool
+            If lnksave.Text = "Go to page 3" then
+                Dim reqmcnocookie As HttpCookie = Request.Cookies("ep3mcno")
+                Mcno = reqmcnocookie("ep3mcno").ToString
+
+                Response.Redirect("Securitychecktool.aspx?ep3mcno=" + Mcno)
+            End If
+
+
         End If
     End Sub
 
-    Protected Sub Functionupload()
+    Private Sub Functionupload()
 
 
         Using db = New DBRISTMCDataContext
@@ -374,7 +384,8 @@ Public Class EquipmentCheck
         End Using
 
     End Sub
-    Protected Sub UpdateData()
+
+    Private Sub UpdateData()
         Using db = New DBRISTMCDataContext()
             Try
                 Dim opnocookie As HttpCookie = Request.Cookies("opno")
@@ -966,7 +977,7 @@ Public Class EquipmentCheck
 
                 Next
 
-                db.Dispose()
+                'db.Dispose()
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "UpdateComplete()", True)
             Catch ex As Exception
                 Dim message As String = $"Message: {ex.Message}\n\n"
@@ -977,6 +988,9 @@ Public Class EquipmentCheck
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
             Finally
                 db.Dispose()
+
+                lnksave.Text = "Go to page 3"
+
             End Try
         End Using
     End Sub
@@ -984,7 +998,7 @@ Public Class EquipmentCheck
     Private Sub Getdata()
         
         Mcno = Request.QueryString("ep2mcno")
-
+        Status = Request.QueryString("Status")
         If Mcno IsNot Nothing
             Using db As New DBRISTMCDataContext()
                 Try
@@ -997,7 +1011,7 @@ Public Class EquipmentCheck
                         For Each list In getdata
                         
                             lbmcno.Text = list.MC_NO
-
+                            lbstatus.Text = Status
                             Select Case list.Title
                                 'select title 1:Emergency Switch
                                 Case 1
@@ -1531,4 +1545,6 @@ Public Class EquipmentCheck
         End Using
 
     End Sub
+
+    
 End Class

@@ -4,7 +4,7 @@ Option Explicit On
 Public Class Login
     Inherits Page
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+    Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If Page.User.Identity.IsAuthenticated Then
             Response.Redirect(FormsAuthentication.DefaultUrl)
         End If
@@ -64,6 +64,10 @@ Public Class Login
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "LoginNotComplete()", True)
 
             Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"

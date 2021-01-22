@@ -680,6 +680,24 @@ Partial Public Class Main
     Protected WithEvents tb_legal_investigation As Global.System.Web.UI.HtmlControls.HtmlInputText
     
     '''<summary>
+    '''lbnamefileERS control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbnamefileERS As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lnkdownloadERS control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkdownloadERS As Global.System.Web.UI.WebControls.LinkButton
+    
+    '''<summary>
     '''lnksave control.
     '''</summary>
     '''<remarks>

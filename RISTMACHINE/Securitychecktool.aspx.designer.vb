@@ -1130,13 +1130,13 @@ Partial Public Class Securitychecktool
     Protected WithEvents tb_imp31_7 As Global.System.Web.UI.HtmlControls.HtmlInputText
     
     '''<summary>
-    '''select_str3_7 control.
+    '''select_str31_7 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents select_str3_7 As Global.System.Web.UI.HtmlControls.HtmlSelect
+    Protected WithEvents select_str31_7 As Global.System.Web.UI.HtmlControls.HtmlSelect
     
     '''<summary>
     '''tb_str31_7 control.

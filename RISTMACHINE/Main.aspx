@@ -7,13 +7,15 @@
         $(function () {
             $("#btnpage2").bind("click",
                 function() {
-                    //debugger;
+                    
                     const e = document.getElementById(('<%= lbmcno.ClientID %>'));
+                    const s = document.getElementById(('<%= lbstatus.ClientID %>'));
+
                     const ep2Mcno = e.textContent;
-                    const url = "EquipmentCheck.aspx?ep2mcno=" + ep2Mcno;
+                    const status = s.textContent;
+                    const url = "EquipmentCheck.aspx?ep2mcno=" + ep2Mcno + "&Status="+ status;;
                     window.location.href = url;
 
-                   
                 });
         });
     
@@ -23,7 +25,7 @@
         $(document).on('click',
             '.panel-heading span.clickable',
             function() {
-                var $this = $(this);
+                const $this = $(this);
                 if (!$this.hasClass('panel-collapsed')) {
                     $this.parents('.panel').find('.panel-body').slideUp();
                     $this.addClass('panel-collapsed');
@@ -40,7 +42,7 @@
         
         $(document).ready(function () {
             $('[id*=lnksave]').on("click", function () {
-                var validator = $('[id*=defaultForm]').data('bootstrapValidator');
+                const validator = $('[id*=defaultForm]').data('bootstrapValidator');
                 validator.validate();
                 return validator.isValid();
             });
@@ -111,25 +113,23 @@
                                 message: 'Organize field can\'t be empty'
                             }
                         }
-                    }
-                    <%--<%= tb_name_mc.UniqueID %>: {
-                        message: 'The Machine name is empty',
-                        validators: {
-                            notEmpty: {
-                                message: 'Machine name field can\'t be empty'
-                            }
-                        }
                     },
-                    <%= tb_mcno1.UniqueID %>: {
-                        message: 'The mcno no 1. is empty',
+
+                    upfileers: {
                         validators: {
                             notEmpty: {
-                                message: 'mcno 1 field can\'t be empty'
+                                message: 'Please select pdf file'
+                            },
+                            file: {
+                                extension: 'pdf',
+                                type: 'application/pdf',
+                                minFiles: 1,
+                                message: 'The selected file is not valid'
                             }
                         }
-                    }--%>
+                    }
                     
-
+                 
                 }
             });
         }
@@ -163,13 +163,53 @@
                 allowedFileExtensions: ["jpg"]
             });
         }
+        function setupFileUploadBoxERS() {
+            //setup file upload 
+            $("#upfileers").fileinput({
+                uploadUrl: "ReceieveFile.aspx",
+                uploadAsync: true,
+                showUpload: false,
+                showRemove: false,
+                dropZoneEnabled: true,
+                required: true,
+                maxFileCount: 1,
+                //mainClass: "input-group-lg",
+                allowedFileExtensions: ["pdf"]
+            });
 
+            //$(".btn-upload-ers").on("click", function() {
+            //    $("#upfileers").fileinput('upload');
+            //});
+        }
+
+       
     </script>
     
     <script type="text/javascript">
+
+
         function InsertComplete() {
             bootbox.dialog({
                 message: "<h4 class='text-center'><i class='fa fa-check fa-3x text-success'></i><br/>Insert Data Complete</h4>",
+                title: "<h3 class='text-center'>RIST MACHINE SYSTEM ONLINE</h3>",
+                buttons: {
+                    danger: {
+                        label: 'OK',
+                        className: "btn-success",
+                        callback: function () {
+                            setTimeout(function () {
+                                //txtemail.focus();
+                                // window.location.href="home.aspx";
+                            }, 10);
+                        }
+                    }
+                }
+            });
+        }
+
+        function InsertCompletePage1() {
+            bootbox.dialog({
+                message: "<h4 class='text-center'><i class='fa fa-check fa-3x text-success'></i><br/>Insert Data Page 1 Complete</h4>",
                 title: "<h3 class='text-center'>RIST MACHINE SYSTEM ONLINE</h3>",
                 buttons: {
                     danger: {
@@ -642,7 +682,7 @@
     <div class="col-md-4">
         <h4 class="text-right font800 text-danger"><asp:Label ID="lbmcno" runat="server" CssClass="label label-success" Text=""></asp:Label></h4>
         <p class="text-right font800"><asp:Label ID="lbstatus" runat="server" CssClass="text-danger" Text=""></asp:Label></p>
-        <p class="text-right "><button class="btn btn-primary" type="button" id="btnpage2">Next page 2</button></p>
+        <p class="text-right "><button class="btn btn-primary" type="button"  id="btnpage2">Next page 2</button></p>
         
     </div>
     
@@ -650,7 +690,7 @@
 
 
 <hr/>
-  <div class='row fd_animate'>
+  <div class="row fd_animate">
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">วัตถุประสงค์</h3>
@@ -669,7 +709,7 @@
                 </div>
             </div>
                         
-            <div class='col-md-3'>
+            <div class="col-md-3">
                 <div class="form-group">
                     <div class="checkbox checbox-switch switch-info ">
                         <label>
@@ -684,14 +724,14 @@
     </div>
 </div>
         
- <div class='row fd_animate'>
+ <div class="row fd_animate">
      <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">ประเภท</h3>
             <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span> 
         </div>
         <div class="panel-body">
-            <div class='col-md-3'>
+            <div class="col-md-3">
                 <div class="form-group">
                     <div class="checkbox checbox-switch switch-info">
                         <label>
@@ -704,7 +744,7 @@
                 </div>
             </div>
                         
-            <div class='col-md-3'>
+            <div class="col-md-3">
                 <div class="form-group">
                     <div class="checkbox checbox-switch switch-info">
                         <label>
@@ -717,7 +757,7 @@
                 </div>
             </div>
 
-            <div class='col-md-2'>
+            <div class="col-md-2">
                 <div class="form-group">
                     <div class="checkbox checbox-switch switch-info">
                         <label>
@@ -741,14 +781,14 @@
     </div>
 </div>
         
-    <div class='row fd_animate'>
+    <div class="row fd_animate">
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">ประเภท</h3>
             <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>        
         </div>
         <div class="panel-body">
-            <div class='col-md-3'>
+            <div class="col-md-3">
                 <div class="form-group">
                     <div class="checkbox checbox-switch switch-info">
                         <label>
@@ -761,7 +801,7 @@
                 </div>
             </div>
                         
-            <div class='col-md-3'>
+            <div class="col-md-3">
                 <div class="form-group">
                     <div class="checkbox checbox-switch switch-info">
                         <label>
@@ -774,7 +814,7 @@
                 </div>
             </div>
 
-            <div class='col-md-2'>
+            <div class="col-md-2">
                 <div class="form-group">
                     <div class="checkbox checbox-switch switch-info">
                         <label>
@@ -1665,41 +1705,43 @@
             
         </div>
     </div>
-    
-    <%--<div class="row fd_animate">
+
+    <div class="row fd_animate">
         
             <div class="panel panel-info ">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Upload file</h3>
+                    <h3 class="panel-title">Upload file ER/A SHEET</h3>
                     <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             
                             <div class="form-group">
-                                <form id="form1" enctype="multipart/form-data">
-                                    <label>Image Machine</label>
-                                    <input id="input-upload" name="input-upload" type="file" multiple data-show-preview="true" data-preview-file-type="text">
+                                <%--<form id="form1" enctype="multipart/form-data">--%>
+                                    <label>PDF RISK ASSETMENT ERS</label>
+                                    <input id="upfileers" name="upfileers" type="file"  data-show-preview="true" data-fv-not-empty="true" data-preview-file-type="text" data-fv-file___min-files data-fv-file___max-files	data-fv-file___extension data-fv-file___type >
                                 <script>
                                     //setup
-                                    setupFileUploadBox();
+                                    setupFileUploadBoxERS();
                                 </script>
-                                </form>
+                                    
+                                <%--</form>--%>
                             </div>
                             <hr/>
                             
                             <div class="row">
+
                                
                                 <div class="col-md-8">
                                     <div class="form-group">
                                         
-                                        <asp:Label ID="lbnamefile1" runat="server" Text="" Visible="False"></asp:Label>
+                                        <asp:Label ID="lbnamefileERS" runat="server" Text="" Visible="False"></asp:Label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <asp:LinkButton ID="lnkdownload1" runat="server" CssClass="btn btn-block btn-success" OnClick="DownloadFile"  Visible="False"><i class="fa fa-cloud-download" aria-hidden="true"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="lnkdownloadERS" runat="server" CssClass="btn btn-block btn-success" OnClick="DownloadFileErs"   Visible="False"><i class="fa fa-cloud-download" aria-hidden="true"></i></asp:LinkButton>
      
                                     </div>
                                 </div>
@@ -1712,41 +1754,15 @@
                         </div>
                         <div class="col-md-6">
                             
-                            <div class="form-group">
-                                <label>Layout file</label>
-                                <input id="input-upload2" name="input-upload" type="file" multiple data-show-preview="true" data-preview-file-type="text">
-                                <script>
-                                    //setup
-                                    setupFileUploadBox2();
 
-                                </script>
-              
-                            </div>
-                            <hr/>
-                           
-                            <div class="row">
-                                
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                       
-                                        <asp:Label ID="lbnamefile2" runat="server" Text="" Visible="False"></asp:Label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <asp:LinkButton ID="lnkdownload2" runat="server" CssClass="btn btn-block btn-success" OnClick="DownloadFileLayout"  Visible="False"><i class="fa fa-cloud-download" aria-hidden="true"></i></asp:LinkButton>
-     
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     
                     </div>
                 </div>
              
             </div>
-    </div>--%>
-    
+    </div>
+
     <div class="row fd_animate">
         
     <div class="panel panel-info">
@@ -1758,13 +1774,15 @@
             <div class="row">
                 <div class="col-md-offset-2 col-md-8">
                     <div class="form-group">
-                        <asp:LinkButton ID="lnksave" runat="server" CssClass="btn btn-success btn-lg btn-block login-button font800" data-style="zoom-out" OnClick="Callfunction" Text="Save"></asp:LinkButton>
+                       
+                        <asp:LinkButton ID="lnksave" runat="server" CssClass="btn btn-success btn-lg btn-block login-button font800 " data-style="zoom-out" OnClick="Callfunction" Text="Save"></asp:LinkButton>
                     </div>
                 </div>  
             </div>
         </div>
              
     </div>
+       
         <div class="row" style="display:none">
             <div class="col-lg-12">
                 <div class="table-responsive">
@@ -1791,6 +1809,8 @@
                 </div>
             </div>
         </div>
+       
+        <%--Start-Gridview for show on send email--%>
         <div class="row" style="display:none">
             <div class="col-lg-12">
                 <div class="table-responsive">
@@ -1819,7 +1839,7 @@
                 </div>
             </div>
         </div>
-        
+        <%--End-Gridview for show on send email--%>
 </div>
 
 <a href="#" class="cd-top js-cd-top">Top</a>

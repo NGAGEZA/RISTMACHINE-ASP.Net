@@ -6,9 +6,12 @@
             $("#btnpage3").bind("click",
                 function() {
                     //debugger;
-                    var e = document.getElementById(('<%= lbmcno.ClientID %>'));
-                    var ep3Mcno = e.textContent;
-                    var url = "Securitychecktool.aspx?ep3mcno=" + ep3Mcno;
+                    const e = document.getElementById(('<%= lbmcno.ClientID %>'));
+                    const s = document.getElementById(('<%= lbstatus.ClientID %>'));
+
+                    const ep3Mcno = e.textContent;
+                    const status = s.textContent;
+                    const url = "Securitychecktool.aspx?ep3mcno=" + ep3Mcno + "&Status="+ status;;
                     window.location.href = url;
 
                    
@@ -81,7 +84,7 @@
                         callback: function () {
                             setTimeout(function () {
                                 //txtemail.focus();
-                                window.location.href="home.aspx";
+                                //window.location.href="home.aspx";
                             }, 10);
                         }
                     }

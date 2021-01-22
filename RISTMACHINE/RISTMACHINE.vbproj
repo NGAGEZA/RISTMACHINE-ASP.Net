@@ -1011,6 +1011,7 @@
     <Compile Include="DB\DSMachine.vb">
       <DependentUpon>DSMachine.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ExceptionLogging .vb" />
     <Compile Include="Report\RegisterReport-Page2.vb">
       <DependentUpon>RegisterReport-Page2.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1223,6 +1224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
+    <Folder Include="Error\" />
     <Folder Include="upload\" />
   </ItemGroup>
   <PropertyGroup>
