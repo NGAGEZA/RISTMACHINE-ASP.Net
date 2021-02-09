@@ -1,6 +1,8 @@
 ﻿Option Strict On
 Option Explicit On
 
+Imports System.Web.Script.Serialization
+
 Public Class ReceieveFile
     Inherits Page
 
@@ -9,10 +11,10 @@ Public Class ReceieveFile
     End Class
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Response.Clear()
+       ' Response.Clear()
         Response.ContentType = "application/json"
-        Dim postedFilefront As HttpPostedFile = Request.Files("upmcfront")
-        Dim postedFileback As HttpPostedFile = Request.Files("upmcback")
+        Dim postedFilefront As HttpPostedFile = Request.Files("upfront")
+        Dim postedFileback As HttpPostedFile = Request.Files("upback")
         Dim postedFilelayout As HttpPostedFile = Request.Files("uplayout")
 
         Dim postedFileErs As HttpPostedFile = Request.Files("upfileers")
@@ -20,7 +22,7 @@ Public Class ReceieveFile
         If postedFilefront Isnot Nothing Then
 
             Try
-                Dim path As String = Server.MapPath("upload\")
+                Dim path As String = Server.MapPath("upload\Front\")
 
                 For i = 0 To Request.Files.Count - 1
                     Dim g As Guid
@@ -30,8 +32,8 @@ Public Class ReceieveFile
                     Dim extension As String = file.ContentType
                     file.SaveAs(path)
                     'Done
-                    Dim json = Newtonsoft.Json.JsonConvert.SerializeObject(New customResponse With {.Url = "upload\" & g.ToString() & "-" + file.FileName})
-                   
+                    Dim json = Newtonsoft.Json.JsonConvert.SerializeObject(New customResponse With {.Url = "upload\Front\" & g.ToString() & "-" + file.FileName})
+
                     Response.Write(json)
 
                     'Create a Cookie with a suitable Key.
@@ -41,15 +43,18 @@ Public Class ReceieveFile
                     uploadCookie.Values("namefile1") = g.ToString() & "-" + file.FileName
 
                     'Set the Expiry date.
-                    uploadCookie.Expires = DateTime.Now.AddHours(1)
+                    uploadCookie.Expires = Date.Now.AddHours(1)
 
                     'Add the Cookie to Browser.
                     Response.Cookies.Add(uploadCookie)
 
-                   
-                    
+
+
                 Next
-                
+
+
+
+
             Catch ex As Exception
                 dim errorSend = New ExceptionLogging()
                 errorSend.SendErrorTomail(ex)
@@ -59,20 +64,38 @@ Public Class ReceieveFile
 
 
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & jsonError & """);", True)
-               
+
             End Try
-            
+
             Response.[End]()
-        'Else
-        '    Dim jsonError As String = Newtonsoft.Json.JsonConvert.SerializeObject(New Exception("No Any Files."))
-        '    ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & jsonError & """);", True)
-        '    Response.End()
+
         End If
+        'If postedFilefront IsNot Nothing Then
+        '    If Request.Files.Count > 0 Then
+        '        Dim path As String = Server.MapPath("upload\Front\")
+
+        '        For i As Integer = 0 To Request.Files.Count - 1
+        '            Dim file = Request.Files(i)
+        '            path += file.FileName
+
+        '            Try
+        '                file.SaveAs(path)
+        '            Catch ex As HttpException
+        '                Dim serializer = New JavaScriptSerializer()
+        '                Dim jsonError As String = serializer.Serialize(New With {
+        '                                                                  .[error] = "Error on sending files"
+        '                                                                  })
+        '                Response.Write(jsonError)
+        '            End Try
+        '        Next
+        '    End If
+        'End If
+
 
         If postedFileback Isnot Nothing Then
 
             Try
-                Dim path As String = Server.MapPath("upload\")
+                Dim path As String = Server.MapPath("upload\Back\")
 
                 For i = 0 To Request.Files.Count - 1
                     Dim g As Guid
@@ -82,7 +105,7 @@ Public Class ReceieveFile
                     Dim extension As String = file.ContentType
                     file.SaveAs(path)
                     'Done
-                    Dim json = Newtonsoft.Json.JsonConvert.SerializeObject(New customResponse With {.Url = "upload\" & g.ToString() & "-" + file.FileName})
+                    Dim json = Newtonsoft.Json.JsonConvert.SerializeObject(New customResponse With {.Url = "upload\Back\" & g.ToString() & "-" + file.FileName})
                    
                     Response.Write(json)
 
@@ -93,7 +116,7 @@ Public Class ReceieveFile
                     uploadCookie.Values("namefile2") = g.ToString() & "-" + file.FileName
 
                     'Set the Expiry date.
-                    uploadCookie.Expires = DateTime.Now.AddHours(1)
+                    uploadCookie.Expires = Date.Now.AddHours(1)
 
                     'Add the Cookie to Browser.
                     Response.Cookies.Add(uploadCookie)
@@ -115,10 +138,7 @@ Public Class ReceieveFile
             End Try
             
             Response.[End]()
-        'Else
-        '    Dim jsonError As String = Newtonsoft.Json.JsonConvert.SerializeObject(New Exception("No Any Files."))
-        '    ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & jsonError & """);", True)
-        '    Response.End()
+       
         End If
 
         If postedFilelayout Isnot Nothing Then
@@ -145,7 +165,7 @@ Public Class ReceieveFile
                     uploadCookie.Values("namefile3") = g.ToString() & "-" + file.FileName
 
                     'Set the Expiry date.
-                    uploadCookie.Expires = DateTime.Now.AddHours(1)
+                    uploadCookie.Expires = Date.Now.AddHours(1)
 
                     'Add the Cookie to Browser.
                     Response.Cookies.Add(uploadCookie)
@@ -167,10 +187,7 @@ Public Class ReceieveFile
             End Try
             
             Response.[End]()
-            'Else
-            '    Dim jsonError As String = Newtonsoft.Json.JsonConvert.SerializeObject(New Exception("No Any Files."))
-            '    ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & jsonError & """);", True)
-            '    Response.End()
+           
         End If
 
         If postedFileErs Isnot Nothing Then
@@ -219,10 +236,7 @@ Public Class ReceieveFile
             End Try
             
             Response.[End]()
-            'Else
-            '    Dim jsonError As String = Newtonsoft.Json.JsonConvert.SerializeObject(New Exception("No Any Files."))
-            '    ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & jsonError & """);", True)
-            '    Response.End()
+           
         End If
     End Sub
 

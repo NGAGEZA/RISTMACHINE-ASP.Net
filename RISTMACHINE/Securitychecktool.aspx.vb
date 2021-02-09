@@ -1,6 +1,11 @@
 ﻿Option Strict On
 Option Explicit On
 
+Imports System.IO
+Imports System.Net
+Imports System.Net.Mail
+Imports System.Security.Cryptography
+
 Public Class Securitychecktool
     Inherits Page
     Private Property Mcno() As String
@@ -14,24 +19,39 @@ Public Class Securitychecktool
 
         Else
             'Getdata for edit Page 3
+            'If Not String.IsNullOrEmpty(Request.QueryString("ep3mcno")) Then
+            '    Mcno = Request.QueryString("ep3mcno")
+            '    lbmcno.Text = Mcno
+            '   if FindMcno(Mcno) = 0
+
+            '       lnksave.Text = "Save"
+
+            '   End If
+
+            '    Status = Request.QueryString("Status")
+            '    if Status = ""
+            '        lnksave.Text = "Save"
+            '        Getdata()
+            '        Else 
+                       
+            '            lnksave.Text = "UPDATE"
+            '    End If
+
+
+
+
+            'End If
+
             If Not String.IsNullOrEmpty(Request.QueryString("ep3mcno")) Then
-                Mcno = Request.QueryString("ep3mcno")
-                lbmcno.Text = Mcno
-               if FindMcno(Mcno) = 0
-
-
-                   lnksave.Text = "Save"
-                   
-
-               End If
 
                 If lnksave.Text <> "UPDATE"
                     Getdata()
+                    
                     lnksave.Text = "UPDATE"
                 End If
 
-
-
+                
+                Exit Sub
             End If
 
         End If
@@ -1271,7 +1291,8 @@ Public Class Securitychecktool
                 db.TB_MACHINE_TOOL_CHECK_P3s.InsertOnSubmit(p3)
                 db.SubmitChanges()
 
-
+                '#send mail to request entry for preview details
+                SendEmailToRequest
                 
 
 
@@ -1296,6 +1317,151 @@ Public Class Securitychecktool
             End Try
         End Using
     End Sub
+    Private Sub SendEmailToRequest()
+        Dim username As String = String.Empty
+       
+        Dim email As String = String.Empty
+        Dim rmcno As String = HttpUtility.UrlEncode(Encrypt(Mcno))
+        Dim opnocookie As HttpCookie = Request.Cookies("opno")
+        Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
+       
+        Using db As New DBRISTMCDataContext()
+
+            Try
+                Dim getemail As IEnumerable(Of User) = db.Users.Where(Function(o) o.OperatorNo = opno).ToList()
+
+                For Each n In getemail
+                    username = n.Username
+                    email = n.Email
+                    'password = n.Password
+
+                Next
+
+                If Not String.IsNullOrEmpty(email) Then
+                    BindGrid
+                    Using sw As New StringWriter()
+                        Using hw As New HtmlTextWriter(sw)
+                            gvDetailsMcno.RenderControl(hw)
+                            Dim mm As New MailMessage("RISTMCSYSTEM@rist.local", email)
+                            mm.Subject = "Your Machine Register No " & Mcno 
+                            mm.Body = String.Format("Hi {0},<br /><br />
+                                                    Your machine register no. " & Mcno & "<br /><br />
+                                                    Please see details link <a href='http://10.29.1.86/RISTMACHINE/Main.aspx?rmcno={1} '>Click</a> <br /><br />
+                                                    <hr />" & sw.ToString() & "<br /><br />
+                                                    Thank You.", username, rmcno)
+                            mm.IsBodyHtml = True
+                            Dim smtp As New SmtpClient()
+                            smtp.Host = "10.29.1.240"
+                            smtp.EnableSsl = False
+                            Dim networkCred As New NetworkCredential()
+                            networkCred.UserName = "RISTMCSYSTEM@rist.local"
+                            networkCred.Password = "Rist2018"
+                            smtp.UseDefaultCredentials = True
+                            smtp.Credentials = networkCred
+                            smtp.Port = 25
+                            smtp.Send(mm)
+                        End Using
+                   End Using
+                    
+                Else
+                    ClientScript.RegisterStartupScript(Me.GetType(), "alert", "RecoverypasswordNotComplete()", True)
+                  
+                End If
+
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+            Finally
+                db.Dispose()
+            End Try
+           
+            
+        End Using
+
+
+        
+    End Sub
+    Private Sub BindGrid()
+        Using db As New DBRISTMCDataContext()
+            Try
+                gvDetailsMcno.DataSource = From m In db.TB_MACHINE_DATAs
+                    Where m.MC_NO = Mcno
+                    Select New with {m.MC_NO, m.MAKER, m.COUNTRY, m.SUPPLIER, m.PROVIDER, m.TEL, 
+                        m.DIVISION, m.DEPARTMENT, m.SECTION, m.REGISTER_DATE}
+                gvDetailsMcno.DataBind()
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+            Finally
+                db.Dispose()
+            End Try
+            
+        End Using
+    End Sub
+    Public Overrides Sub VerifyRenderingInServerForm(control As Control)
+        ' Verifies that the control is rendered
+    End Sub
+    Private Shared Function Encrypt(clearText As String) As String
+        Dim EncryptionKey As String = "RISTMC18NOVSYS"
+        Dim clearBytes As Byte() = Encoding.Unicode.GetBytes(clearText)
+        Using encryptor As Aes = Aes.Create()
+            Dim pdb As New Rfc2898DeriveBytes(EncryptionKey, New Byte() {&H49, &H76, &H61, &H6E, &H20, &H4D, _
+                                                                         &H65, &H64, &H76, &H65, &H64, &H65, _
+                                                                         &H76})
+            encryptor.Key = pdb.GetBytes(32)
+            encryptor.IV = pdb.GetBytes(16)
+            Using ms As New MemoryStream()
+                Using cs As New CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write)
+                    cs.Write(clearBytes, 0, clearBytes.Length)
+                    cs.Close()
+                End Using
+                clearText = Convert.ToBase64String(ms.ToArray())
+            End Using
+        End Using
+        Return clearText
+    End Function
+    Private Shared Function Decrypt(cipherText As String) As String
+        Const encryptionKey As String = "RISTMC18NOVSYS"
+        'If cipherText Is Nothing 
+        '    Exit Function
+        'Else 
+            cipherText = cipherText.Replace(" ", "+")
+        'End If
+       
+        Dim cipherBytes As Byte() = Convert.FromBase64String(cipherText)
+        Using encryptor As Aes = Aes.Create()
+            Dim pdb As New Rfc2898DeriveBytes(encryptionKey, New Byte() {&H49, &H76, &H61, &H6E, &H20, &H4D, _
+                                                                         &H65, &H64, &H76, &H65, &H64, &H65, _
+                                                                         &H76})
+            encryptor.Key = pdb.GetBytes(32)
+            encryptor.IV = pdb.GetBytes(16)
+            Using ms As New MemoryStream()
+                Using cs As New CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write)
+                    cs.Write(cipherBytes, 0, cipherBytes.Length)
+                    cs.Close()
+                End Using
+                cipherText = Encoding.Unicode.GetString(ms.ToArray())
+            End Using
+        End Using
+        Return cipherText
+    End Function
+
 
 
    

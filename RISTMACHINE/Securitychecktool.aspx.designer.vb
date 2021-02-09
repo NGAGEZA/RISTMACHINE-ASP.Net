@@ -2559,4 +2559,13 @@ Partial Public Class Securitychecktool
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnksave As Global.System.Web.UI.WebControls.LinkButton
+    
+    '''<summary>
+    '''gvDetailsMcno control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvDetailsMcno As Global.System.Web.UI.WebControls.GridView
 End Class

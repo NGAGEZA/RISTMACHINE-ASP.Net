@@ -62,10 +62,10 @@ Public Class Login
                 Next
                
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "LoginNotComplete()", True)
-
+            Catch unusedThreadAbortException1 As Threading.ThreadAbortException
             Catch ex As Exception
                 dim errorSend = New ExceptionLogging()
-                errorSend.SendErrorTomail(ex)
+                errorSend.SendErrorTomail(ex) 
                 'Write Error to Log.txt
                 ExceptionLogging.LogError(ex)
                 Dim message As String = $"Message: {ex.Message}\n\n"

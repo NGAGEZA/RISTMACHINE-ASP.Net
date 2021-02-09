@@ -17,28 +17,13 @@
                    
                 });
         });
-    
+
     </script>
-    <script type="text/javascript">
-
-        $(document).on('click',
-            '.panel-heading span.clickable',
-            function() {
-                var $this = $(this);
-                if (!$this.hasClass('panel-collapsed')) {
-                    $this.parents('.panel').find('.panel-body').slideUp();
-                    $this.addClass('panel-collapsed');
-                    $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
-                } else {
-                    $this.parents('.panel').find('.panel-body').slideDown();
-                    $this.removeClass('panel-collapsed');
-                    $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
-                }
-            });
-
+    
+    <script>
         function setupFileUploadBoxMCFront() {
             //setup file upload 
-            $("#upmcfront").fileinput({
+            $("#upfront").fileinput({
                 uploadUrl: "ReceieveFile.aspx",
                 uploadAsync: true,
                 showUpload: true,
@@ -50,7 +35,7 @@
         }
         function setupFileUploadBoxMCBack() {
             //setup file upload 
-            $("#upmcback").fileinput({
+            $("#upback").fileinput({
                 uploadUrl: "ReceieveFile.aspx",
                 uploadAsync: true,
                 showUpload: true,
@@ -60,6 +45,25 @@
                 allowedFileExtensions: ["png","jpg"]
             });
         }
+    </script>
+    <script type="text/javascript">
+
+        $(document).on('click',
+            '.panel-heading span.clickable',
+            function() {
+                const $this = $(this);
+                if (!$this.hasClass('panel-collapsed')) {
+                    $this.parents('.panel').find('.panel-body').slideUp();
+                    $this.addClass('panel-collapsed');
+                    $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+                } else {
+                    $this.parents('.panel').find('.panel-body').slideDown();
+                    $this.removeClass('panel-collapsed');
+                    $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+                }
+            });
+
+        
         function setupFileUploadlayout() {
             //setup file upload 
             $("#uplayout").fileinput({
@@ -75,7 +79,7 @@
 
         function UpdateComplete() {
             bootbox.dialog({
-                message: "<h4 class='text-center'><i class='fa fa-check fa-3x text-success'></i><br/>Update Data Complete</h4>",
+                message: "<h4 class='text-center'><i class='fa fa-check fa-3x text-success'></i><br/>Update Data Page 2 Complete</h4>",
                 title: "<h3 class='text-center'>RIST MACHINE SYSTEM ONLINE</h3>",
                 buttons: {
                     danger: {
@@ -129,15 +133,11 @@
                     </div>
                 </div>
                     <div class="row xmargin">
-                        
-
-                        
-                    
                 <div class="col-md-6">
                     <div class="form-group">
                         <form id="frmupmcfront" enctype="multipart/form-data">
-                            <label for="upmcfront">รูปภาพเครื่องจักร (ด้านหน้า)</label>
-                            <input id="upmcfront" name="upmcfront" type="file" multiple data-show-preview="true" data-preview-file-type="text">
+                            <label>รูปภาพเครื่องจักร (ด้านหน้า)</label>
+                            <input id="upfront" name="upfront" type="file" data-show-preview="false" >
                             <script>
                                 //setup
                                 setupFileUploadBoxMCFront();
@@ -153,7 +153,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <asp:LinkButton ID="lnkdownload1" runat="server" CssClass="btn btn-block btn-success" OnClick="DownloadFile1"  Visible="False"><i class="fa fa-cloud-download" aria-hidden="true"></i></asp:LinkButton>
+                                <asp:LinkButton ID="lnkdownload1" runat="server" CssClass="btn btn-block btn-success" OnClick="DownloadFile1"  Visible="False"><i class="fa fa-cloud-download"></i></asp:LinkButton>
                             </div>
                         </div>
                     </div>
@@ -162,8 +162,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <form id="frmupmcback" enctype="multipart/form-data">
-                            <label for="upmcback">รูปภาพเครื่องจักร (ด้านหลัง)</label>
-                            <input id="upmcback" name="upmcback" type="file" multiple data-show-preview="true" data-preview-file-type="text">
+                            <label>รูปภาพเครื่องจักร (ด้านหลัง)</label>
+                            <input id="upback" name="upback" type="file" data-show-preview="false" >
                             <script>
                                 //setup
                                 setupFileUploadBoxMCBack();
@@ -179,7 +179,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <asp:LinkButton ID="lnkdownload2" runat="server" CssClass="btn btn-block btn-success" OnClick="DownloadFile2"  Visible="False"><i class="fa fa-cloud-download" aria-hidden="true"></i></asp:LinkButton>
+                                <asp:LinkButton ID="lnkdownload2" runat="server" CssClass="btn btn-block btn-success" OnClick="DownloadFile2"  Visible="False"><i class="fa fa-cloud-download"></i></asp:LinkButton>
                             </div>
                         </div>
                     </div>
@@ -828,7 +828,7 @@
                             <div class="form-group">
                                 <form id="frmlayout" enctype="multipart/form-data">
                                     <label for="uplayout">Lay out</label>
-                                    <input id="uplayout" name="uplayout" type="file" multiple data-show-preview="true" data-preview-file-type="text">
+                                    <input id="uplayout" name="uplayout" type="file" data-show-preview="false">
                                     <script>
                                         //setup
                                         setupFileUploadlayout();

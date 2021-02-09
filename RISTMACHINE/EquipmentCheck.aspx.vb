@@ -100,7 +100,7 @@ Public Class EquipmentCheck
                     If nameupload1 IsNot "undefined"
            
      
-                        filePathupload1 = Server.MapPath("upload/" & nameupload1 & "")
+                        filePathupload1 = Server.MapPath("upload/Front/" & nameupload1 & "")
                         filenameupload1 = Path.GetFileName(filePathupload1)
                         fsupload1 = New FileStream(filePathupload1, FileMode.Open, FileAccess.Read)
                         brupload1 = New BinaryReader(fsupload1)
@@ -149,7 +149,7 @@ Public Class EquipmentCheck
                 If nameupload2 Isnot "undefined"
            
      
-                    filePathupload2 = Server.MapPath("upload/" & nameupload2 & "")
+                    filePathupload2 = Server.MapPath("upload/Back/" & nameupload2 & "")
                     filenameupload2 = Path.GetFileName(filePathupload2)
                     fsupload2 = New FileStream(filePathupload2, FileMode.Open, FileAccess.Read)
                     brupload2 = New BinaryReader(fsupload2)
@@ -251,6 +251,12 @@ Public Class EquipmentCheck
                
 
             Catch ex As Exception
+
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
@@ -301,6 +307,8 @@ Public Class EquipmentCheck
                     
                 End If
             Catch ex As Exception
+
+
                 Dim message As String = $"Message: {ex.Message}\n\n"
                 message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"

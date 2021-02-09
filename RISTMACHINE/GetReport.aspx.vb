@@ -44,53 +44,7 @@ Public Class GetReport
        
     End Sub
 
-    'Private Sub GetFile()
-    '    Using db As New DBRISTMCDataContext()
-
-    '        'Dim cr As CrystalReport1 = New CrystalReport1()
-    '        Dim results = (From r In db.TB_MACHINE_DATAs Where r.MC_NO = "MC-209"
-    '                      Select New With {r.MC_NO,r.REGISTER_DATE,r.REGISTER_NEW_MC,r.CANCEL_MC,
-    '                          r.CATEGORY1_NEW_MC,r.CATEGORY1_TF_MC,r.CATEGORY1_OTH_MC,r.CATEGORY1_MC_OTHER_DETAIL,
-    '                          r.CATEGORY2_NEW_MODEL_MC,r.CATEGORY2_ORIGINAL_MODEL_MC,r.CATEGORY2_OTH_MODEL_MC,r.CATEGORY2_MC_OTHER_DETAIL,
-    '                          r.MAKER,r.COUNTRY,r.SUPPLIER,r.PROVIDER,r.TEL,r.TYPE_MC,r.SIZE_HP_MC,r.DIVISION,r.DEPARTMENT,r.SECTION,
-    '                          r.MC_NAME,r.MC_NO1,r.MC_NO2,r.MC_NO3,r.MC_NO4,r.MC_NO5,r.MC_NO6,r.MC_NO7,r.MC_NO8,r.MC_NO9,r.MC_NO10,
-    '                          r.DANGER_CHEME_1,r.DANGER_CHEME_2,r.DANGER_CHEME_3,r.DANGER_CHEME_4,r.DANGER_CHEME_NAME,r.CAS_NO,
-    '                          r.FLAMMABLE,r.CORROSIVE,r.POISON,r.GAS,r.SUBSTANCE_OTHER,r.SUBSTANCE_OTHER_DETAIL,r.OBJ_POWDER,r.OBJ_HEAT,r.OBJ_NOISE,r.OBJ_VIBRATE,
-    '                          r.OBJ_POISONGAS,r.OBJ_WASTE_WATER,r.OBJ_RAY,r.OBJ_SMOKE,r.OBJ_ELECTRIC_WAVE,r.OBJ_OTHER,r.OBJ_OTHER_DETAIL,
-    '                          r.OBJ_CHEME_NAME,r.EQUIPMENT_HELMET,r.EQUIPMENT_GLASSES,r.EQUIPMENT_CHEMICAL_MASK,r.EQUIPMENT_BIB_PROTECT_CHEMECAL,
-    '                          r.EQUIPMENT_CHEMICAL_GLOVES,r.EQUIPMENT_HEAT_RESISTANT_GLOVES,r.EQUIPMENT_CUT_PROTECT_GLOVES,r.EQUIPMENT_EYE_COVER,
-    '                          r.EQUIPMENT_FACE_SHIELD,r.EQUIPMENT_DUST_MASK,r.EQUIPMENT_CHEMICAL_PACK,r.EQUIPMENT_ELECTRIC_GLOVES,r.EQUIPMENT_OTHER,r.EQUIPMENT_OTHER_DETAIL,
-    '                          r.LAW_MC,r.LAW_CHEMECALS,r.LAW_ENVIRONMENTAL,r.LAW_HIGH_PRESSURE_GAS,r.LAW_PREVENT_STOP_FIRE,r.LAW_FACTORY,r.LAW_FUEL_REGULATORY,
-    '                          r.LAW_OTHER,r.LAW_OTHER_DETAIL,r.LAW_NAME,r.LAW_NOTICE,r.LAW_NOTICE_DETAIL,r.LAW_APPROVE,r.LAW_APPROVE_DETAIL,
-    '                          r.LAW_CHECK,r.LAW_CHECK_DETAIL,r.IMG_TEMP_STAMP_DATA}).ToList()
-
-    '        If results Isnot Nothing
-    '            Dim cr As RegisterReport = New RegisterReport()
-    '            '_rpt.Load(Server.MapPath("~/Report/RegisterReport.rpt"))
-    '            cr.SetDataSource(results)
-    '            CrystalReportViewer1.ReportSource = cr
-
-
-    '            Dim namefile As String = "Report_" + "MC-209"
-    '            _rpt.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, True, namefile)
-    '            db.Dispose()
-    '            Response.[End]()
-    '            Session.Clear()
-    '        End If
-
-
-    '        'CrystalReportViewer1.ReportSource = _rpt
-    '    End Using
-
-    '    'Private Sub SurroundingSub()
-    '    'Dim cr As CrystalReport1 = New CrystalReport1()
-    '    'Dim results = (From supp In dbdata.tSamples Where supp.ID = IDNUMBER Select New With {supp.Name, supp.Model, supp.Producer
-    '    '        }).ToList()
-    '    'cr.SetDataSource(results)
-    '    'crystalReportsViewer1.ReportSource = cr
-    '    'End Sub
-
-    'End Sub
+   
 
     Private Sub GetReport_Unload(sender As Object, e As EventArgs) Handles Me.Unload
         _rpt.Close()
@@ -109,8 +63,9 @@ Public Class GetReport
             Dim dsmc As DSMachine = GetData("SELECT * FROM TB_MACHINE_DATA WITH(NOLOCK) WHERE MC_NO = '" & mcno & "'")
             _rpt.SetDataSource(dsmc)
             Dim namefile As String = "Report_Page1_" + mcno
-            _rpt.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, True, namefile)
+            _rpt.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, False, namefile)
             Response.[End]()
+        Catch unusedThreadAbortException1 As Threading.ThreadAbortException
         Catch ex As Exception
             dim errorSend = New ExceptionLogging()
             errorSend.SendErrorTomail(ex)
@@ -690,9 +645,9 @@ Public Class GetReport
                 Dim dsmc2 As DSMachine = GetDatapage2("SELECT * FROM TMP_REPORT2 WITH(NOLOCK) WHERE MC_NO = '" & mcno & "'")
                 _rpt2.SetDataSource(dsmc2)
                 Dim namefile2 As String = "Report_Page2_" + mcno
-                _rpt2.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, True, namefile2)
+                _rpt2.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, False, namefile2)
                 Response.[End]()
-            
+            Catch unusedThreadAbortException1 As Threading.ThreadAbortException
             Catch ex As Exception
                 dim errorSend = New ExceptionLogging()
                 errorSend.SendErrorTomail(ex)
@@ -739,16 +694,7 @@ Public Class GetReport
         End Try
     End Sub
 
-    'Protected Sub Export()
-    '    Dim mcno As String 
-    '    mcno = Request.QueryString("pmcno")
-    '    _rpt.Load(Server.MapPath("~/Report/RegisterReport.rpt"))
-    '    Dim dsmc As DSMachine = GetData("SELECT * FROM TB_MACHINE_DATA WHERE MC_NO = '" & mcno & "'")
-    '    _rpt.SetDataSource(dsmc)
-    '    Dim namefile As String = "Report_" + mcno
-    '    _rpt.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, True, namefile)
-    '    Response.[End]()
-    'End Sub
+   
 
 
     Private Shared Function GetDataVpage() As DataTable
@@ -814,62 +760,5 @@ Public Class GetReport
             End Using
         End Using
     End Function
-    'Protected Sub PRINT_MCNO()
-    '    Dim mcno As String = String.Empty
-    '    'Dim mcnofull As String = String.Empty
-    '    mcno = Request.QueryString("pmcno")
-    '    'mcnofull = "MC-" + mcno
-    '    Dim conStrMc As String = ConfigurationManager.ConnectionStrings("ConMC").ConnectionString
-    '    Dim query As String = "SELECT * FROM TB_MACHINE_DATA WHERE MC_NO = '" & mcno & "'"
-    '    'Dim Query As String = "SELECT ISSUE_DT, HEADQUATER FROM V_REPORT GROUP BY ISSUE_DT, HEADQUATER  HAVING  ISSUE_DT = '" & tb_issue_dt.Text & "'"
-    '    Dim con As New SqlConnection(conStrMc)
-    '    Dim cmd As New SqlCommand(query)
-    '    Dim sda As New SqlDataAdapter()
-    '    cmd.Connection = con
-    '    sda.SelectCommand = cmd
-    '    Dim ds As New DataSet()
-    '    sda.Fill(ds)
-    '    Dim dt As New DataTable()
-
-    '    Try
-    '        dt = ds.Tables(0)
-    '        If dt.Rows.Count <> 0 Then
-
-
-
-    '            _rpt.Load(Server.MapPath("~/Report/RegisterReport.rpt"))
-
-    '            _rpt.SetDataSource(dt)
-    '            ' _rpt.SetParameterValue("HQ", ddl_hq.SelectedValue)
-
-    '            'rpt.SetParameterValue("HQ", HQ)
-
-
-    '            Dim namefile As String = "Report_" + mcno
-    '            _rpt.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, True, namefile)
-    '            Response.[End]()
-    '            Session.Clear()
-    '            ' Next row
-
-
-    '        Else
-
-    '            ClientScript.RegisterStartupScript(Me.GetType(), "alert", "datanotfound()", True)
-                   
-
-    '        End If
-
-
-    '    Catch ex As Exception
-    '        Dim message As String = String.Format("Message: {0}\n\n", ex.Message)
-    '        message &= String.Format("StackTrace: {0}\n\n", ex.StackTrace.Replace(Environment.NewLine, String.Empty))
-    '        message &= String.Format("Source: {0}\n\n", ex.Source.Replace(Environment.NewLine, String.Empty))
-    '        message &= String.Format("TargetSite: {0}", ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty))
-
-    '        ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
-    '    Finally
-
-    '    End Try
-
-    'End Sub
+   
 End Class

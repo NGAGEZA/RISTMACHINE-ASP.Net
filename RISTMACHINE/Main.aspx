@@ -168,8 +168,8 @@
             $("#upfileers").fileinput({
                 uploadUrl: "ReceieveFile.aspx",
                 uploadAsync: true,
-                showUpload: false,
-                showRemove: false,
+                showUpload: true,
+                showRemove: true,
                 dropZoneEnabled: true,
                 required: true,
                 maxFileCount: 1,
@@ -1720,7 +1720,7 @@
                             <div class="form-group">
                                 <%--<form id="form1" enctype="multipart/form-data">--%>
                                     <label>PDF RISK ASSETMENT ERS</label>
-                                    <input id="upfileers" name="upfileers" type="file"  data-show-preview="true" data-fv-not-empty="true" data-preview-file-type="text" data-fv-file___min-files data-fv-file___max-files	data-fv-file___extension data-fv-file___type >
+                                    <input id="upfileers" name="upfileers" type="file" data-show-preview="false" data-fv-not-empty="true" data-preview-file-type="text" data-fv-file___min-files data-fv-file___max-files	data-fv-file___extension data-fv-file___type >
                                 <script>
                                     //setup
                                     setupFileUploadBoxERS();

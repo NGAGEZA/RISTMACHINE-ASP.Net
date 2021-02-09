@@ -775,7 +775,7 @@
     <Content Include="Scripts\crv.js" />
     <Content Include="Scripts\doughnut.js" />
     <Content Include="Scripts\excanvas.js" />
-    <Content Include="Scripts\fileinput.js" />
+    <Content Include="Scripts\fileinput_old.js" />
     <Content Include="Scripts\fileinput.min.js" />
     <Content Include="Scripts\functioncheckbox.js" />
     <Content Include="Scripts\functionvalidate_texbox.js" />
@@ -997,6 +997,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\validator.js" />
     <Content Include="Securitychecktool.aspx" />
+    <Content Include="ViewApprove.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1176,6 +1177,13 @@
       <DependentUpon>RMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="ViewApprove.aspx.designer.vb">
+      <DependentUpon>ViewApprove.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewApprove.aspx.vb">
+      <DependentUpon>ViewApprove.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -1225,7 +1233,8 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="Error\" />
-    <Folder Include="upload\" />
+    <Folder Include="upload\Back\" />
+    <Folder Include="upload\Front\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

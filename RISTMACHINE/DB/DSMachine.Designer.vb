@@ -25,8 +25,6 @@ Option Explicit On
 Partial Public Class DSMachine
     Inherits Global.System.Data.DataSet
     
-    Private tableTB_MACHINE_DATA As TB_MACHINE_DATADataTable
-    
     Private tableTB_EQUIPMENT_CHECK As TB_EQUIPMENT_CHECKDataTable
     
     Private tableV_PAGE2 As V_PAGE2DataTable
@@ -34,6 +32,8 @@ Partial Public Class DSMachine
     Private tableTMP_REPORT2 As TMP_REPORT2DataTable
     
     Private tableTB_MACHINE_TOOL_CHECK_P3 As TB_MACHINE_TOOL_CHECK_P3DataTable
+    
+    Private tableTB_MACHINE_DATA As TB_MACHINE_DATADataTable
     
     Private tableReport As ReportDataTable
     
@@ -66,9 +66,6 @@ Partial Public Class DSMachine
         If (Me.DetermineSchemaSerializationMode(info, context) = Global.System.Data.SchemaSerializationMode.IncludeSchema) Then
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXmlSchema(New Global.System.Xml.XmlTextReader(New Global.System.IO.StringReader(strSchema)))
-            If (Not (ds.Tables("TB_MACHINE_DATA")) Is Nothing) Then
-                MyBase.Tables.Add(New TB_MACHINE_DATADataTable(ds.Tables("TB_MACHINE_DATA")))
-            End If
             If (Not (ds.Tables("TB_EQUIPMENT_CHECK")) Is Nothing) Then
                 MyBase.Tables.Add(New TB_EQUIPMENT_CHECKDataTable(ds.Tables("TB_EQUIPMENT_CHECK")))
             End If
@@ -80,6 +77,9 @@ Partial Public Class DSMachine
             End If
             If (Not (ds.Tables("TB_MACHINE_TOOL_CHECK_P3")) Is Nothing) Then
                 MyBase.Tables.Add(New TB_MACHINE_TOOL_CHECK_P3DataTable(ds.Tables("TB_MACHINE_TOOL_CHECK_P3")))
+            End If
+            If (Not (ds.Tables("TB_MACHINE_DATA")) Is Nothing) Then
+                MyBase.Tables.Add(New TB_MACHINE_DATADataTable(ds.Tables("TB_MACHINE_DATA")))
             End If
             If (Not (ds.Tables("Report")) Is Nothing) Then
                 MyBase.Tables.Add(New ReportDataTable(ds.Tables("Report")))
@@ -100,16 +100,6 @@ Partial Public Class DSMachine
         AddHandler MyBase.Tables.CollectionChanged, schemaChangedHandler
         AddHandler Me.Relations.CollectionChanged, schemaChangedHandler
     End Sub
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-     Global.System.ComponentModel.Browsable(false),  _
-     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property TB_MACHINE_DATA() As TB_MACHINE_DATADataTable
-        Get
-            Return Me.tableTB_MACHINE_DATA
-        End Get
-    End Property
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
@@ -148,6 +138,16 @@ Partial Public Class DSMachine
     Public ReadOnly Property TB_MACHINE_TOOL_CHECK_P3() As TB_MACHINE_TOOL_CHECK_P3DataTable
         Get
             Return Me.tableTB_MACHINE_TOOL_CHECK_P3
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property TB_MACHINE_DATA() As TB_MACHINE_DATADataTable
+        Get
+            Return Me.tableTB_MACHINE_DATA
         End Get
     End Property
     
@@ -228,9 +228,6 @@ Partial Public Class DSMachine
             Me.Reset
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXml(reader)
-            If (Not (ds.Tables("TB_MACHINE_DATA")) Is Nothing) Then
-                MyBase.Tables.Add(New TB_MACHINE_DATADataTable(ds.Tables("TB_MACHINE_DATA")))
-            End If
             If (Not (ds.Tables("TB_EQUIPMENT_CHECK")) Is Nothing) Then
                 MyBase.Tables.Add(New TB_EQUIPMENT_CHECKDataTable(ds.Tables("TB_EQUIPMENT_CHECK")))
             End If
@@ -242,6 +239,9 @@ Partial Public Class DSMachine
             End If
             If (Not (ds.Tables("TB_MACHINE_TOOL_CHECK_P3")) Is Nothing) Then
                 MyBase.Tables.Add(New TB_MACHINE_TOOL_CHECK_P3DataTable(ds.Tables("TB_MACHINE_TOOL_CHECK_P3")))
+            End If
+            If (Not (ds.Tables("TB_MACHINE_DATA")) Is Nothing) Then
+                MyBase.Tables.Add(New TB_MACHINE_DATADataTable(ds.Tables("TB_MACHINE_DATA")))
             End If
             If (Not (ds.Tables("Report")) Is Nothing) Then
                 MyBase.Tables.Add(New ReportDataTable(ds.Tables("Report")))
@@ -278,12 +278,6 @@ Partial Public Class DSMachine
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Friend Overloads Sub InitVars(ByVal initTable As Boolean)
-        Me.tableTB_MACHINE_DATA = CType(MyBase.Tables("TB_MACHINE_DATA"),TB_MACHINE_DATADataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableTB_MACHINE_DATA) Is Nothing) Then
-                Me.tableTB_MACHINE_DATA.InitVars
-            End If
-        End If
         Me.tableTB_EQUIPMENT_CHECK = CType(MyBase.Tables("TB_EQUIPMENT_CHECK"),TB_EQUIPMENT_CHECKDataTable)
         If (initTable = true) Then
             If (Not (Me.tableTB_EQUIPMENT_CHECK) Is Nothing) Then
@@ -308,6 +302,12 @@ Partial Public Class DSMachine
                 Me.tableTB_MACHINE_TOOL_CHECK_P3.InitVars
             End If
         End If
+        Me.tableTB_MACHINE_DATA = CType(MyBase.Tables("TB_MACHINE_DATA"),TB_MACHINE_DATADataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableTB_MACHINE_DATA) Is Nothing) Then
+                Me.tableTB_MACHINE_DATA.InitVars
+            End If
+        End If
         Me.tableReport = CType(MyBase.Tables("Report"),ReportDataTable)
         If (initTable = true) Then
             If (Not (Me.tableReport) Is Nothing) Then
@@ -324,8 +324,6 @@ Partial Public Class DSMachine
         Me.Namespace = "http://tempuri.org/DSMachine.xsd"
         Me.EnforceConstraints = true
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
-        Me.tableTB_MACHINE_DATA = New TB_MACHINE_DATADataTable()
-        MyBase.Tables.Add(Me.tableTB_MACHINE_DATA)
         Me.tableTB_EQUIPMENT_CHECK = New TB_EQUIPMENT_CHECKDataTable()
         MyBase.Tables.Add(Me.tableTB_EQUIPMENT_CHECK)
         Me.tableV_PAGE2 = New V_PAGE2DataTable()
@@ -334,15 +332,11 @@ Partial Public Class DSMachine
         MyBase.Tables.Add(Me.tableTMP_REPORT2)
         Me.tableTB_MACHINE_TOOL_CHECK_P3 = New TB_MACHINE_TOOL_CHECK_P3DataTable()
         MyBase.Tables.Add(Me.tableTB_MACHINE_TOOL_CHECK_P3)
+        Me.tableTB_MACHINE_DATA = New TB_MACHINE_DATADataTable()
+        MyBase.Tables.Add(Me.tableTB_MACHINE_DATA)
         Me.tableReport = New ReportDataTable()
         MyBase.Tables.Add(Me.tableReport)
     End Sub
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-    Private Function ShouldSerializeTB_MACHINE_DATA() As Boolean
-        Return false
-    End Function
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -365,6 +359,12 @@ Partial Public Class DSMachine
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Private Function ShouldSerializeTB_MACHINE_TOOL_CHECK_P3() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Private Function ShouldSerializeTB_MACHINE_DATA() As Boolean
         Return false
     End Function
     
@@ -433,9 +433,6 @@ Partial Public Class DSMachine
     End Function
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-    Public Delegate Sub TB_MACHINE_DATARowChangeEventHandler(ByVal sender As Object, ByVal e As TB_MACHINE_DATARowChangeEvent)
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Delegate Sub TB_EQUIPMENT_CHECKRowChangeEventHandler(ByVal sender As Object, ByVal e As TB_EQUIPMENT_CHECKRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -448,2058 +445,10 @@ Partial Public Class DSMachine
     Public Delegate Sub TB_MACHINE_TOOL_CHECK_P3RowChangeEventHandler(ByVal sender As Object, ByVal e As TB_MACHINE_TOOL_CHECK_P3RowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-    Public Delegate Sub ReportRowChangeEventHandler(ByVal sender As Object, ByVal e As ReportRowChangeEvent)
+    Public Delegate Sub TB_MACHINE_DATARowChangeEventHandler(ByVal sender As Object, ByVal e As TB_MACHINE_DATARowChangeEvent)
     
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class TB_MACHINE_DATADataTable
-        Inherits Global.System.Data.TypedTableBase(Of TB_MACHINE_DATARow)
-        
-        Private columnID As Global.System.Data.DataColumn
-        
-        Private columnMC_NO As Global.System.Data.DataColumn
-        
-        Private columnREGISTER_DATE As Global.System.Data.DataColumn
-        
-        Private columnREGISTER_NEW_MC As Global.System.Data.DataColumn
-        
-        Private columnCANCEL_MC As Global.System.Data.DataColumn
-        
-        Private columnCATEGORY1_NEW_MC As Global.System.Data.DataColumn
-        
-        Private columnCATEGORY1_TF_MC As Global.System.Data.DataColumn
-        
-        Private columnCATEGORY1_OTH_MC As Global.System.Data.DataColumn
-        
-        Private columnCATEGORY1_MC_OTHER_DETAIL As Global.System.Data.DataColumn
-        
-        Private columnCATEGORY2_NEW_MODEL_MC As Global.System.Data.DataColumn
-        
-        Private columnCATEGORY2_ORIGINAL_MODEL_MC As Global.System.Data.DataColumn
-        
-        Private columnCATEGORY2_OTH_MODEL_MC As Global.System.Data.DataColumn
-        
-        Private columnCATEGORY2_MC_OTHER_DETAIL As Global.System.Data.DataColumn
-        
-        Private columnMAKER As Global.System.Data.DataColumn
-        
-        Private columnCOUNTRY As Global.System.Data.DataColumn
-        
-        Private columnSUPPLIER As Global.System.Data.DataColumn
-        
-        Private columnPROVIDER As Global.System.Data.DataColumn
-        
-        Private columnTEL As Global.System.Data.DataColumn
-        
-        Private columnTYPE_MC As Global.System.Data.DataColumn
-        
-        Private columnSIZE_HP_MC As Global.System.Data.DataColumn
-        
-        Private columnDIVISION As Global.System.Data.DataColumn
-        
-        Private columnDEPARTMENT As Global.System.Data.DataColumn
-        
-        Private columnSECTION As Global.System.Data.DataColumn
-        
-        Private columnMC_NAME As Global.System.Data.DataColumn
-        
-        Private columnMC_NO1 As Global.System.Data.DataColumn
-        
-        Private columnMC_NO2 As Global.System.Data.DataColumn
-        
-        Private columnMC_NO3 As Global.System.Data.DataColumn
-        
-        Private columnMC_NO4 As Global.System.Data.DataColumn
-        
-        Private columnMC_NO5 As Global.System.Data.DataColumn
-        
-        Private columnMC_NO6 As Global.System.Data.DataColumn
-        
-        Private columnMC_NO7 As Global.System.Data.DataColumn
-        
-        Private columnMC_NO8 As Global.System.Data.DataColumn
-        
-        Private columnMC_NO9 As Global.System.Data.DataColumn
-        
-        Private columnMC_NO10 As Global.System.Data.DataColumn
-        
-        Private columnDANGER_CHEME_1 As Global.System.Data.DataColumn
-        
-        Private columnDANGER_CHEME_2 As Global.System.Data.DataColumn
-        
-        Private columnDANGER_CHEME_3 As Global.System.Data.DataColumn
-        
-        Private columnDANGER_CHEME_4 As Global.System.Data.DataColumn
-        
-        Private columnDANGER_CHEME_NAME As Global.System.Data.DataColumn
-        
-        Private columnCAS_NO As Global.System.Data.DataColumn
-        
-        Private columnFLAMMABLE As Global.System.Data.DataColumn
-        
-        Private columnCORROSIVE As Global.System.Data.DataColumn
-        
-        Private columnPOISON As Global.System.Data.DataColumn
-        
-        Private columnGAS As Global.System.Data.DataColumn
-        
-        Private columnSUBSTANCE_OTHER As Global.System.Data.DataColumn
-        
-        Private columnSUBSTANCE_OTHER_DETAIL As Global.System.Data.DataColumn
-        
-        Private columnOBJ_POWDER As Global.System.Data.DataColumn
-        
-        Private columnOBJ_HEAT As Global.System.Data.DataColumn
-        
-        Private columnOBJ_NOISE As Global.System.Data.DataColumn
-        
-        Private columnOBJ_VIBRATE As Global.System.Data.DataColumn
-        
-        Private columnOBJ_POISONGAS As Global.System.Data.DataColumn
-        
-        Private columnOBJ_WASTE_WATER As Global.System.Data.DataColumn
-        
-        Private columnOBJ_RAY As Global.System.Data.DataColumn
-        
-        Private columnOBJ_SMOKE As Global.System.Data.DataColumn
-        
-        Private columnOBJ_ELECTRIC_WAVE As Global.System.Data.DataColumn
-        
-        Private columnOBJ_OTHER As Global.System.Data.DataColumn
-        
-        Private columnOBJ_OTHER_DETAIL As Global.System.Data.DataColumn
-        
-        Private columnOBJ_CHEME_NAME As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_HELMET As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_GLASSES As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_CHEMICAL_MASK As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_BIB_PROTECT_CHEMECAL As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_CHEMICAL_GLOVES As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_HEAT_RESISTANT_GLOVES As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_CUT_PROTECT_GLOVES As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_EYE_COVER As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_FACE_SHIELD As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_DUST_MASK As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_CHEMICAL_PACK As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_ELECTRIC_GLOVES As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_OTHER As Global.System.Data.DataColumn
-        
-        Private columnEQUIPMENT_OTHER_DETAIL As Global.System.Data.DataColumn
-        
-        Private columnLAW_MC As Global.System.Data.DataColumn
-        
-        Private columnLAW_CHEMECALS As Global.System.Data.DataColumn
-        
-        Private columnLAW_ENVIRONMENTAL As Global.System.Data.DataColumn
-        
-        Private columnLAW_HIGH_PRESSURE_GAS As Global.System.Data.DataColumn
-        
-        Private columnLAW_PREVENT_STOP_FIRE As Global.System.Data.DataColumn
-        
-        Private columnLAW_FACTORY As Global.System.Data.DataColumn
-        
-        Private columnLAW_FUEL_REGULATORY As Global.System.Data.DataColumn
-        
-        Private columnLAW_OTHER As Global.System.Data.DataColumn
-        
-        Private columnLAW_OTHER_DETAIL As Global.System.Data.DataColumn
-        
-        Private columnLAW_NAME As Global.System.Data.DataColumn
-        
-        Private columnLAW_NOTICE As Global.System.Data.DataColumn
-        
-        Private columnLAW_NOTICE_DETAIL As Global.System.Data.DataColumn
-        
-        Private columnLAW_APPROVE As Global.System.Data.DataColumn
-        
-        Private columnLAW_APPROVE_DETAIL As Global.System.Data.DataColumn
-        
-        Private columnLAW_CHECK As Global.System.Data.DataColumn
-        
-        Private columnLAW_CHECK_DETAIL As Global.System.Data.DataColumn
-        
-        Private columnIMG_TEMP_STAMP As Global.System.Data.DataColumn
-        
-        Private columnIMG_TEMP_STAMP_CONTENT_TYPE As Global.System.Data.DataColumn
-        
-        Private columnIMG_TEMP_STAMP_DATA As Global.System.Data.DataColumn
-        
-        Private columnREQUEST_NAME_APPROVE As Global.System.Data.DataColumn
-        
-        Private columnREQUEST_APPROVE_DATE As Global.System.Data.DataColumn
-        
-        Private columnSECT_MGR_NAME_APPROVE As Global.System.Data.DataColumn
-        
-        Private columnSECT_MGR_APPROVE_DATE As Global.System.Data.DataColumn
-        
-        Private columnDEPT_MGR_NAME_APPROVE As Global.System.Data.DataColumn
-        
-        Private columnDEPT_MGR_APPROVE_DATE As Global.System.Data.DataColumn
-        
-        Private columnDIV_MGR_NAME_APPROVE As Global.System.Data.DataColumn
-        
-        Private columnDIV_MGR_APPROVE_DATE As Global.System.Data.DataColumn
-        
-        Private columnMCEQ_SUBCOM_NAME_APPROVE As Global.System.Data.DataColumn
-        
-        Private columnMCEQ_SUBCOM_APPROVE_DATE As Global.System.Data.DataColumn
-        
-        Private columnSAFETY_OFFICER_NAME_APPROVE As Global.System.Data.DataColumn
-        
-        Private columnSAFETY_OFFICER_APPROVE_DATE As Global.System.Data.DataColumn
-        
-        Private columnSAFETY_MGR_NAME_APPROVE As Global.System.Data.DataColumn
-        
-        Private columnSAFETY_MGR_APPROVE_DATE As Global.System.Data.DataColumn
-        
-        Private columnOPNO_ADD As Global.System.Data.DataColumn
-        
-        Private columnDATE_ADD As Global.System.Data.DataColumn
-        
-        Private columnOPNO_UPDATE As Global.System.Data.DataColumn
-        
-        Private columnDATE_UPDATE As Global.System.Data.DataColumn
-        
-        Private columnSTATUS_ID As Global.System.Data.DataColumn
-        
-        Private columnSTATUS_NAME As Global.System.Data.DataColumn
-        
-        Private columnIP As Global.System.Data.DataColumn
-        
-        Private columnDOCUMENT_ATTACH_NAME As Global.System.Data.DataColumn
-        
-        Private columnDOCUMENT_ATTACH_CONTENT_TYPE As Global.System.Data.DataColumn
-        
-        Private columnDOCUMENT_ATTACH_DATA As Global.System.Data.DataColumn
-        
-        Private columnIMAGE_ATTACH_NAME As Global.System.Data.DataColumn
-        
-        Private columnIMAGE_ATTACH_CONTENT_TYPE As Global.System.Data.DataColumn
-        
-        Private columnIMAGE_ATTACH_DATA As Global.System.Data.DataColumn
-        
-        Private columnLAYOUT_ATTACH_NAME As Global.System.Data.DataColumn
-        
-        Private columnLAYOUT_ATTACH_CONTENT_TYPE As Global.System.Data.DataColumn
-        
-        Private columnLAYOUT_ATTACH_DATA As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "TB_MACHINE_DATA"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MC_NOColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMC_NO
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property REGISTER_DATEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnREGISTER_DATE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property REGISTER_NEW_MCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnREGISTER_NEW_MC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property CANCEL_MCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCANCEL_MC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property CATEGORY1_NEW_MCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCATEGORY1_NEW_MC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property CATEGORY1_TF_MCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCATEGORY1_TF_MC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property CATEGORY1_OTH_MCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCATEGORY1_OTH_MC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property CATEGORY1_MC_OTHER_DETAILColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCATEGORY1_MC_OTHER_DETAIL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property CATEGORY2_NEW_MODEL_MCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCATEGORY2_NEW_MODEL_MC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property CATEGORY2_ORIGINAL_MODEL_MCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCATEGORY2_ORIGINAL_MODEL_MC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property CATEGORY2_OTH_MODEL_MCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCATEGORY2_OTH_MODEL_MC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property CATEGORY2_MC_OTHER_DETAILColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCATEGORY2_MC_OTHER_DETAIL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MAKERColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMAKER
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property COUNTRYColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCOUNTRY
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SUPPLIERColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSUPPLIER
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property PROVIDERColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPROVIDER
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property TELColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTEL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property TYPE_MCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTYPE_MC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SIZE_HP_MCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSIZE_HP_MC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DIVISIONColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDIVISION
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DEPARTMENTColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDEPARTMENT
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SECTIONColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSECTION
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MC_NAMEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMC_NAME
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MC_NO1Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMC_NO1
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MC_NO2Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMC_NO2
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MC_NO3Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMC_NO3
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MC_NO4Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMC_NO4
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MC_NO5Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMC_NO5
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MC_NO6Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMC_NO6
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MC_NO7Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMC_NO7
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MC_NO8Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMC_NO8
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MC_NO9Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMC_NO9
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MC_NO10Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMC_NO10
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DANGER_CHEME_1Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDANGER_CHEME_1
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DANGER_CHEME_2Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDANGER_CHEME_2
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DANGER_CHEME_3Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDANGER_CHEME_3
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DANGER_CHEME_4Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDANGER_CHEME_4
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DANGER_CHEME_NAMEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDANGER_CHEME_NAME
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property CAS_NOColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCAS_NO
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property FLAMMABLEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnFLAMMABLE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property CORROSIVEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCORROSIVE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property POISONColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPOISON
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property GASColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnGAS
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SUBSTANCE_OTHERColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSUBSTANCE_OTHER
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SUBSTANCE_OTHER_DETAILColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSUBSTANCE_OTHER_DETAIL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OBJ_POWDERColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOBJ_POWDER
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OBJ_HEATColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOBJ_HEAT
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OBJ_NOISEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOBJ_NOISE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OBJ_VIBRATEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOBJ_VIBRATE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OBJ_POISONGASColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOBJ_POISONGAS
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OBJ_WASTE_WATERColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOBJ_WASTE_WATER
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OBJ_RAYColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOBJ_RAY
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OBJ_SMOKEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOBJ_SMOKE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OBJ_ELECTRIC_WAVEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOBJ_ELECTRIC_WAVE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OBJ_OTHERColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOBJ_OTHER
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OBJ_OTHER_DETAILColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOBJ_OTHER_DETAIL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OBJ_CHEME_NAMEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOBJ_CHEME_NAME
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_HELMETColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_HELMET
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_GLASSESColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_GLASSES
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_CHEMICAL_MASKColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_CHEMICAL_MASK
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_BIB_PROTECT_CHEMECALColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_BIB_PROTECT_CHEMECAL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_CHEMICAL_GLOVESColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_CHEMICAL_GLOVES
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_HEAT_RESISTANT_GLOVESColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_HEAT_RESISTANT_GLOVES
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_CUT_PROTECT_GLOVESColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_CUT_PROTECT_GLOVES
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_EYE_COVERColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_EYE_COVER
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_FACE_SHIELDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_FACE_SHIELD
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_DUST_MASKColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_DUST_MASK
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_CHEMICAL_PACKColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_CHEMICAL_PACK
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_ELECTRIC_GLOVESColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_ELECTRIC_GLOVES
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_OTHERColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_OTHER
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property EQUIPMENT_OTHER_DETAILColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEQUIPMENT_OTHER_DETAIL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_MCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_MC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_CHEMECALSColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_CHEMECALS
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_ENVIRONMENTALColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_ENVIRONMENTAL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_HIGH_PRESSURE_GASColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_HIGH_PRESSURE_GAS
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_PREVENT_STOP_FIREColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_PREVENT_STOP_FIRE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_FACTORYColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_FACTORY
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_FUEL_REGULATORYColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_FUEL_REGULATORY
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_OTHERColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_OTHER
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_OTHER_DETAILColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_OTHER_DETAIL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_NAMEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_NAME
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_NOTICEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_NOTICE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_NOTICE_DETAILColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_NOTICE_DETAIL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_APPROVEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_APPROVE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_APPROVE_DETAILColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_APPROVE_DETAIL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_CHECKColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_CHECK
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAW_CHECK_DETAILColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAW_CHECK_DETAIL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property IMG_TEMP_STAMPColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnIMG_TEMP_STAMP
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property IMG_TEMP_STAMP_CONTENT_TYPEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnIMG_TEMP_STAMP_CONTENT_TYPE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property IMG_TEMP_STAMP_DATAColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnIMG_TEMP_STAMP_DATA
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property REQUEST_NAME_APPROVEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnREQUEST_NAME_APPROVE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property REQUEST_APPROVE_DATEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnREQUEST_APPROVE_DATE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SECT_MGR_NAME_APPROVEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSECT_MGR_NAME_APPROVE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SECT_MGR_APPROVE_DATEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSECT_MGR_APPROVE_DATE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DEPT_MGR_NAME_APPROVEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDEPT_MGR_NAME_APPROVE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DEPT_MGR_APPROVE_DATEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDEPT_MGR_APPROVE_DATE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DIV_MGR_NAME_APPROVEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDIV_MGR_NAME_APPROVE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DIV_MGR_APPROVE_DATEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDIV_MGR_APPROVE_DATE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MCEQ_SUBCOM_NAME_APPROVEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMCEQ_SUBCOM_NAME_APPROVE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property MCEQ_SUBCOM_APPROVE_DATEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMCEQ_SUBCOM_APPROVE_DATE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SAFETY_OFFICER_NAME_APPROVEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSAFETY_OFFICER_NAME_APPROVE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SAFETY_OFFICER_APPROVE_DATEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSAFETY_OFFICER_APPROVE_DATE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SAFETY_MGR_NAME_APPROVEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSAFETY_MGR_NAME_APPROVE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SAFETY_MGR_APPROVE_DATEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSAFETY_MGR_APPROVE_DATE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OPNO_ADDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOPNO_ADD
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DATE_ADDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDATE_ADD
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OPNO_UPDATEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOPNO_UPDATE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DATE_UPDATEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDATE_UPDATE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property STATUS_IDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSTATUS_ID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property STATUS_NAMEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSTATUS_NAME
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property IPColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnIP
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DOCUMENT_ATTACH_NAMEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDOCUMENT_ATTACH_NAME
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DOCUMENT_ATTACH_CONTENT_TYPEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDOCUMENT_ATTACH_CONTENT_TYPE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DOCUMENT_ATTACH_DATAColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDOCUMENT_ATTACH_DATA
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property IMAGE_ATTACH_NAMEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnIMAGE_ATTACH_NAME
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property IMAGE_ATTACH_CONTENT_TYPEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnIMAGE_ATTACH_CONTENT_TYPE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property IMAGE_ATTACH_DATAColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnIMAGE_ATTACH_DATA
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAYOUT_ATTACH_NAMEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAYOUT_ATTACH_NAME
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAYOUT_ATTACH_CONTENT_TYPEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAYOUT_ATTACH_CONTENT_TYPE
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property LAYOUT_ATTACH_DATAColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLAYOUT_ATTACH_DATA
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As TB_MACHINE_DATARow
-            Get
-                Return CType(Me.Rows(index),TB_MACHINE_DATARow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Event TB_MACHINE_DATARowChanging As TB_MACHINE_DATARowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Event TB_MACHINE_DATARowChanged As TB_MACHINE_DATARowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Event TB_MACHINE_DATARowDeleting As TB_MACHINE_DATARowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Event TB_MACHINE_DATARowDeleted As TB_MACHINE_DATARowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Sub AddTB_MACHINE_DATARow(ByVal row As TB_MACHINE_DATARow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddTB_MACHINE_DATARow( _
-                    ByVal MC_NO As String,  _
-                    ByVal REGISTER_DATE As Date,  _
-                    ByVal REGISTER_NEW_MC As Boolean,  _
-                    ByVal CANCEL_MC As Boolean,  _
-                    ByVal CATEGORY1_NEW_MC As Boolean,  _
-                    ByVal CATEGORY1_TF_MC As Boolean,  _
-                    ByVal CATEGORY1_OTH_MC As Boolean,  _
-                    ByVal CATEGORY1_MC_OTHER_DETAIL As String,  _
-                    ByVal CATEGORY2_NEW_MODEL_MC As Boolean,  _
-                    ByVal CATEGORY2_ORIGINAL_MODEL_MC As Boolean,  _
-                    ByVal CATEGORY2_OTH_MODEL_MC As Boolean,  _
-                    ByVal CATEGORY2_MC_OTHER_DETAIL As String,  _
-                    ByVal MAKER As String,  _
-                    ByVal COUNTRY As String,  _
-                    ByVal SUPPLIER As String,  _
-                    ByVal PROVIDER As String,  _
-                    ByVal TEL As String,  _
-                    ByVal TYPE_MC As String,  _
-                    ByVal SIZE_HP_MC As String,  _
-                    ByVal DIVISION As String,  _
-                    ByVal DEPARTMENT As String,  _
-                    ByVal SECTION As String,  _
-                    ByVal MC_NAME As String,  _
-                    ByVal MC_NO1 As String,  _
-                    ByVal MC_NO2 As String,  _
-                    ByVal MC_NO3 As String,  _
-                    ByVal MC_NO4 As String,  _
-                    ByVal MC_NO5 As String,  _
-                    ByVal MC_NO6 As String,  _
-                    ByVal MC_NO7 As String,  _
-                    ByVal MC_NO8 As String,  _
-                    ByVal MC_NO9 As String,  _
-                    ByVal MC_NO10 As String,  _
-                    ByVal DANGER_CHEME_1 As Boolean,  _
-                    ByVal DANGER_CHEME_2 As Boolean,  _
-                    ByVal DANGER_CHEME_3 As Boolean,  _
-                    ByVal DANGER_CHEME_4 As Boolean,  _
-                    ByVal DANGER_CHEME_NAME As String,  _
-                    ByVal CAS_NO As String,  _
-                    ByVal FLAMMABLE As Boolean,  _
-                    ByVal CORROSIVE As Boolean,  _
-                    ByVal POISON As Boolean,  _
-                    ByVal GAS As Boolean,  _
-                    ByVal SUBSTANCE_OTHER As Boolean,  _
-                    ByVal SUBSTANCE_OTHER_DETAIL As String,  _
-                    ByVal OBJ_POWDER As Boolean,  _
-                    ByVal OBJ_HEAT As Boolean,  _
-                    ByVal OBJ_NOISE As Boolean,  _
-                    ByVal OBJ_VIBRATE As Boolean,  _
-                    ByVal OBJ_POISONGAS As Boolean,  _
-                    ByVal OBJ_WASTE_WATER As Boolean,  _
-                    ByVal OBJ_RAY As Boolean,  _
-                    ByVal OBJ_SMOKE As Boolean,  _
-                    ByVal OBJ_ELECTRIC_WAVE As Boolean,  _
-                    ByVal OBJ_OTHER As Boolean,  _
-                    ByVal OBJ_OTHER_DETAIL As String,  _
-                    ByVal OBJ_CHEME_NAME As String,  _
-                    ByVal EQUIPMENT_HELMET As Boolean,  _
-                    ByVal EQUIPMENT_GLASSES As Boolean,  _
-                    ByVal EQUIPMENT_CHEMICAL_MASK As Boolean,  _
-                    ByVal EQUIPMENT_BIB_PROTECT_CHEMECAL As Boolean,  _
-                    ByVal EQUIPMENT_CHEMICAL_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_HEAT_RESISTANT_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_CUT_PROTECT_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_EYE_COVER As Boolean,  _
-                    ByVal EQUIPMENT_FACE_SHIELD As Boolean,  _
-                    ByVal EQUIPMENT_DUST_MASK As Boolean,  _
-                    ByVal EQUIPMENT_CHEMICAL_PACK As Boolean,  _
-                    ByVal EQUIPMENT_ELECTRIC_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_OTHER As Boolean,  _
-                    ByVal EQUIPMENT_OTHER_DETAIL As String,  _
-                    ByVal LAW_MC As Boolean,  _
-                    ByVal LAW_CHEMECALS As Boolean,  _
-                    ByVal LAW_ENVIRONMENTAL As Boolean,  _
-                    ByVal LAW_HIGH_PRESSURE_GAS As Boolean,  _
-                    ByVal LAW_PREVENT_STOP_FIRE As Boolean,  _
-                    ByVal LAW_FACTORY As Boolean,  _
-                    ByVal LAW_FUEL_REGULATORY As Boolean,  _
-                    ByVal LAW_OTHER As Boolean,  _
-                    ByVal LAW_OTHER_DETAIL As String,  _
-                    ByVal LAW_NAME As String,  _
-                    ByVal LAW_NOTICE As Boolean,  _
-                    ByVal LAW_NOTICE_DETAIL As String,  _
-                    ByVal LAW_APPROVE As Boolean,  _
-                    ByVal LAW_APPROVE_DETAIL As String,  _
-                    ByVal LAW_CHECK As Boolean,  _
-                    ByVal LAW_CHECK_DETAIL As String,  _
-                    ByVal IMG_TEMP_STAMP As String,  _
-                    ByVal IMG_TEMP_STAMP_CONTENT_TYPE As String,  _
-                    ByVal IMG_TEMP_STAMP_DATA() As Byte,  _
-                    ByVal REQUEST_NAME_APPROVE As String,  _
-                    ByVal REQUEST_APPROVE_DATE As Date,  _
-                    ByVal SECT_MGR_NAME_APPROVE As String,  _
-                    ByVal SECT_MGR_APPROVE_DATE As Date,  _
-                    ByVal DEPT_MGR_NAME_APPROVE As String,  _
-                    ByVal DEPT_MGR_APPROVE_DATE As Date,  _
-                    ByVal DIV_MGR_NAME_APPROVE As String,  _
-                    ByVal DIV_MGR_APPROVE_DATE As Date,  _
-                    ByVal MCEQ_SUBCOM_NAME_APPROVE As String,  _
-                    ByVal MCEQ_SUBCOM_APPROVE_DATE As Date,  _
-                    ByVal SAFETY_OFFICER_NAME_APPROVE As String,  _
-                    ByVal SAFETY_OFFICER_APPROVE_DATE As Date,  _
-                    ByVal SAFETY_MGR_NAME_APPROVE As String,  _
-                    ByVal SAFETY_MGR_APPROVE_DATE As Date,  _
-                    ByVal OPNO_ADD As String,  _
-                    ByVal DATE_ADD As Date,  _
-                    ByVal OPNO_UPDATE As String,  _
-                    ByVal DATE_UPDATE As Date,  _
-                    ByVal STATUS_ID As Integer,  _
-                    ByVal STATUS_NAME As String,  _
-                    ByVal IP As String,  _
-                    ByVal DOCUMENT_ATTACH_NAME As String,  _
-                    ByVal DOCUMENT_ATTACH_CONTENT_TYPE As String,  _
-                    ByVal DOCUMENT_ATTACH_DATA() As Byte,  _
-                    ByVal IMAGE_ATTACH_NAME As String,  _
-                    ByVal IMAGE_ATTACH_CONTENT_TYPE As String,  _
-                    ByVal IMAGE_ATTACH_DATA() As Byte,  _
-                    ByVal LAYOUT_ATTACH_NAME As String,  _
-                    ByVal LAYOUT_ATTACH_CONTENT_TYPE As String,  _
-                    ByVal LAYOUT_ATTACH_DATA() As Byte) As TB_MACHINE_DATARow
-            Dim rowTB_MACHINE_DATARow As TB_MACHINE_DATARow = CType(Me.NewRow,TB_MACHINE_DATARow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, MC_NO, REGISTER_DATE, REGISTER_NEW_MC, CANCEL_MC, CATEGORY1_NEW_MC, CATEGORY1_TF_MC, CATEGORY1_OTH_MC, CATEGORY1_MC_OTHER_DETAIL, CATEGORY2_NEW_MODEL_MC, CATEGORY2_ORIGINAL_MODEL_MC, CATEGORY2_OTH_MODEL_MC, CATEGORY2_MC_OTHER_DETAIL, MAKER, COUNTRY, SUPPLIER, PROVIDER, TEL, TYPE_MC, SIZE_HP_MC, DIVISION, DEPARTMENT, SECTION, MC_NAME, MC_NO1, MC_NO2, MC_NO3, MC_NO4, MC_NO5, MC_NO6, MC_NO7, MC_NO8, MC_NO9, MC_NO10, DANGER_CHEME_1, DANGER_CHEME_2, DANGER_CHEME_3, DANGER_CHEME_4, DANGER_CHEME_NAME, CAS_NO, FLAMMABLE, CORROSIVE, POISON, GAS, SUBSTANCE_OTHER, SUBSTANCE_OTHER_DETAIL, OBJ_POWDER, OBJ_HEAT, OBJ_NOISE, OBJ_VIBRATE, OBJ_POISONGAS, OBJ_WASTE_WATER, OBJ_RAY, OBJ_SMOKE, OBJ_ELECTRIC_WAVE, OBJ_OTHER, OBJ_OTHER_DETAIL, OBJ_CHEME_NAME, EQUIPMENT_HELMET, EQUIPMENT_GLASSES, EQUIPMENT_CHEMICAL_MASK, EQUIPMENT_BIB_PROTECT_CHEMECAL, EQUIPMENT_CHEMICAL_GLOVES, EQUIPMENT_HEAT_RESISTANT_GLOVES, EQUIPMENT_CUT_PROTECT_GLOVES, EQUIPMENT_EYE_COVER, EQUIPMENT_FACE_SHIELD, EQUIPMENT_DUST_MASK, EQUIPMENT_CHEMICAL_PACK, EQUIPMENT_ELECTRIC_GLOVES, EQUIPMENT_OTHER, EQUIPMENT_OTHER_DETAIL, LAW_MC, LAW_CHEMECALS, LAW_ENVIRONMENTAL, LAW_HIGH_PRESSURE_GAS, LAW_PREVENT_STOP_FIRE, LAW_FACTORY, LAW_FUEL_REGULATORY, LAW_OTHER, LAW_OTHER_DETAIL, LAW_NAME, LAW_NOTICE, LAW_NOTICE_DETAIL, LAW_APPROVE, LAW_APPROVE_DETAIL, LAW_CHECK, LAW_CHECK_DETAIL, IMG_TEMP_STAMP, IMG_TEMP_STAMP_CONTENT_TYPE, IMG_TEMP_STAMP_DATA, REQUEST_NAME_APPROVE, REQUEST_APPROVE_DATE, SECT_MGR_NAME_APPROVE, SECT_MGR_APPROVE_DATE, DEPT_MGR_NAME_APPROVE, DEPT_MGR_APPROVE_DATE, DIV_MGR_NAME_APPROVE, DIV_MGR_APPROVE_DATE, MCEQ_SUBCOM_NAME_APPROVE, MCEQ_SUBCOM_APPROVE_DATE, SAFETY_OFFICER_NAME_APPROVE, SAFETY_OFFICER_APPROVE_DATE, SAFETY_MGR_NAME_APPROVE, SAFETY_MGR_APPROVE_DATE, OPNO_ADD, DATE_ADD, OPNO_UPDATE, DATE_UPDATE, STATUS_ID, STATUS_NAME, IP, DOCUMENT_ATTACH_NAME, DOCUMENT_ATTACH_CONTENT_TYPE, DOCUMENT_ATTACH_DATA, IMAGE_ATTACH_NAME, IMAGE_ATTACH_CONTENT_TYPE, IMAGE_ATTACH_DATA, LAYOUT_ATTACH_NAME, LAYOUT_ATTACH_CONTENT_TYPE, LAYOUT_ATTACH_DATA}
-            rowTB_MACHINE_DATARow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowTB_MACHINE_DATARow)
-            Return rowTB_MACHINE_DATARow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByMC_NO(ByVal MC_NO As String) As TB_MACHINE_DATARow
-            Return CType(Me.Rows.Find(New Object() {MC_NO}),TB_MACHINE_DATARow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As TB_MACHINE_DATADataTable = CType(MyBase.Clone,TB_MACHINE_DATADataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New TB_MACHINE_DATADataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnID = MyBase.Columns("ID")
-            Me.columnMC_NO = MyBase.Columns("MC_NO")
-            Me.columnREGISTER_DATE = MyBase.Columns("REGISTER_DATE")
-            Me.columnREGISTER_NEW_MC = MyBase.Columns("REGISTER_NEW_MC")
-            Me.columnCANCEL_MC = MyBase.Columns("CANCEL_MC")
-            Me.columnCATEGORY1_NEW_MC = MyBase.Columns("CATEGORY1_NEW_MC")
-            Me.columnCATEGORY1_TF_MC = MyBase.Columns("CATEGORY1_TF_MC")
-            Me.columnCATEGORY1_OTH_MC = MyBase.Columns("CATEGORY1_OTH_MC")
-            Me.columnCATEGORY1_MC_OTHER_DETAIL = MyBase.Columns("CATEGORY1_MC_OTHER_DETAIL")
-            Me.columnCATEGORY2_NEW_MODEL_MC = MyBase.Columns("CATEGORY2_NEW_MODEL_MC")
-            Me.columnCATEGORY2_ORIGINAL_MODEL_MC = MyBase.Columns("CATEGORY2_ORIGINAL_MODEL_MC")
-            Me.columnCATEGORY2_OTH_MODEL_MC = MyBase.Columns("CATEGORY2_OTH_MODEL_MC")
-            Me.columnCATEGORY2_MC_OTHER_DETAIL = MyBase.Columns("CATEGORY2_MC_OTHER_DETAIL")
-            Me.columnMAKER = MyBase.Columns("MAKER")
-            Me.columnCOUNTRY = MyBase.Columns("COUNTRY")
-            Me.columnSUPPLIER = MyBase.Columns("SUPPLIER")
-            Me.columnPROVIDER = MyBase.Columns("PROVIDER")
-            Me.columnTEL = MyBase.Columns("TEL")
-            Me.columnTYPE_MC = MyBase.Columns("TYPE_MC")
-            Me.columnSIZE_HP_MC = MyBase.Columns("SIZE_HP_MC")
-            Me.columnDIVISION = MyBase.Columns("DIVISION")
-            Me.columnDEPARTMENT = MyBase.Columns("DEPARTMENT")
-            Me.columnSECTION = MyBase.Columns("SECTION")
-            Me.columnMC_NAME = MyBase.Columns("MC_NAME")
-            Me.columnMC_NO1 = MyBase.Columns("MC_NO1")
-            Me.columnMC_NO2 = MyBase.Columns("MC_NO2")
-            Me.columnMC_NO3 = MyBase.Columns("MC_NO3")
-            Me.columnMC_NO4 = MyBase.Columns("MC_NO4")
-            Me.columnMC_NO5 = MyBase.Columns("MC_NO5")
-            Me.columnMC_NO6 = MyBase.Columns("MC_NO6")
-            Me.columnMC_NO7 = MyBase.Columns("MC_NO7")
-            Me.columnMC_NO8 = MyBase.Columns("MC_NO8")
-            Me.columnMC_NO9 = MyBase.Columns("MC_NO9")
-            Me.columnMC_NO10 = MyBase.Columns("MC_NO10")
-            Me.columnDANGER_CHEME_1 = MyBase.Columns("DANGER_CHEME_1")
-            Me.columnDANGER_CHEME_2 = MyBase.Columns("DANGER_CHEME_2")
-            Me.columnDANGER_CHEME_3 = MyBase.Columns("DANGER_CHEME_3")
-            Me.columnDANGER_CHEME_4 = MyBase.Columns("DANGER_CHEME_4")
-            Me.columnDANGER_CHEME_NAME = MyBase.Columns("DANGER_CHEME_NAME")
-            Me.columnCAS_NO = MyBase.Columns("CAS_NO")
-            Me.columnFLAMMABLE = MyBase.Columns("FLAMMABLE")
-            Me.columnCORROSIVE = MyBase.Columns("CORROSIVE")
-            Me.columnPOISON = MyBase.Columns("POISON")
-            Me.columnGAS = MyBase.Columns("GAS")
-            Me.columnSUBSTANCE_OTHER = MyBase.Columns("SUBSTANCE_OTHER")
-            Me.columnSUBSTANCE_OTHER_DETAIL = MyBase.Columns("SUBSTANCE_OTHER_DETAIL")
-            Me.columnOBJ_POWDER = MyBase.Columns("OBJ_POWDER")
-            Me.columnOBJ_HEAT = MyBase.Columns("OBJ_HEAT")
-            Me.columnOBJ_NOISE = MyBase.Columns("OBJ_NOISE")
-            Me.columnOBJ_VIBRATE = MyBase.Columns("OBJ_VIBRATE")
-            Me.columnOBJ_POISONGAS = MyBase.Columns("OBJ_POISONGAS")
-            Me.columnOBJ_WASTE_WATER = MyBase.Columns("OBJ_WASTE_WATER")
-            Me.columnOBJ_RAY = MyBase.Columns("OBJ_RAY")
-            Me.columnOBJ_SMOKE = MyBase.Columns("OBJ_SMOKE")
-            Me.columnOBJ_ELECTRIC_WAVE = MyBase.Columns("OBJ_ELECTRIC_WAVE")
-            Me.columnOBJ_OTHER = MyBase.Columns("OBJ_OTHER")
-            Me.columnOBJ_OTHER_DETAIL = MyBase.Columns("OBJ_OTHER_DETAIL")
-            Me.columnOBJ_CHEME_NAME = MyBase.Columns("OBJ_CHEME_NAME")
-            Me.columnEQUIPMENT_HELMET = MyBase.Columns("EQUIPMENT_HELMET")
-            Me.columnEQUIPMENT_GLASSES = MyBase.Columns("EQUIPMENT_GLASSES")
-            Me.columnEQUIPMENT_CHEMICAL_MASK = MyBase.Columns("EQUIPMENT_CHEMICAL_MASK")
-            Me.columnEQUIPMENT_BIB_PROTECT_CHEMECAL = MyBase.Columns("EQUIPMENT_BIB_PROTECT_CHEMECAL")
-            Me.columnEQUIPMENT_CHEMICAL_GLOVES = MyBase.Columns("EQUIPMENT_CHEMICAL_GLOVES")
-            Me.columnEQUIPMENT_HEAT_RESISTANT_GLOVES = MyBase.Columns("EQUIPMENT_HEAT_RESISTANT_GLOVES")
-            Me.columnEQUIPMENT_CUT_PROTECT_GLOVES = MyBase.Columns("EQUIPMENT_CUT_PROTECT_GLOVES")
-            Me.columnEQUIPMENT_EYE_COVER = MyBase.Columns("EQUIPMENT_EYE_COVER")
-            Me.columnEQUIPMENT_FACE_SHIELD = MyBase.Columns("EQUIPMENT_FACE_SHIELD")
-            Me.columnEQUIPMENT_DUST_MASK = MyBase.Columns("EQUIPMENT_DUST_MASK")
-            Me.columnEQUIPMENT_CHEMICAL_PACK = MyBase.Columns("EQUIPMENT_CHEMICAL_PACK")
-            Me.columnEQUIPMENT_ELECTRIC_GLOVES = MyBase.Columns("EQUIPMENT_ELECTRIC_GLOVES")
-            Me.columnEQUIPMENT_OTHER = MyBase.Columns("EQUIPMENT_OTHER")
-            Me.columnEQUIPMENT_OTHER_DETAIL = MyBase.Columns("EQUIPMENT_OTHER_DETAIL")
-            Me.columnLAW_MC = MyBase.Columns("LAW_MC")
-            Me.columnLAW_CHEMECALS = MyBase.Columns("LAW_CHEMECALS")
-            Me.columnLAW_ENVIRONMENTAL = MyBase.Columns("LAW_ENVIRONMENTAL")
-            Me.columnLAW_HIGH_PRESSURE_GAS = MyBase.Columns("LAW_HIGH_PRESSURE_GAS")
-            Me.columnLAW_PREVENT_STOP_FIRE = MyBase.Columns("LAW_PREVENT_STOP_FIRE")
-            Me.columnLAW_FACTORY = MyBase.Columns("LAW_FACTORY")
-            Me.columnLAW_FUEL_REGULATORY = MyBase.Columns("LAW_FUEL_REGULATORY")
-            Me.columnLAW_OTHER = MyBase.Columns("LAW_OTHER")
-            Me.columnLAW_OTHER_DETAIL = MyBase.Columns("LAW_OTHER_DETAIL")
-            Me.columnLAW_NAME = MyBase.Columns("LAW_NAME")
-            Me.columnLAW_NOTICE = MyBase.Columns("LAW_NOTICE")
-            Me.columnLAW_NOTICE_DETAIL = MyBase.Columns("LAW_NOTICE_DETAIL")
-            Me.columnLAW_APPROVE = MyBase.Columns("LAW_APPROVE")
-            Me.columnLAW_APPROVE_DETAIL = MyBase.Columns("LAW_APPROVE_DETAIL")
-            Me.columnLAW_CHECK = MyBase.Columns("LAW_CHECK")
-            Me.columnLAW_CHECK_DETAIL = MyBase.Columns("LAW_CHECK_DETAIL")
-            Me.columnIMG_TEMP_STAMP = MyBase.Columns("IMG_TEMP_STAMP")
-            Me.columnIMG_TEMP_STAMP_CONTENT_TYPE = MyBase.Columns("IMG_TEMP_STAMP_CONTENT_TYPE")
-            Me.columnIMG_TEMP_STAMP_DATA = MyBase.Columns("IMG_TEMP_STAMP_DATA")
-            Me.columnREQUEST_NAME_APPROVE = MyBase.Columns("REQUEST_NAME_APPROVE")
-            Me.columnREQUEST_APPROVE_DATE = MyBase.Columns("REQUEST_APPROVE_DATE")
-            Me.columnSECT_MGR_NAME_APPROVE = MyBase.Columns("SECT_MGR_NAME_APPROVE")
-            Me.columnSECT_MGR_APPROVE_DATE = MyBase.Columns("SECT_MGR_APPROVE_DATE")
-            Me.columnDEPT_MGR_NAME_APPROVE = MyBase.Columns("DEPT_MGR_NAME_APPROVE")
-            Me.columnDEPT_MGR_APPROVE_DATE = MyBase.Columns("DEPT_MGR_APPROVE_DATE")
-            Me.columnDIV_MGR_NAME_APPROVE = MyBase.Columns("DIV_MGR_NAME_APPROVE")
-            Me.columnDIV_MGR_APPROVE_DATE = MyBase.Columns("DIV_MGR_APPROVE_DATE")
-            Me.columnMCEQ_SUBCOM_NAME_APPROVE = MyBase.Columns("MCEQ_SUBCOM_NAME_APPROVE")
-            Me.columnMCEQ_SUBCOM_APPROVE_DATE = MyBase.Columns("MCEQ_SUBCOM_APPROVE_DATE")
-            Me.columnSAFETY_OFFICER_NAME_APPROVE = MyBase.Columns("SAFETY_OFFICER_NAME_APPROVE")
-            Me.columnSAFETY_OFFICER_APPROVE_DATE = MyBase.Columns("SAFETY_OFFICER_APPROVE_DATE")
-            Me.columnSAFETY_MGR_NAME_APPROVE = MyBase.Columns("SAFETY_MGR_NAME_APPROVE")
-            Me.columnSAFETY_MGR_APPROVE_DATE = MyBase.Columns("SAFETY_MGR_APPROVE_DATE")
-            Me.columnOPNO_ADD = MyBase.Columns("OPNO_ADD")
-            Me.columnDATE_ADD = MyBase.Columns("DATE_ADD")
-            Me.columnOPNO_UPDATE = MyBase.Columns("OPNO_UPDATE")
-            Me.columnDATE_UPDATE = MyBase.Columns("DATE_UPDATE")
-            Me.columnSTATUS_ID = MyBase.Columns("STATUS_ID")
-            Me.columnSTATUS_NAME = MyBase.Columns("STATUS_NAME")
-            Me.columnIP = MyBase.Columns("IP")
-            Me.columnDOCUMENT_ATTACH_NAME = MyBase.Columns("DOCUMENT_ATTACH_NAME")
-            Me.columnDOCUMENT_ATTACH_CONTENT_TYPE = MyBase.Columns("DOCUMENT_ATTACH_CONTENT_TYPE")
-            Me.columnDOCUMENT_ATTACH_DATA = MyBase.Columns("DOCUMENT_ATTACH_DATA")
-            Me.columnIMAGE_ATTACH_NAME = MyBase.Columns("IMAGE_ATTACH_NAME")
-            Me.columnIMAGE_ATTACH_CONTENT_TYPE = MyBase.Columns("IMAGE_ATTACH_CONTENT_TYPE")
-            Me.columnIMAGE_ATTACH_DATA = MyBase.Columns("IMAGE_ATTACH_DATA")
-            Me.columnLAYOUT_ATTACH_NAME = MyBase.Columns("LAYOUT_ATTACH_NAME")
-            Me.columnLAYOUT_ATTACH_CONTENT_TYPE = MyBase.Columns("LAYOUT_ATTACH_CONTENT_TYPE")
-            Me.columnLAYOUT_ATTACH_DATA = MyBase.Columns("LAYOUT_ATTACH_DATA")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnID)
-            Me.columnMC_NO = New Global.System.Data.DataColumn("MC_NO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMC_NO)
-            Me.columnREGISTER_DATE = New Global.System.Data.DataColumn("REGISTER_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnREGISTER_DATE)
-            Me.columnREGISTER_NEW_MC = New Global.System.Data.DataColumn("REGISTER_NEW_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnREGISTER_NEW_MC)
-            Me.columnCANCEL_MC = New Global.System.Data.DataColumn("CANCEL_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCANCEL_MC)
-            Me.columnCATEGORY1_NEW_MC = New Global.System.Data.DataColumn("CATEGORY1_NEW_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCATEGORY1_NEW_MC)
-            Me.columnCATEGORY1_TF_MC = New Global.System.Data.DataColumn("CATEGORY1_TF_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCATEGORY1_TF_MC)
-            Me.columnCATEGORY1_OTH_MC = New Global.System.Data.DataColumn("CATEGORY1_OTH_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCATEGORY1_OTH_MC)
-            Me.columnCATEGORY1_MC_OTHER_DETAIL = New Global.System.Data.DataColumn("CATEGORY1_MC_OTHER_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCATEGORY1_MC_OTHER_DETAIL)
-            Me.columnCATEGORY2_NEW_MODEL_MC = New Global.System.Data.DataColumn("CATEGORY2_NEW_MODEL_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCATEGORY2_NEW_MODEL_MC)
-            Me.columnCATEGORY2_ORIGINAL_MODEL_MC = New Global.System.Data.DataColumn("CATEGORY2_ORIGINAL_MODEL_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCATEGORY2_ORIGINAL_MODEL_MC)
-            Me.columnCATEGORY2_OTH_MODEL_MC = New Global.System.Data.DataColumn("CATEGORY2_OTH_MODEL_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCATEGORY2_OTH_MODEL_MC)
-            Me.columnCATEGORY2_MC_OTHER_DETAIL = New Global.System.Data.DataColumn("CATEGORY2_MC_OTHER_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCATEGORY2_MC_OTHER_DETAIL)
-            Me.columnMAKER = New Global.System.Data.DataColumn("MAKER", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMAKER)
-            Me.columnCOUNTRY = New Global.System.Data.DataColumn("COUNTRY", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCOUNTRY)
-            Me.columnSUPPLIER = New Global.System.Data.DataColumn("SUPPLIER", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSUPPLIER)
-            Me.columnPROVIDER = New Global.System.Data.DataColumn("PROVIDER", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPROVIDER)
-            Me.columnTEL = New Global.System.Data.DataColumn("TEL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTEL)
-            Me.columnTYPE_MC = New Global.System.Data.DataColumn("TYPE_MC", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTYPE_MC)
-            Me.columnSIZE_HP_MC = New Global.System.Data.DataColumn("SIZE_HP_MC", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSIZE_HP_MC)
-            Me.columnDIVISION = New Global.System.Data.DataColumn("DIVISION", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDIVISION)
-            Me.columnDEPARTMENT = New Global.System.Data.DataColumn("DEPARTMENT", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDEPARTMENT)
-            Me.columnSECTION = New Global.System.Data.DataColumn("SECTION", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSECTION)
-            Me.columnMC_NAME = New Global.System.Data.DataColumn("MC_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMC_NAME)
-            Me.columnMC_NO1 = New Global.System.Data.DataColumn("MC_NO1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMC_NO1)
-            Me.columnMC_NO2 = New Global.System.Data.DataColumn("MC_NO2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMC_NO2)
-            Me.columnMC_NO3 = New Global.System.Data.DataColumn("MC_NO3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMC_NO3)
-            Me.columnMC_NO4 = New Global.System.Data.DataColumn("MC_NO4", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMC_NO4)
-            Me.columnMC_NO5 = New Global.System.Data.DataColumn("MC_NO5", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMC_NO5)
-            Me.columnMC_NO6 = New Global.System.Data.DataColumn("MC_NO6", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMC_NO6)
-            Me.columnMC_NO7 = New Global.System.Data.DataColumn("MC_NO7", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMC_NO7)
-            Me.columnMC_NO8 = New Global.System.Data.DataColumn("MC_NO8", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMC_NO8)
-            Me.columnMC_NO9 = New Global.System.Data.DataColumn("MC_NO9", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMC_NO9)
-            Me.columnMC_NO10 = New Global.System.Data.DataColumn("MC_NO10", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMC_NO10)
-            Me.columnDANGER_CHEME_1 = New Global.System.Data.DataColumn("DANGER_CHEME_1", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDANGER_CHEME_1)
-            Me.columnDANGER_CHEME_2 = New Global.System.Data.DataColumn("DANGER_CHEME_2", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDANGER_CHEME_2)
-            Me.columnDANGER_CHEME_3 = New Global.System.Data.DataColumn("DANGER_CHEME_3", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDANGER_CHEME_3)
-            Me.columnDANGER_CHEME_4 = New Global.System.Data.DataColumn("DANGER_CHEME_4", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDANGER_CHEME_4)
-            Me.columnDANGER_CHEME_NAME = New Global.System.Data.DataColumn("DANGER_CHEME_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDANGER_CHEME_NAME)
-            Me.columnCAS_NO = New Global.System.Data.DataColumn("CAS_NO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCAS_NO)
-            Me.columnFLAMMABLE = New Global.System.Data.DataColumn("FLAMMABLE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnFLAMMABLE)
-            Me.columnCORROSIVE = New Global.System.Data.DataColumn("CORROSIVE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCORROSIVE)
-            Me.columnPOISON = New Global.System.Data.DataColumn("POISON", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPOISON)
-            Me.columnGAS = New Global.System.Data.DataColumn("GAS", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnGAS)
-            Me.columnSUBSTANCE_OTHER = New Global.System.Data.DataColumn("SUBSTANCE_OTHER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSUBSTANCE_OTHER)
-            Me.columnSUBSTANCE_OTHER_DETAIL = New Global.System.Data.DataColumn("SUBSTANCE_OTHER_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSUBSTANCE_OTHER_DETAIL)
-            Me.columnOBJ_POWDER = New Global.System.Data.DataColumn("OBJ_POWDER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOBJ_POWDER)
-            Me.columnOBJ_HEAT = New Global.System.Data.DataColumn("OBJ_HEAT", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOBJ_HEAT)
-            Me.columnOBJ_NOISE = New Global.System.Data.DataColumn("OBJ_NOISE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOBJ_NOISE)
-            Me.columnOBJ_VIBRATE = New Global.System.Data.DataColumn("OBJ_VIBRATE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOBJ_VIBRATE)
-            Me.columnOBJ_POISONGAS = New Global.System.Data.DataColumn("OBJ_POISONGAS", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOBJ_POISONGAS)
-            Me.columnOBJ_WASTE_WATER = New Global.System.Data.DataColumn("OBJ_WASTE_WATER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOBJ_WASTE_WATER)
-            Me.columnOBJ_RAY = New Global.System.Data.DataColumn("OBJ_RAY", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOBJ_RAY)
-            Me.columnOBJ_SMOKE = New Global.System.Data.DataColumn("OBJ_SMOKE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOBJ_SMOKE)
-            Me.columnOBJ_ELECTRIC_WAVE = New Global.System.Data.DataColumn("OBJ_ELECTRIC_WAVE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOBJ_ELECTRIC_WAVE)
-            Me.columnOBJ_OTHER = New Global.System.Data.DataColumn("OBJ_OTHER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOBJ_OTHER)
-            Me.columnOBJ_OTHER_DETAIL = New Global.System.Data.DataColumn("OBJ_OTHER_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOBJ_OTHER_DETAIL)
-            Me.columnOBJ_CHEME_NAME = New Global.System.Data.DataColumn("OBJ_CHEME_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOBJ_CHEME_NAME)
-            Me.columnEQUIPMENT_HELMET = New Global.System.Data.DataColumn("EQUIPMENT_HELMET", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_HELMET)
-            Me.columnEQUIPMENT_GLASSES = New Global.System.Data.DataColumn("EQUIPMENT_GLASSES", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_GLASSES)
-            Me.columnEQUIPMENT_CHEMICAL_MASK = New Global.System.Data.DataColumn("EQUIPMENT_CHEMICAL_MASK", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_CHEMICAL_MASK)
-            Me.columnEQUIPMENT_BIB_PROTECT_CHEMECAL = New Global.System.Data.DataColumn("EQUIPMENT_BIB_PROTECT_CHEMECAL", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_BIB_PROTECT_CHEMECAL)
-            Me.columnEQUIPMENT_CHEMICAL_GLOVES = New Global.System.Data.DataColumn("EQUIPMENT_CHEMICAL_GLOVES", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_CHEMICAL_GLOVES)
-            Me.columnEQUIPMENT_HEAT_RESISTANT_GLOVES = New Global.System.Data.DataColumn("EQUIPMENT_HEAT_RESISTANT_GLOVES", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_HEAT_RESISTANT_GLOVES)
-            Me.columnEQUIPMENT_CUT_PROTECT_GLOVES = New Global.System.Data.DataColumn("EQUIPMENT_CUT_PROTECT_GLOVES", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_CUT_PROTECT_GLOVES)
-            Me.columnEQUIPMENT_EYE_COVER = New Global.System.Data.DataColumn("EQUIPMENT_EYE_COVER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_EYE_COVER)
-            Me.columnEQUIPMENT_FACE_SHIELD = New Global.System.Data.DataColumn("EQUIPMENT_FACE_SHIELD", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_FACE_SHIELD)
-            Me.columnEQUIPMENT_DUST_MASK = New Global.System.Data.DataColumn("EQUIPMENT_DUST_MASK", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_DUST_MASK)
-            Me.columnEQUIPMENT_CHEMICAL_PACK = New Global.System.Data.DataColumn("EQUIPMENT_CHEMICAL_PACK", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_CHEMICAL_PACK)
-            Me.columnEQUIPMENT_ELECTRIC_GLOVES = New Global.System.Data.DataColumn("EQUIPMENT_ELECTRIC_GLOVES", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_ELECTRIC_GLOVES)
-            Me.columnEQUIPMENT_OTHER = New Global.System.Data.DataColumn("EQUIPMENT_OTHER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_OTHER)
-            Me.columnEQUIPMENT_OTHER_DETAIL = New Global.System.Data.DataColumn("EQUIPMENT_OTHER_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEQUIPMENT_OTHER_DETAIL)
-            Me.columnLAW_MC = New Global.System.Data.DataColumn("LAW_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_MC)
-            Me.columnLAW_CHEMECALS = New Global.System.Data.DataColumn("LAW_CHEMECALS", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_CHEMECALS)
-            Me.columnLAW_ENVIRONMENTAL = New Global.System.Data.DataColumn("LAW_ENVIRONMENTAL", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_ENVIRONMENTAL)
-            Me.columnLAW_HIGH_PRESSURE_GAS = New Global.System.Data.DataColumn("LAW_HIGH_PRESSURE_GAS", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_HIGH_PRESSURE_GAS)
-            Me.columnLAW_PREVENT_STOP_FIRE = New Global.System.Data.DataColumn("LAW_PREVENT_STOP_FIRE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_PREVENT_STOP_FIRE)
-            Me.columnLAW_FACTORY = New Global.System.Data.DataColumn("LAW_FACTORY", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_FACTORY)
-            Me.columnLAW_FUEL_REGULATORY = New Global.System.Data.DataColumn("LAW_FUEL_REGULATORY", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_FUEL_REGULATORY)
-            Me.columnLAW_OTHER = New Global.System.Data.DataColumn("LAW_OTHER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_OTHER)
-            Me.columnLAW_OTHER_DETAIL = New Global.System.Data.DataColumn("LAW_OTHER_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_OTHER_DETAIL)
-            Me.columnLAW_NAME = New Global.System.Data.DataColumn("LAW_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_NAME)
-            Me.columnLAW_NOTICE = New Global.System.Data.DataColumn("LAW_NOTICE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_NOTICE)
-            Me.columnLAW_NOTICE_DETAIL = New Global.System.Data.DataColumn("LAW_NOTICE_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_NOTICE_DETAIL)
-            Me.columnLAW_APPROVE = New Global.System.Data.DataColumn("LAW_APPROVE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_APPROVE)
-            Me.columnLAW_APPROVE_DETAIL = New Global.System.Data.DataColumn("LAW_APPROVE_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_APPROVE_DETAIL)
-            Me.columnLAW_CHECK = New Global.System.Data.DataColumn("LAW_CHECK", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_CHECK)
-            Me.columnLAW_CHECK_DETAIL = New Global.System.Data.DataColumn("LAW_CHECK_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAW_CHECK_DETAIL)
-            Me.columnIMG_TEMP_STAMP = New Global.System.Data.DataColumn("IMG_TEMP_STAMP", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIMG_TEMP_STAMP)
-            Me.columnIMG_TEMP_STAMP_CONTENT_TYPE = New Global.System.Data.DataColumn("IMG_TEMP_STAMP_CONTENT_TYPE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIMG_TEMP_STAMP_CONTENT_TYPE)
-            Me.columnIMG_TEMP_STAMP_DATA = New Global.System.Data.DataColumn("IMG_TEMP_STAMP_DATA", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIMG_TEMP_STAMP_DATA)
-            Me.columnREQUEST_NAME_APPROVE = New Global.System.Data.DataColumn("REQUEST_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnREQUEST_NAME_APPROVE)
-            Me.columnREQUEST_APPROVE_DATE = New Global.System.Data.DataColumn("REQUEST_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnREQUEST_APPROVE_DATE)
-            Me.columnSECT_MGR_NAME_APPROVE = New Global.System.Data.DataColumn("SECT_MGR_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSECT_MGR_NAME_APPROVE)
-            Me.columnSECT_MGR_APPROVE_DATE = New Global.System.Data.DataColumn("SECT_MGR_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSECT_MGR_APPROVE_DATE)
-            Me.columnDEPT_MGR_NAME_APPROVE = New Global.System.Data.DataColumn("DEPT_MGR_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDEPT_MGR_NAME_APPROVE)
-            Me.columnDEPT_MGR_APPROVE_DATE = New Global.System.Data.DataColumn("DEPT_MGR_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDEPT_MGR_APPROVE_DATE)
-            Me.columnDIV_MGR_NAME_APPROVE = New Global.System.Data.DataColumn("DIV_MGR_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDIV_MGR_NAME_APPROVE)
-            Me.columnDIV_MGR_APPROVE_DATE = New Global.System.Data.DataColumn("DIV_MGR_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDIV_MGR_APPROVE_DATE)
-            Me.columnMCEQ_SUBCOM_NAME_APPROVE = New Global.System.Data.DataColumn("MCEQ_SUBCOM_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMCEQ_SUBCOM_NAME_APPROVE)
-            Me.columnMCEQ_SUBCOM_APPROVE_DATE = New Global.System.Data.DataColumn("MCEQ_SUBCOM_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMCEQ_SUBCOM_APPROVE_DATE)
-            Me.columnSAFETY_OFFICER_NAME_APPROVE = New Global.System.Data.DataColumn("SAFETY_OFFICER_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSAFETY_OFFICER_NAME_APPROVE)
-            Me.columnSAFETY_OFFICER_APPROVE_DATE = New Global.System.Data.DataColumn("SAFETY_OFFICER_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSAFETY_OFFICER_APPROVE_DATE)
-            Me.columnSAFETY_MGR_NAME_APPROVE = New Global.System.Data.DataColumn("SAFETY_MGR_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSAFETY_MGR_NAME_APPROVE)
-            Me.columnSAFETY_MGR_APPROVE_DATE = New Global.System.Data.DataColumn("SAFETY_MGR_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSAFETY_MGR_APPROVE_DATE)
-            Me.columnOPNO_ADD = New Global.System.Data.DataColumn("OPNO_ADD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOPNO_ADD)
-            Me.columnDATE_ADD = New Global.System.Data.DataColumn("DATE_ADD", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDATE_ADD)
-            Me.columnOPNO_UPDATE = New Global.System.Data.DataColumn("OPNO_UPDATE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOPNO_UPDATE)
-            Me.columnDATE_UPDATE = New Global.System.Data.DataColumn("DATE_UPDATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDATE_UPDATE)
-            Me.columnSTATUS_ID = New Global.System.Data.DataColumn("STATUS_ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSTATUS_ID)
-            Me.columnSTATUS_NAME = New Global.System.Data.DataColumn("STATUS_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSTATUS_NAME)
-            Me.columnIP = New Global.System.Data.DataColumn("IP", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIP)
-            Me.columnDOCUMENT_ATTACH_NAME = New Global.System.Data.DataColumn("DOCUMENT_ATTACH_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDOCUMENT_ATTACH_NAME)
-            Me.columnDOCUMENT_ATTACH_CONTENT_TYPE = New Global.System.Data.DataColumn("DOCUMENT_ATTACH_CONTENT_TYPE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDOCUMENT_ATTACH_CONTENT_TYPE)
-            Me.columnDOCUMENT_ATTACH_DATA = New Global.System.Data.DataColumn("DOCUMENT_ATTACH_DATA", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDOCUMENT_ATTACH_DATA)
-            Me.columnIMAGE_ATTACH_NAME = New Global.System.Data.DataColumn("IMAGE_ATTACH_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIMAGE_ATTACH_NAME)
-            Me.columnIMAGE_ATTACH_CONTENT_TYPE = New Global.System.Data.DataColumn("IMAGE_ATTACH_CONTENT_TYPE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIMAGE_ATTACH_CONTENT_TYPE)
-            Me.columnIMAGE_ATTACH_DATA = New Global.System.Data.DataColumn("IMAGE_ATTACH_DATA", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIMAGE_ATTACH_DATA)
-            Me.columnLAYOUT_ATTACH_NAME = New Global.System.Data.DataColumn("LAYOUT_ATTACH_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAYOUT_ATTACH_NAME)
-            Me.columnLAYOUT_ATTACH_CONTENT_TYPE = New Global.System.Data.DataColumn("LAYOUT_ATTACH_CONTENT_TYPE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAYOUT_ATTACH_CONTENT_TYPE)
-            Me.columnLAYOUT_ATTACH_DATA = New Global.System.Data.DataColumn("LAYOUT_ATTACH_DATA", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLAYOUT_ATTACH_DATA)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnMC_NO}, true))
-            Me.columnID.AutoIncrement = true
-            Me.columnID.AutoIncrementSeed = -1
-            Me.columnID.AutoIncrementStep = -1
-            Me.columnID.AllowDBNull = false
-            Me.columnID.ReadOnly = true
-            Me.columnMC_NO.AllowDBNull = false
-            Me.columnMC_NO.Unique = true
-            Me.columnMC_NO.MaxLength = 10
-            Me.columnREGISTER_NEW_MC.AllowDBNull = false
-            Me.columnCANCEL_MC.AllowDBNull = false
-            Me.columnCATEGORY1_NEW_MC.AllowDBNull = false
-            Me.columnCATEGORY1_TF_MC.AllowDBNull = false
-            Me.columnCATEGORY1_OTH_MC.AllowDBNull = false
-            Me.columnCATEGORY1_MC_OTHER_DETAIL.MaxLength = 50
-            Me.columnCATEGORY2_NEW_MODEL_MC.AllowDBNull = false
-            Me.columnCATEGORY2_ORIGINAL_MODEL_MC.AllowDBNull = false
-            Me.columnCATEGORY2_OTH_MODEL_MC.AllowDBNull = false
-            Me.columnCATEGORY2_MC_OTHER_DETAIL.MaxLength = 50
-            Me.columnMAKER.MaxLength = 150
-            Me.columnCOUNTRY.MaxLength = 30
-            Me.columnSUPPLIER.MaxLength = 150
-            Me.columnPROVIDER.MaxLength = 150
-            Me.columnTEL.MaxLength = 10
-            Me.columnTYPE_MC.MaxLength = 10
-            Me.columnSIZE_HP_MC.MaxLength = 20
-            Me.columnDIVISION.MaxLength = 50
-            Me.columnDEPARTMENT.MaxLength = 50
-            Me.columnSECTION.MaxLength = 50
-            Me.columnMC_NAME.MaxLength = 50
-            Me.columnMC_NO1.MaxLength = 20
-            Me.columnMC_NO2.MaxLength = 20
-            Me.columnMC_NO3.MaxLength = 20
-            Me.columnMC_NO4.MaxLength = 20
-            Me.columnMC_NO5.MaxLength = 20
-            Me.columnMC_NO6.MaxLength = 20
-            Me.columnMC_NO7.MaxLength = 20
-            Me.columnMC_NO8.MaxLength = 20
-            Me.columnMC_NO9.MaxLength = 20
-            Me.columnMC_NO10.MaxLength = 20
-            Me.columnDANGER_CHEME_1.AllowDBNull = false
-            Me.columnDANGER_CHEME_2.AllowDBNull = false
-            Me.columnDANGER_CHEME_3.AllowDBNull = false
-            Me.columnDANGER_CHEME_4.AllowDBNull = false
-            Me.columnDANGER_CHEME_NAME.MaxLength = 50
-            Me.columnCAS_NO.MaxLength = 30
-            Me.columnFLAMMABLE.AllowDBNull = false
-            Me.columnCORROSIVE.AllowDBNull = false
-            Me.columnPOISON.AllowDBNull = false
-            Me.columnGAS.AllowDBNull = false
-            Me.columnSUBSTANCE_OTHER.AllowDBNull = false
-            Me.columnSUBSTANCE_OTHER_DETAIL.MaxLength = 50
-            Me.columnOBJ_POWDER.AllowDBNull = false
-            Me.columnOBJ_HEAT.AllowDBNull = false
-            Me.columnOBJ_NOISE.AllowDBNull = false
-            Me.columnOBJ_VIBRATE.AllowDBNull = false
-            Me.columnOBJ_POISONGAS.AllowDBNull = false
-            Me.columnOBJ_WASTE_WATER.AllowDBNull = false
-            Me.columnOBJ_RAY.AllowDBNull = false
-            Me.columnOBJ_SMOKE.AllowDBNull = false
-            Me.columnOBJ_ELECTRIC_WAVE.AllowDBNull = false
-            Me.columnOBJ_OTHER.AllowDBNull = false
-            Me.columnOBJ_OTHER_DETAIL.MaxLength = 50
-            Me.columnOBJ_CHEME_NAME.MaxLength = 50
-            Me.columnEQUIPMENT_HELMET.AllowDBNull = false
-            Me.columnEQUIPMENT_GLASSES.AllowDBNull = false
-            Me.columnEQUIPMENT_CHEMICAL_MASK.AllowDBNull = false
-            Me.columnEQUIPMENT_BIB_PROTECT_CHEMECAL.AllowDBNull = false
-            Me.columnEQUIPMENT_CHEMICAL_GLOVES.AllowDBNull = false
-            Me.columnEQUIPMENT_HEAT_RESISTANT_GLOVES.AllowDBNull = false
-            Me.columnEQUIPMENT_CUT_PROTECT_GLOVES.AllowDBNull = false
-            Me.columnEQUIPMENT_EYE_COVER.AllowDBNull = false
-            Me.columnEQUIPMENT_FACE_SHIELD.AllowDBNull = false
-            Me.columnEQUIPMENT_DUST_MASK.AllowDBNull = false
-            Me.columnEQUIPMENT_CHEMICAL_PACK.AllowDBNull = false
-            Me.columnEQUIPMENT_ELECTRIC_GLOVES.AllowDBNull = false
-            Me.columnEQUIPMENT_OTHER.AllowDBNull = false
-            Me.columnEQUIPMENT_OTHER_DETAIL.MaxLength = 50
-            Me.columnLAW_MC.AllowDBNull = false
-            Me.columnLAW_CHEMECALS.AllowDBNull = false
-            Me.columnLAW_ENVIRONMENTAL.AllowDBNull = false
-            Me.columnLAW_HIGH_PRESSURE_GAS.AllowDBNull = false
-            Me.columnLAW_PREVENT_STOP_FIRE.AllowDBNull = false
-            Me.columnLAW_FACTORY.AllowDBNull = false
-            Me.columnLAW_FUEL_REGULATORY.AllowDBNull = false
-            Me.columnLAW_OTHER.AllowDBNull = false
-            Me.columnLAW_OTHER_DETAIL.MaxLength = 50
-            Me.columnLAW_NAME.MaxLength = 50
-            Me.columnLAW_NOTICE.AllowDBNull = false
-            Me.columnLAW_NOTICE_DETAIL.MaxLength = 50
-            Me.columnLAW_APPROVE.AllowDBNull = false
-            Me.columnLAW_APPROVE_DETAIL.MaxLength = 50
-            Me.columnLAW_CHECK.AllowDBNull = false
-            Me.columnLAW_CHECK_DETAIL.MaxLength = 50
-            Me.columnIMG_TEMP_STAMP.MaxLength = 50
-            Me.columnIMG_TEMP_STAMP_CONTENT_TYPE.MaxLength = 50
-            Me.columnREQUEST_NAME_APPROVE.MaxLength = 20
-            Me.columnSECT_MGR_NAME_APPROVE.MaxLength = 20
-            Me.columnDEPT_MGR_NAME_APPROVE.MaxLength = 20
-            Me.columnDIV_MGR_NAME_APPROVE.MaxLength = 20
-            Me.columnMCEQ_SUBCOM_NAME_APPROVE.MaxLength = 20
-            Me.columnSAFETY_OFFICER_NAME_APPROVE.MaxLength = 20
-            Me.columnSAFETY_MGR_NAME_APPROVE.MaxLength = 20
-            Me.columnOPNO_ADD.MaxLength = 10
-            Me.columnOPNO_UPDATE.MaxLength = 10
-            Me.columnSTATUS_NAME.MaxLength = 20
-            Me.columnIP.MaxLength = 10
-            Me.columnDOCUMENT_ATTACH_NAME.MaxLength = 50
-            Me.columnDOCUMENT_ATTACH_CONTENT_TYPE.MaxLength = 50
-            Me.columnIMAGE_ATTACH_NAME.MaxLength = 50
-            Me.columnIMAGE_ATTACH_CONTENT_TYPE.MaxLength = 50
-            Me.columnLAYOUT_ATTACH_NAME.MaxLength = 50
-            Me.columnLAYOUT_ATTACH_CONTENT_TYPE.MaxLength = 50
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function NewTB_MACHINE_DATARow() As TB_MACHINE_DATARow
-            Return CType(Me.NewRow,TB_MACHINE_DATARow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New TB_MACHINE_DATARow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(TB_MACHINE_DATARow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.TB_MACHINE_DATARowChangedEvent) Is Nothing) Then
-                RaiseEvent TB_MACHINE_DATARowChanged(Me, New TB_MACHINE_DATARowChangeEvent(CType(e.Row,TB_MACHINE_DATARow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.TB_MACHINE_DATARowChangingEvent) Is Nothing) Then
-                RaiseEvent TB_MACHINE_DATARowChanging(Me, New TB_MACHINE_DATARowChangeEvent(CType(e.Row,TB_MACHINE_DATARow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.TB_MACHINE_DATARowDeletedEvent) Is Nothing) Then
-                RaiseEvent TB_MACHINE_DATARowDeleted(Me, New TB_MACHINE_DATARowChangeEvent(CType(e.Row,TB_MACHINE_DATARow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.TB_MACHINE_DATARowDeletingEvent) Is Nothing) Then
-                RaiseEvent TB_MACHINE_DATARowDeleting(Me, New TB_MACHINE_DATARowChangeEvent(CType(e.Row,TB_MACHINE_DATARow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub RemoveTB_MACHINE_DATARow(ByVal row As TB_MACHINE_DATARow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As DSMachine = New DSMachine()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "TB_MACHINE_DATADataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Delegate Sub ReportRowChangeEventHandler(ByVal sender As Object, ByVal e As ReportRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -9968,6 +7917,2057 @@ Partial Public Class DSMachine
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class TB_MACHINE_DATADataTable
+        Inherits Global.System.Data.TypedTableBase(Of TB_MACHINE_DATARow)
+        
+        Private columnID As Global.System.Data.DataColumn
+        
+        Private columnMC_NO As Global.System.Data.DataColumn
+        
+        Private columnREGISTER_DATE As Global.System.Data.DataColumn
+        
+        Private columnREGISTER_NEW_MC As Global.System.Data.DataColumn
+        
+        Private columnCANCEL_MC As Global.System.Data.DataColumn
+        
+        Private columnCATEGORY1_NEW_MC As Global.System.Data.DataColumn
+        
+        Private columnCATEGORY1_TF_MC As Global.System.Data.DataColumn
+        
+        Private columnCATEGORY1_OTH_MC As Global.System.Data.DataColumn
+        
+        Private columnCATEGORY1_MC_OTHER_DETAIL As Global.System.Data.DataColumn
+        
+        Private columnCATEGORY2_NEW_MODEL_MC As Global.System.Data.DataColumn
+        
+        Private columnCATEGORY2_ORIGINAL_MODEL_MC As Global.System.Data.DataColumn
+        
+        Private columnCATEGORY2_OTH_MODEL_MC As Global.System.Data.DataColumn
+        
+        Private columnCATEGORY2_MC_OTHER_DETAIL As Global.System.Data.DataColumn
+        
+        Private columnMAKER As Global.System.Data.DataColumn
+        
+        Private columnCOUNTRY As Global.System.Data.DataColumn
+        
+        Private columnSUPPLIER As Global.System.Data.DataColumn
+        
+        Private columnPROVIDER As Global.System.Data.DataColumn
+        
+        Private columnTEL As Global.System.Data.DataColumn
+        
+        Private columnTYPE_MC As Global.System.Data.DataColumn
+        
+        Private columnSIZE_HP_MC As Global.System.Data.DataColumn
+        
+        Private columnDIVISION As Global.System.Data.DataColumn
+        
+        Private columnDEPARTMENT As Global.System.Data.DataColumn
+        
+        Private columnSECTION As Global.System.Data.DataColumn
+        
+        Private columnMC_NAME As Global.System.Data.DataColumn
+        
+        Private columnMC_NO1 As Global.System.Data.DataColumn
+        
+        Private columnMC_NO2 As Global.System.Data.DataColumn
+        
+        Private columnMC_NO3 As Global.System.Data.DataColumn
+        
+        Private columnMC_NO4 As Global.System.Data.DataColumn
+        
+        Private columnMC_NO5 As Global.System.Data.DataColumn
+        
+        Private columnMC_NO6 As Global.System.Data.DataColumn
+        
+        Private columnMC_NO7 As Global.System.Data.DataColumn
+        
+        Private columnMC_NO8 As Global.System.Data.DataColumn
+        
+        Private columnMC_NO9 As Global.System.Data.DataColumn
+        
+        Private columnMC_NO10 As Global.System.Data.DataColumn
+        
+        Private columnDANGER_CHEME_1 As Global.System.Data.DataColumn
+        
+        Private columnDANGER_CHEME_2 As Global.System.Data.DataColumn
+        
+        Private columnDANGER_CHEME_3 As Global.System.Data.DataColumn
+        
+        Private columnDANGER_CHEME_4 As Global.System.Data.DataColumn
+        
+        Private columnDANGER_CHEME_NAME As Global.System.Data.DataColumn
+        
+        Private columnCAS_NO As Global.System.Data.DataColumn
+        
+        Private columnFLAMMABLE As Global.System.Data.DataColumn
+        
+        Private columnCORROSIVE As Global.System.Data.DataColumn
+        
+        Private columnPOISON As Global.System.Data.DataColumn
+        
+        Private columnGAS As Global.System.Data.DataColumn
+        
+        Private columnSUBSTANCE_OTHER As Global.System.Data.DataColumn
+        
+        Private columnSUBSTANCE_OTHER_DETAIL As Global.System.Data.DataColumn
+        
+        Private columnOBJ_POWDER As Global.System.Data.DataColumn
+        
+        Private columnOBJ_HEAT As Global.System.Data.DataColumn
+        
+        Private columnOBJ_NOISE As Global.System.Data.DataColumn
+        
+        Private columnOBJ_VIBRATE As Global.System.Data.DataColumn
+        
+        Private columnOBJ_POISONGAS As Global.System.Data.DataColumn
+        
+        Private columnOBJ_WASTE_WATER As Global.System.Data.DataColumn
+        
+        Private columnOBJ_RAY As Global.System.Data.DataColumn
+        
+        Private columnOBJ_SMOKE As Global.System.Data.DataColumn
+        
+        Private columnOBJ_ELECTRIC_WAVE As Global.System.Data.DataColumn
+        
+        Private columnOBJ_OTHER As Global.System.Data.DataColumn
+        
+        Private columnOBJ_OTHER_DETAIL As Global.System.Data.DataColumn
+        
+        Private columnOBJ_CHEME_NAME As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_HELMET As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_GLASSES As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_CHEMICAL_MASK As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_BIB_PROTECT_CHEMECAL As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_CHEMICAL_GLOVES As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_HEAT_RESISTANT_GLOVES As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_CUT_PROTECT_GLOVES As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_EYE_COVER As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_FACE_SHIELD As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_DUST_MASK As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_CHEMICAL_PACK As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_ELECTRIC_GLOVES As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_OTHER As Global.System.Data.DataColumn
+        
+        Private columnEQUIPMENT_OTHER_DETAIL As Global.System.Data.DataColumn
+        
+        Private columnLAW_MC As Global.System.Data.DataColumn
+        
+        Private columnLAW_CHEMECALS As Global.System.Data.DataColumn
+        
+        Private columnLAW_ENVIRONMENTAL As Global.System.Data.DataColumn
+        
+        Private columnLAW_HIGH_PRESSURE_GAS As Global.System.Data.DataColumn
+        
+        Private columnLAW_PREVENT_STOP_FIRE As Global.System.Data.DataColumn
+        
+        Private columnLAW_FACTORY As Global.System.Data.DataColumn
+        
+        Private columnLAW_FUEL_REGULATORY As Global.System.Data.DataColumn
+        
+        Private columnLAW_OTHER As Global.System.Data.DataColumn
+        
+        Private columnLAW_OTHER_DETAIL As Global.System.Data.DataColumn
+        
+        Private columnLAW_NAME As Global.System.Data.DataColumn
+        
+        Private columnLAW_NOTICE As Global.System.Data.DataColumn
+        
+        Private columnLAW_NOTICE_DETAIL As Global.System.Data.DataColumn
+        
+        Private columnLAW_APPROVE As Global.System.Data.DataColumn
+        
+        Private columnLAW_APPROVE_DETAIL As Global.System.Data.DataColumn
+        
+        Private columnLAW_CHECK As Global.System.Data.DataColumn
+        
+        Private columnLAW_CHECK_DETAIL As Global.System.Data.DataColumn
+        
+        Private columnIMG_TEMP_STAMP As Global.System.Data.DataColumn
+        
+        Private columnIMG_TEMP_STAMP_CONTENT_TYPE As Global.System.Data.DataColumn
+        
+        Private columnIMG_TEMP_STAMP_DATA As Global.System.Data.DataColumn
+        
+        Private columnREQUEST_NAME_APPROVE As Global.System.Data.DataColumn
+        
+        Private columnREQUEST_APPROVE_DATE As Global.System.Data.DataColumn
+        
+        Private columnSECT_MGR_NAME_APPROVE As Global.System.Data.DataColumn
+        
+        Private columnSECT_MGR_APPROVE_DATE As Global.System.Data.DataColumn
+        
+        Private columnDEPT_MGR_NAME_APPROVE As Global.System.Data.DataColumn
+        
+        Private columnDEPT_MGR_APPROVE_DATE As Global.System.Data.DataColumn
+        
+        Private columnDIV_MGR_NAME_APPROVE As Global.System.Data.DataColumn
+        
+        Private columnDIV_MGR_APPROVE_DATE As Global.System.Data.DataColumn
+        
+        Private columnMCEQ_SUBCOM_NAME_APPROVE As Global.System.Data.DataColumn
+        
+        Private columnMCEQ_SUBCOM_APPROVE_DATE As Global.System.Data.DataColumn
+        
+        Private columnSAFETY_OFFICER_NAME_APPROVE As Global.System.Data.DataColumn
+        
+        Private columnSAFETY_OFFICER_APPROVE_DATE As Global.System.Data.DataColumn
+        
+        Private columnSAFETY_MGR_NAME_APPROVE As Global.System.Data.DataColumn
+        
+        Private columnSAFETY_MGR_APPROVE_DATE As Global.System.Data.DataColumn
+        
+        Private columnOPNO_ADD As Global.System.Data.DataColumn
+        
+        Private columnDATE_ADD As Global.System.Data.DataColumn
+        
+        Private columnOPNO_UPDATE As Global.System.Data.DataColumn
+        
+        Private columnDATE_UPDATE As Global.System.Data.DataColumn
+        
+        Private columnSTATUS_ID As Global.System.Data.DataColumn
+        
+        Private columnSTATUS_NAME As Global.System.Data.DataColumn
+        
+        Private columnIP As Global.System.Data.DataColumn
+        
+        Private columnDOCUMENT_ATTACH_NAME As Global.System.Data.DataColumn
+        
+        Private columnDOCUMENT_ATTACH_CONTENT_TYPE As Global.System.Data.DataColumn
+        
+        Private columnDOCUMENT_ATTACH_DATA As Global.System.Data.DataColumn
+        
+        Private columnIMAGE_ATTACH_NAME As Global.System.Data.DataColumn
+        
+        Private columnIMAGE_ATTACH_CONTENT_TYPE As Global.System.Data.DataColumn
+        
+        Private columnIMAGE_ATTACH_DATA As Global.System.Data.DataColumn
+        
+        Private columnLAYOUT_ATTACH_NAME As Global.System.Data.DataColumn
+        
+        Private columnLAYOUT_ATTACH_CONTENT_TYPE As Global.System.Data.DataColumn
+        
+        Private columnLAYOUT_ATTACH_DATA As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "TB_MACHINE_DATA"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MC_NOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC_NO
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property REGISTER_DATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnREGISTER_DATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property REGISTER_NEW_MCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnREGISTER_NEW_MC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CANCEL_MCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCANCEL_MC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CATEGORY1_NEW_MCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCATEGORY1_NEW_MC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CATEGORY1_TF_MCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCATEGORY1_TF_MC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CATEGORY1_OTH_MCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCATEGORY1_OTH_MC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CATEGORY1_MC_OTHER_DETAILColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCATEGORY1_MC_OTHER_DETAIL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CATEGORY2_NEW_MODEL_MCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCATEGORY2_NEW_MODEL_MC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CATEGORY2_ORIGINAL_MODEL_MCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCATEGORY2_ORIGINAL_MODEL_MC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CATEGORY2_OTH_MODEL_MCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCATEGORY2_OTH_MODEL_MC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CATEGORY2_MC_OTHER_DETAILColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCATEGORY2_MC_OTHER_DETAIL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MAKERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMAKER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property COUNTRYColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCOUNTRY
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SUPPLIERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSUPPLIER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PROVIDERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPROVIDER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TELColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTEL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TYPE_MCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTYPE_MC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SIZE_HP_MCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSIZE_HP_MC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DIVISIONColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDIVISION
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DEPARTMENTColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDEPARTMENT
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SECTIONColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSECTION
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MC_NAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC_NAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MC_NO1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC_NO1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MC_NO2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC_NO2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MC_NO3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC_NO3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MC_NO4Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC_NO4
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MC_NO5Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC_NO5
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MC_NO6Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC_NO6
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MC_NO7Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC_NO7
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MC_NO8Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC_NO8
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MC_NO9Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC_NO9
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MC_NO10Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC_NO10
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DANGER_CHEME_1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDANGER_CHEME_1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DANGER_CHEME_2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDANGER_CHEME_2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DANGER_CHEME_3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDANGER_CHEME_3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DANGER_CHEME_4Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDANGER_CHEME_4
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DANGER_CHEME_NAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDANGER_CHEME_NAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CAS_NOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCAS_NO
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property FLAMMABLEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFLAMMABLE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CORROSIVEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCORROSIVE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property POISONColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPOISON
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property GASColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGAS
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SUBSTANCE_OTHERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSUBSTANCE_OTHER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SUBSTANCE_OTHER_DETAILColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSUBSTANCE_OTHER_DETAIL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OBJ_POWDERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOBJ_POWDER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OBJ_HEATColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOBJ_HEAT
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OBJ_NOISEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOBJ_NOISE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OBJ_VIBRATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOBJ_VIBRATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OBJ_POISONGASColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOBJ_POISONGAS
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OBJ_WASTE_WATERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOBJ_WASTE_WATER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OBJ_RAYColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOBJ_RAY
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OBJ_SMOKEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOBJ_SMOKE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OBJ_ELECTRIC_WAVEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOBJ_ELECTRIC_WAVE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OBJ_OTHERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOBJ_OTHER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OBJ_OTHER_DETAILColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOBJ_OTHER_DETAIL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OBJ_CHEME_NAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOBJ_CHEME_NAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_HELMETColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_HELMET
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_GLASSESColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_GLASSES
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_CHEMICAL_MASKColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_CHEMICAL_MASK
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_BIB_PROTECT_CHEMECALColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_BIB_PROTECT_CHEMECAL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_CHEMICAL_GLOVESColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_CHEMICAL_GLOVES
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_HEAT_RESISTANT_GLOVESColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_HEAT_RESISTANT_GLOVES
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_CUT_PROTECT_GLOVESColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_CUT_PROTECT_GLOVES
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_EYE_COVERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_EYE_COVER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_FACE_SHIELDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_FACE_SHIELD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_DUST_MASKColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_DUST_MASK
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_CHEMICAL_PACKColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_CHEMICAL_PACK
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_ELECTRIC_GLOVESColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_ELECTRIC_GLOVES
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_OTHERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_OTHER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property EQUIPMENT_OTHER_DETAILColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEQUIPMENT_OTHER_DETAIL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_MCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_MC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_CHEMECALSColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_CHEMECALS
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_ENVIRONMENTALColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_ENVIRONMENTAL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_HIGH_PRESSURE_GASColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_HIGH_PRESSURE_GAS
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_PREVENT_STOP_FIREColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_PREVENT_STOP_FIRE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_FACTORYColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_FACTORY
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_FUEL_REGULATORYColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_FUEL_REGULATORY
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_OTHERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_OTHER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_OTHER_DETAILColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_OTHER_DETAIL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_NAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_NAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_NOTICEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_NOTICE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_NOTICE_DETAILColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_NOTICE_DETAIL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_APPROVEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_APPROVE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_APPROVE_DETAILColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_APPROVE_DETAIL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_CHECKColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_CHECK
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAW_CHECK_DETAILColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAW_CHECK_DETAIL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property IMG_TEMP_STAMPColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIMG_TEMP_STAMP
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property IMG_TEMP_STAMP_CONTENT_TYPEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIMG_TEMP_STAMP_CONTENT_TYPE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property IMG_TEMP_STAMP_DATAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIMG_TEMP_STAMP_DATA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property REQUEST_NAME_APPROVEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnREQUEST_NAME_APPROVE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property REQUEST_APPROVE_DATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnREQUEST_APPROVE_DATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SECT_MGR_NAME_APPROVEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSECT_MGR_NAME_APPROVE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SECT_MGR_APPROVE_DATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSECT_MGR_APPROVE_DATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DEPT_MGR_NAME_APPROVEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDEPT_MGR_NAME_APPROVE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DEPT_MGR_APPROVE_DATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDEPT_MGR_APPROVE_DATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DIV_MGR_NAME_APPROVEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDIV_MGR_NAME_APPROVE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DIV_MGR_APPROVE_DATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDIV_MGR_APPROVE_DATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MCEQ_SUBCOM_NAME_APPROVEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMCEQ_SUBCOM_NAME_APPROVE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MCEQ_SUBCOM_APPROVE_DATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMCEQ_SUBCOM_APPROVE_DATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SAFETY_OFFICER_NAME_APPROVEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSAFETY_OFFICER_NAME_APPROVE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SAFETY_OFFICER_APPROVE_DATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSAFETY_OFFICER_APPROVE_DATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SAFETY_MGR_NAME_APPROVEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSAFETY_MGR_NAME_APPROVE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SAFETY_MGR_APPROVE_DATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSAFETY_MGR_APPROVE_DATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OPNO_ADDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOPNO_ADD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DATE_ADDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDATE_ADD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OPNO_UPDATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOPNO_UPDATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DATE_UPDATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDATE_UPDATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property STATUS_IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSTATUS_ID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property STATUS_NAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSTATUS_NAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property IPColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIP
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DOCUMENT_ATTACH_NAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDOCUMENT_ATTACH_NAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DOCUMENT_ATTACH_CONTENT_TYPEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDOCUMENT_ATTACH_CONTENT_TYPE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DOCUMENT_ATTACH_DATAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDOCUMENT_ATTACH_DATA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property IMAGE_ATTACH_NAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIMAGE_ATTACH_NAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property IMAGE_ATTACH_CONTENT_TYPEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIMAGE_ATTACH_CONTENT_TYPE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property IMAGE_ATTACH_DATAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIMAGE_ATTACH_DATA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAYOUT_ATTACH_NAMEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAYOUT_ATTACH_NAME
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAYOUT_ATTACH_CONTENT_TYPEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAYOUT_ATTACH_CONTENT_TYPE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LAYOUT_ATTACH_DATAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLAYOUT_ATTACH_DATA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As TB_MACHINE_DATARow
+            Get
+                Return CType(Me.Rows(index),TB_MACHINE_DATARow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event TB_MACHINE_DATARowChanging As TB_MACHINE_DATARowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event TB_MACHINE_DATARowChanged As TB_MACHINE_DATARowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event TB_MACHINE_DATARowDeleting As TB_MACHINE_DATARowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event TB_MACHINE_DATARowDeleted As TB_MACHINE_DATARowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Sub AddTB_MACHINE_DATARow(ByVal row As TB_MACHINE_DATARow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Function AddTB_MACHINE_DATARow( _
+                    ByVal MC_NO As String,  _
+                    ByVal REGISTER_DATE As Date,  _
+                    ByVal REGISTER_NEW_MC As Boolean,  _
+                    ByVal CANCEL_MC As Boolean,  _
+                    ByVal CATEGORY1_NEW_MC As Boolean,  _
+                    ByVal CATEGORY1_TF_MC As Boolean,  _
+                    ByVal CATEGORY1_OTH_MC As Boolean,  _
+                    ByVal CATEGORY1_MC_OTHER_DETAIL As String,  _
+                    ByVal CATEGORY2_NEW_MODEL_MC As Boolean,  _
+                    ByVal CATEGORY2_ORIGINAL_MODEL_MC As Boolean,  _
+                    ByVal CATEGORY2_OTH_MODEL_MC As Boolean,  _
+                    ByVal CATEGORY2_MC_OTHER_DETAIL As String,  _
+                    ByVal MAKER As String,  _
+                    ByVal COUNTRY As String,  _
+                    ByVal SUPPLIER As String,  _
+                    ByVal PROVIDER As String,  _
+                    ByVal TEL As String,  _
+                    ByVal TYPE_MC As String,  _
+                    ByVal SIZE_HP_MC As String,  _
+                    ByVal DIVISION As String,  _
+                    ByVal DEPARTMENT As String,  _
+                    ByVal SECTION As String,  _
+                    ByVal MC_NAME As String,  _
+                    ByVal MC_NO1 As String,  _
+                    ByVal MC_NO2 As String,  _
+                    ByVal MC_NO3 As String,  _
+                    ByVal MC_NO4 As String,  _
+                    ByVal MC_NO5 As String,  _
+                    ByVal MC_NO6 As String,  _
+                    ByVal MC_NO7 As String,  _
+                    ByVal MC_NO8 As String,  _
+                    ByVal MC_NO9 As String,  _
+                    ByVal MC_NO10 As String,  _
+                    ByVal DANGER_CHEME_1 As Boolean,  _
+                    ByVal DANGER_CHEME_2 As Boolean,  _
+                    ByVal DANGER_CHEME_3 As Boolean,  _
+                    ByVal DANGER_CHEME_4 As Boolean,  _
+                    ByVal DANGER_CHEME_NAME As String,  _
+                    ByVal CAS_NO As String,  _
+                    ByVal FLAMMABLE As Boolean,  _
+                    ByVal CORROSIVE As Boolean,  _
+                    ByVal POISON As Boolean,  _
+                    ByVal GAS As Boolean,  _
+                    ByVal SUBSTANCE_OTHER As Boolean,  _
+                    ByVal SUBSTANCE_OTHER_DETAIL As String,  _
+                    ByVal OBJ_POWDER As Boolean,  _
+                    ByVal OBJ_HEAT As Boolean,  _
+                    ByVal OBJ_NOISE As Boolean,  _
+                    ByVal OBJ_VIBRATE As Boolean,  _
+                    ByVal OBJ_POISONGAS As Boolean,  _
+                    ByVal OBJ_WASTE_WATER As Boolean,  _
+                    ByVal OBJ_RAY As Boolean,  _
+                    ByVal OBJ_SMOKE As Boolean,  _
+                    ByVal OBJ_ELECTRIC_WAVE As Boolean,  _
+                    ByVal OBJ_OTHER As Boolean,  _
+                    ByVal OBJ_OTHER_DETAIL As String,  _
+                    ByVal OBJ_CHEME_NAME As String,  _
+                    ByVal EQUIPMENT_HELMET As Boolean,  _
+                    ByVal EQUIPMENT_GLASSES As Boolean,  _
+                    ByVal EQUIPMENT_CHEMICAL_MASK As Boolean,  _
+                    ByVal EQUIPMENT_BIB_PROTECT_CHEMECAL As Boolean,  _
+                    ByVal EQUIPMENT_CHEMICAL_GLOVES As Boolean,  _
+                    ByVal EQUIPMENT_HEAT_RESISTANT_GLOVES As Boolean,  _
+                    ByVal EQUIPMENT_CUT_PROTECT_GLOVES As Boolean,  _
+                    ByVal EQUIPMENT_EYE_COVER As Boolean,  _
+                    ByVal EQUIPMENT_FACE_SHIELD As Boolean,  _
+                    ByVal EQUIPMENT_DUST_MASK As Boolean,  _
+                    ByVal EQUIPMENT_CHEMICAL_PACK As Boolean,  _
+                    ByVal EQUIPMENT_ELECTRIC_GLOVES As Boolean,  _
+                    ByVal EQUIPMENT_OTHER As Boolean,  _
+                    ByVal EQUIPMENT_OTHER_DETAIL As String,  _
+                    ByVal LAW_MC As Boolean,  _
+                    ByVal LAW_CHEMECALS As Boolean,  _
+                    ByVal LAW_ENVIRONMENTAL As Boolean,  _
+                    ByVal LAW_HIGH_PRESSURE_GAS As Boolean,  _
+                    ByVal LAW_PREVENT_STOP_FIRE As Boolean,  _
+                    ByVal LAW_FACTORY As Boolean,  _
+                    ByVal LAW_FUEL_REGULATORY As Boolean,  _
+                    ByVal LAW_OTHER As Boolean,  _
+                    ByVal LAW_OTHER_DETAIL As String,  _
+                    ByVal LAW_NAME As String,  _
+                    ByVal LAW_NOTICE As Boolean,  _
+                    ByVal LAW_NOTICE_DETAIL As String,  _
+                    ByVal LAW_APPROVE As Boolean,  _
+                    ByVal LAW_APPROVE_DETAIL As String,  _
+                    ByVal LAW_CHECK As Boolean,  _
+                    ByVal LAW_CHECK_DETAIL As String,  _
+                    ByVal IMG_TEMP_STAMP As String,  _
+                    ByVal IMG_TEMP_STAMP_CONTENT_TYPE As String,  _
+                    ByVal IMG_TEMP_STAMP_DATA() As Byte,  _
+                    ByVal REQUEST_NAME_APPROVE As String,  _
+                    ByVal REQUEST_APPROVE_DATE As Date,  _
+                    ByVal SECT_MGR_NAME_APPROVE As String,  _
+                    ByVal SECT_MGR_APPROVE_DATE As Date,  _
+                    ByVal DEPT_MGR_NAME_APPROVE As String,  _
+                    ByVal DEPT_MGR_APPROVE_DATE As Date,  _
+                    ByVal DIV_MGR_NAME_APPROVE As String,  _
+                    ByVal DIV_MGR_APPROVE_DATE As Date,  _
+                    ByVal MCEQ_SUBCOM_NAME_APPROVE As String,  _
+                    ByVal MCEQ_SUBCOM_APPROVE_DATE As Date,  _
+                    ByVal SAFETY_OFFICER_NAME_APPROVE As String,  _
+                    ByVal SAFETY_OFFICER_APPROVE_DATE As Date,  _
+                    ByVal SAFETY_MGR_NAME_APPROVE As String,  _
+                    ByVal SAFETY_MGR_APPROVE_DATE As Date,  _
+                    ByVal OPNO_ADD As String,  _
+                    ByVal DATE_ADD As Date,  _
+                    ByVal OPNO_UPDATE As String,  _
+                    ByVal DATE_UPDATE As Date,  _
+                    ByVal STATUS_ID As Integer,  _
+                    ByVal STATUS_NAME As String,  _
+                    ByVal IP As String,  _
+                    ByVal DOCUMENT_ATTACH_NAME As String,  _
+                    ByVal DOCUMENT_ATTACH_CONTENT_TYPE As String,  _
+                    ByVal DOCUMENT_ATTACH_DATA() As Byte,  _
+                    ByVal IMAGE_ATTACH_NAME As String,  _
+                    ByVal IMAGE_ATTACH_CONTENT_TYPE As String,  _
+                    ByVal IMAGE_ATTACH_DATA() As Byte,  _
+                    ByVal LAYOUT_ATTACH_NAME As String,  _
+                    ByVal LAYOUT_ATTACH_CONTENT_TYPE As String,  _
+                    ByVal LAYOUT_ATTACH_DATA() As Byte) As TB_MACHINE_DATARow
+            Dim rowTB_MACHINE_DATARow As TB_MACHINE_DATARow = CType(Me.NewRow,TB_MACHINE_DATARow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, MC_NO, REGISTER_DATE, REGISTER_NEW_MC, CANCEL_MC, CATEGORY1_NEW_MC, CATEGORY1_TF_MC, CATEGORY1_OTH_MC, CATEGORY1_MC_OTHER_DETAIL, CATEGORY2_NEW_MODEL_MC, CATEGORY2_ORIGINAL_MODEL_MC, CATEGORY2_OTH_MODEL_MC, CATEGORY2_MC_OTHER_DETAIL, MAKER, COUNTRY, SUPPLIER, PROVIDER, TEL, TYPE_MC, SIZE_HP_MC, DIVISION, DEPARTMENT, SECTION, MC_NAME, MC_NO1, MC_NO2, MC_NO3, MC_NO4, MC_NO5, MC_NO6, MC_NO7, MC_NO8, MC_NO9, MC_NO10, DANGER_CHEME_1, DANGER_CHEME_2, DANGER_CHEME_3, DANGER_CHEME_4, DANGER_CHEME_NAME, CAS_NO, FLAMMABLE, CORROSIVE, POISON, GAS, SUBSTANCE_OTHER, SUBSTANCE_OTHER_DETAIL, OBJ_POWDER, OBJ_HEAT, OBJ_NOISE, OBJ_VIBRATE, OBJ_POISONGAS, OBJ_WASTE_WATER, OBJ_RAY, OBJ_SMOKE, OBJ_ELECTRIC_WAVE, OBJ_OTHER, OBJ_OTHER_DETAIL, OBJ_CHEME_NAME, EQUIPMENT_HELMET, EQUIPMENT_GLASSES, EQUIPMENT_CHEMICAL_MASK, EQUIPMENT_BIB_PROTECT_CHEMECAL, EQUIPMENT_CHEMICAL_GLOVES, EQUIPMENT_HEAT_RESISTANT_GLOVES, EQUIPMENT_CUT_PROTECT_GLOVES, EQUIPMENT_EYE_COVER, EQUIPMENT_FACE_SHIELD, EQUIPMENT_DUST_MASK, EQUIPMENT_CHEMICAL_PACK, EQUIPMENT_ELECTRIC_GLOVES, EQUIPMENT_OTHER, EQUIPMENT_OTHER_DETAIL, LAW_MC, LAW_CHEMECALS, LAW_ENVIRONMENTAL, LAW_HIGH_PRESSURE_GAS, LAW_PREVENT_STOP_FIRE, LAW_FACTORY, LAW_FUEL_REGULATORY, LAW_OTHER, LAW_OTHER_DETAIL, LAW_NAME, LAW_NOTICE, LAW_NOTICE_DETAIL, LAW_APPROVE, LAW_APPROVE_DETAIL, LAW_CHECK, LAW_CHECK_DETAIL, IMG_TEMP_STAMP, IMG_TEMP_STAMP_CONTENT_TYPE, IMG_TEMP_STAMP_DATA, REQUEST_NAME_APPROVE, REQUEST_APPROVE_DATE, SECT_MGR_NAME_APPROVE, SECT_MGR_APPROVE_DATE, DEPT_MGR_NAME_APPROVE, DEPT_MGR_APPROVE_DATE, DIV_MGR_NAME_APPROVE, DIV_MGR_APPROVE_DATE, MCEQ_SUBCOM_NAME_APPROVE, MCEQ_SUBCOM_APPROVE_DATE, SAFETY_OFFICER_NAME_APPROVE, SAFETY_OFFICER_APPROVE_DATE, SAFETY_MGR_NAME_APPROVE, SAFETY_MGR_APPROVE_DATE, OPNO_ADD, DATE_ADD, OPNO_UPDATE, DATE_UPDATE, STATUS_ID, STATUS_NAME, IP, DOCUMENT_ATTACH_NAME, DOCUMENT_ATTACH_CONTENT_TYPE, DOCUMENT_ATTACH_DATA, IMAGE_ATTACH_NAME, IMAGE_ATTACH_CONTENT_TYPE, IMAGE_ATTACH_DATA, LAYOUT_ATTACH_NAME, LAYOUT_ATTACH_CONTENT_TYPE, LAYOUT_ATTACH_DATA}
+            rowTB_MACHINE_DATARow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowTB_MACHINE_DATARow)
+            Return rowTB_MACHINE_DATARow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function FindByID(ByVal ID As Integer) As TB_MACHINE_DATARow
+            Return CType(Me.Rows.Find(New Object() {ID}),TB_MACHINE_DATARow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As TB_MACHINE_DATADataTable = CType(MyBase.Clone,TB_MACHINE_DATADataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New TB_MACHINE_DATADataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnID = MyBase.Columns("ID")
+            Me.columnMC_NO = MyBase.Columns("MC_NO")
+            Me.columnREGISTER_DATE = MyBase.Columns("REGISTER_DATE")
+            Me.columnREGISTER_NEW_MC = MyBase.Columns("REGISTER_NEW_MC")
+            Me.columnCANCEL_MC = MyBase.Columns("CANCEL_MC")
+            Me.columnCATEGORY1_NEW_MC = MyBase.Columns("CATEGORY1_NEW_MC")
+            Me.columnCATEGORY1_TF_MC = MyBase.Columns("CATEGORY1_TF_MC")
+            Me.columnCATEGORY1_OTH_MC = MyBase.Columns("CATEGORY1_OTH_MC")
+            Me.columnCATEGORY1_MC_OTHER_DETAIL = MyBase.Columns("CATEGORY1_MC_OTHER_DETAIL")
+            Me.columnCATEGORY2_NEW_MODEL_MC = MyBase.Columns("CATEGORY2_NEW_MODEL_MC")
+            Me.columnCATEGORY2_ORIGINAL_MODEL_MC = MyBase.Columns("CATEGORY2_ORIGINAL_MODEL_MC")
+            Me.columnCATEGORY2_OTH_MODEL_MC = MyBase.Columns("CATEGORY2_OTH_MODEL_MC")
+            Me.columnCATEGORY2_MC_OTHER_DETAIL = MyBase.Columns("CATEGORY2_MC_OTHER_DETAIL")
+            Me.columnMAKER = MyBase.Columns("MAKER")
+            Me.columnCOUNTRY = MyBase.Columns("COUNTRY")
+            Me.columnSUPPLIER = MyBase.Columns("SUPPLIER")
+            Me.columnPROVIDER = MyBase.Columns("PROVIDER")
+            Me.columnTEL = MyBase.Columns("TEL")
+            Me.columnTYPE_MC = MyBase.Columns("TYPE_MC")
+            Me.columnSIZE_HP_MC = MyBase.Columns("SIZE_HP_MC")
+            Me.columnDIVISION = MyBase.Columns("DIVISION")
+            Me.columnDEPARTMENT = MyBase.Columns("DEPARTMENT")
+            Me.columnSECTION = MyBase.Columns("SECTION")
+            Me.columnMC_NAME = MyBase.Columns("MC_NAME")
+            Me.columnMC_NO1 = MyBase.Columns("MC_NO1")
+            Me.columnMC_NO2 = MyBase.Columns("MC_NO2")
+            Me.columnMC_NO3 = MyBase.Columns("MC_NO3")
+            Me.columnMC_NO4 = MyBase.Columns("MC_NO4")
+            Me.columnMC_NO5 = MyBase.Columns("MC_NO5")
+            Me.columnMC_NO6 = MyBase.Columns("MC_NO6")
+            Me.columnMC_NO7 = MyBase.Columns("MC_NO7")
+            Me.columnMC_NO8 = MyBase.Columns("MC_NO8")
+            Me.columnMC_NO9 = MyBase.Columns("MC_NO9")
+            Me.columnMC_NO10 = MyBase.Columns("MC_NO10")
+            Me.columnDANGER_CHEME_1 = MyBase.Columns("DANGER_CHEME_1")
+            Me.columnDANGER_CHEME_2 = MyBase.Columns("DANGER_CHEME_2")
+            Me.columnDANGER_CHEME_3 = MyBase.Columns("DANGER_CHEME_3")
+            Me.columnDANGER_CHEME_4 = MyBase.Columns("DANGER_CHEME_4")
+            Me.columnDANGER_CHEME_NAME = MyBase.Columns("DANGER_CHEME_NAME")
+            Me.columnCAS_NO = MyBase.Columns("CAS_NO")
+            Me.columnFLAMMABLE = MyBase.Columns("FLAMMABLE")
+            Me.columnCORROSIVE = MyBase.Columns("CORROSIVE")
+            Me.columnPOISON = MyBase.Columns("POISON")
+            Me.columnGAS = MyBase.Columns("GAS")
+            Me.columnSUBSTANCE_OTHER = MyBase.Columns("SUBSTANCE_OTHER")
+            Me.columnSUBSTANCE_OTHER_DETAIL = MyBase.Columns("SUBSTANCE_OTHER_DETAIL")
+            Me.columnOBJ_POWDER = MyBase.Columns("OBJ_POWDER")
+            Me.columnOBJ_HEAT = MyBase.Columns("OBJ_HEAT")
+            Me.columnOBJ_NOISE = MyBase.Columns("OBJ_NOISE")
+            Me.columnOBJ_VIBRATE = MyBase.Columns("OBJ_VIBRATE")
+            Me.columnOBJ_POISONGAS = MyBase.Columns("OBJ_POISONGAS")
+            Me.columnOBJ_WASTE_WATER = MyBase.Columns("OBJ_WASTE_WATER")
+            Me.columnOBJ_RAY = MyBase.Columns("OBJ_RAY")
+            Me.columnOBJ_SMOKE = MyBase.Columns("OBJ_SMOKE")
+            Me.columnOBJ_ELECTRIC_WAVE = MyBase.Columns("OBJ_ELECTRIC_WAVE")
+            Me.columnOBJ_OTHER = MyBase.Columns("OBJ_OTHER")
+            Me.columnOBJ_OTHER_DETAIL = MyBase.Columns("OBJ_OTHER_DETAIL")
+            Me.columnOBJ_CHEME_NAME = MyBase.Columns("OBJ_CHEME_NAME")
+            Me.columnEQUIPMENT_HELMET = MyBase.Columns("EQUIPMENT_HELMET")
+            Me.columnEQUIPMENT_GLASSES = MyBase.Columns("EQUIPMENT_GLASSES")
+            Me.columnEQUIPMENT_CHEMICAL_MASK = MyBase.Columns("EQUIPMENT_CHEMICAL_MASK")
+            Me.columnEQUIPMENT_BIB_PROTECT_CHEMECAL = MyBase.Columns("EQUIPMENT_BIB_PROTECT_CHEMECAL")
+            Me.columnEQUIPMENT_CHEMICAL_GLOVES = MyBase.Columns("EQUIPMENT_CHEMICAL_GLOVES")
+            Me.columnEQUIPMENT_HEAT_RESISTANT_GLOVES = MyBase.Columns("EQUIPMENT_HEAT_RESISTANT_GLOVES")
+            Me.columnEQUIPMENT_CUT_PROTECT_GLOVES = MyBase.Columns("EQUIPMENT_CUT_PROTECT_GLOVES")
+            Me.columnEQUIPMENT_EYE_COVER = MyBase.Columns("EQUIPMENT_EYE_COVER")
+            Me.columnEQUIPMENT_FACE_SHIELD = MyBase.Columns("EQUIPMENT_FACE_SHIELD")
+            Me.columnEQUIPMENT_DUST_MASK = MyBase.Columns("EQUIPMENT_DUST_MASK")
+            Me.columnEQUIPMENT_CHEMICAL_PACK = MyBase.Columns("EQUIPMENT_CHEMICAL_PACK")
+            Me.columnEQUIPMENT_ELECTRIC_GLOVES = MyBase.Columns("EQUIPMENT_ELECTRIC_GLOVES")
+            Me.columnEQUIPMENT_OTHER = MyBase.Columns("EQUIPMENT_OTHER")
+            Me.columnEQUIPMENT_OTHER_DETAIL = MyBase.Columns("EQUIPMENT_OTHER_DETAIL")
+            Me.columnLAW_MC = MyBase.Columns("LAW_MC")
+            Me.columnLAW_CHEMECALS = MyBase.Columns("LAW_CHEMECALS")
+            Me.columnLAW_ENVIRONMENTAL = MyBase.Columns("LAW_ENVIRONMENTAL")
+            Me.columnLAW_HIGH_PRESSURE_GAS = MyBase.Columns("LAW_HIGH_PRESSURE_GAS")
+            Me.columnLAW_PREVENT_STOP_FIRE = MyBase.Columns("LAW_PREVENT_STOP_FIRE")
+            Me.columnLAW_FACTORY = MyBase.Columns("LAW_FACTORY")
+            Me.columnLAW_FUEL_REGULATORY = MyBase.Columns("LAW_FUEL_REGULATORY")
+            Me.columnLAW_OTHER = MyBase.Columns("LAW_OTHER")
+            Me.columnLAW_OTHER_DETAIL = MyBase.Columns("LAW_OTHER_DETAIL")
+            Me.columnLAW_NAME = MyBase.Columns("LAW_NAME")
+            Me.columnLAW_NOTICE = MyBase.Columns("LAW_NOTICE")
+            Me.columnLAW_NOTICE_DETAIL = MyBase.Columns("LAW_NOTICE_DETAIL")
+            Me.columnLAW_APPROVE = MyBase.Columns("LAW_APPROVE")
+            Me.columnLAW_APPROVE_DETAIL = MyBase.Columns("LAW_APPROVE_DETAIL")
+            Me.columnLAW_CHECK = MyBase.Columns("LAW_CHECK")
+            Me.columnLAW_CHECK_DETAIL = MyBase.Columns("LAW_CHECK_DETAIL")
+            Me.columnIMG_TEMP_STAMP = MyBase.Columns("IMG_TEMP_STAMP")
+            Me.columnIMG_TEMP_STAMP_CONTENT_TYPE = MyBase.Columns("IMG_TEMP_STAMP_CONTENT_TYPE")
+            Me.columnIMG_TEMP_STAMP_DATA = MyBase.Columns("IMG_TEMP_STAMP_DATA")
+            Me.columnREQUEST_NAME_APPROVE = MyBase.Columns("REQUEST_NAME_APPROVE")
+            Me.columnREQUEST_APPROVE_DATE = MyBase.Columns("REQUEST_APPROVE_DATE")
+            Me.columnSECT_MGR_NAME_APPROVE = MyBase.Columns("SECT_MGR_NAME_APPROVE")
+            Me.columnSECT_MGR_APPROVE_DATE = MyBase.Columns("SECT_MGR_APPROVE_DATE")
+            Me.columnDEPT_MGR_NAME_APPROVE = MyBase.Columns("DEPT_MGR_NAME_APPROVE")
+            Me.columnDEPT_MGR_APPROVE_DATE = MyBase.Columns("DEPT_MGR_APPROVE_DATE")
+            Me.columnDIV_MGR_NAME_APPROVE = MyBase.Columns("DIV_MGR_NAME_APPROVE")
+            Me.columnDIV_MGR_APPROVE_DATE = MyBase.Columns("DIV_MGR_APPROVE_DATE")
+            Me.columnMCEQ_SUBCOM_NAME_APPROVE = MyBase.Columns("MCEQ_SUBCOM_NAME_APPROVE")
+            Me.columnMCEQ_SUBCOM_APPROVE_DATE = MyBase.Columns("MCEQ_SUBCOM_APPROVE_DATE")
+            Me.columnSAFETY_OFFICER_NAME_APPROVE = MyBase.Columns("SAFETY_OFFICER_NAME_APPROVE")
+            Me.columnSAFETY_OFFICER_APPROVE_DATE = MyBase.Columns("SAFETY_OFFICER_APPROVE_DATE")
+            Me.columnSAFETY_MGR_NAME_APPROVE = MyBase.Columns("SAFETY_MGR_NAME_APPROVE")
+            Me.columnSAFETY_MGR_APPROVE_DATE = MyBase.Columns("SAFETY_MGR_APPROVE_DATE")
+            Me.columnOPNO_ADD = MyBase.Columns("OPNO_ADD")
+            Me.columnDATE_ADD = MyBase.Columns("DATE_ADD")
+            Me.columnOPNO_UPDATE = MyBase.Columns("OPNO_UPDATE")
+            Me.columnDATE_UPDATE = MyBase.Columns("DATE_UPDATE")
+            Me.columnSTATUS_ID = MyBase.Columns("STATUS_ID")
+            Me.columnSTATUS_NAME = MyBase.Columns("STATUS_NAME")
+            Me.columnIP = MyBase.Columns("IP")
+            Me.columnDOCUMENT_ATTACH_NAME = MyBase.Columns("DOCUMENT_ATTACH_NAME")
+            Me.columnDOCUMENT_ATTACH_CONTENT_TYPE = MyBase.Columns("DOCUMENT_ATTACH_CONTENT_TYPE")
+            Me.columnDOCUMENT_ATTACH_DATA = MyBase.Columns("DOCUMENT_ATTACH_DATA")
+            Me.columnIMAGE_ATTACH_NAME = MyBase.Columns("IMAGE_ATTACH_NAME")
+            Me.columnIMAGE_ATTACH_CONTENT_TYPE = MyBase.Columns("IMAGE_ATTACH_CONTENT_TYPE")
+            Me.columnIMAGE_ATTACH_DATA = MyBase.Columns("IMAGE_ATTACH_DATA")
+            Me.columnLAYOUT_ATTACH_NAME = MyBase.Columns("LAYOUT_ATTACH_NAME")
+            Me.columnLAYOUT_ATTACH_CONTENT_TYPE = MyBase.Columns("LAYOUT_ATTACH_CONTENT_TYPE")
+            Me.columnLAYOUT_ATTACH_DATA = MyBase.Columns("LAYOUT_ATTACH_DATA")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnID)
+            Me.columnMC_NO = New Global.System.Data.DataColumn("MC_NO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC_NO)
+            Me.columnREGISTER_DATE = New Global.System.Data.DataColumn("REGISTER_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnREGISTER_DATE)
+            Me.columnREGISTER_NEW_MC = New Global.System.Data.DataColumn("REGISTER_NEW_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnREGISTER_NEW_MC)
+            Me.columnCANCEL_MC = New Global.System.Data.DataColumn("CANCEL_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCANCEL_MC)
+            Me.columnCATEGORY1_NEW_MC = New Global.System.Data.DataColumn("CATEGORY1_NEW_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCATEGORY1_NEW_MC)
+            Me.columnCATEGORY1_TF_MC = New Global.System.Data.DataColumn("CATEGORY1_TF_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCATEGORY1_TF_MC)
+            Me.columnCATEGORY1_OTH_MC = New Global.System.Data.DataColumn("CATEGORY1_OTH_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCATEGORY1_OTH_MC)
+            Me.columnCATEGORY1_MC_OTHER_DETAIL = New Global.System.Data.DataColumn("CATEGORY1_MC_OTHER_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCATEGORY1_MC_OTHER_DETAIL)
+            Me.columnCATEGORY2_NEW_MODEL_MC = New Global.System.Data.DataColumn("CATEGORY2_NEW_MODEL_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCATEGORY2_NEW_MODEL_MC)
+            Me.columnCATEGORY2_ORIGINAL_MODEL_MC = New Global.System.Data.DataColumn("CATEGORY2_ORIGINAL_MODEL_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCATEGORY2_ORIGINAL_MODEL_MC)
+            Me.columnCATEGORY2_OTH_MODEL_MC = New Global.System.Data.DataColumn("CATEGORY2_OTH_MODEL_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCATEGORY2_OTH_MODEL_MC)
+            Me.columnCATEGORY2_MC_OTHER_DETAIL = New Global.System.Data.DataColumn("CATEGORY2_MC_OTHER_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCATEGORY2_MC_OTHER_DETAIL)
+            Me.columnMAKER = New Global.System.Data.DataColumn("MAKER", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMAKER)
+            Me.columnCOUNTRY = New Global.System.Data.DataColumn("COUNTRY", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCOUNTRY)
+            Me.columnSUPPLIER = New Global.System.Data.DataColumn("SUPPLIER", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSUPPLIER)
+            Me.columnPROVIDER = New Global.System.Data.DataColumn("PROVIDER", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPROVIDER)
+            Me.columnTEL = New Global.System.Data.DataColumn("TEL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTEL)
+            Me.columnTYPE_MC = New Global.System.Data.DataColumn("TYPE_MC", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTYPE_MC)
+            Me.columnSIZE_HP_MC = New Global.System.Data.DataColumn("SIZE_HP_MC", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSIZE_HP_MC)
+            Me.columnDIVISION = New Global.System.Data.DataColumn("DIVISION", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDIVISION)
+            Me.columnDEPARTMENT = New Global.System.Data.DataColumn("DEPARTMENT", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDEPARTMENT)
+            Me.columnSECTION = New Global.System.Data.DataColumn("SECTION", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSECTION)
+            Me.columnMC_NAME = New Global.System.Data.DataColumn("MC_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC_NAME)
+            Me.columnMC_NO1 = New Global.System.Data.DataColumn("MC_NO1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC_NO1)
+            Me.columnMC_NO2 = New Global.System.Data.DataColumn("MC_NO2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC_NO2)
+            Me.columnMC_NO3 = New Global.System.Data.DataColumn("MC_NO3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC_NO3)
+            Me.columnMC_NO4 = New Global.System.Data.DataColumn("MC_NO4", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC_NO4)
+            Me.columnMC_NO5 = New Global.System.Data.DataColumn("MC_NO5", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC_NO5)
+            Me.columnMC_NO6 = New Global.System.Data.DataColumn("MC_NO6", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC_NO6)
+            Me.columnMC_NO7 = New Global.System.Data.DataColumn("MC_NO7", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC_NO7)
+            Me.columnMC_NO8 = New Global.System.Data.DataColumn("MC_NO8", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC_NO8)
+            Me.columnMC_NO9 = New Global.System.Data.DataColumn("MC_NO9", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC_NO9)
+            Me.columnMC_NO10 = New Global.System.Data.DataColumn("MC_NO10", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC_NO10)
+            Me.columnDANGER_CHEME_1 = New Global.System.Data.DataColumn("DANGER_CHEME_1", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDANGER_CHEME_1)
+            Me.columnDANGER_CHEME_2 = New Global.System.Data.DataColumn("DANGER_CHEME_2", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDANGER_CHEME_2)
+            Me.columnDANGER_CHEME_3 = New Global.System.Data.DataColumn("DANGER_CHEME_3", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDANGER_CHEME_3)
+            Me.columnDANGER_CHEME_4 = New Global.System.Data.DataColumn("DANGER_CHEME_4", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDANGER_CHEME_4)
+            Me.columnDANGER_CHEME_NAME = New Global.System.Data.DataColumn("DANGER_CHEME_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDANGER_CHEME_NAME)
+            Me.columnCAS_NO = New Global.System.Data.DataColumn("CAS_NO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCAS_NO)
+            Me.columnFLAMMABLE = New Global.System.Data.DataColumn("FLAMMABLE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFLAMMABLE)
+            Me.columnCORROSIVE = New Global.System.Data.DataColumn("CORROSIVE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCORROSIVE)
+            Me.columnPOISON = New Global.System.Data.DataColumn("POISON", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPOISON)
+            Me.columnGAS = New Global.System.Data.DataColumn("GAS", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGAS)
+            Me.columnSUBSTANCE_OTHER = New Global.System.Data.DataColumn("SUBSTANCE_OTHER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSUBSTANCE_OTHER)
+            Me.columnSUBSTANCE_OTHER_DETAIL = New Global.System.Data.DataColumn("SUBSTANCE_OTHER_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSUBSTANCE_OTHER_DETAIL)
+            Me.columnOBJ_POWDER = New Global.System.Data.DataColumn("OBJ_POWDER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOBJ_POWDER)
+            Me.columnOBJ_HEAT = New Global.System.Data.DataColumn("OBJ_HEAT", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOBJ_HEAT)
+            Me.columnOBJ_NOISE = New Global.System.Data.DataColumn("OBJ_NOISE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOBJ_NOISE)
+            Me.columnOBJ_VIBRATE = New Global.System.Data.DataColumn("OBJ_VIBRATE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOBJ_VIBRATE)
+            Me.columnOBJ_POISONGAS = New Global.System.Data.DataColumn("OBJ_POISONGAS", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOBJ_POISONGAS)
+            Me.columnOBJ_WASTE_WATER = New Global.System.Data.DataColumn("OBJ_WASTE_WATER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOBJ_WASTE_WATER)
+            Me.columnOBJ_RAY = New Global.System.Data.DataColumn("OBJ_RAY", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOBJ_RAY)
+            Me.columnOBJ_SMOKE = New Global.System.Data.DataColumn("OBJ_SMOKE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOBJ_SMOKE)
+            Me.columnOBJ_ELECTRIC_WAVE = New Global.System.Data.DataColumn("OBJ_ELECTRIC_WAVE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOBJ_ELECTRIC_WAVE)
+            Me.columnOBJ_OTHER = New Global.System.Data.DataColumn("OBJ_OTHER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOBJ_OTHER)
+            Me.columnOBJ_OTHER_DETAIL = New Global.System.Data.DataColumn("OBJ_OTHER_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOBJ_OTHER_DETAIL)
+            Me.columnOBJ_CHEME_NAME = New Global.System.Data.DataColumn("OBJ_CHEME_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOBJ_CHEME_NAME)
+            Me.columnEQUIPMENT_HELMET = New Global.System.Data.DataColumn("EQUIPMENT_HELMET", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_HELMET)
+            Me.columnEQUIPMENT_GLASSES = New Global.System.Data.DataColumn("EQUIPMENT_GLASSES", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_GLASSES)
+            Me.columnEQUIPMENT_CHEMICAL_MASK = New Global.System.Data.DataColumn("EQUIPMENT_CHEMICAL_MASK", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_CHEMICAL_MASK)
+            Me.columnEQUIPMENT_BIB_PROTECT_CHEMECAL = New Global.System.Data.DataColumn("EQUIPMENT_BIB_PROTECT_CHEMECAL", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_BIB_PROTECT_CHEMECAL)
+            Me.columnEQUIPMENT_CHEMICAL_GLOVES = New Global.System.Data.DataColumn("EQUIPMENT_CHEMICAL_GLOVES", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_CHEMICAL_GLOVES)
+            Me.columnEQUIPMENT_HEAT_RESISTANT_GLOVES = New Global.System.Data.DataColumn("EQUIPMENT_HEAT_RESISTANT_GLOVES", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_HEAT_RESISTANT_GLOVES)
+            Me.columnEQUIPMENT_CUT_PROTECT_GLOVES = New Global.System.Data.DataColumn("EQUIPMENT_CUT_PROTECT_GLOVES", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_CUT_PROTECT_GLOVES)
+            Me.columnEQUIPMENT_EYE_COVER = New Global.System.Data.DataColumn("EQUIPMENT_EYE_COVER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_EYE_COVER)
+            Me.columnEQUIPMENT_FACE_SHIELD = New Global.System.Data.DataColumn("EQUIPMENT_FACE_SHIELD", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_FACE_SHIELD)
+            Me.columnEQUIPMENT_DUST_MASK = New Global.System.Data.DataColumn("EQUIPMENT_DUST_MASK", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_DUST_MASK)
+            Me.columnEQUIPMENT_CHEMICAL_PACK = New Global.System.Data.DataColumn("EQUIPMENT_CHEMICAL_PACK", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_CHEMICAL_PACK)
+            Me.columnEQUIPMENT_ELECTRIC_GLOVES = New Global.System.Data.DataColumn("EQUIPMENT_ELECTRIC_GLOVES", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_ELECTRIC_GLOVES)
+            Me.columnEQUIPMENT_OTHER = New Global.System.Data.DataColumn("EQUIPMENT_OTHER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_OTHER)
+            Me.columnEQUIPMENT_OTHER_DETAIL = New Global.System.Data.DataColumn("EQUIPMENT_OTHER_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEQUIPMENT_OTHER_DETAIL)
+            Me.columnLAW_MC = New Global.System.Data.DataColumn("LAW_MC", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_MC)
+            Me.columnLAW_CHEMECALS = New Global.System.Data.DataColumn("LAW_CHEMECALS", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_CHEMECALS)
+            Me.columnLAW_ENVIRONMENTAL = New Global.System.Data.DataColumn("LAW_ENVIRONMENTAL", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_ENVIRONMENTAL)
+            Me.columnLAW_HIGH_PRESSURE_GAS = New Global.System.Data.DataColumn("LAW_HIGH_PRESSURE_GAS", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_HIGH_PRESSURE_GAS)
+            Me.columnLAW_PREVENT_STOP_FIRE = New Global.System.Data.DataColumn("LAW_PREVENT_STOP_FIRE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_PREVENT_STOP_FIRE)
+            Me.columnLAW_FACTORY = New Global.System.Data.DataColumn("LAW_FACTORY", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_FACTORY)
+            Me.columnLAW_FUEL_REGULATORY = New Global.System.Data.DataColumn("LAW_FUEL_REGULATORY", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_FUEL_REGULATORY)
+            Me.columnLAW_OTHER = New Global.System.Data.DataColumn("LAW_OTHER", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_OTHER)
+            Me.columnLAW_OTHER_DETAIL = New Global.System.Data.DataColumn("LAW_OTHER_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_OTHER_DETAIL)
+            Me.columnLAW_NAME = New Global.System.Data.DataColumn("LAW_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_NAME)
+            Me.columnLAW_NOTICE = New Global.System.Data.DataColumn("LAW_NOTICE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_NOTICE)
+            Me.columnLAW_NOTICE_DETAIL = New Global.System.Data.DataColumn("LAW_NOTICE_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_NOTICE_DETAIL)
+            Me.columnLAW_APPROVE = New Global.System.Data.DataColumn("LAW_APPROVE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_APPROVE)
+            Me.columnLAW_APPROVE_DETAIL = New Global.System.Data.DataColumn("LAW_APPROVE_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_APPROVE_DETAIL)
+            Me.columnLAW_CHECK = New Global.System.Data.DataColumn("LAW_CHECK", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_CHECK)
+            Me.columnLAW_CHECK_DETAIL = New Global.System.Data.DataColumn("LAW_CHECK_DETAIL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAW_CHECK_DETAIL)
+            Me.columnIMG_TEMP_STAMP = New Global.System.Data.DataColumn("IMG_TEMP_STAMP", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIMG_TEMP_STAMP)
+            Me.columnIMG_TEMP_STAMP_CONTENT_TYPE = New Global.System.Data.DataColumn("IMG_TEMP_STAMP_CONTENT_TYPE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIMG_TEMP_STAMP_CONTENT_TYPE)
+            Me.columnIMG_TEMP_STAMP_DATA = New Global.System.Data.DataColumn("IMG_TEMP_STAMP_DATA", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIMG_TEMP_STAMP_DATA)
+            Me.columnREQUEST_NAME_APPROVE = New Global.System.Data.DataColumn("REQUEST_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnREQUEST_NAME_APPROVE)
+            Me.columnREQUEST_APPROVE_DATE = New Global.System.Data.DataColumn("REQUEST_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnREQUEST_APPROVE_DATE)
+            Me.columnSECT_MGR_NAME_APPROVE = New Global.System.Data.DataColumn("SECT_MGR_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSECT_MGR_NAME_APPROVE)
+            Me.columnSECT_MGR_APPROVE_DATE = New Global.System.Data.DataColumn("SECT_MGR_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSECT_MGR_APPROVE_DATE)
+            Me.columnDEPT_MGR_NAME_APPROVE = New Global.System.Data.DataColumn("DEPT_MGR_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDEPT_MGR_NAME_APPROVE)
+            Me.columnDEPT_MGR_APPROVE_DATE = New Global.System.Data.DataColumn("DEPT_MGR_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDEPT_MGR_APPROVE_DATE)
+            Me.columnDIV_MGR_NAME_APPROVE = New Global.System.Data.DataColumn("DIV_MGR_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDIV_MGR_NAME_APPROVE)
+            Me.columnDIV_MGR_APPROVE_DATE = New Global.System.Data.DataColumn("DIV_MGR_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDIV_MGR_APPROVE_DATE)
+            Me.columnMCEQ_SUBCOM_NAME_APPROVE = New Global.System.Data.DataColumn("MCEQ_SUBCOM_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMCEQ_SUBCOM_NAME_APPROVE)
+            Me.columnMCEQ_SUBCOM_APPROVE_DATE = New Global.System.Data.DataColumn("MCEQ_SUBCOM_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMCEQ_SUBCOM_APPROVE_DATE)
+            Me.columnSAFETY_OFFICER_NAME_APPROVE = New Global.System.Data.DataColumn("SAFETY_OFFICER_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSAFETY_OFFICER_NAME_APPROVE)
+            Me.columnSAFETY_OFFICER_APPROVE_DATE = New Global.System.Data.DataColumn("SAFETY_OFFICER_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSAFETY_OFFICER_APPROVE_DATE)
+            Me.columnSAFETY_MGR_NAME_APPROVE = New Global.System.Data.DataColumn("SAFETY_MGR_NAME_APPROVE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSAFETY_MGR_NAME_APPROVE)
+            Me.columnSAFETY_MGR_APPROVE_DATE = New Global.System.Data.DataColumn("SAFETY_MGR_APPROVE_DATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSAFETY_MGR_APPROVE_DATE)
+            Me.columnOPNO_ADD = New Global.System.Data.DataColumn("OPNO_ADD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOPNO_ADD)
+            Me.columnDATE_ADD = New Global.System.Data.DataColumn("DATE_ADD", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDATE_ADD)
+            Me.columnOPNO_UPDATE = New Global.System.Data.DataColumn("OPNO_UPDATE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOPNO_UPDATE)
+            Me.columnDATE_UPDATE = New Global.System.Data.DataColumn("DATE_UPDATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDATE_UPDATE)
+            Me.columnSTATUS_ID = New Global.System.Data.DataColumn("STATUS_ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSTATUS_ID)
+            Me.columnSTATUS_NAME = New Global.System.Data.DataColumn("STATUS_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSTATUS_NAME)
+            Me.columnIP = New Global.System.Data.DataColumn("IP", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIP)
+            Me.columnDOCUMENT_ATTACH_NAME = New Global.System.Data.DataColumn("DOCUMENT_ATTACH_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDOCUMENT_ATTACH_NAME)
+            Me.columnDOCUMENT_ATTACH_CONTENT_TYPE = New Global.System.Data.DataColumn("DOCUMENT_ATTACH_CONTENT_TYPE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDOCUMENT_ATTACH_CONTENT_TYPE)
+            Me.columnDOCUMENT_ATTACH_DATA = New Global.System.Data.DataColumn("DOCUMENT_ATTACH_DATA", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDOCUMENT_ATTACH_DATA)
+            Me.columnIMAGE_ATTACH_NAME = New Global.System.Data.DataColumn("IMAGE_ATTACH_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIMAGE_ATTACH_NAME)
+            Me.columnIMAGE_ATTACH_CONTENT_TYPE = New Global.System.Data.DataColumn("IMAGE_ATTACH_CONTENT_TYPE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIMAGE_ATTACH_CONTENT_TYPE)
+            Me.columnIMAGE_ATTACH_DATA = New Global.System.Data.DataColumn("IMAGE_ATTACH_DATA", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIMAGE_ATTACH_DATA)
+            Me.columnLAYOUT_ATTACH_NAME = New Global.System.Data.DataColumn("LAYOUT_ATTACH_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAYOUT_ATTACH_NAME)
+            Me.columnLAYOUT_ATTACH_CONTENT_TYPE = New Global.System.Data.DataColumn("LAYOUT_ATTACH_CONTENT_TYPE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAYOUT_ATTACH_CONTENT_TYPE)
+            Me.columnLAYOUT_ATTACH_DATA = New Global.System.Data.DataColumn("LAYOUT_ATTACH_DATA", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLAYOUT_ATTACH_DATA)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
+            Me.columnID.AutoIncrement = true
+            Me.columnID.AutoIncrementSeed = -1
+            Me.columnID.AutoIncrementStep = -1
+            Me.columnID.AllowDBNull = false
+            Me.columnID.ReadOnly = true
+            Me.columnID.Unique = true
+            Me.columnMC_NO.AllowDBNull = false
+            Me.columnMC_NO.MaxLength = 10
+            Me.columnREGISTER_NEW_MC.AllowDBNull = false
+            Me.columnCANCEL_MC.AllowDBNull = false
+            Me.columnCATEGORY1_NEW_MC.AllowDBNull = false
+            Me.columnCATEGORY1_TF_MC.AllowDBNull = false
+            Me.columnCATEGORY1_OTH_MC.AllowDBNull = false
+            Me.columnCATEGORY1_MC_OTHER_DETAIL.MaxLength = 50
+            Me.columnCATEGORY2_NEW_MODEL_MC.AllowDBNull = false
+            Me.columnCATEGORY2_ORIGINAL_MODEL_MC.AllowDBNull = false
+            Me.columnCATEGORY2_OTH_MODEL_MC.AllowDBNull = false
+            Me.columnCATEGORY2_MC_OTHER_DETAIL.MaxLength = 50
+            Me.columnMAKER.MaxLength = 150
+            Me.columnCOUNTRY.MaxLength = 30
+            Me.columnSUPPLIER.MaxLength = 150
+            Me.columnPROVIDER.MaxLength = 150
+            Me.columnTEL.MaxLength = 10
+            Me.columnTYPE_MC.MaxLength = 10
+            Me.columnSIZE_HP_MC.MaxLength = 20
+            Me.columnDIVISION.MaxLength = 50
+            Me.columnDEPARTMENT.MaxLength = 50
+            Me.columnSECTION.MaxLength = 50
+            Me.columnMC_NAME.MaxLength = 50
+            Me.columnMC_NO1.MaxLength = 20
+            Me.columnMC_NO2.MaxLength = 20
+            Me.columnMC_NO3.MaxLength = 20
+            Me.columnMC_NO4.MaxLength = 20
+            Me.columnMC_NO5.MaxLength = 20
+            Me.columnMC_NO6.MaxLength = 20
+            Me.columnMC_NO7.MaxLength = 20
+            Me.columnMC_NO8.MaxLength = 20
+            Me.columnMC_NO9.MaxLength = 20
+            Me.columnMC_NO10.MaxLength = 20
+            Me.columnDANGER_CHEME_1.AllowDBNull = false
+            Me.columnDANGER_CHEME_2.AllowDBNull = false
+            Me.columnDANGER_CHEME_3.AllowDBNull = false
+            Me.columnDANGER_CHEME_4.AllowDBNull = false
+            Me.columnDANGER_CHEME_NAME.MaxLength = 50
+            Me.columnCAS_NO.MaxLength = 30
+            Me.columnFLAMMABLE.AllowDBNull = false
+            Me.columnCORROSIVE.AllowDBNull = false
+            Me.columnPOISON.AllowDBNull = false
+            Me.columnGAS.AllowDBNull = false
+            Me.columnSUBSTANCE_OTHER.AllowDBNull = false
+            Me.columnSUBSTANCE_OTHER_DETAIL.MaxLength = 50
+            Me.columnOBJ_POWDER.AllowDBNull = false
+            Me.columnOBJ_HEAT.AllowDBNull = false
+            Me.columnOBJ_NOISE.AllowDBNull = false
+            Me.columnOBJ_VIBRATE.AllowDBNull = false
+            Me.columnOBJ_POISONGAS.AllowDBNull = false
+            Me.columnOBJ_WASTE_WATER.AllowDBNull = false
+            Me.columnOBJ_RAY.AllowDBNull = false
+            Me.columnOBJ_SMOKE.AllowDBNull = false
+            Me.columnOBJ_ELECTRIC_WAVE.AllowDBNull = false
+            Me.columnOBJ_OTHER.AllowDBNull = false
+            Me.columnOBJ_OTHER_DETAIL.MaxLength = 50
+            Me.columnOBJ_CHEME_NAME.MaxLength = 50
+            Me.columnEQUIPMENT_HELMET.AllowDBNull = false
+            Me.columnEQUIPMENT_GLASSES.AllowDBNull = false
+            Me.columnEQUIPMENT_CHEMICAL_MASK.AllowDBNull = false
+            Me.columnEQUIPMENT_BIB_PROTECT_CHEMECAL.AllowDBNull = false
+            Me.columnEQUIPMENT_CHEMICAL_GLOVES.AllowDBNull = false
+            Me.columnEQUIPMENT_HEAT_RESISTANT_GLOVES.AllowDBNull = false
+            Me.columnEQUIPMENT_CUT_PROTECT_GLOVES.AllowDBNull = false
+            Me.columnEQUIPMENT_EYE_COVER.AllowDBNull = false
+            Me.columnEQUIPMENT_FACE_SHIELD.AllowDBNull = false
+            Me.columnEQUIPMENT_DUST_MASK.AllowDBNull = false
+            Me.columnEQUIPMENT_CHEMICAL_PACK.AllowDBNull = false
+            Me.columnEQUIPMENT_ELECTRIC_GLOVES.AllowDBNull = false
+            Me.columnEQUIPMENT_OTHER.AllowDBNull = false
+            Me.columnEQUIPMENT_OTHER_DETAIL.MaxLength = 50
+            Me.columnLAW_MC.AllowDBNull = false
+            Me.columnLAW_CHEMECALS.AllowDBNull = false
+            Me.columnLAW_ENVIRONMENTAL.AllowDBNull = false
+            Me.columnLAW_HIGH_PRESSURE_GAS.AllowDBNull = false
+            Me.columnLAW_PREVENT_STOP_FIRE.AllowDBNull = false
+            Me.columnLAW_FACTORY.AllowDBNull = false
+            Me.columnLAW_FUEL_REGULATORY.AllowDBNull = false
+            Me.columnLAW_OTHER.AllowDBNull = false
+            Me.columnLAW_OTHER_DETAIL.MaxLength = 50
+            Me.columnLAW_NAME.MaxLength = 50
+            Me.columnLAW_NOTICE.AllowDBNull = false
+            Me.columnLAW_NOTICE_DETAIL.MaxLength = 50
+            Me.columnLAW_APPROVE.AllowDBNull = false
+            Me.columnLAW_APPROVE_DETAIL.MaxLength = 50
+            Me.columnLAW_CHECK.AllowDBNull = false
+            Me.columnLAW_CHECK_DETAIL.MaxLength = 50
+            Me.columnIMG_TEMP_STAMP.MaxLength = 50
+            Me.columnIMG_TEMP_STAMP_CONTENT_TYPE.MaxLength = 50
+            Me.columnREQUEST_NAME_APPROVE.MaxLength = 20
+            Me.columnSECT_MGR_NAME_APPROVE.MaxLength = 20
+            Me.columnDEPT_MGR_NAME_APPROVE.MaxLength = 20
+            Me.columnDIV_MGR_NAME_APPROVE.MaxLength = 20
+            Me.columnMCEQ_SUBCOM_NAME_APPROVE.MaxLength = 20
+            Me.columnSAFETY_OFFICER_NAME_APPROVE.MaxLength = 20
+            Me.columnSAFETY_MGR_NAME_APPROVE.MaxLength = 20
+            Me.columnOPNO_ADD.MaxLength = 10
+            Me.columnOPNO_UPDATE.MaxLength = 10
+            Me.columnSTATUS_NAME.MaxLength = 50
+            Me.columnIP.MaxLength = 10
+            Me.columnDOCUMENT_ATTACH_NAME.MaxLength = 150
+            Me.columnDOCUMENT_ATTACH_CONTENT_TYPE.MaxLength = 50
+            Me.columnIMAGE_ATTACH_NAME.MaxLength = 50
+            Me.columnIMAGE_ATTACH_CONTENT_TYPE.MaxLength = 50
+            Me.columnLAYOUT_ATTACH_NAME.MaxLength = 50
+            Me.columnLAYOUT_ATTACH_CONTENT_TYPE.MaxLength = 50
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function NewTB_MACHINE_DATARow() As TB_MACHINE_DATARow
+            Return CType(Me.NewRow,TB_MACHINE_DATARow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New TB_MACHINE_DATARow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(TB_MACHINE_DATARow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.TB_MACHINE_DATARowChangedEvent) Is Nothing) Then
+                RaiseEvent TB_MACHINE_DATARowChanged(Me, New TB_MACHINE_DATARowChangeEvent(CType(e.Row,TB_MACHINE_DATARow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.TB_MACHINE_DATARowChangingEvent) Is Nothing) Then
+                RaiseEvent TB_MACHINE_DATARowChanging(Me, New TB_MACHINE_DATARowChangeEvent(CType(e.Row,TB_MACHINE_DATARow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.TB_MACHINE_DATARowDeletedEvent) Is Nothing) Then
+                RaiseEvent TB_MACHINE_DATARowDeleted(Me, New TB_MACHINE_DATARowChangeEvent(CType(e.Row,TB_MACHINE_DATARow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.TB_MACHINE_DATARowDeletingEvent) Is Nothing) Then
+                RaiseEvent TB_MACHINE_DATARowDeleting(Me, New TB_MACHINE_DATARowChangeEvent(CType(e.Row,TB_MACHINE_DATARow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub RemoveTB_MACHINE_DATARow(ByVal row As TB_MACHINE_DATARow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As DSMachine = New DSMachine()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "TB_MACHINE_DATADataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
     Partial Public Class ReportDataTable
         Inherits Global.System.Data.TypedTableBase(Of ReportRow)
         
@@ -10466,2465 +10466,6 @@ Partial Public Class DSMachine
             xs.Add(dsSchema)
             Return type
         End Function
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class TB_MACHINE_DATARow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableTB_MACHINE_DATA As TB_MACHINE_DATADataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableTB_MACHINE_DATA = CType(Me.Table,TB_MACHINE_DATADataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property ID() As Integer
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.IDColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MC_NO() As String
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NOColumn),String)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MC_NOColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property REGISTER_DATE() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.REGISTER_DATEColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'REGISTER_DATE' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.REGISTER_DATEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property REGISTER_NEW_MC() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.REGISTER_NEW_MCColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.REGISTER_NEW_MCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property CANCEL_MC() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.CANCEL_MCColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.CANCEL_MCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property CATEGORY1_NEW_MC() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY1_NEW_MCColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.CATEGORY1_NEW_MCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property CATEGORY1_TF_MC() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY1_TF_MCColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.CATEGORY1_TF_MCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property CATEGORY1_OTH_MC() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY1_OTH_MCColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.CATEGORY1_OTH_MCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property CATEGORY1_MC_OTHER_DETAIL() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY1_MC_OTHER_DETAILColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'CATEGORY1_MC_OTHER_DETAIL' in table 'TB_MACHINE_DATA' is DB"& _ 
-                            "Null.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.CATEGORY1_MC_OTHER_DETAILColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property CATEGORY2_NEW_MODEL_MC() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY2_NEW_MODEL_MCColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.CATEGORY2_NEW_MODEL_MCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property CATEGORY2_ORIGINAL_MODEL_MC() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY2_ORIGINAL_MODEL_MCColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.CATEGORY2_ORIGINAL_MODEL_MCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property CATEGORY2_OTH_MODEL_MC() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY2_OTH_MODEL_MCColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.CATEGORY2_OTH_MODEL_MCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property CATEGORY2_MC_OTHER_DETAIL() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY2_MC_OTHER_DETAILColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'CATEGORY2_MC_OTHER_DETAIL' in table 'TB_MACHINE_DATA' is DB"& _ 
-                            "Null.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.CATEGORY2_MC_OTHER_DETAILColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MAKER() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MAKERColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MAKER' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MAKERColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property COUNTRY() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.COUNTRYColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'COUNTRY' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.COUNTRYColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SUPPLIER() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.SUPPLIERColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SUPPLIER' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.SUPPLIERColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property PROVIDER() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.PROVIDERColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PROVIDER' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.PROVIDERColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property TEL() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.TELColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'TEL' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.TELColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property TYPE_MC() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.TYPE_MCColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'TYPE_MC' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.TYPE_MCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SIZE_HP_MC() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.SIZE_HP_MCColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SIZE_HP_MC' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.SIZE_HP_MCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DIVISION() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.DIVISIONColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DIVISION' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DIVISIONColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DEPARTMENT() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.DEPARTMENTColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DEPARTMENT' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DEPARTMENTColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SECTION() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.SECTIONColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SECTION' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.SECTIONColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MC_NAME() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NAMEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MC_NAMEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MC_NO1() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO1Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO1' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MC_NO1Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MC_NO2() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO2Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO2' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MC_NO2Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MC_NO3() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO3Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO3' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MC_NO3Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MC_NO4() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO4Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO4' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MC_NO4Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MC_NO5() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO5Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO5' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MC_NO5Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MC_NO6() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO6Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO6' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MC_NO6Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MC_NO7() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO7Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO7' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MC_NO7Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MC_NO8() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO8Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO8' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MC_NO8Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MC_NO9() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO9Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO9' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MC_NO9Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MC_NO10() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO10Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO10' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MC_NO10Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DANGER_CHEME_1() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_1Column),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_1Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DANGER_CHEME_2() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_2Column),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_2Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DANGER_CHEME_3() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_3Column),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_3Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DANGER_CHEME_4() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_4Column),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_4Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DANGER_CHEME_NAME() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_NAMEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DANGER_CHEME_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_NAMEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property CAS_NO() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.CAS_NOColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'CAS_NO' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.CAS_NOColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property FLAMMABLE() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.FLAMMABLEColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.FLAMMABLEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property CORROSIVE() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.CORROSIVEColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.CORROSIVEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property POISON() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.POISONColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.POISONColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property GAS() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.GASColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.GASColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SUBSTANCE_OTHER() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.SUBSTANCE_OTHERColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.SUBSTANCE_OTHERColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SUBSTANCE_OTHER_DETAIL() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.SUBSTANCE_OTHER_DETAILColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SUBSTANCE_OTHER_DETAIL' in table 'TB_MACHINE_DATA' is DBNul"& _ 
-                            "l.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.SUBSTANCE_OTHER_DETAILColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OBJ_POWDER() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_POWDERColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OBJ_POWDERColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OBJ_HEAT() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_HEATColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OBJ_HEATColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OBJ_NOISE() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_NOISEColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OBJ_NOISEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OBJ_VIBRATE() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_VIBRATEColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OBJ_VIBRATEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OBJ_POISONGAS() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_POISONGASColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OBJ_POISONGASColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OBJ_WASTE_WATER() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_WASTE_WATERColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OBJ_WASTE_WATERColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OBJ_RAY() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_RAYColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OBJ_RAYColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OBJ_SMOKE() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_SMOKEColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OBJ_SMOKEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OBJ_ELECTRIC_WAVE() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_ELECTRIC_WAVEColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OBJ_ELECTRIC_WAVEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OBJ_OTHER() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_OTHERColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OBJ_OTHERColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OBJ_OTHER_DETAIL() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_OTHER_DETAILColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'OBJ_OTHER_DETAIL' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OBJ_OTHER_DETAILColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OBJ_CHEME_NAME() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_CHEME_NAMEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'OBJ_CHEME_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OBJ_CHEME_NAMEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_HELMET() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_HELMETColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_HELMETColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_GLASSES() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_GLASSESColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_GLASSESColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_CHEMICAL_MASK() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CHEMICAL_MASKColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CHEMICAL_MASKColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_BIB_PROTECT_CHEMECAL() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_BIB_PROTECT_CHEMECALColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_BIB_PROTECT_CHEMECALColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_CHEMICAL_GLOVES() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CHEMICAL_GLOVESColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CHEMICAL_GLOVESColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_HEAT_RESISTANT_GLOVES() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_HEAT_RESISTANT_GLOVESColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_HEAT_RESISTANT_GLOVESColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_CUT_PROTECT_GLOVES() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CUT_PROTECT_GLOVESColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CUT_PROTECT_GLOVESColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_EYE_COVER() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_EYE_COVERColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_EYE_COVERColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_FACE_SHIELD() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_FACE_SHIELDColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_FACE_SHIELDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_DUST_MASK() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_DUST_MASKColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_DUST_MASKColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_CHEMICAL_PACK() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CHEMICAL_PACKColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CHEMICAL_PACKColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_ELECTRIC_GLOVES() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_ELECTRIC_GLOVESColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_ELECTRIC_GLOVESColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_OTHER() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_OTHERColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_OTHERColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EQUIPMENT_OTHER_DETAIL() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_OTHER_DETAILColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'EQUIPMENT_OTHER_DETAIL' in table 'TB_MACHINE_DATA' is DBNul"& _ 
-                            "l.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_OTHER_DETAILColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_MC() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_MCColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_MCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_CHEMECALS() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_CHEMECALSColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_CHEMECALSColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_ENVIRONMENTAL() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_ENVIRONMENTALColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_ENVIRONMENTALColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_HIGH_PRESSURE_GAS() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_HIGH_PRESSURE_GASColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_HIGH_PRESSURE_GASColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_PREVENT_STOP_FIRE() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_PREVENT_STOP_FIREColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_PREVENT_STOP_FIREColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_FACTORY() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_FACTORYColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_FACTORYColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_FUEL_REGULATORY() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_FUEL_REGULATORYColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_FUEL_REGULATORYColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_OTHER() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_OTHERColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_OTHERColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_OTHER_DETAIL() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_OTHER_DETAILColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAW_OTHER_DETAIL' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_OTHER_DETAILColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_NAME() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_NAMEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAW_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_NAMEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_NOTICE() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_NOTICEColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_NOTICEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_NOTICE_DETAIL() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_NOTICE_DETAILColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAW_NOTICE_DETAIL' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_NOTICE_DETAILColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_APPROVE() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_APPROVEColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_APPROVEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_APPROVE_DETAIL() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_APPROVE_DETAILColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAW_APPROVE_DETAIL' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_APPROVE_DETAILColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_CHECK() As Boolean
-            Get
-                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_CHECKColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_CHECKColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAW_CHECK_DETAIL() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_CHECK_DETAILColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAW_CHECK_DETAIL' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAW_CHECK_DETAILColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property IMG_TEMP_STAMP() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMPColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'IMG_TEMP_STAMP' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMPColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property IMG_TEMP_STAMP_CONTENT_TYPE() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_CONTENT_TYPEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'IMG_TEMP_STAMP_CONTENT_TYPE' in table 'TB_MACHINE_DATA' is "& _ 
-                            "DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_CONTENT_TYPEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property IMG_TEMP_STAMP_DATA() As Byte()
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_DATAColumn),Byte())
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'IMG_TEMP_STAMP_DATA' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_DATAColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property REQUEST_NAME_APPROVE() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.REQUEST_NAME_APPROVEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'REQUEST_NAME_APPROVE' in table 'TB_MACHINE_DATA' is DBNull."& _ 
-                            "", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.REQUEST_NAME_APPROVEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property REQUEST_APPROVE_DATE() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.REQUEST_APPROVE_DATEColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'REQUEST_APPROVE_DATE' in table 'TB_MACHINE_DATA' is DBNull."& _ 
-                            "", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.REQUEST_APPROVE_DATEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SECT_MGR_NAME_APPROVE() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.SECT_MGR_NAME_APPROVEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SECT_MGR_NAME_APPROVE' in table 'TB_MACHINE_DATA' is DBNull"& _ 
-                            ".", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.SECT_MGR_NAME_APPROVEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SECT_MGR_APPROVE_DATE() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.SECT_MGR_APPROVE_DATEColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SECT_MGR_APPROVE_DATE' in table 'TB_MACHINE_DATA' is DBNull"& _ 
-                            ".", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.SECT_MGR_APPROVE_DATEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DEPT_MGR_NAME_APPROVE() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.DEPT_MGR_NAME_APPROVEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DEPT_MGR_NAME_APPROVE' in table 'TB_MACHINE_DATA' is DBNull"& _ 
-                            ".", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DEPT_MGR_NAME_APPROVEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DEPT_MGR_APPROVE_DATE() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.DEPT_MGR_APPROVE_DATEColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DEPT_MGR_APPROVE_DATE' in table 'TB_MACHINE_DATA' is DBNull"& _ 
-                            ".", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DEPT_MGR_APPROVE_DATEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DIV_MGR_NAME_APPROVE() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.DIV_MGR_NAME_APPROVEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DIV_MGR_NAME_APPROVE' in table 'TB_MACHINE_DATA' is DBNull."& _ 
-                            "", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DIV_MGR_NAME_APPROVEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DIV_MGR_APPROVE_DATE() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.DIV_MGR_APPROVE_DATEColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DIV_MGR_APPROVE_DATE' in table 'TB_MACHINE_DATA' is DBNull."& _ 
-                            "", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DIV_MGR_APPROVE_DATEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MCEQ_SUBCOM_NAME_APPROVE() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_NAME_APPROVEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MCEQ_SUBCOM_NAME_APPROVE' in table 'TB_MACHINE_DATA' is DBN"& _ 
-                            "ull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_NAME_APPROVEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MCEQ_SUBCOM_APPROVE_DATE() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_APPROVE_DATEColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'MCEQ_SUBCOM_APPROVE_DATE' in table 'TB_MACHINE_DATA' is DBN"& _ 
-                            "ull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_APPROVE_DATEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SAFETY_OFFICER_NAME_APPROVE() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_NAME_APPROVEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SAFETY_OFFICER_NAME_APPROVE' in table 'TB_MACHINE_DATA' is "& _ 
-                            "DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_NAME_APPROVEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SAFETY_OFFICER_APPROVE_DATE() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_APPROVE_DATEColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SAFETY_OFFICER_APPROVE_DATE' in table 'TB_MACHINE_DATA' is "& _ 
-                            "DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_APPROVE_DATEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SAFETY_MGR_NAME_APPROVE() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.SAFETY_MGR_NAME_APPROVEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SAFETY_MGR_NAME_APPROVE' in table 'TB_MACHINE_DATA' is DBNu"& _ 
-                            "ll.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.SAFETY_MGR_NAME_APPROVEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SAFETY_MGR_APPROVE_DATE() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.SAFETY_MGR_APPROVE_DATEColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SAFETY_MGR_APPROVE_DATE' in table 'TB_MACHINE_DATA' is DBNu"& _ 
-                            "ll.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.SAFETY_MGR_APPROVE_DATEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OPNO_ADD() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.OPNO_ADDColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'OPNO_ADD' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OPNO_ADDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DATE_ADD() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.DATE_ADDColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DATE_ADD' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DATE_ADDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property OPNO_UPDATE() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.OPNO_UPDATEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'OPNO_UPDATE' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.OPNO_UPDATEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DATE_UPDATE() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.DATE_UPDATEColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DATE_UPDATE' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DATE_UPDATEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property STATUS_ID() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.STATUS_IDColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'STATUS_ID' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.STATUS_IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property STATUS_NAME() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.STATUS_NAMEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'STATUS_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.STATUS_NAMEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property IP() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.IPColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'IP' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.IPColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DOCUMENT_ATTACH_NAME() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_NAMEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DOCUMENT_ATTACH_NAME' in table 'TB_MACHINE_DATA' is DBNull."& _ 
-                            "", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_NAMEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DOCUMENT_ATTACH_CONTENT_TYPE() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_CONTENT_TYPEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DOCUMENT_ATTACH_CONTENT_TYPE' in table 'TB_MACHINE_DATA' is"& _ 
-                            " DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_CONTENT_TYPEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DOCUMENT_ATTACH_DATA() As Byte()
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_DATAColumn),Byte())
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DOCUMENT_ATTACH_DATA' in table 'TB_MACHINE_DATA' is DBNull."& _ 
-                            "", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_DATAColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property IMAGE_ATTACH_NAME() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_NAMEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'IMAGE_ATTACH_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_NAMEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property IMAGE_ATTACH_CONTENT_TYPE() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_CONTENT_TYPEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'IMAGE_ATTACH_CONTENT_TYPE' in table 'TB_MACHINE_DATA' is DB"& _ 
-                            "Null.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_CONTENT_TYPEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property IMAGE_ATTACH_DATA() As Byte()
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_DATAColumn),Byte())
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'IMAGE_ATTACH_DATA' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_DATAColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAYOUT_ATTACH_NAME() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_NAMEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAYOUT_ATTACH_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_NAMEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAYOUT_ATTACH_CONTENT_TYPE() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_CONTENT_TYPEColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAYOUT_ATTACH_CONTENT_TYPE' in table 'TB_MACHINE_DATA' is D"& _ 
-                            "BNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_CONTENT_TYPEColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property LAYOUT_ATTACH_DATA() As Byte()
-            Get
-                Try 
-                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_DATAColumn),Byte())
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAYOUT_ATTACH_DATA' in table 'TB_MACHINE_DATA' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_DATAColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsREGISTER_DATENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.REGISTER_DATEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetREGISTER_DATENull()
-            Me(Me.tableTB_MACHINE_DATA.REGISTER_DATEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsCATEGORY1_MC_OTHER_DETAILNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.CATEGORY1_MC_OTHER_DETAILColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetCATEGORY1_MC_OTHER_DETAILNull()
-            Me(Me.tableTB_MACHINE_DATA.CATEGORY1_MC_OTHER_DETAILColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsCATEGORY2_MC_OTHER_DETAILNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.CATEGORY2_MC_OTHER_DETAILColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetCATEGORY2_MC_OTHER_DETAILNull()
-            Me(Me.tableTB_MACHINE_DATA.CATEGORY2_MC_OTHER_DETAILColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMAKERNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MAKERColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMAKERNull()
-            Me(Me.tableTB_MACHINE_DATA.MAKERColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsCOUNTRYNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.COUNTRYColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetCOUNTRYNull()
-            Me(Me.tableTB_MACHINE_DATA.COUNTRYColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSUPPLIERNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SUPPLIERColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSUPPLIERNull()
-            Me(Me.tableTB_MACHINE_DATA.SUPPLIERColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsPROVIDERNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.PROVIDERColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetPROVIDERNull()
-            Me(Me.tableTB_MACHINE_DATA.PROVIDERColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsTELNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.TELColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetTELNull()
-            Me(Me.tableTB_MACHINE_DATA.TELColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsTYPE_MCNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.TYPE_MCColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetTYPE_MCNull()
-            Me(Me.tableTB_MACHINE_DATA.TYPE_MCColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSIZE_HP_MCNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SIZE_HP_MCColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSIZE_HP_MCNull()
-            Me(Me.tableTB_MACHINE_DATA.SIZE_HP_MCColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDIVISIONNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DIVISIONColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDIVISIONNull()
-            Me(Me.tableTB_MACHINE_DATA.DIVISIONColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDEPARTMENTNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DEPARTMENTColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDEPARTMENTNull()
-            Me(Me.tableTB_MACHINE_DATA.DEPARTMENTColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSECTIONNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SECTIONColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSECTIONNull()
-            Me(Me.tableTB_MACHINE_DATA.SECTIONColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMC_NAMENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NAMEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMC_NAMENull()
-            Me(Me.tableTB_MACHINE_DATA.MC_NAMEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMC_NO1Null() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO1Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMC_NO1Null()
-            Me(Me.tableTB_MACHINE_DATA.MC_NO1Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMC_NO2Null() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO2Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMC_NO2Null()
-            Me(Me.tableTB_MACHINE_DATA.MC_NO2Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMC_NO3Null() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO3Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMC_NO3Null()
-            Me(Me.tableTB_MACHINE_DATA.MC_NO3Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMC_NO4Null() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO4Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMC_NO4Null()
-            Me(Me.tableTB_MACHINE_DATA.MC_NO4Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMC_NO5Null() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO5Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMC_NO5Null()
-            Me(Me.tableTB_MACHINE_DATA.MC_NO5Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMC_NO6Null() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO6Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMC_NO6Null()
-            Me(Me.tableTB_MACHINE_DATA.MC_NO6Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMC_NO7Null() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO7Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMC_NO7Null()
-            Me(Me.tableTB_MACHINE_DATA.MC_NO7Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMC_NO8Null() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO8Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMC_NO8Null()
-            Me(Me.tableTB_MACHINE_DATA.MC_NO8Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMC_NO9Null() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO9Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMC_NO9Null()
-            Me(Me.tableTB_MACHINE_DATA.MC_NO9Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMC_NO10Null() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO10Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMC_NO10Null()
-            Me(Me.tableTB_MACHINE_DATA.MC_NO10Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDANGER_CHEME_NAMENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DANGER_CHEME_NAMEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDANGER_CHEME_NAMENull()
-            Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_NAMEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsCAS_NONull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.CAS_NOColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetCAS_NONull()
-            Me(Me.tableTB_MACHINE_DATA.CAS_NOColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSUBSTANCE_OTHER_DETAILNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SUBSTANCE_OTHER_DETAILColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSUBSTANCE_OTHER_DETAILNull()
-            Me(Me.tableTB_MACHINE_DATA.SUBSTANCE_OTHER_DETAILColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsOBJ_OTHER_DETAILNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.OBJ_OTHER_DETAILColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetOBJ_OTHER_DETAILNull()
-            Me(Me.tableTB_MACHINE_DATA.OBJ_OTHER_DETAILColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsOBJ_CHEME_NAMENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.OBJ_CHEME_NAMEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetOBJ_CHEME_NAMENull()
-            Me(Me.tableTB_MACHINE_DATA.OBJ_CHEME_NAMEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsEQUIPMENT_OTHER_DETAILNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.EQUIPMENT_OTHER_DETAILColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetEQUIPMENT_OTHER_DETAILNull()
-            Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_OTHER_DETAILColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsLAW_OTHER_DETAILNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAW_OTHER_DETAILColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetLAW_OTHER_DETAILNull()
-            Me(Me.tableTB_MACHINE_DATA.LAW_OTHER_DETAILColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsLAW_NAMENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAW_NAMEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetLAW_NAMENull()
-            Me(Me.tableTB_MACHINE_DATA.LAW_NAMEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsLAW_NOTICE_DETAILNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAW_NOTICE_DETAILColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetLAW_NOTICE_DETAILNull()
-            Me(Me.tableTB_MACHINE_DATA.LAW_NOTICE_DETAILColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsLAW_APPROVE_DETAILNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAW_APPROVE_DETAILColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetLAW_APPROVE_DETAILNull()
-            Me(Me.tableTB_MACHINE_DATA.LAW_APPROVE_DETAILColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsLAW_CHECK_DETAILNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAW_CHECK_DETAILColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetLAW_CHECK_DETAILNull()
-            Me(Me.tableTB_MACHINE_DATA.LAW_CHECK_DETAILColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsIMG_TEMP_STAMPNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMPColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetIMG_TEMP_STAMPNull()
-            Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMPColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsIMG_TEMP_STAMP_CONTENT_TYPENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_CONTENT_TYPEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetIMG_TEMP_STAMP_CONTENT_TYPENull()
-            Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_CONTENT_TYPEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsIMG_TEMP_STAMP_DATANull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_DATAColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetIMG_TEMP_STAMP_DATANull()
-            Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_DATAColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsREQUEST_NAME_APPROVENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.REQUEST_NAME_APPROVEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetREQUEST_NAME_APPROVENull()
-            Me(Me.tableTB_MACHINE_DATA.REQUEST_NAME_APPROVEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsREQUEST_APPROVE_DATENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.REQUEST_APPROVE_DATEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetREQUEST_APPROVE_DATENull()
-            Me(Me.tableTB_MACHINE_DATA.REQUEST_APPROVE_DATEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSECT_MGR_NAME_APPROVENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SECT_MGR_NAME_APPROVEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSECT_MGR_NAME_APPROVENull()
-            Me(Me.tableTB_MACHINE_DATA.SECT_MGR_NAME_APPROVEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSECT_MGR_APPROVE_DATENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SECT_MGR_APPROVE_DATEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSECT_MGR_APPROVE_DATENull()
-            Me(Me.tableTB_MACHINE_DATA.SECT_MGR_APPROVE_DATEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDEPT_MGR_NAME_APPROVENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DEPT_MGR_NAME_APPROVEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDEPT_MGR_NAME_APPROVENull()
-            Me(Me.tableTB_MACHINE_DATA.DEPT_MGR_NAME_APPROVEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDEPT_MGR_APPROVE_DATENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DEPT_MGR_APPROVE_DATEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDEPT_MGR_APPROVE_DATENull()
-            Me(Me.tableTB_MACHINE_DATA.DEPT_MGR_APPROVE_DATEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDIV_MGR_NAME_APPROVENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DIV_MGR_NAME_APPROVEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDIV_MGR_NAME_APPROVENull()
-            Me(Me.tableTB_MACHINE_DATA.DIV_MGR_NAME_APPROVEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDIV_MGR_APPROVE_DATENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DIV_MGR_APPROVE_DATEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDIV_MGR_APPROVE_DATENull()
-            Me(Me.tableTB_MACHINE_DATA.DIV_MGR_APPROVE_DATEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMCEQ_SUBCOM_NAME_APPROVENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_NAME_APPROVEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMCEQ_SUBCOM_NAME_APPROVENull()
-            Me(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_NAME_APPROVEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsMCEQ_SUBCOM_APPROVE_DATENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_APPROVE_DATEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetMCEQ_SUBCOM_APPROVE_DATENull()
-            Me(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_APPROVE_DATEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSAFETY_OFFICER_NAME_APPROVENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_NAME_APPROVEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSAFETY_OFFICER_NAME_APPROVENull()
-            Me(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_NAME_APPROVEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSAFETY_OFFICER_APPROVE_DATENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_APPROVE_DATEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSAFETY_OFFICER_APPROVE_DATENull()
-            Me(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_APPROVE_DATEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSAFETY_MGR_NAME_APPROVENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SAFETY_MGR_NAME_APPROVEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSAFETY_MGR_NAME_APPROVENull()
-            Me(Me.tableTB_MACHINE_DATA.SAFETY_MGR_NAME_APPROVEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSAFETY_MGR_APPROVE_DATENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SAFETY_MGR_APPROVE_DATEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSAFETY_MGR_APPROVE_DATENull()
-            Me(Me.tableTB_MACHINE_DATA.SAFETY_MGR_APPROVE_DATEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsOPNO_ADDNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.OPNO_ADDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetOPNO_ADDNull()
-            Me(Me.tableTB_MACHINE_DATA.OPNO_ADDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDATE_ADDNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DATE_ADDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDATE_ADDNull()
-            Me(Me.tableTB_MACHINE_DATA.DATE_ADDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsOPNO_UPDATENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.OPNO_UPDATEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetOPNO_UPDATENull()
-            Me(Me.tableTB_MACHINE_DATA.OPNO_UPDATEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDATE_UPDATENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DATE_UPDATEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDATE_UPDATENull()
-            Me(Me.tableTB_MACHINE_DATA.DATE_UPDATEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSTATUS_IDNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.STATUS_IDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSTATUS_IDNull()
-            Me(Me.tableTB_MACHINE_DATA.STATUS_IDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSTATUS_NAMENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.STATUS_NAMEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSTATUS_NAMENull()
-            Me(Me.tableTB_MACHINE_DATA.STATUS_NAMEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsIPNull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IPColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetIPNull()
-            Me(Me.tableTB_MACHINE_DATA.IPColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDOCUMENT_ATTACH_NAMENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_NAMEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDOCUMENT_ATTACH_NAMENull()
-            Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_NAMEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDOCUMENT_ATTACH_CONTENT_TYPENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_CONTENT_TYPEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDOCUMENT_ATTACH_CONTENT_TYPENull()
-            Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_CONTENT_TYPEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDOCUMENT_ATTACH_DATANull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_DATAColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDOCUMENT_ATTACH_DATANull()
-            Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_DATAColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsIMAGE_ATTACH_NAMENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_NAMEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetIMAGE_ATTACH_NAMENull()
-            Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_NAMEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsIMAGE_ATTACH_CONTENT_TYPENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_CONTENT_TYPEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetIMAGE_ATTACH_CONTENT_TYPENull()
-            Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_CONTENT_TYPEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsIMAGE_ATTACH_DATANull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_DATAColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetIMAGE_ATTACH_DATANull()
-            Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_DATAColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsLAYOUT_ATTACH_NAMENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_NAMEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetLAYOUT_ATTACH_NAMENull()
-            Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_NAMEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsLAYOUT_ATTACH_CONTENT_TYPENull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_CONTENT_TYPEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetLAYOUT_ATTACH_CONTENT_TYPENull()
-            Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_CONTENT_TYPEColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsLAYOUT_ATTACH_DATANull() As Boolean
-            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_DATAColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetLAYOUT_ATTACH_DATANull()
-            Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_DATAColumn) = Global.System.Convert.DBNull
-        End Sub
     End Class
     
     '''<summary>
@@ -24161,6 +21702,2465 @@ Partial Public Class DSMachine
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
+    Partial Public Class TB_MACHINE_DATARow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableTB_MACHINE_DATA As TB_MACHINE_DATADataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableTB_MACHINE_DATA = CType(Me.Table,TB_MACHINE_DATADataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ID() As Integer
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.IDColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC_NO() As String
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NOColumn),String)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MC_NOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property REGISTER_DATE() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.REGISTER_DATEColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'REGISTER_DATE' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.REGISTER_DATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property REGISTER_NEW_MC() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.REGISTER_NEW_MCColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.REGISTER_NEW_MCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CANCEL_MC() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.CANCEL_MCColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.CANCEL_MCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CATEGORY1_NEW_MC() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY1_NEW_MCColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.CATEGORY1_NEW_MCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CATEGORY1_TF_MC() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY1_TF_MCColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.CATEGORY1_TF_MCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CATEGORY1_OTH_MC() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY1_OTH_MCColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.CATEGORY1_OTH_MCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CATEGORY1_MC_OTHER_DETAIL() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY1_MC_OTHER_DETAILColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CATEGORY1_MC_OTHER_DETAIL' in table 'TB_MACHINE_DATA' is DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.CATEGORY1_MC_OTHER_DETAILColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CATEGORY2_NEW_MODEL_MC() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY2_NEW_MODEL_MCColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.CATEGORY2_NEW_MODEL_MCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CATEGORY2_ORIGINAL_MODEL_MC() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY2_ORIGINAL_MODEL_MCColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.CATEGORY2_ORIGINAL_MODEL_MCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CATEGORY2_OTH_MODEL_MC() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY2_OTH_MODEL_MCColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.CATEGORY2_OTH_MODEL_MCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CATEGORY2_MC_OTHER_DETAIL() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.CATEGORY2_MC_OTHER_DETAILColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CATEGORY2_MC_OTHER_DETAIL' in table 'TB_MACHINE_DATA' is DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.CATEGORY2_MC_OTHER_DETAILColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MAKER() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MAKERColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MAKER' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MAKERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property COUNTRY() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.COUNTRYColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'COUNTRY' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.COUNTRYColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SUPPLIER() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.SUPPLIERColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SUPPLIER' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.SUPPLIERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property PROVIDER() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.PROVIDERColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PROVIDER' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.PROVIDERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TEL() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.TELColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TEL' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.TELColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TYPE_MC() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.TYPE_MCColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TYPE_MC' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.TYPE_MCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SIZE_HP_MC() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.SIZE_HP_MCColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SIZE_HP_MC' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.SIZE_HP_MCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DIVISION() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.DIVISIONColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DIVISION' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DIVISIONColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DEPARTMENT() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.DEPARTMENTColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DEPARTMENT' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DEPARTMENTColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SECTION() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.SECTIONColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SECTION' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.SECTIONColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC_NAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MC_NAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC_NO1() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO1' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MC_NO1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC_NO2() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO2' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MC_NO2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC_NO3() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO3Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO3' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MC_NO3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC_NO4() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO4Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO4' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MC_NO4Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC_NO5() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO5Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO5' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MC_NO5Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC_NO6() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO6Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO6' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MC_NO6Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC_NO7() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO7Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO7' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MC_NO7Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC_NO8() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO8Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO8' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MC_NO8Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC_NO9() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO9Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO9' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MC_NO9Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC_NO10() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MC_NO10Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC_NO10' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MC_NO10Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DANGER_CHEME_1() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_1Column),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DANGER_CHEME_2() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_2Column),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DANGER_CHEME_3() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_3Column),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DANGER_CHEME_4() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_4Column),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_4Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DANGER_CHEME_NAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_NAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DANGER_CHEME_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_NAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CAS_NO() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.CAS_NOColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CAS_NO' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.CAS_NOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property FLAMMABLE() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.FLAMMABLEColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.FLAMMABLEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CORROSIVE() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.CORROSIVEColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.CORROSIVEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property POISON() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.POISONColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.POISONColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property GAS() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.GASColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.GASColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SUBSTANCE_OTHER() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.SUBSTANCE_OTHERColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.SUBSTANCE_OTHERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SUBSTANCE_OTHER_DETAIL() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.SUBSTANCE_OTHER_DETAILColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SUBSTANCE_OTHER_DETAIL' in table 'TB_MACHINE_DATA' is DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.SUBSTANCE_OTHER_DETAILColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OBJ_POWDER() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_POWDERColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OBJ_POWDERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OBJ_HEAT() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_HEATColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OBJ_HEATColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OBJ_NOISE() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_NOISEColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OBJ_NOISEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OBJ_VIBRATE() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_VIBRATEColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OBJ_VIBRATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OBJ_POISONGAS() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_POISONGASColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OBJ_POISONGASColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OBJ_WASTE_WATER() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_WASTE_WATERColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OBJ_WASTE_WATERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OBJ_RAY() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_RAYColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OBJ_RAYColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OBJ_SMOKE() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_SMOKEColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OBJ_SMOKEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OBJ_ELECTRIC_WAVE() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_ELECTRIC_WAVEColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OBJ_ELECTRIC_WAVEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OBJ_OTHER() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_OTHERColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OBJ_OTHERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OBJ_OTHER_DETAIL() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_OTHER_DETAILColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'OBJ_OTHER_DETAIL' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OBJ_OTHER_DETAILColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OBJ_CHEME_NAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.OBJ_CHEME_NAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'OBJ_CHEME_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OBJ_CHEME_NAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_HELMET() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_HELMETColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_HELMETColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_GLASSES() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_GLASSESColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_GLASSESColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_CHEMICAL_MASK() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CHEMICAL_MASKColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CHEMICAL_MASKColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_BIB_PROTECT_CHEMECAL() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_BIB_PROTECT_CHEMECALColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_BIB_PROTECT_CHEMECALColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_CHEMICAL_GLOVES() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CHEMICAL_GLOVESColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CHEMICAL_GLOVESColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_HEAT_RESISTANT_GLOVES() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_HEAT_RESISTANT_GLOVESColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_HEAT_RESISTANT_GLOVESColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_CUT_PROTECT_GLOVES() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CUT_PROTECT_GLOVESColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CUT_PROTECT_GLOVESColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_EYE_COVER() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_EYE_COVERColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_EYE_COVERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_FACE_SHIELD() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_FACE_SHIELDColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_FACE_SHIELDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_DUST_MASK() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_DUST_MASKColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_DUST_MASKColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_CHEMICAL_PACK() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CHEMICAL_PACKColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_CHEMICAL_PACKColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_ELECTRIC_GLOVES() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_ELECTRIC_GLOVESColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_ELECTRIC_GLOVESColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_OTHER() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_OTHERColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_OTHERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property EQUIPMENT_OTHER_DETAIL() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_OTHER_DETAILColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'EQUIPMENT_OTHER_DETAIL' in table 'TB_MACHINE_DATA' is DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_OTHER_DETAILColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_MC() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_MCColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_MCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_CHEMECALS() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_CHEMECALSColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_CHEMECALSColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_ENVIRONMENTAL() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_ENVIRONMENTALColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_ENVIRONMENTALColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_HIGH_PRESSURE_GAS() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_HIGH_PRESSURE_GASColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_HIGH_PRESSURE_GASColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_PREVENT_STOP_FIRE() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_PREVENT_STOP_FIREColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_PREVENT_STOP_FIREColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_FACTORY() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_FACTORYColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_FACTORYColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_FUEL_REGULATORY() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_FUEL_REGULATORYColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_FUEL_REGULATORYColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_OTHER() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_OTHERColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_OTHERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_OTHER_DETAIL() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_OTHER_DETAILColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAW_OTHER_DETAIL' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_OTHER_DETAILColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_NAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_NAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAW_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_NAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_NOTICE() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_NOTICEColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_NOTICEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_NOTICE_DETAIL() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_NOTICE_DETAILColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAW_NOTICE_DETAIL' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_NOTICE_DETAILColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_APPROVE() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_APPROVEColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_APPROVEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_APPROVE_DETAIL() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_APPROVE_DETAILColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAW_APPROVE_DETAIL' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_APPROVE_DETAILColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_CHECK() As Boolean
+            Get
+                Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_CHECKColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_CHECKColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAW_CHECK_DETAIL() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAW_CHECK_DETAILColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAW_CHECK_DETAIL' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAW_CHECK_DETAILColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property IMG_TEMP_STAMP() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMPColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'IMG_TEMP_STAMP' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMPColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property IMG_TEMP_STAMP_CONTENT_TYPE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_CONTENT_TYPEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'IMG_TEMP_STAMP_CONTENT_TYPE' in table 'TB_MACHINE_DATA' is "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_CONTENT_TYPEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property IMG_TEMP_STAMP_DATA() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_DATAColumn),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'IMG_TEMP_STAMP_DATA' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_DATAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property REQUEST_NAME_APPROVE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.REQUEST_NAME_APPROVEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'REQUEST_NAME_APPROVE' in table 'TB_MACHINE_DATA' is DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.REQUEST_NAME_APPROVEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property REQUEST_APPROVE_DATE() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.REQUEST_APPROVE_DATEColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'REQUEST_APPROVE_DATE' in table 'TB_MACHINE_DATA' is DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.REQUEST_APPROVE_DATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SECT_MGR_NAME_APPROVE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.SECT_MGR_NAME_APPROVEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SECT_MGR_NAME_APPROVE' in table 'TB_MACHINE_DATA' is DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.SECT_MGR_NAME_APPROVEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SECT_MGR_APPROVE_DATE() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.SECT_MGR_APPROVE_DATEColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SECT_MGR_APPROVE_DATE' in table 'TB_MACHINE_DATA' is DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.SECT_MGR_APPROVE_DATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DEPT_MGR_NAME_APPROVE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.DEPT_MGR_NAME_APPROVEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DEPT_MGR_NAME_APPROVE' in table 'TB_MACHINE_DATA' is DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DEPT_MGR_NAME_APPROVEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DEPT_MGR_APPROVE_DATE() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.DEPT_MGR_APPROVE_DATEColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DEPT_MGR_APPROVE_DATE' in table 'TB_MACHINE_DATA' is DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DEPT_MGR_APPROVE_DATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DIV_MGR_NAME_APPROVE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.DIV_MGR_NAME_APPROVEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DIV_MGR_NAME_APPROVE' in table 'TB_MACHINE_DATA' is DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DIV_MGR_NAME_APPROVEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DIV_MGR_APPROVE_DATE() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.DIV_MGR_APPROVE_DATEColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DIV_MGR_APPROVE_DATE' in table 'TB_MACHINE_DATA' is DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DIV_MGR_APPROVE_DATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MCEQ_SUBCOM_NAME_APPROVE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_NAME_APPROVEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MCEQ_SUBCOM_NAME_APPROVE' in table 'TB_MACHINE_DATA' is DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_NAME_APPROVEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MCEQ_SUBCOM_APPROVE_DATE() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_APPROVE_DATEColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MCEQ_SUBCOM_APPROVE_DATE' in table 'TB_MACHINE_DATA' is DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_APPROVE_DATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SAFETY_OFFICER_NAME_APPROVE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_NAME_APPROVEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SAFETY_OFFICER_NAME_APPROVE' in table 'TB_MACHINE_DATA' is "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_NAME_APPROVEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SAFETY_OFFICER_APPROVE_DATE() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_APPROVE_DATEColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SAFETY_OFFICER_APPROVE_DATE' in table 'TB_MACHINE_DATA' is "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_APPROVE_DATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SAFETY_MGR_NAME_APPROVE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.SAFETY_MGR_NAME_APPROVEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SAFETY_MGR_NAME_APPROVE' in table 'TB_MACHINE_DATA' is DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.SAFETY_MGR_NAME_APPROVEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SAFETY_MGR_APPROVE_DATE() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.SAFETY_MGR_APPROVE_DATEColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SAFETY_MGR_APPROVE_DATE' in table 'TB_MACHINE_DATA' is DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.SAFETY_MGR_APPROVE_DATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OPNO_ADD() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.OPNO_ADDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'OPNO_ADD' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OPNO_ADDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DATE_ADD() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.DATE_ADDColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DATE_ADD' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DATE_ADDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OPNO_UPDATE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.OPNO_UPDATEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'OPNO_UPDATE' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.OPNO_UPDATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DATE_UPDATE() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.DATE_UPDATEColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DATE_UPDATE' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DATE_UPDATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property STATUS_ID() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.STATUS_IDColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'STATUS_ID' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.STATUS_IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property STATUS_NAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.STATUS_NAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'STATUS_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.STATUS_NAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property IP() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.IPColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'IP' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.IPColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DOCUMENT_ATTACH_NAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_NAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DOCUMENT_ATTACH_NAME' in table 'TB_MACHINE_DATA' is DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_NAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DOCUMENT_ATTACH_CONTENT_TYPE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_CONTENT_TYPEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DOCUMENT_ATTACH_CONTENT_TYPE' in table 'TB_MACHINE_DATA' is"& _ 
+                            " DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_CONTENT_TYPEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DOCUMENT_ATTACH_DATA() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_DATAColumn),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DOCUMENT_ATTACH_DATA' in table 'TB_MACHINE_DATA' is DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_DATAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property IMAGE_ATTACH_NAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_NAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'IMAGE_ATTACH_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_NAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property IMAGE_ATTACH_CONTENT_TYPE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_CONTENT_TYPEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'IMAGE_ATTACH_CONTENT_TYPE' in table 'TB_MACHINE_DATA' is DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_CONTENT_TYPEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property IMAGE_ATTACH_DATA() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_DATAColumn),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'IMAGE_ATTACH_DATA' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_DATAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAYOUT_ATTACH_NAME() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_NAMEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAYOUT_ATTACH_NAME' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_NAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAYOUT_ATTACH_CONTENT_TYPE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_CONTENT_TYPEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAYOUT_ATTACH_CONTENT_TYPE' in table 'TB_MACHINE_DATA' is D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_CONTENT_TYPEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LAYOUT_ATTACH_DATA() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_DATAColumn),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'LAYOUT_ATTACH_DATA' in table 'TB_MACHINE_DATA' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_DATAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsREGISTER_DATENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.REGISTER_DATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetREGISTER_DATENull()
+            Me(Me.tableTB_MACHINE_DATA.REGISTER_DATEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCATEGORY1_MC_OTHER_DETAILNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.CATEGORY1_MC_OTHER_DETAILColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCATEGORY1_MC_OTHER_DETAILNull()
+            Me(Me.tableTB_MACHINE_DATA.CATEGORY1_MC_OTHER_DETAILColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCATEGORY2_MC_OTHER_DETAILNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.CATEGORY2_MC_OTHER_DETAILColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCATEGORY2_MC_OTHER_DETAILNull()
+            Me(Me.tableTB_MACHINE_DATA.CATEGORY2_MC_OTHER_DETAILColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMAKERNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MAKERColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMAKERNull()
+            Me(Me.tableTB_MACHINE_DATA.MAKERColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCOUNTRYNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.COUNTRYColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCOUNTRYNull()
+            Me(Me.tableTB_MACHINE_DATA.COUNTRYColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSUPPLIERNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SUPPLIERColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSUPPLIERNull()
+            Me(Me.tableTB_MACHINE_DATA.SUPPLIERColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPROVIDERNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.PROVIDERColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPROVIDERNull()
+            Me(Me.tableTB_MACHINE_DATA.PROVIDERColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTELNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.TELColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTELNull()
+            Me(Me.tableTB_MACHINE_DATA.TELColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTYPE_MCNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.TYPE_MCColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTYPE_MCNull()
+            Me(Me.tableTB_MACHINE_DATA.TYPE_MCColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSIZE_HP_MCNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SIZE_HP_MCColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSIZE_HP_MCNull()
+            Me(Me.tableTB_MACHINE_DATA.SIZE_HP_MCColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDIVISIONNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DIVISIONColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDIVISIONNull()
+            Me(Me.tableTB_MACHINE_DATA.DIVISIONColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDEPARTMENTNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DEPARTMENTColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDEPARTMENTNull()
+            Me(Me.tableTB_MACHINE_DATA.DEPARTMENTColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSECTIONNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SECTIONColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSECTIONNull()
+            Me(Me.tableTB_MACHINE_DATA.SECTIONColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMC_NAMENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMC_NAMENull()
+            Me(Me.tableTB_MACHINE_DATA.MC_NAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMC_NO1Null() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMC_NO1Null()
+            Me(Me.tableTB_MACHINE_DATA.MC_NO1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMC_NO2Null() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMC_NO2Null()
+            Me(Me.tableTB_MACHINE_DATA.MC_NO2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMC_NO3Null() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMC_NO3Null()
+            Me(Me.tableTB_MACHINE_DATA.MC_NO3Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMC_NO4Null() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO4Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMC_NO4Null()
+            Me(Me.tableTB_MACHINE_DATA.MC_NO4Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMC_NO5Null() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO5Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMC_NO5Null()
+            Me(Me.tableTB_MACHINE_DATA.MC_NO5Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMC_NO6Null() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO6Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMC_NO6Null()
+            Me(Me.tableTB_MACHINE_DATA.MC_NO6Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMC_NO7Null() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO7Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMC_NO7Null()
+            Me(Me.tableTB_MACHINE_DATA.MC_NO7Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMC_NO8Null() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO8Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMC_NO8Null()
+            Me(Me.tableTB_MACHINE_DATA.MC_NO8Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMC_NO9Null() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO9Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMC_NO9Null()
+            Me(Me.tableTB_MACHINE_DATA.MC_NO9Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMC_NO10Null() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MC_NO10Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMC_NO10Null()
+            Me(Me.tableTB_MACHINE_DATA.MC_NO10Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDANGER_CHEME_NAMENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DANGER_CHEME_NAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDANGER_CHEME_NAMENull()
+            Me(Me.tableTB_MACHINE_DATA.DANGER_CHEME_NAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCAS_NONull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.CAS_NOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCAS_NONull()
+            Me(Me.tableTB_MACHINE_DATA.CAS_NOColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSUBSTANCE_OTHER_DETAILNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SUBSTANCE_OTHER_DETAILColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSUBSTANCE_OTHER_DETAILNull()
+            Me(Me.tableTB_MACHINE_DATA.SUBSTANCE_OTHER_DETAILColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsOBJ_OTHER_DETAILNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.OBJ_OTHER_DETAILColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetOBJ_OTHER_DETAILNull()
+            Me(Me.tableTB_MACHINE_DATA.OBJ_OTHER_DETAILColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsOBJ_CHEME_NAMENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.OBJ_CHEME_NAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetOBJ_CHEME_NAMENull()
+            Me(Me.tableTB_MACHINE_DATA.OBJ_CHEME_NAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsEQUIPMENT_OTHER_DETAILNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.EQUIPMENT_OTHER_DETAILColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetEQUIPMENT_OTHER_DETAILNull()
+            Me(Me.tableTB_MACHINE_DATA.EQUIPMENT_OTHER_DETAILColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsLAW_OTHER_DETAILNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAW_OTHER_DETAILColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetLAW_OTHER_DETAILNull()
+            Me(Me.tableTB_MACHINE_DATA.LAW_OTHER_DETAILColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsLAW_NAMENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAW_NAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetLAW_NAMENull()
+            Me(Me.tableTB_MACHINE_DATA.LAW_NAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsLAW_NOTICE_DETAILNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAW_NOTICE_DETAILColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetLAW_NOTICE_DETAILNull()
+            Me(Me.tableTB_MACHINE_DATA.LAW_NOTICE_DETAILColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsLAW_APPROVE_DETAILNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAW_APPROVE_DETAILColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetLAW_APPROVE_DETAILNull()
+            Me(Me.tableTB_MACHINE_DATA.LAW_APPROVE_DETAILColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsLAW_CHECK_DETAILNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAW_CHECK_DETAILColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetLAW_CHECK_DETAILNull()
+            Me(Me.tableTB_MACHINE_DATA.LAW_CHECK_DETAILColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsIMG_TEMP_STAMPNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMPColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetIMG_TEMP_STAMPNull()
+            Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMPColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsIMG_TEMP_STAMP_CONTENT_TYPENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_CONTENT_TYPEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetIMG_TEMP_STAMP_CONTENT_TYPENull()
+            Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_CONTENT_TYPEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsIMG_TEMP_STAMP_DATANull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_DATAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetIMG_TEMP_STAMP_DATANull()
+            Me(Me.tableTB_MACHINE_DATA.IMG_TEMP_STAMP_DATAColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsREQUEST_NAME_APPROVENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.REQUEST_NAME_APPROVEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetREQUEST_NAME_APPROVENull()
+            Me(Me.tableTB_MACHINE_DATA.REQUEST_NAME_APPROVEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsREQUEST_APPROVE_DATENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.REQUEST_APPROVE_DATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetREQUEST_APPROVE_DATENull()
+            Me(Me.tableTB_MACHINE_DATA.REQUEST_APPROVE_DATEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSECT_MGR_NAME_APPROVENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SECT_MGR_NAME_APPROVEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSECT_MGR_NAME_APPROVENull()
+            Me(Me.tableTB_MACHINE_DATA.SECT_MGR_NAME_APPROVEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSECT_MGR_APPROVE_DATENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SECT_MGR_APPROVE_DATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSECT_MGR_APPROVE_DATENull()
+            Me(Me.tableTB_MACHINE_DATA.SECT_MGR_APPROVE_DATEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDEPT_MGR_NAME_APPROVENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DEPT_MGR_NAME_APPROVEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDEPT_MGR_NAME_APPROVENull()
+            Me(Me.tableTB_MACHINE_DATA.DEPT_MGR_NAME_APPROVEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDEPT_MGR_APPROVE_DATENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DEPT_MGR_APPROVE_DATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDEPT_MGR_APPROVE_DATENull()
+            Me(Me.tableTB_MACHINE_DATA.DEPT_MGR_APPROVE_DATEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDIV_MGR_NAME_APPROVENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DIV_MGR_NAME_APPROVEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDIV_MGR_NAME_APPROVENull()
+            Me(Me.tableTB_MACHINE_DATA.DIV_MGR_NAME_APPROVEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDIV_MGR_APPROVE_DATENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DIV_MGR_APPROVE_DATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDIV_MGR_APPROVE_DATENull()
+            Me(Me.tableTB_MACHINE_DATA.DIV_MGR_APPROVE_DATEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMCEQ_SUBCOM_NAME_APPROVENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_NAME_APPROVEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMCEQ_SUBCOM_NAME_APPROVENull()
+            Me(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_NAME_APPROVEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMCEQ_SUBCOM_APPROVE_DATENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_APPROVE_DATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMCEQ_SUBCOM_APPROVE_DATENull()
+            Me(Me.tableTB_MACHINE_DATA.MCEQ_SUBCOM_APPROVE_DATEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSAFETY_OFFICER_NAME_APPROVENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_NAME_APPROVEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSAFETY_OFFICER_NAME_APPROVENull()
+            Me(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_NAME_APPROVEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSAFETY_OFFICER_APPROVE_DATENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_APPROVE_DATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSAFETY_OFFICER_APPROVE_DATENull()
+            Me(Me.tableTB_MACHINE_DATA.SAFETY_OFFICER_APPROVE_DATEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSAFETY_MGR_NAME_APPROVENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SAFETY_MGR_NAME_APPROVEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSAFETY_MGR_NAME_APPROVENull()
+            Me(Me.tableTB_MACHINE_DATA.SAFETY_MGR_NAME_APPROVEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSAFETY_MGR_APPROVE_DATENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.SAFETY_MGR_APPROVE_DATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSAFETY_MGR_APPROVE_DATENull()
+            Me(Me.tableTB_MACHINE_DATA.SAFETY_MGR_APPROVE_DATEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsOPNO_ADDNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.OPNO_ADDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetOPNO_ADDNull()
+            Me(Me.tableTB_MACHINE_DATA.OPNO_ADDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDATE_ADDNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DATE_ADDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDATE_ADDNull()
+            Me(Me.tableTB_MACHINE_DATA.DATE_ADDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsOPNO_UPDATENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.OPNO_UPDATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetOPNO_UPDATENull()
+            Me(Me.tableTB_MACHINE_DATA.OPNO_UPDATEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDATE_UPDATENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DATE_UPDATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDATE_UPDATENull()
+            Me(Me.tableTB_MACHINE_DATA.DATE_UPDATEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSTATUS_IDNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.STATUS_IDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSTATUS_IDNull()
+            Me(Me.tableTB_MACHINE_DATA.STATUS_IDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSTATUS_NAMENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.STATUS_NAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSTATUS_NAMENull()
+            Me(Me.tableTB_MACHINE_DATA.STATUS_NAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsIPNull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IPColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetIPNull()
+            Me(Me.tableTB_MACHINE_DATA.IPColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDOCUMENT_ATTACH_NAMENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_NAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDOCUMENT_ATTACH_NAMENull()
+            Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_NAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDOCUMENT_ATTACH_CONTENT_TYPENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_CONTENT_TYPEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDOCUMENT_ATTACH_CONTENT_TYPENull()
+            Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_CONTENT_TYPEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDOCUMENT_ATTACH_DATANull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_DATAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDOCUMENT_ATTACH_DATANull()
+            Me(Me.tableTB_MACHINE_DATA.DOCUMENT_ATTACH_DATAColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsIMAGE_ATTACH_NAMENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_NAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetIMAGE_ATTACH_NAMENull()
+            Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_NAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsIMAGE_ATTACH_CONTENT_TYPENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_CONTENT_TYPEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetIMAGE_ATTACH_CONTENT_TYPENull()
+            Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_CONTENT_TYPEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsIMAGE_ATTACH_DATANull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_DATAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetIMAGE_ATTACH_DATANull()
+            Me(Me.tableTB_MACHINE_DATA.IMAGE_ATTACH_DATAColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsLAYOUT_ATTACH_NAMENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_NAMEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetLAYOUT_ATTACH_NAMENull()
+            Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_NAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsLAYOUT_ATTACH_CONTENT_TYPENull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_CONTENT_TYPEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetLAYOUT_ATTACH_CONTENT_TYPENull()
+            Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_CONTENT_TYPEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsLAYOUT_ATTACH_DATANull() As Boolean
+            Return Me.IsNull(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_DATAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetLAYOUT_ATTACH_DATANull()
+            Me(Me.tableTB_MACHINE_DATA.LAYOUT_ATTACH_DATAColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
     Partial Public Class ReportRow
         Inherits Global.System.Data.DataRow
         
@@ -24691,42 +24691,6 @@ Partial Public Class DSMachine
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-    Public Class TB_MACHINE_DATARowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As TB_MACHINE_DATARow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub New(ByVal row As TB_MACHINE_DATARow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property Row() As TB_MACHINE_DATARow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Class TB_EQUIPMENT_CHECKRowChangeEvent
         Inherits Global.System.EventArgs
         
@@ -24871,6 +24835,42 @@ Partial Public Class DSMachine
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Class TB_MACHINE_DATARowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As TB_MACHINE_DATARow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New(ByVal row As TB_MACHINE_DATARow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Row() As TB_MACHINE_DATARow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Class ReportRowChangeEvent
         Inherits Global.System.EventArgs
         
@@ -24905,1949 +24905,6 @@ Partial Public Class DSMachine
 End Class
 
 Namespace DSMachineTableAdapters
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class TB_MACHINE_DATATableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
-        
-        Private _connection As Global.System.Data.SqlClient.SqlConnection
-        
-        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
-        
-        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "TB_MACHINE_DATA"
-            tableMapping.ColumnMappings.Add("ID", "ID")
-            tableMapping.ColumnMappings.Add("MC_NO", "MC_NO")
-            tableMapping.ColumnMappings.Add("REGISTER_DATE", "REGISTER_DATE")
-            tableMapping.ColumnMappings.Add("REGISTER_NEW_MC", "REGISTER_NEW_MC")
-            tableMapping.ColumnMappings.Add("CANCEL_MC", "CANCEL_MC")
-            tableMapping.ColumnMappings.Add("CATEGORY1_NEW_MC", "CATEGORY1_NEW_MC")
-            tableMapping.ColumnMappings.Add("CATEGORY1_TF_MC", "CATEGORY1_TF_MC")
-            tableMapping.ColumnMappings.Add("CATEGORY1_OTH_MC", "CATEGORY1_OTH_MC")
-            tableMapping.ColumnMappings.Add("CATEGORY1_MC_OTHER_DETAIL", "CATEGORY1_MC_OTHER_DETAIL")
-            tableMapping.ColumnMappings.Add("CATEGORY2_NEW_MODEL_MC", "CATEGORY2_NEW_MODEL_MC")
-            tableMapping.ColumnMappings.Add("CATEGORY2_ORIGINAL_MODEL_MC", "CATEGORY2_ORIGINAL_MODEL_MC")
-            tableMapping.ColumnMappings.Add("CATEGORY2_OTH_MODEL_MC", "CATEGORY2_OTH_MODEL_MC")
-            tableMapping.ColumnMappings.Add("CATEGORY2_MC_OTHER_DETAIL", "CATEGORY2_MC_OTHER_DETAIL")
-            tableMapping.ColumnMappings.Add("MAKER", "MAKER")
-            tableMapping.ColumnMappings.Add("COUNTRY", "COUNTRY")
-            tableMapping.ColumnMappings.Add("SUPPLIER", "SUPPLIER")
-            tableMapping.ColumnMappings.Add("PROVIDER", "PROVIDER")
-            tableMapping.ColumnMappings.Add("TEL", "TEL")
-            tableMapping.ColumnMappings.Add("TYPE_MC", "TYPE_MC")
-            tableMapping.ColumnMappings.Add("SIZE_HP_MC", "SIZE_HP_MC")
-            tableMapping.ColumnMappings.Add("DIVISION", "DIVISION")
-            tableMapping.ColumnMappings.Add("DEPARTMENT", "DEPARTMENT")
-            tableMapping.ColumnMappings.Add("SECTION", "SECTION")
-            tableMapping.ColumnMappings.Add("MC_NAME", "MC_NAME")
-            tableMapping.ColumnMappings.Add("MC_NO1", "MC_NO1")
-            tableMapping.ColumnMappings.Add("MC_NO2", "MC_NO2")
-            tableMapping.ColumnMappings.Add("MC_NO3", "MC_NO3")
-            tableMapping.ColumnMappings.Add("MC_NO4", "MC_NO4")
-            tableMapping.ColumnMappings.Add("MC_NO5", "MC_NO5")
-            tableMapping.ColumnMappings.Add("MC_NO6", "MC_NO6")
-            tableMapping.ColumnMappings.Add("MC_NO7", "MC_NO7")
-            tableMapping.ColumnMappings.Add("MC_NO8", "MC_NO8")
-            tableMapping.ColumnMappings.Add("MC_NO9", "MC_NO9")
-            tableMapping.ColumnMappings.Add("MC_NO10", "MC_NO10")
-            tableMapping.ColumnMappings.Add("DANGER_CHEME_1", "DANGER_CHEME_1")
-            tableMapping.ColumnMappings.Add("DANGER_CHEME_2", "DANGER_CHEME_2")
-            tableMapping.ColumnMappings.Add("DANGER_CHEME_3", "DANGER_CHEME_3")
-            tableMapping.ColumnMappings.Add("DANGER_CHEME_4", "DANGER_CHEME_4")
-            tableMapping.ColumnMappings.Add("DANGER_CHEME_NAME", "DANGER_CHEME_NAME")
-            tableMapping.ColumnMappings.Add("CAS_NO", "CAS_NO")
-            tableMapping.ColumnMappings.Add("FLAMMABLE", "FLAMMABLE")
-            tableMapping.ColumnMappings.Add("CORROSIVE", "CORROSIVE")
-            tableMapping.ColumnMappings.Add("POISON", "POISON")
-            tableMapping.ColumnMappings.Add("GAS", "GAS")
-            tableMapping.ColumnMappings.Add("SUBSTANCE_OTHER", "SUBSTANCE_OTHER")
-            tableMapping.ColumnMappings.Add("SUBSTANCE_OTHER_DETAIL", "SUBSTANCE_OTHER_DETAIL")
-            tableMapping.ColumnMappings.Add("OBJ_POWDER", "OBJ_POWDER")
-            tableMapping.ColumnMappings.Add("OBJ_HEAT", "OBJ_HEAT")
-            tableMapping.ColumnMappings.Add("OBJ_NOISE", "OBJ_NOISE")
-            tableMapping.ColumnMappings.Add("OBJ_VIBRATE", "OBJ_VIBRATE")
-            tableMapping.ColumnMappings.Add("OBJ_POISONGAS", "OBJ_POISONGAS")
-            tableMapping.ColumnMappings.Add("OBJ_WASTE_WATER", "OBJ_WASTE_WATER")
-            tableMapping.ColumnMappings.Add("OBJ_RAY", "OBJ_RAY")
-            tableMapping.ColumnMappings.Add("OBJ_SMOKE", "OBJ_SMOKE")
-            tableMapping.ColumnMappings.Add("OBJ_ELECTRIC_WAVE", "OBJ_ELECTRIC_WAVE")
-            tableMapping.ColumnMappings.Add("OBJ_OTHER", "OBJ_OTHER")
-            tableMapping.ColumnMappings.Add("OBJ_OTHER_DETAIL", "OBJ_OTHER_DETAIL")
-            tableMapping.ColumnMappings.Add("OBJ_CHEME_NAME", "OBJ_CHEME_NAME")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_HELMET", "EQUIPMENT_HELMET")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_GLASSES", "EQUIPMENT_GLASSES")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_CHEMICAL_MASK", "EQUIPMENT_CHEMICAL_MASK")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_BIB_PROTECT_CHEMECAL", "EQUIPMENT_BIB_PROTECT_CHEMECAL")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_CHEMICAL_GLOVES", "EQUIPMENT_CHEMICAL_GLOVES")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_HEAT_RESISTANT_GLOVES", "EQUIPMENT_HEAT_RESISTANT_GLOVES")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_CUT_PROTECT_GLOVES", "EQUIPMENT_CUT_PROTECT_GLOVES")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_EYE_COVER", "EQUIPMENT_EYE_COVER")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_FACE_SHIELD", "EQUIPMENT_FACE_SHIELD")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_DUST_MASK", "EQUIPMENT_DUST_MASK")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_CHEMICAL_PACK", "EQUIPMENT_CHEMICAL_PACK")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_ELECTRIC_GLOVES", "EQUIPMENT_ELECTRIC_GLOVES")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_OTHER", "EQUIPMENT_OTHER")
-            tableMapping.ColumnMappings.Add("EQUIPMENT_OTHER_DETAIL", "EQUIPMENT_OTHER_DETAIL")
-            tableMapping.ColumnMappings.Add("LAW_MC", "LAW_MC")
-            tableMapping.ColumnMappings.Add("LAW_CHEMECALS", "LAW_CHEMECALS")
-            tableMapping.ColumnMappings.Add("LAW_ENVIRONMENTAL", "LAW_ENVIRONMENTAL")
-            tableMapping.ColumnMappings.Add("LAW_HIGH_PRESSURE_GAS", "LAW_HIGH_PRESSURE_GAS")
-            tableMapping.ColumnMappings.Add("LAW_PREVENT_STOP_FIRE", "LAW_PREVENT_STOP_FIRE")
-            tableMapping.ColumnMappings.Add("LAW_FACTORY", "LAW_FACTORY")
-            tableMapping.ColumnMappings.Add("LAW_FUEL_REGULATORY", "LAW_FUEL_REGULATORY")
-            tableMapping.ColumnMappings.Add("LAW_OTHER", "LAW_OTHER")
-            tableMapping.ColumnMappings.Add("LAW_OTHER_DETAIL", "LAW_OTHER_DETAIL")
-            tableMapping.ColumnMappings.Add("LAW_NAME", "LAW_NAME")
-            tableMapping.ColumnMappings.Add("LAW_NOTICE", "LAW_NOTICE")
-            tableMapping.ColumnMappings.Add("LAW_NOTICE_DETAIL", "LAW_NOTICE_DETAIL")
-            tableMapping.ColumnMappings.Add("LAW_APPROVE", "LAW_APPROVE")
-            tableMapping.ColumnMappings.Add("LAW_APPROVE_DETAIL", "LAW_APPROVE_DETAIL")
-            tableMapping.ColumnMappings.Add("LAW_CHECK", "LAW_CHECK")
-            tableMapping.ColumnMappings.Add("LAW_CHECK_DETAIL", "LAW_CHECK_DETAIL")
-            tableMapping.ColumnMappings.Add("IMG_TEMP_STAMP", "IMG_TEMP_STAMP")
-            tableMapping.ColumnMappings.Add("IMG_TEMP_STAMP_CONTENT_TYPE", "IMG_TEMP_STAMP_CONTENT_TYPE")
-            tableMapping.ColumnMappings.Add("IMG_TEMP_STAMP_DATA", "IMG_TEMP_STAMP_DATA")
-            tableMapping.ColumnMappings.Add("REQUEST_NAME_APPROVE", "REQUEST_NAME_APPROVE")
-            tableMapping.ColumnMappings.Add("REQUEST_APPROVE_DATE", "REQUEST_APPROVE_DATE")
-            tableMapping.ColumnMappings.Add("SECT_MGR_NAME_APPROVE", "SECT_MGR_NAME_APPROVE")
-            tableMapping.ColumnMappings.Add("SECT_MGR_APPROVE_DATE", "SECT_MGR_APPROVE_DATE")
-            tableMapping.ColumnMappings.Add("DEPT_MGR_NAME_APPROVE", "DEPT_MGR_NAME_APPROVE")
-            tableMapping.ColumnMappings.Add("DEPT_MGR_APPROVE_DATE", "DEPT_MGR_APPROVE_DATE")
-            tableMapping.ColumnMappings.Add("DIV_MGR_NAME_APPROVE", "DIV_MGR_NAME_APPROVE")
-            tableMapping.ColumnMappings.Add("DIV_MGR_APPROVE_DATE", "DIV_MGR_APPROVE_DATE")
-            tableMapping.ColumnMappings.Add("MCEQ_SUBCOM_NAME_APPROVE", "MCEQ_SUBCOM_NAME_APPROVE")
-            tableMapping.ColumnMappings.Add("MCEQ_SUBCOM_APPROVE_DATE", "MCEQ_SUBCOM_APPROVE_DATE")
-            tableMapping.ColumnMappings.Add("SAFETY_OFFICER_NAME_APPROVE", "SAFETY_OFFICER_NAME_APPROVE")
-            tableMapping.ColumnMappings.Add("SAFETY_OFFICER_APPROVE_DATE", "SAFETY_OFFICER_APPROVE_DATE")
-            tableMapping.ColumnMappings.Add("SAFETY_MGR_NAME_APPROVE", "SAFETY_MGR_NAME_APPROVE")
-            tableMapping.ColumnMappings.Add("SAFETY_MGR_APPROVE_DATE", "SAFETY_MGR_APPROVE_DATE")
-            tableMapping.ColumnMappings.Add("OPNO_ADD", "OPNO_ADD")
-            tableMapping.ColumnMappings.Add("DATE_ADD", "DATE_ADD")
-            tableMapping.ColumnMappings.Add("OPNO_UPDATE", "OPNO_UPDATE")
-            tableMapping.ColumnMappings.Add("DATE_UPDATE", "DATE_UPDATE")
-            tableMapping.ColumnMappings.Add("STATUS_ID", "STATUS_ID")
-            tableMapping.ColumnMappings.Add("STATUS_NAME", "STATUS_NAME")
-            tableMapping.ColumnMappings.Add("IP", "IP")
-            tableMapping.ColumnMappings.Add("DOCUMENT_ATTACH_NAME", "DOCUMENT_ATTACH_NAME")
-            tableMapping.ColumnMappings.Add("DOCUMENT_ATTACH_CONTENT_TYPE", "DOCUMENT_ATTACH_CONTENT_TYPE")
-            tableMapping.ColumnMappings.Add("DOCUMENT_ATTACH_DATA", "DOCUMENT_ATTACH_DATA")
-            tableMapping.ColumnMappings.Add("IMAGE_ATTACH_NAME", "IMAGE_ATTACH_NAME")
-            tableMapping.ColumnMappings.Add("IMAGE_ATTACH_CONTENT_TYPE", "IMAGE_ATTACH_CONTENT_TYPE")
-            tableMapping.ColumnMappings.Add("IMAGE_ATTACH_DATA", "IMAGE_ATTACH_DATA")
-            tableMapping.ColumnMappings.Add("LAYOUT_ATTACH_NAME", "LAYOUT_ATTACH_NAME")
-            tableMapping.ColumnMappings.Add("LAYOUT_ATTACH_CONTENT_TYPE", "LAYOUT_ATTACH_CONTENT_TYPE")
-            tableMapping.ColumnMappings.Add("LAYOUT_ATTACH_DATA", "LAYOUT_ATTACH_DATA")
-            Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[TB_MACHINE_DATA] WHERE (([MC_NO] = @Original_MC_NO))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MC_NO", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TB_MACHINE_DATA] ([MC_NO], [REGISTER_DATE], [REGISTER_NEW_MC],"& _ 
-                " [CANCEL_MC], [CATEGORY1_NEW_MC], [CATEGORY1_TF_MC], [CATEGORY1_OTH_MC], [CATEGO"& _ 
-                "RY1_MC_OTHER_DETAIL], [CATEGORY2_NEW_MODEL_MC], [CATEGORY2_ORIGINAL_MODEL_MC], ["& _ 
-                "CATEGORY2_OTH_MODEL_MC], [CATEGORY2_MC_OTHER_DETAIL], [MAKER], [COUNTRY], [SUPPL"& _ 
-                "IER], [PROVIDER], [TEL], [TYPE_MC], [SIZE_HP_MC], [DIVISION], [DEPARTMENT], [SEC"& _ 
-                "TION], [MC_NAME], [MC_NO1], [MC_NO2], [MC_NO3], [MC_NO4], [MC_NO5], [MC_NO6], [M"& _ 
-                "C_NO7], [MC_NO8], [MC_NO9], [MC_NO10], [DANGER_CHEME_1], [DANGER_CHEME_2], [DANG"& _ 
-                "ER_CHEME_3], [DANGER_CHEME_4], [DANGER_CHEME_NAME], [CAS_NO], [FLAMMABLE], [CORR"& _ 
-                "OSIVE], [POISON], [GAS], [SUBSTANCE_OTHER], [SUBSTANCE_OTHER_DETAIL], [OBJ_POWDE"& _ 
-                "R], [OBJ_HEAT], [OBJ_NOISE], [OBJ_VIBRATE], [OBJ_POISONGAS], [OBJ_WASTE_WATER], "& _ 
-                "[OBJ_RAY], [OBJ_SMOKE], [OBJ_ELECTRIC_WAVE], [OBJ_OTHER], [OBJ_OTHER_DETAIL], [O"& _ 
-                "BJ_CHEME_NAME], [EQUIPMENT_HELMET], [EQUIPMENT_GLASSES], [EQUIPMENT_CHEMICAL_MAS"& _ 
-                "K], [EQUIPMENT_BIB_PROTECT_CHEMECAL], [EQUIPMENT_CHEMICAL_GLOVES], [EQUIPMENT_HE"& _ 
-                "AT_RESISTANT_GLOVES], [EQUIPMENT_CUT_PROTECT_GLOVES], [EQUIPMENT_EYE_COVER], [EQ"& _ 
-                "UIPMENT_FACE_SHIELD], [EQUIPMENT_DUST_MASK], [EQUIPMENT_CHEMICAL_PACK], [EQUIPME"& _ 
-                "NT_ELECTRIC_GLOVES], [EQUIPMENT_OTHER], [EQUIPMENT_OTHER_DETAIL], [LAW_MC], [LAW"& _ 
-                "_CHEMECALS], [LAW_ENVIRONMENTAL], [LAW_HIGH_PRESSURE_GAS], [LAW_PREVENT_STOP_FIR"& _ 
-                "E], [LAW_FACTORY], [LAW_FUEL_REGULATORY], [LAW_OTHER], [LAW_OTHER_DETAIL], [LAW_"& _ 
-                "NAME], [LAW_NOTICE], [LAW_NOTICE_DETAIL], [LAW_APPROVE], [LAW_APPROVE_DETAIL], ["& _ 
-                "LAW_CHECK], [LAW_CHECK_DETAIL], [IMG_TEMP_STAMP], [IMG_TEMP_STAMP_CONTENT_TYPE],"& _ 
-                " [IMG_TEMP_STAMP_DATA], [REQUEST_NAME_APPROVE], [REQUEST_APPROVE_DATE], [SECT_MG"& _ 
-                "R_NAME_APPROVE], [SECT_MGR_APPROVE_DATE], [DEPT_MGR_NAME_APPROVE], [DEPT_MGR_APP"& _ 
-                "ROVE_DATE], [DIV_MGR_NAME_APPROVE], [DIV_MGR_APPROVE_DATE], [MCEQ_SUBCOM_NAME_AP"& _ 
-                "PROVE], [MCEQ_SUBCOM_APPROVE_DATE], [SAFETY_OFFICER_NAME_APPROVE], [SAFETY_OFFIC"& _ 
-                "ER_APPROVE_DATE], [SAFETY_MGR_NAME_APPROVE], [SAFETY_MGR_APPROVE_DATE], [OPNO_AD"& _ 
-                "D], [DATE_ADD], [OPNO_UPDATE], [DATE_UPDATE], [STATUS_ID], [STATUS_NAME], [IP], "& _ 
-                "[DOCUMENT_ATTACH_NAME], [DOCUMENT_ATTACH_CONTENT_TYPE], [DOCUMENT_ATTACH_DATA], "& _ 
-                "[IMAGE_ATTACH_NAME], [IMAGE_ATTACH_CONTENT_TYPE], [IMAGE_ATTACH_DATA], [LAYOUT_A"& _ 
-                "TTACH_NAME], [LAYOUT_ATTACH_CONTENT_TYPE], [LAYOUT_ATTACH_DATA]) VALUES (@MC_NO,"& _ 
-                " @REGISTER_DATE, @REGISTER_NEW_MC, @CANCEL_MC, @CATEGORY1_NEW_MC, @CATEGORY1_TF_"& _ 
-                "MC, @CATEGORY1_OTH_MC, @CATEGORY1_MC_OTHER_DETAIL, @CATEGORY2_NEW_MODEL_MC, @CAT"& _ 
-                "EGORY2_ORIGINAL_MODEL_MC, @CATEGORY2_OTH_MODEL_MC, @CATEGORY2_MC_OTHER_DETAIL, @"& _ 
-                "MAKER, @COUNTRY, @SUPPLIER, @PROVIDER, @TEL, @TYPE_MC, @SIZE_HP_MC, @DIVISION, @"& _ 
-                "DEPARTMENT, @SECTION, @MC_NAME, @MC_NO1, @MC_NO2, @MC_NO3, @MC_NO4, @MC_NO5, @MC"& _ 
-                "_NO6, @MC_NO7, @MC_NO8, @MC_NO9, @MC_NO10, @DANGER_CHEME_1, @DANGER_CHEME_2, @DA"& _ 
-                "NGER_CHEME_3, @DANGER_CHEME_4, @DANGER_CHEME_NAME, @CAS_NO, @FLAMMABLE, @CORROSI"& _ 
-                "VE, @POISON, @GAS, @SUBSTANCE_OTHER, @SUBSTANCE_OTHER_DETAIL, @OBJ_POWDER, @OBJ_"& _ 
-                "HEAT, @OBJ_NOISE, @OBJ_VIBRATE, @OBJ_POISONGAS, @OBJ_WASTE_WATER, @OBJ_RAY, @OBJ"& _ 
-                "_SMOKE, @OBJ_ELECTRIC_WAVE, @OBJ_OTHER, @OBJ_OTHER_DETAIL, @OBJ_CHEME_NAME, @EQU"& _ 
-                "IPMENT_HELMET, @EQUIPMENT_GLASSES, @EQUIPMENT_CHEMICAL_MASK, @EQUIPMENT_BIB_PROT"& _ 
-                "ECT_CHEMECAL, @EQUIPMENT_CHEMICAL_GLOVES, @EQUIPMENT_HEAT_RESISTANT_GLOVES, @EQU"& _ 
-                "IPMENT_CUT_PROTECT_GLOVES, @EQUIPMENT_EYE_COVER, @EQUIPMENT_FACE_SHIELD, @EQUIPM"& _ 
-                "ENT_DUST_MASK, @EQUIPMENT_CHEMICAL_PACK, @EQUIPMENT_ELECTRIC_GLOVES, @EQUIPMENT_"& _ 
-                "OTHER, @EQUIPMENT_OTHER_DETAIL, @LAW_MC, @LAW_CHEMECALS, @LAW_ENVIRONMENTAL, @LA"& _ 
-                "W_HIGH_PRESSURE_GAS, @LAW_PREVENT_STOP_FIRE, @LAW_FACTORY, @LAW_FUEL_REGULATORY,"& _ 
-                " @LAW_OTHER, @LAW_OTHER_DETAIL, @LAW_NAME, @LAW_NOTICE, @LAW_NOTICE_DETAIL, @LAW"& _ 
-                "_APPROVE, @LAW_APPROVE_DETAIL, @LAW_CHECK, @LAW_CHECK_DETAIL, @IMG_TEMP_STAMP, @"& _ 
-                "IMG_TEMP_STAMP_CONTENT_TYPE, @IMG_TEMP_STAMP_DATA, @REQUEST_NAME_APPROVE, @REQUE"& _ 
-                "ST_APPROVE_DATE, @SECT_MGR_NAME_APPROVE, @SECT_MGR_APPROVE_DATE, @DEPT_MGR_NAME_"& _ 
-                "APPROVE, @DEPT_MGR_APPROVE_DATE, @DIV_MGR_NAME_APPROVE, @DIV_MGR_APPROVE_DATE, @"& _ 
-                "MCEQ_SUBCOM_NAME_APPROVE, @MCEQ_SUBCOM_APPROVE_DATE, @SAFETY_OFFICER_NAME_APPROV"& _ 
-                "E, @SAFETY_OFFICER_APPROVE_DATE, @SAFETY_MGR_NAME_APPROVE, @SAFETY_MGR_APPROVE_D"& _ 
-                "ATE, @OPNO_ADD, @DATE_ADD, @OPNO_UPDATE, @DATE_UPDATE, @STATUS_ID, @STATUS_NAME,"& _ 
-                " @IP, @DOCUMENT_ATTACH_NAME, @DOCUMENT_ATTACH_CONTENT_TYPE, @DOCUMENT_ATTACH_DAT"& _ 
-                "A, @IMAGE_ATTACH_NAME, @IMAGE_ATTACH_CONTENT_TYPE, @IMAGE_ATTACH_DATA, @LAYOUT_A"& _ 
-                "TTACH_NAME, @LAYOUT_ATTACH_CONTENT_TYPE, @LAYOUT_ATTACH_DATA)"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REGISTER_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REGISTER_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REGISTER_NEW_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REGISTER_NEW_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CANCEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CANCEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_NEW_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_NEW_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_TF_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_TF_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_OTH_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_OTH_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_MC_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_MC_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_NEW_MODEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_NEW_MODEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_ORIGINAL_MODEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_ORIGINAL_MODEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_OTH_MODEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_OTH_MODEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_MC_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_MC_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MAKER", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MAKER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@COUNTRY", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "COUNTRY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUPPLIER", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUPPLIER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PROVIDER", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PROVIDER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TEL", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TEL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TYPE_MC", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TYPE_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SIZE_HP_MC", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SIZE_HP_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIVISION", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIVISION", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DEPARTMENT", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DEPARTMENT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SECTION", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SECTION", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO1", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO1", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO2", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO2", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO3", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO3", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO4", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO4", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO5", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO5", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO6", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO6", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO7", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO7", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO8", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO8", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO9", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO9", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO10", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO10", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_1", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_1", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_2", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_2", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_3", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_3", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_4", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_4", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CAS_NO", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CAS_NO", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FLAMMABLE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FLAMMABLE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CORROSIVE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CORROSIVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@POISON", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "POISON", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GAS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GAS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUBSTANCE_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUBSTANCE_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUBSTANCE_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUBSTANCE_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_POWDER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_POWDER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_HEAT", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_HEAT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_NOISE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_NOISE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_VIBRATE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_VIBRATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_POISONGAS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_POISONGAS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_WASTE_WATER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_WASTE_WATER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_RAY", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_RAY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_SMOKE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_SMOKE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_ELECTRIC_WAVE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_ELECTRIC_WAVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_CHEME_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_CHEME_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_HELMET", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_HELMET", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_GLASSES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_GLASSES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CHEMICAL_MASK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CHEMICAL_MASK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_BIB_PROTECT_CHEMECAL", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_BIB_PROTECT_CHEMECAL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CHEMICAL_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CHEMICAL_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_HEAT_RESISTANT_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_HEAT_RESISTANT_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CUT_PROTECT_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CUT_PROTECT_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_EYE_COVER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_EYE_COVER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_FACE_SHIELD", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_FACE_SHIELD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_DUST_MASK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_DUST_MASK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CHEMICAL_PACK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CHEMICAL_PACK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_ELECTRIC_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_ELECTRIC_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_CHEMECALS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_CHEMECALS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_ENVIRONMENTAL", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_ENVIRONMENTAL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_HIGH_PRESSURE_GAS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_HIGH_PRESSURE_GAS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_PREVENT_STOP_FIRE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_PREVENT_STOP_FIRE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_FACTORY", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_FACTORY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_FUEL_REGULATORY", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_FUEL_REGULATORY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_NOTICE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_NOTICE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_NOTICE_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_NOTICE_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_APPROVE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_APPROVE_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_APPROVE_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_CHECK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_CHECK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_CHECK_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_CHECK_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMG_TEMP_STAMP", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMG_TEMP_STAMP", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMG_TEMP_STAMP_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMG_TEMP_STAMP_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMG_TEMP_STAMP_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMG_TEMP_STAMP_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REQUEST_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REQUEST_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REQUEST_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REQUEST_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SECT_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SECT_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SECT_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SECT_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DEPT_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DEPT_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DEPT_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DEPT_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIV_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIV_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIV_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIV_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MCEQ_SUBCOM_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MCEQ_SUBCOM_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MCEQ_SUBCOM_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MCEQ_SUBCOM_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_OFFICER_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_OFFICER_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_OFFICER_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_OFFICER_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OPNO_ADD", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OPNO_ADD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DATE_ADD", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DATE_ADD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OPNO_UPDATE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OPNO_UPDATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DATE_UPDATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DATE_UPDATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@STATUS_ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "STATUS_ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@STATUS_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "STATUS_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IP", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IP", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DOCUMENT_ATTACH_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DOCUMENT_ATTACH_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DOCUMENT_ATTACH_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DOCUMENT_ATTACH_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DOCUMENT_ATTACH_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DOCUMENT_ATTACH_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMAGE_ATTACH_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMAGE_ATTACH_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMAGE_ATTACH_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMAGE_ATTACH_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMAGE_ATTACH_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMAGE_ATTACH_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAYOUT_ATTACH_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAYOUT_ATTACH_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAYOUT_ATTACH_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAYOUT_ATTACH_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAYOUT_ATTACH_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAYOUT_ATTACH_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TB_MACHINE_DATA] SET [MC_NO] = @MC_NO, [REGISTER_DATE] = @REGISTER_"& _ 
-                "DATE, [REGISTER_NEW_MC] = @REGISTER_NEW_MC, [CANCEL_MC] = @CANCEL_MC, [CATEGORY1"& _ 
-                "_NEW_MC] = @CATEGORY1_NEW_MC, [CATEGORY1_TF_MC] = @CATEGORY1_TF_MC, [CATEGORY1_O"& _ 
-                "TH_MC] = @CATEGORY1_OTH_MC, [CATEGORY1_MC_OTHER_DETAIL] = @CATEGORY1_MC_OTHER_DE"& _ 
-                "TAIL, [CATEGORY2_NEW_MODEL_MC] = @CATEGORY2_NEW_MODEL_MC, [CATEGORY2_ORIGINAL_MO"& _ 
-                "DEL_MC] = @CATEGORY2_ORIGINAL_MODEL_MC, [CATEGORY2_OTH_MODEL_MC] = @CATEGORY2_OT"& _ 
-                "H_MODEL_MC, [CATEGORY2_MC_OTHER_DETAIL] = @CATEGORY2_MC_OTHER_DETAIL, [MAKER] = "& _ 
-                "@MAKER, [COUNTRY] = @COUNTRY, [SUPPLIER] = @SUPPLIER, [PROVIDER] = @PROVIDER, [T"& _ 
-                "EL] = @TEL, [TYPE_MC] = @TYPE_MC, [SIZE_HP_MC] = @SIZE_HP_MC, [DIVISION] = @DIVI"& _ 
-                "SION, [DEPARTMENT] = @DEPARTMENT, [SECTION] = @SECTION, [MC_NAME] = @MC_NAME, [M"& _ 
-                "C_NO1] = @MC_NO1, [MC_NO2] = @MC_NO2, [MC_NO3] = @MC_NO3, [MC_NO4] = @MC_NO4, [M"& _ 
-                "C_NO5] = @MC_NO5, [MC_NO6] = @MC_NO6, [MC_NO7] = @MC_NO7, [MC_NO8] = @MC_NO8, [M"& _ 
-                "C_NO9] = @MC_NO9, [MC_NO10] = @MC_NO10, [DANGER_CHEME_1] = @DANGER_CHEME_1, [DAN"& _ 
-                "GER_CHEME_2] = @DANGER_CHEME_2, [DANGER_CHEME_3] = @DANGER_CHEME_3, [DANGER_CHEM"& _ 
-                "E_4] = @DANGER_CHEME_4, [DANGER_CHEME_NAME] = @DANGER_CHEME_NAME, [CAS_NO] = @CA"& _ 
-                "S_NO, [FLAMMABLE] = @FLAMMABLE, [CORROSIVE] = @CORROSIVE, [POISON] = @POISON, [G"& _ 
-                "AS] = @GAS, [SUBSTANCE_OTHER] = @SUBSTANCE_OTHER, [SUBSTANCE_OTHER_DETAIL] = @SU"& _ 
-                "BSTANCE_OTHER_DETAIL, [OBJ_POWDER] = @OBJ_POWDER, [OBJ_HEAT] = @OBJ_HEAT, [OBJ_N"& _ 
-                "OISE] = @OBJ_NOISE, [OBJ_VIBRATE] = @OBJ_VIBRATE, [OBJ_POISONGAS] = @OBJ_POISONG"& _ 
-                "AS, [OBJ_WASTE_WATER] = @OBJ_WASTE_WATER, [OBJ_RAY] = @OBJ_RAY, [OBJ_SMOKE] = @O"& _ 
-                "BJ_SMOKE, [OBJ_ELECTRIC_WAVE] = @OBJ_ELECTRIC_WAVE, [OBJ_OTHER] = @OBJ_OTHER, [O"& _ 
-                "BJ_OTHER_DETAIL] = @OBJ_OTHER_DETAIL, [OBJ_CHEME_NAME] = @OBJ_CHEME_NAME, [EQUIP"& _ 
-                "MENT_HELMET] = @EQUIPMENT_HELMET, [EQUIPMENT_GLASSES] = @EQUIPMENT_GLASSES, [EQU"& _ 
-                "IPMENT_CHEMICAL_MASK] = @EQUIPMENT_CHEMICAL_MASK, [EQUIPMENT_BIB_PROTECT_CHEMECA"& _ 
-                "L] = @EQUIPMENT_BIB_PROTECT_CHEMECAL, [EQUIPMENT_CHEMICAL_GLOVES] = @EQUIPMENT_C"& _ 
-                "HEMICAL_GLOVES, [EQUIPMENT_HEAT_RESISTANT_GLOVES] = @EQUIPMENT_HEAT_RESISTANT_GL"& _ 
-                "OVES, [EQUIPMENT_CUT_PROTECT_GLOVES] = @EQUIPMENT_CUT_PROTECT_GLOVES, [EQUIPMENT"& _ 
-                "_EYE_COVER] = @EQUIPMENT_EYE_COVER, [EQUIPMENT_FACE_SHIELD] = @EQUIPMENT_FACE_SH"& _ 
-                "IELD, [EQUIPMENT_DUST_MASK] = @EQUIPMENT_DUST_MASK, [EQUIPMENT_CHEMICAL_PACK] = "& _ 
-                "@EQUIPMENT_CHEMICAL_PACK, [EQUIPMENT_ELECTRIC_GLOVES] = @EQUIPMENT_ELECTRIC_GLOV"& _ 
-                "ES, [EQUIPMENT_OTHER] = @EQUIPMENT_OTHER, [EQUIPMENT_OTHER_DETAIL] = @EQUIPMENT_"& _ 
-                "OTHER_DETAIL, [LAW_MC] = @LAW_MC, [LAW_CHEMECALS] = @LAW_CHEMECALS, [LAW_ENVIRON"& _ 
-                "MENTAL] = @LAW_ENVIRONMENTAL, [LAW_HIGH_PRESSURE_GAS] = @LAW_HIGH_PRESSURE_GAS, "& _ 
-                "[LAW_PREVENT_STOP_FIRE] = @LAW_PREVENT_STOP_FIRE, [LAW_FACTORY] = @LAW_FACTORY, "& _ 
-                "[LAW_FUEL_REGULATORY] = @LAW_FUEL_REGULATORY, [LAW_OTHER] = @LAW_OTHER, [LAW_OTH"& _ 
-                "ER_DETAIL] = @LAW_OTHER_DETAIL, [LAW_NAME] = @LAW_NAME, [LAW_NOTICE] = @LAW_NOTI"& _ 
-                "CE, [LAW_NOTICE_DETAIL] = @LAW_NOTICE_DETAIL, [LAW_APPROVE] = @LAW_APPROVE, [LAW"& _ 
-                "_APPROVE_DETAIL] = @LAW_APPROVE_DETAIL, [LAW_CHECK] = @LAW_CHECK, [LAW_CHECK_DET"& _ 
-                "AIL] = @LAW_CHECK_DETAIL, [IMG_TEMP_STAMP] = @IMG_TEMP_STAMP, [IMG_TEMP_STAMP_CO"& _ 
-                "NTENT_TYPE] = @IMG_TEMP_STAMP_CONTENT_TYPE, [IMG_TEMP_STAMP_DATA] = @IMG_TEMP_ST"& _ 
-                "AMP_DATA, [REQUEST_NAME_APPROVE] = @REQUEST_NAME_APPROVE, [REQUEST_APPROVE_DATE]"& _ 
-                " = @REQUEST_APPROVE_DATE, [SECT_MGR_NAME_APPROVE] = @SECT_MGR_NAME_APPROVE, [SEC"& _ 
-                "T_MGR_APPROVE_DATE] = @SECT_MGR_APPROVE_DATE, [DEPT_MGR_NAME_APPROVE] = @DEPT_MG"& _ 
-                "R_NAME_APPROVE, [DEPT_MGR_APPROVE_DATE] = @DEPT_MGR_APPROVE_DATE, [DIV_MGR_NAME_"& _ 
-                "APPROVE] = @DIV_MGR_NAME_APPROVE, [DIV_MGR_APPROVE_DATE] = @DIV_MGR_APPROVE_DATE"& _ 
-                ", [MCEQ_SUBCOM_NAME_APPROVE] = @MCEQ_SUBCOM_NAME_APPROVE, [MCEQ_SUBCOM_APPROVE_D"& _ 
-                "ATE] = @MCEQ_SUBCOM_APPROVE_DATE, [SAFETY_OFFICER_NAME_APPROVE] = @SAFETY_OFFICE"& _ 
-                "R_NAME_APPROVE, [SAFETY_OFFICER_APPROVE_DATE] = @SAFETY_OFFICER_APPROVE_DATE, [S"& _ 
-                "AFETY_MGR_NAME_APPROVE] = @SAFETY_MGR_NAME_APPROVE, [SAFETY_MGR_APPROVE_DATE] = "& _ 
-                "@SAFETY_MGR_APPROVE_DATE, [OPNO_ADD] = @OPNO_ADD, [DATE_ADD] = @DATE_ADD, [OPNO_"& _ 
-                "UPDATE] = @OPNO_UPDATE, [DATE_UPDATE] = @DATE_UPDATE, [STATUS_ID] = @STATUS_ID, "& _ 
-                "[STATUS_NAME] = @STATUS_NAME, [IP] = @IP, [DOCUMENT_ATTACH_NAME] = @DOCUMENT_ATT"& _ 
-                "ACH_NAME, [DOCUMENT_ATTACH_CONTENT_TYPE] = @DOCUMENT_ATTACH_CONTENT_TYPE, [DOCUM"& _ 
-                "ENT_ATTACH_DATA] = @DOCUMENT_ATTACH_DATA, [IMAGE_ATTACH_NAME] = @IMAGE_ATTACH_NA"& _ 
-                "ME, [IMAGE_ATTACH_CONTENT_TYPE] = @IMAGE_ATTACH_CONTENT_TYPE, [IMAGE_ATTACH_DATA"& _ 
-                "] = @IMAGE_ATTACH_DATA, [LAYOUT_ATTACH_NAME] = @LAYOUT_ATTACH_NAME, [LAYOUT_ATTA"& _ 
-                "CH_CONTENT_TYPE] = @LAYOUT_ATTACH_CONTENT_TYPE, [LAYOUT_ATTACH_DATA] = @LAYOUT_A"& _ 
-                "TTACH_DATA WHERE (([MC_NO] = @Original_MC_NO))"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REGISTER_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REGISTER_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REGISTER_NEW_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REGISTER_NEW_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CANCEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CANCEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_NEW_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_NEW_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_TF_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_TF_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_OTH_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_OTH_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_MC_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_MC_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_NEW_MODEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_NEW_MODEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_ORIGINAL_MODEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_ORIGINAL_MODEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_OTH_MODEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_OTH_MODEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_MC_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_MC_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MAKER", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MAKER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@COUNTRY", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "COUNTRY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUPPLIER", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUPPLIER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PROVIDER", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PROVIDER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TEL", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TEL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TYPE_MC", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TYPE_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SIZE_HP_MC", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SIZE_HP_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIVISION", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIVISION", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DEPARTMENT", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DEPARTMENT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SECTION", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SECTION", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO1", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO1", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO2", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO2", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO3", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO3", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO4", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO4", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO5", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO5", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO6", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO6", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO7", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO7", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO8", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO8", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO9", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO9", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO10", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO10", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_1", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_1", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_2", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_2", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_3", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_3", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_4", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_4", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CAS_NO", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CAS_NO", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FLAMMABLE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FLAMMABLE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CORROSIVE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CORROSIVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@POISON", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "POISON", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GAS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GAS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUBSTANCE_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUBSTANCE_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUBSTANCE_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUBSTANCE_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_POWDER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_POWDER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_HEAT", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_HEAT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_NOISE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_NOISE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_VIBRATE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_VIBRATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_POISONGAS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_POISONGAS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_WASTE_WATER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_WASTE_WATER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_RAY", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_RAY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_SMOKE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_SMOKE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_ELECTRIC_WAVE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_ELECTRIC_WAVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_CHEME_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_CHEME_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_HELMET", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_HELMET", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_GLASSES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_GLASSES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CHEMICAL_MASK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CHEMICAL_MASK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_BIB_PROTECT_CHEMECAL", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_BIB_PROTECT_CHEMECAL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CHEMICAL_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CHEMICAL_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_HEAT_RESISTANT_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_HEAT_RESISTANT_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CUT_PROTECT_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CUT_PROTECT_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_EYE_COVER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_EYE_COVER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_FACE_SHIELD", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_FACE_SHIELD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_DUST_MASK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_DUST_MASK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CHEMICAL_PACK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CHEMICAL_PACK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_ELECTRIC_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_ELECTRIC_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_CHEMECALS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_CHEMECALS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_ENVIRONMENTAL", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_ENVIRONMENTAL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_HIGH_PRESSURE_GAS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_HIGH_PRESSURE_GAS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_PREVENT_STOP_FIRE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_PREVENT_STOP_FIRE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_FACTORY", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_FACTORY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_FUEL_REGULATORY", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_FUEL_REGULATORY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_NOTICE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_NOTICE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_NOTICE_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_NOTICE_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_APPROVE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_APPROVE_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_APPROVE_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_CHECK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_CHECK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_CHECK_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_CHECK_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMG_TEMP_STAMP", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMG_TEMP_STAMP", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMG_TEMP_STAMP_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMG_TEMP_STAMP_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMG_TEMP_STAMP_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMG_TEMP_STAMP_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REQUEST_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REQUEST_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REQUEST_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REQUEST_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SECT_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SECT_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SECT_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SECT_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DEPT_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DEPT_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DEPT_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DEPT_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIV_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIV_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIV_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIV_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MCEQ_SUBCOM_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MCEQ_SUBCOM_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MCEQ_SUBCOM_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MCEQ_SUBCOM_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_OFFICER_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_OFFICER_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_OFFICER_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_OFFICER_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OPNO_ADD", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OPNO_ADD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DATE_ADD", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DATE_ADD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OPNO_UPDATE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OPNO_UPDATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DATE_UPDATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DATE_UPDATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@STATUS_ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "STATUS_ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@STATUS_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "STATUS_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IP", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IP", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DOCUMENT_ATTACH_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DOCUMENT_ATTACH_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DOCUMENT_ATTACH_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DOCUMENT_ATTACH_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DOCUMENT_ATTACH_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DOCUMENT_ATTACH_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMAGE_ATTACH_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMAGE_ATTACH_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMAGE_ATTACH_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMAGE_ATTACH_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMAGE_ATTACH_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMAGE_ATTACH_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAYOUT_ATTACH_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAYOUT_ATTACH_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAYOUT_ATTACH_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAYOUT_ATTACH_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAYOUT_ATTACH_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAYOUT_ATTACH_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MC_NO", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("ConMC").ConnectionString
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, MC_NO, REGISTER_DATE, REGISTER_NEW_MC, CANCEL_MC, CATEGORY1_NEW_MC, CA"& _ 
-                "TEGORY1_TF_MC, CATEGORY1_OTH_MC, CATEGORY1_MC_OTHER_DETAIL, CATEGORY2_NEW_MODEL_"& _ 
-                "MC, CATEGORY2_ORIGINAL_MODEL_MC, CATEGORY2_OTH_MODEL_MC, CATEGORY2_MC_OTHER_DETA"& _ 
-                "IL, MAKER, COUNTRY, SUPPLIER, PROVIDER, TEL, TYPE_MC, SIZE_HP_MC, DIVISION, DEPA"& _ 
-                "RTMENT, SECTION, MC_NAME, MC_NO1, MC_NO2, MC_NO3, MC_NO4, MC_NO5, MC_NO6, MC_NO7"& _ 
-                ", MC_NO8, MC_NO9, MC_NO10, DANGER_CHEME_1, DANGER_CHEME_2, DANGER_CHEME_3, DANGE"& _ 
-                "R_CHEME_4, DANGER_CHEME_NAME, CAS_NO, FLAMMABLE, CORROSIVE, POISON, GAS, SUBSTAN"& _ 
-                "CE_OTHER, SUBSTANCE_OTHER_DETAIL, OBJ_POWDER, OBJ_HEAT, OBJ_NOISE, OBJ_VIBRATE, "& _ 
-                "OBJ_POISONGAS, OBJ_WASTE_WATER, OBJ_RAY, OBJ_SMOKE, OBJ_ELECTRIC_WAVE, OBJ_OTHER"& _ 
-                ", OBJ_OTHER_DETAIL, OBJ_CHEME_NAME, EQUIPMENT_HELMET, EQUIPMENT_GLASSES, EQUIPME"& _ 
-                "NT_CHEMICAL_MASK, EQUIPMENT_BIB_PROTECT_CHEMECAL, EQUIPMENT_CHEMICAL_GLOVES, EQU"& _ 
-                "IPMENT_HEAT_RESISTANT_GLOVES, EQUIPMENT_CUT_PROTECT_GLOVES, EQUIPMENT_EYE_COVER,"& _ 
-                " EQUIPMENT_FACE_SHIELD, EQUIPMENT_DUST_MASK, EQUIPMENT_CHEMICAL_PACK, EQUIPMENT_"& _ 
-                "ELECTRIC_GLOVES, EQUIPMENT_OTHER, EQUIPMENT_OTHER_DETAIL, LAW_MC, LAW_CHEMECALS,"& _ 
-                " LAW_ENVIRONMENTAL, LAW_HIGH_PRESSURE_GAS, LAW_PREVENT_STOP_FIRE, LAW_FACTORY, L"& _ 
-                "AW_FUEL_REGULATORY, LAW_OTHER, LAW_OTHER_DETAIL, LAW_NAME, LAW_NOTICE, LAW_NOTIC"& _ 
-                "E_DETAIL, LAW_APPROVE, LAW_APPROVE_DETAIL, LAW_CHECK, LAW_CHECK_DETAIL, IMG_TEMP"& _ 
-                "_STAMP, IMG_TEMP_STAMP_CONTENT_TYPE, IMG_TEMP_STAMP_DATA, REQUEST_NAME_APPROVE, "& _ 
-                "REQUEST_APPROVE_DATE, SECT_MGR_NAME_APPROVE, SECT_MGR_APPROVE_DATE, DEPT_MGR_NAM"& _ 
-                "E_APPROVE, DEPT_MGR_APPROVE_DATE, DIV_MGR_NAME_APPROVE, DIV_MGR_APPROVE_DATE, MC"& _ 
-                "EQ_SUBCOM_NAME_APPROVE, MCEQ_SUBCOM_APPROVE_DATE, SAFETY_OFFICER_NAME_APPROVE, S"& _ 
-                "AFETY_OFFICER_APPROVE_DATE, SAFETY_MGR_NAME_APPROVE, SAFETY_MGR_APPROVE_DATE, OP"& _ 
-                "NO_ADD, DATE_ADD, OPNO_UPDATE, DATE_UPDATE, STATUS_ID, STATUS_NAME, IP, DOCUMENT"& _ 
-                "_ATTACH_NAME, DOCUMENT_ATTACH_CONTENT_TYPE, DOCUMENT_ATTACH_DATA, IMAGE_ATTACH_N"& _ 
-                "AME, IMAGE_ATTACH_CONTENT_TYPE, IMAGE_ATTACH_DATA, LAYOUT_ATTACH_NAME, LAYOUT_AT"& _ 
-                "TACH_CONTENT_TYPE, LAYOUT_ATTACH_DATA FROM dbo.TB_MACHINE_DATA"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As DSMachine.TB_MACHINE_DATADataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As DSMachine.TB_MACHINE_DATADataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As DSMachine.TB_MACHINE_DATADataTable = New DSMachine.TB_MACHINE_DATADataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As DSMachine.TB_MACHINE_DATADataTable) As Integer
-            Return Me.Adapter.Update(dataTable)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As DSMachine) As Integer
-            Return Me.Adapter.Update(dataSet, "TB_MACHINE_DATA")
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_MC_NO As String) As Integer
-            If (Original_MC_NO Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_MC_NO")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_MC_NO,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert( _
-                    ByVal MC_NO As String,  _
-                    ByVal REGISTER_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal REGISTER_NEW_MC As Boolean,  _
-                    ByVal CANCEL_MC As Boolean,  _
-                    ByVal CATEGORY1_NEW_MC As Boolean,  _
-                    ByVal CATEGORY1_TF_MC As Boolean,  _
-                    ByVal CATEGORY1_OTH_MC As Boolean,  _
-                    ByVal CATEGORY1_MC_OTHER_DETAIL As String,  _
-                    ByVal CATEGORY2_NEW_MODEL_MC As Boolean,  _
-                    ByVal CATEGORY2_ORIGINAL_MODEL_MC As Boolean,  _
-                    ByVal CATEGORY2_OTH_MODEL_MC As Boolean,  _
-                    ByVal CATEGORY2_MC_OTHER_DETAIL As String,  _
-                    ByVal MAKER As String,  _
-                    ByVal COUNTRY As String,  _
-                    ByVal SUPPLIER As String,  _
-                    ByVal PROVIDER As String,  _
-                    ByVal TEL As String,  _
-                    ByVal TYPE_MC As String,  _
-                    ByVal SIZE_HP_MC As String,  _
-                    ByVal DIVISION As String,  _
-                    ByVal DEPARTMENT As String,  _
-                    ByVal SECTION As String,  _
-                    ByVal MC_NAME As String,  _
-                    ByVal MC_NO1 As String,  _
-                    ByVal MC_NO2 As String,  _
-                    ByVal MC_NO3 As String,  _
-                    ByVal MC_NO4 As String,  _
-                    ByVal MC_NO5 As String,  _
-                    ByVal MC_NO6 As String,  _
-                    ByVal MC_NO7 As String,  _
-                    ByVal MC_NO8 As String,  _
-                    ByVal MC_NO9 As String,  _
-                    ByVal MC_NO10 As String,  _
-                    ByVal DANGER_CHEME_1 As Boolean,  _
-                    ByVal DANGER_CHEME_2 As Boolean,  _
-                    ByVal DANGER_CHEME_3 As Boolean,  _
-                    ByVal DANGER_CHEME_4 As Boolean,  _
-                    ByVal DANGER_CHEME_NAME As String,  _
-                    ByVal CAS_NO As String,  _
-                    ByVal FLAMMABLE As Boolean,  _
-                    ByVal CORROSIVE As Boolean,  _
-                    ByVal POISON As Boolean,  _
-                    ByVal GAS As Boolean,  _
-                    ByVal SUBSTANCE_OTHER As Boolean,  _
-                    ByVal SUBSTANCE_OTHER_DETAIL As String,  _
-                    ByVal OBJ_POWDER As Boolean,  _
-                    ByVal OBJ_HEAT As Boolean,  _
-                    ByVal OBJ_NOISE As Boolean,  _
-                    ByVal OBJ_VIBRATE As Boolean,  _
-                    ByVal OBJ_POISONGAS As Boolean,  _
-                    ByVal OBJ_WASTE_WATER As Boolean,  _
-                    ByVal OBJ_RAY As Boolean,  _
-                    ByVal OBJ_SMOKE As Boolean,  _
-                    ByVal OBJ_ELECTRIC_WAVE As Boolean,  _
-                    ByVal OBJ_OTHER As Boolean,  _
-                    ByVal OBJ_OTHER_DETAIL As String,  _
-                    ByVal OBJ_CHEME_NAME As String,  _
-                    ByVal EQUIPMENT_HELMET As Boolean,  _
-                    ByVal EQUIPMENT_GLASSES As Boolean,  _
-                    ByVal EQUIPMENT_CHEMICAL_MASK As Boolean,  _
-                    ByVal EQUIPMENT_BIB_PROTECT_CHEMECAL As Boolean,  _
-                    ByVal EQUIPMENT_CHEMICAL_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_HEAT_RESISTANT_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_CUT_PROTECT_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_EYE_COVER As Boolean,  _
-                    ByVal EQUIPMENT_FACE_SHIELD As Boolean,  _
-                    ByVal EQUIPMENT_DUST_MASK As Boolean,  _
-                    ByVal EQUIPMENT_CHEMICAL_PACK As Boolean,  _
-                    ByVal EQUIPMENT_ELECTRIC_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_OTHER As Boolean,  _
-                    ByVal EQUIPMENT_OTHER_DETAIL As String,  _
-                    ByVal LAW_MC As Boolean,  _
-                    ByVal LAW_CHEMECALS As Boolean,  _
-                    ByVal LAW_ENVIRONMENTAL As Boolean,  _
-                    ByVal LAW_HIGH_PRESSURE_GAS As Boolean,  _
-                    ByVal LAW_PREVENT_STOP_FIRE As Boolean,  _
-                    ByVal LAW_FACTORY As Boolean,  _
-                    ByVal LAW_FUEL_REGULATORY As Boolean,  _
-                    ByVal LAW_OTHER As Boolean,  _
-                    ByVal LAW_OTHER_DETAIL As String,  _
-                    ByVal LAW_NAME As String,  _
-                    ByVal LAW_NOTICE As Boolean,  _
-                    ByVal LAW_NOTICE_DETAIL As String,  _
-                    ByVal LAW_APPROVE As Boolean,  _
-                    ByVal LAW_APPROVE_DETAIL As String,  _
-                    ByVal LAW_CHECK As Boolean,  _
-                    ByVal LAW_CHECK_DETAIL As String,  _
-                    ByVal IMG_TEMP_STAMP As String,  _
-                    ByVal IMG_TEMP_STAMP_CONTENT_TYPE As String,  _
-                    ByVal IMG_TEMP_STAMP_DATA() As Byte,  _
-                    ByVal REQUEST_NAME_APPROVE As String,  _
-                    ByVal REQUEST_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal SECT_MGR_NAME_APPROVE As String,  _
-                    ByVal SECT_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal DEPT_MGR_NAME_APPROVE As String,  _
-                    ByVal DEPT_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal DIV_MGR_NAME_APPROVE As String,  _
-                    ByVal DIV_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal MCEQ_SUBCOM_NAME_APPROVE As String,  _
-                    ByVal MCEQ_SUBCOM_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal SAFETY_OFFICER_NAME_APPROVE As String,  _
-                    ByVal SAFETY_OFFICER_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal SAFETY_MGR_NAME_APPROVE As String,  _
-                    ByVal SAFETY_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal OPNO_ADD As String,  _
-                    ByVal DATE_ADD As Global.System.Nullable(Of Date),  _
-                    ByVal OPNO_UPDATE As String,  _
-                    ByVal DATE_UPDATE As Global.System.Nullable(Of Date),  _
-                    ByVal STATUS_ID As Global.System.Nullable(Of Integer),  _
-                    ByVal STATUS_NAME As String,  _
-                    ByVal IP As String,  _
-                    ByVal DOCUMENT_ATTACH_NAME As String,  _
-                    ByVal DOCUMENT_ATTACH_CONTENT_TYPE As String,  _
-                    ByVal DOCUMENT_ATTACH_DATA() As Byte,  _
-                    ByVal IMAGE_ATTACH_NAME As String,  _
-                    ByVal IMAGE_ATTACH_CONTENT_TYPE As String,  _
-                    ByVal IMAGE_ATTACH_DATA() As Byte,  _
-                    ByVal LAYOUT_ATTACH_NAME As String,  _
-                    ByVal LAYOUT_ATTACH_CONTENT_TYPE As String,  _
-                    ByVal LAYOUT_ATTACH_DATA() As Byte) As Integer
-            If (MC_NO Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("MC_NO")
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(MC_NO,String)
-            End If
-            If (REGISTER_DATE.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(REGISTER_DATE.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.InsertCommand.Parameters(2).Value = CType(REGISTER_NEW_MC,Boolean)
-            Me.Adapter.InsertCommand.Parameters(3).Value = CType(CANCEL_MC,Boolean)
-            Me.Adapter.InsertCommand.Parameters(4).Value = CType(CATEGORY1_NEW_MC,Boolean)
-            Me.Adapter.InsertCommand.Parameters(5).Value = CType(CATEGORY1_TF_MC,Boolean)
-            Me.Adapter.InsertCommand.Parameters(6).Value = CType(CATEGORY1_OTH_MC,Boolean)
-            If (CATEGORY1_MC_OTHER_DETAIL Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(CATEGORY1_MC_OTHER_DETAIL,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(8).Value = CType(CATEGORY2_NEW_MODEL_MC,Boolean)
-            Me.Adapter.InsertCommand.Parameters(9).Value = CType(CATEGORY2_ORIGINAL_MODEL_MC,Boolean)
-            Me.Adapter.InsertCommand.Parameters(10).Value = CType(CATEGORY2_OTH_MODEL_MC,Boolean)
-            If (CATEGORY2_MC_OTHER_DETAIL Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(CATEGORY2_MC_OTHER_DETAIL,String)
-            End If
-            If (MAKER Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(MAKER,String)
-            End If
-            If (COUNTRY Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(COUNTRY,String)
-            End If
-            If (SUPPLIER Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(14).Value = CType(SUPPLIER,String)
-            End If
-            If (PROVIDER Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(15).Value = CType(PROVIDER,String)
-            End If
-            If (TEL Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(16).Value = CType(TEL,String)
-            End If
-            If (TYPE_MC Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(17).Value = CType(TYPE_MC,String)
-            End If
-            If (SIZE_HP_MC Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(18).Value = CType(SIZE_HP_MC,String)
-            End If
-            If (DIVISION Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(19).Value = CType(DIVISION,String)
-            End If
-            If (DEPARTMENT Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(20).Value = CType(DEPARTMENT,String)
-            End If
-            If (SECTION Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(21).Value = CType(SECTION,String)
-            End If
-            If (MC_NAME Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(22).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(22).Value = CType(MC_NAME,String)
-            End If
-            If (MC_NO1 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(23).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(23).Value = CType(MC_NO1,String)
-            End If
-            If (MC_NO2 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(24).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(24).Value = CType(MC_NO2,String)
-            End If
-            If (MC_NO3 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(25).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(25).Value = CType(MC_NO3,String)
-            End If
-            If (MC_NO4 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(26).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(26).Value = CType(MC_NO4,String)
-            End If
-            If (MC_NO5 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(27).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(27).Value = CType(MC_NO5,String)
-            End If
-            If (MC_NO6 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(28).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(28).Value = CType(MC_NO6,String)
-            End If
-            If (MC_NO7 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(29).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(29).Value = CType(MC_NO7,String)
-            End If
-            If (MC_NO8 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(30).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(30).Value = CType(MC_NO8,String)
-            End If
-            If (MC_NO9 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(31).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(31).Value = CType(MC_NO9,String)
-            End If
-            If (MC_NO10 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(32).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(32).Value = CType(MC_NO10,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(33).Value = CType(DANGER_CHEME_1,Boolean)
-            Me.Adapter.InsertCommand.Parameters(34).Value = CType(DANGER_CHEME_2,Boolean)
-            Me.Adapter.InsertCommand.Parameters(35).Value = CType(DANGER_CHEME_3,Boolean)
-            Me.Adapter.InsertCommand.Parameters(36).Value = CType(DANGER_CHEME_4,Boolean)
-            If (DANGER_CHEME_NAME Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(37).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(37).Value = CType(DANGER_CHEME_NAME,String)
-            End If
-            If (CAS_NO Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(38).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(38).Value = CType(CAS_NO,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(39).Value = CType(FLAMMABLE,Boolean)
-            Me.Adapter.InsertCommand.Parameters(40).Value = CType(CORROSIVE,Boolean)
-            Me.Adapter.InsertCommand.Parameters(41).Value = CType(POISON,Boolean)
-            Me.Adapter.InsertCommand.Parameters(42).Value = CType(GAS,Boolean)
-            Me.Adapter.InsertCommand.Parameters(43).Value = CType(SUBSTANCE_OTHER,Boolean)
-            If (SUBSTANCE_OTHER_DETAIL Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(44).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(44).Value = CType(SUBSTANCE_OTHER_DETAIL,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(45).Value = CType(OBJ_POWDER,Boolean)
-            Me.Adapter.InsertCommand.Parameters(46).Value = CType(OBJ_HEAT,Boolean)
-            Me.Adapter.InsertCommand.Parameters(47).Value = CType(OBJ_NOISE,Boolean)
-            Me.Adapter.InsertCommand.Parameters(48).Value = CType(OBJ_VIBRATE,Boolean)
-            Me.Adapter.InsertCommand.Parameters(49).Value = CType(OBJ_POISONGAS,Boolean)
-            Me.Adapter.InsertCommand.Parameters(50).Value = CType(OBJ_WASTE_WATER,Boolean)
-            Me.Adapter.InsertCommand.Parameters(51).Value = CType(OBJ_RAY,Boolean)
-            Me.Adapter.InsertCommand.Parameters(52).Value = CType(OBJ_SMOKE,Boolean)
-            Me.Adapter.InsertCommand.Parameters(53).Value = CType(OBJ_ELECTRIC_WAVE,Boolean)
-            Me.Adapter.InsertCommand.Parameters(54).Value = CType(OBJ_OTHER,Boolean)
-            If (OBJ_OTHER_DETAIL Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(55).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(55).Value = CType(OBJ_OTHER_DETAIL,String)
-            End If
-            If (OBJ_CHEME_NAME Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(56).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(56).Value = CType(OBJ_CHEME_NAME,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(57).Value = CType(EQUIPMENT_HELMET,Boolean)
-            Me.Adapter.InsertCommand.Parameters(58).Value = CType(EQUIPMENT_GLASSES,Boolean)
-            Me.Adapter.InsertCommand.Parameters(59).Value = CType(EQUIPMENT_CHEMICAL_MASK,Boolean)
-            Me.Adapter.InsertCommand.Parameters(60).Value = CType(EQUIPMENT_BIB_PROTECT_CHEMECAL,Boolean)
-            Me.Adapter.InsertCommand.Parameters(61).Value = CType(EQUIPMENT_CHEMICAL_GLOVES,Boolean)
-            Me.Adapter.InsertCommand.Parameters(62).Value = CType(EQUIPMENT_HEAT_RESISTANT_GLOVES,Boolean)
-            Me.Adapter.InsertCommand.Parameters(63).Value = CType(EQUIPMENT_CUT_PROTECT_GLOVES,Boolean)
-            Me.Adapter.InsertCommand.Parameters(64).Value = CType(EQUIPMENT_EYE_COVER,Boolean)
-            Me.Adapter.InsertCommand.Parameters(65).Value = CType(EQUIPMENT_FACE_SHIELD,Boolean)
-            Me.Adapter.InsertCommand.Parameters(66).Value = CType(EQUIPMENT_DUST_MASK,Boolean)
-            Me.Adapter.InsertCommand.Parameters(67).Value = CType(EQUIPMENT_CHEMICAL_PACK,Boolean)
-            Me.Adapter.InsertCommand.Parameters(68).Value = CType(EQUIPMENT_ELECTRIC_GLOVES,Boolean)
-            Me.Adapter.InsertCommand.Parameters(69).Value = CType(EQUIPMENT_OTHER,Boolean)
-            If (EQUIPMENT_OTHER_DETAIL Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(70).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(70).Value = CType(EQUIPMENT_OTHER_DETAIL,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(71).Value = CType(LAW_MC,Boolean)
-            Me.Adapter.InsertCommand.Parameters(72).Value = CType(LAW_CHEMECALS,Boolean)
-            Me.Adapter.InsertCommand.Parameters(73).Value = CType(LAW_ENVIRONMENTAL,Boolean)
-            Me.Adapter.InsertCommand.Parameters(74).Value = CType(LAW_HIGH_PRESSURE_GAS,Boolean)
-            Me.Adapter.InsertCommand.Parameters(75).Value = CType(LAW_PREVENT_STOP_FIRE,Boolean)
-            Me.Adapter.InsertCommand.Parameters(76).Value = CType(LAW_FACTORY,Boolean)
-            Me.Adapter.InsertCommand.Parameters(77).Value = CType(LAW_FUEL_REGULATORY,Boolean)
-            Me.Adapter.InsertCommand.Parameters(78).Value = CType(LAW_OTHER,Boolean)
-            If (LAW_OTHER_DETAIL Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(79).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(79).Value = CType(LAW_OTHER_DETAIL,String)
-            End If
-            If (LAW_NAME Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(80).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(80).Value = CType(LAW_NAME,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(81).Value = CType(LAW_NOTICE,Boolean)
-            If (LAW_NOTICE_DETAIL Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(82).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(82).Value = CType(LAW_NOTICE_DETAIL,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(83).Value = CType(LAW_APPROVE,Boolean)
-            If (LAW_APPROVE_DETAIL Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(84).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(84).Value = CType(LAW_APPROVE_DETAIL,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(85).Value = CType(LAW_CHECK,Boolean)
-            If (LAW_CHECK_DETAIL Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(86).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(86).Value = CType(LAW_CHECK_DETAIL,String)
-            End If
-            If (IMG_TEMP_STAMP Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(87).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(87).Value = CType(IMG_TEMP_STAMP,String)
-            End If
-            If (IMG_TEMP_STAMP_CONTENT_TYPE Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(88).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(88).Value = CType(IMG_TEMP_STAMP_CONTENT_TYPE,String)
-            End If
-            If (IMG_TEMP_STAMP_DATA Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(89).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(89).Value = CType(IMG_TEMP_STAMP_DATA,Byte())
-            End If
-            If (REQUEST_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(90).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(90).Value = CType(REQUEST_NAME_APPROVE,String)
-            End If
-            If (REQUEST_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(91).Value = CType(REQUEST_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(91).Value = Global.System.DBNull.Value
-            End If
-            If (SECT_MGR_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(92).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(92).Value = CType(SECT_MGR_NAME_APPROVE,String)
-            End If
-            If (SECT_MGR_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(93).Value = CType(SECT_MGR_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(93).Value = Global.System.DBNull.Value
-            End If
-            If (DEPT_MGR_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(94).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(94).Value = CType(DEPT_MGR_NAME_APPROVE,String)
-            End If
-            If (DEPT_MGR_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(95).Value = CType(DEPT_MGR_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(95).Value = Global.System.DBNull.Value
-            End If
-            If (DIV_MGR_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(96).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(96).Value = CType(DIV_MGR_NAME_APPROVE,String)
-            End If
-            If (DIV_MGR_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(97).Value = CType(DIV_MGR_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(97).Value = Global.System.DBNull.Value
-            End If
-            If (MCEQ_SUBCOM_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(98).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(98).Value = CType(MCEQ_SUBCOM_NAME_APPROVE,String)
-            End If
-            If (MCEQ_SUBCOM_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(99).Value = CType(MCEQ_SUBCOM_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(99).Value = Global.System.DBNull.Value
-            End If
-            If (SAFETY_OFFICER_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(100).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(100).Value = CType(SAFETY_OFFICER_NAME_APPROVE,String)
-            End If
-            If (SAFETY_OFFICER_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(101).Value = CType(SAFETY_OFFICER_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(101).Value = Global.System.DBNull.Value
-            End If
-            If (SAFETY_MGR_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(102).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(102).Value = CType(SAFETY_MGR_NAME_APPROVE,String)
-            End If
-            If (SAFETY_MGR_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(103).Value = CType(SAFETY_MGR_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(103).Value = Global.System.DBNull.Value
-            End If
-            If (OPNO_ADD Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(104).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(104).Value = CType(OPNO_ADD,String)
-            End If
-            If (DATE_ADD.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(105).Value = CType(DATE_ADD.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(105).Value = Global.System.DBNull.Value
-            End If
-            If (OPNO_UPDATE Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(106).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(106).Value = CType(OPNO_UPDATE,String)
-            End If
-            If (DATE_UPDATE.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(107).Value = CType(DATE_UPDATE.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(107).Value = Global.System.DBNull.Value
-            End If
-            If (STATUS_ID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(108).Value = CType(STATUS_ID.Value,Integer)
-            Else
-                Me.Adapter.InsertCommand.Parameters(108).Value = Global.System.DBNull.Value
-            End If
-            If (STATUS_NAME Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(109).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(109).Value = CType(STATUS_NAME,String)
-            End If
-            If (IP Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(110).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(110).Value = CType(IP,String)
-            End If
-            If (DOCUMENT_ATTACH_NAME Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(111).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(111).Value = CType(DOCUMENT_ATTACH_NAME,String)
-            End If
-            If (DOCUMENT_ATTACH_CONTENT_TYPE Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(112).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(112).Value = CType(DOCUMENT_ATTACH_CONTENT_TYPE,String)
-            End If
-            If (DOCUMENT_ATTACH_DATA Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(113).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(113).Value = CType(DOCUMENT_ATTACH_DATA,Byte())
-            End If
-            If (IMAGE_ATTACH_NAME Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(114).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(114).Value = CType(IMAGE_ATTACH_NAME,String)
-            End If
-            If (IMAGE_ATTACH_CONTENT_TYPE Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(115).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(115).Value = CType(IMAGE_ATTACH_CONTENT_TYPE,String)
-            End If
-            If (IMAGE_ATTACH_DATA Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(116).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(116).Value = CType(IMAGE_ATTACH_DATA,Byte())
-            End If
-            If (LAYOUT_ATTACH_NAME Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(117).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(117).Value = CType(LAYOUT_ATTACH_NAME,String)
-            End If
-            If (LAYOUT_ATTACH_CONTENT_TYPE Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(118).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(118).Value = CType(LAYOUT_ATTACH_CONTENT_TYPE,String)
-            End If
-            If (LAYOUT_ATTACH_DATA Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(119).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(119).Value = CType(LAYOUT_ATTACH_DATA,Byte())
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal MC_NO As String,  _
-                    ByVal REGISTER_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal REGISTER_NEW_MC As Boolean,  _
-                    ByVal CANCEL_MC As Boolean,  _
-                    ByVal CATEGORY1_NEW_MC As Boolean,  _
-                    ByVal CATEGORY1_TF_MC As Boolean,  _
-                    ByVal CATEGORY1_OTH_MC As Boolean,  _
-                    ByVal CATEGORY1_MC_OTHER_DETAIL As String,  _
-                    ByVal CATEGORY2_NEW_MODEL_MC As Boolean,  _
-                    ByVal CATEGORY2_ORIGINAL_MODEL_MC As Boolean,  _
-                    ByVal CATEGORY2_OTH_MODEL_MC As Boolean,  _
-                    ByVal CATEGORY2_MC_OTHER_DETAIL As String,  _
-                    ByVal MAKER As String,  _
-                    ByVal COUNTRY As String,  _
-                    ByVal SUPPLIER As String,  _
-                    ByVal PROVIDER As String,  _
-                    ByVal TEL As String,  _
-                    ByVal TYPE_MC As String,  _
-                    ByVal SIZE_HP_MC As String,  _
-                    ByVal DIVISION As String,  _
-                    ByVal DEPARTMENT As String,  _
-                    ByVal SECTION As String,  _
-                    ByVal MC_NAME As String,  _
-                    ByVal MC_NO1 As String,  _
-                    ByVal MC_NO2 As String,  _
-                    ByVal MC_NO3 As String,  _
-                    ByVal MC_NO4 As String,  _
-                    ByVal MC_NO5 As String,  _
-                    ByVal MC_NO6 As String,  _
-                    ByVal MC_NO7 As String,  _
-                    ByVal MC_NO8 As String,  _
-                    ByVal MC_NO9 As String,  _
-                    ByVal MC_NO10 As String,  _
-                    ByVal DANGER_CHEME_1 As Boolean,  _
-                    ByVal DANGER_CHEME_2 As Boolean,  _
-                    ByVal DANGER_CHEME_3 As Boolean,  _
-                    ByVal DANGER_CHEME_4 As Boolean,  _
-                    ByVal DANGER_CHEME_NAME As String,  _
-                    ByVal CAS_NO As String,  _
-                    ByVal FLAMMABLE As Boolean,  _
-                    ByVal CORROSIVE As Boolean,  _
-                    ByVal POISON As Boolean,  _
-                    ByVal GAS As Boolean,  _
-                    ByVal SUBSTANCE_OTHER As Boolean,  _
-                    ByVal SUBSTANCE_OTHER_DETAIL As String,  _
-                    ByVal OBJ_POWDER As Boolean,  _
-                    ByVal OBJ_HEAT As Boolean,  _
-                    ByVal OBJ_NOISE As Boolean,  _
-                    ByVal OBJ_VIBRATE As Boolean,  _
-                    ByVal OBJ_POISONGAS As Boolean,  _
-                    ByVal OBJ_WASTE_WATER As Boolean,  _
-                    ByVal OBJ_RAY As Boolean,  _
-                    ByVal OBJ_SMOKE As Boolean,  _
-                    ByVal OBJ_ELECTRIC_WAVE As Boolean,  _
-                    ByVal OBJ_OTHER As Boolean,  _
-                    ByVal OBJ_OTHER_DETAIL As String,  _
-                    ByVal OBJ_CHEME_NAME As String,  _
-                    ByVal EQUIPMENT_HELMET As Boolean,  _
-                    ByVal EQUIPMENT_GLASSES As Boolean,  _
-                    ByVal EQUIPMENT_CHEMICAL_MASK As Boolean,  _
-                    ByVal EQUIPMENT_BIB_PROTECT_CHEMECAL As Boolean,  _
-                    ByVal EQUIPMENT_CHEMICAL_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_HEAT_RESISTANT_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_CUT_PROTECT_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_EYE_COVER As Boolean,  _
-                    ByVal EQUIPMENT_FACE_SHIELD As Boolean,  _
-                    ByVal EQUIPMENT_DUST_MASK As Boolean,  _
-                    ByVal EQUIPMENT_CHEMICAL_PACK As Boolean,  _
-                    ByVal EQUIPMENT_ELECTRIC_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_OTHER As Boolean,  _
-                    ByVal EQUIPMENT_OTHER_DETAIL As String,  _
-                    ByVal LAW_MC As Boolean,  _
-                    ByVal LAW_CHEMECALS As Boolean,  _
-                    ByVal LAW_ENVIRONMENTAL As Boolean,  _
-                    ByVal LAW_HIGH_PRESSURE_GAS As Boolean,  _
-                    ByVal LAW_PREVENT_STOP_FIRE As Boolean,  _
-                    ByVal LAW_FACTORY As Boolean,  _
-                    ByVal LAW_FUEL_REGULATORY As Boolean,  _
-                    ByVal LAW_OTHER As Boolean,  _
-                    ByVal LAW_OTHER_DETAIL As String,  _
-                    ByVal LAW_NAME As String,  _
-                    ByVal LAW_NOTICE As Boolean,  _
-                    ByVal LAW_NOTICE_DETAIL As String,  _
-                    ByVal LAW_APPROVE As Boolean,  _
-                    ByVal LAW_APPROVE_DETAIL As String,  _
-                    ByVal LAW_CHECK As Boolean,  _
-                    ByVal LAW_CHECK_DETAIL As String,  _
-                    ByVal IMG_TEMP_STAMP As String,  _
-                    ByVal IMG_TEMP_STAMP_CONTENT_TYPE As String,  _
-                    ByVal IMG_TEMP_STAMP_DATA() As Byte,  _
-                    ByVal REQUEST_NAME_APPROVE As String,  _
-                    ByVal REQUEST_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal SECT_MGR_NAME_APPROVE As String,  _
-                    ByVal SECT_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal DEPT_MGR_NAME_APPROVE As String,  _
-                    ByVal DEPT_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal DIV_MGR_NAME_APPROVE As String,  _
-                    ByVal DIV_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal MCEQ_SUBCOM_NAME_APPROVE As String,  _
-                    ByVal MCEQ_SUBCOM_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal SAFETY_OFFICER_NAME_APPROVE As String,  _
-                    ByVal SAFETY_OFFICER_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal SAFETY_MGR_NAME_APPROVE As String,  _
-                    ByVal SAFETY_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal OPNO_ADD As String,  _
-                    ByVal DATE_ADD As Global.System.Nullable(Of Date),  _
-                    ByVal OPNO_UPDATE As String,  _
-                    ByVal DATE_UPDATE As Global.System.Nullable(Of Date),  _
-                    ByVal STATUS_ID As Global.System.Nullable(Of Integer),  _
-                    ByVal STATUS_NAME As String,  _
-                    ByVal IP As String,  _
-                    ByVal DOCUMENT_ATTACH_NAME As String,  _
-                    ByVal DOCUMENT_ATTACH_CONTENT_TYPE As String,  _
-                    ByVal DOCUMENT_ATTACH_DATA() As Byte,  _
-                    ByVal IMAGE_ATTACH_NAME As String,  _
-                    ByVal IMAGE_ATTACH_CONTENT_TYPE As String,  _
-                    ByVal IMAGE_ATTACH_DATA() As Byte,  _
-                    ByVal LAYOUT_ATTACH_NAME As String,  _
-                    ByVal LAYOUT_ATTACH_CONTENT_TYPE As String,  _
-                    ByVal LAYOUT_ATTACH_DATA() As Byte,  _
-                    ByVal Original_MC_NO As String) As Integer
-            If (MC_NO Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("MC_NO")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(MC_NO,String)
-            End If
-            If (REGISTER_DATE.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(REGISTER_DATE.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(REGISTER_NEW_MC,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(CANCEL_MC,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(CATEGORY1_NEW_MC,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(CATEGORY1_TF_MC,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(CATEGORY1_OTH_MC,Boolean)
-            If (CATEGORY1_MC_OTHER_DETAIL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(CATEGORY1_MC_OTHER_DETAIL,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(CATEGORY2_NEW_MODEL_MC,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(CATEGORY2_ORIGINAL_MODEL_MC,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(CATEGORY2_OTH_MODEL_MC,Boolean)
-            If (CATEGORY2_MC_OTHER_DETAIL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(CATEGORY2_MC_OTHER_DETAIL,String)
-            End If
-            If (MAKER Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(MAKER,String)
-            End If
-            If (COUNTRY Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(COUNTRY,String)
-            End If
-            If (SUPPLIER Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(SUPPLIER,String)
-            End If
-            If (PROVIDER Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(PROVIDER,String)
-            End If
-            If (TEL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(TEL,String)
-            End If
-            If (TYPE_MC Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(TYPE_MC,String)
-            End If
-            If (SIZE_HP_MC Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(SIZE_HP_MC,String)
-            End If
-            If (DIVISION Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(DIVISION,String)
-            End If
-            If (DEPARTMENT Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(DEPARTMENT,String)
-            End If
-            If (SECTION Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(SECTION,String)
-            End If
-            If (MC_NAME Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(MC_NAME,String)
-            End If
-            If (MC_NO1 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(MC_NO1,String)
-            End If
-            If (MC_NO2 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(MC_NO2,String)
-            End If
-            If (MC_NO3 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(MC_NO3,String)
-            End If
-            If (MC_NO4 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(MC_NO4,String)
-            End If
-            If (MC_NO5 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(MC_NO5,String)
-            End If
-            If (MC_NO6 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(MC_NO6,String)
-            End If
-            If (MC_NO7 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(MC_NO7,String)
-            End If
-            If (MC_NO8 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(MC_NO8,String)
-            End If
-            If (MC_NO9 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(MC_NO9,String)
-            End If
-            If (MC_NO10 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(MC_NO10,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(33).Value = CType(DANGER_CHEME_1,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(34).Value = CType(DANGER_CHEME_2,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(35).Value = CType(DANGER_CHEME_3,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(36).Value = CType(DANGER_CHEME_4,Boolean)
-            If (DANGER_CHEME_NAME Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(37).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(DANGER_CHEME_NAME,String)
-            End If
-            If (CAS_NO Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(38).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(CAS_NO,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(39).Value = CType(FLAMMABLE,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(40).Value = CType(CORROSIVE,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(41).Value = CType(POISON,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(42).Value = CType(GAS,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(43).Value = CType(SUBSTANCE_OTHER,Boolean)
-            If (SUBSTANCE_OTHER_DETAIL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(44).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(SUBSTANCE_OTHER_DETAIL,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(45).Value = CType(OBJ_POWDER,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(46).Value = CType(OBJ_HEAT,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(47).Value = CType(OBJ_NOISE,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(48).Value = CType(OBJ_VIBRATE,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(49).Value = CType(OBJ_POISONGAS,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(50).Value = CType(OBJ_WASTE_WATER,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(51).Value = CType(OBJ_RAY,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(52).Value = CType(OBJ_SMOKE,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(53).Value = CType(OBJ_ELECTRIC_WAVE,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(54).Value = CType(OBJ_OTHER,Boolean)
-            If (OBJ_OTHER_DETAIL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(55).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(OBJ_OTHER_DETAIL,String)
-            End If
-            If (OBJ_CHEME_NAME Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(56).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(OBJ_CHEME_NAME,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(57).Value = CType(EQUIPMENT_HELMET,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(58).Value = CType(EQUIPMENT_GLASSES,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(59).Value = CType(EQUIPMENT_CHEMICAL_MASK,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(60).Value = CType(EQUIPMENT_BIB_PROTECT_CHEMECAL,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(61).Value = CType(EQUIPMENT_CHEMICAL_GLOVES,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(62).Value = CType(EQUIPMENT_HEAT_RESISTANT_GLOVES,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(63).Value = CType(EQUIPMENT_CUT_PROTECT_GLOVES,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(64).Value = CType(EQUIPMENT_EYE_COVER,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(65).Value = CType(EQUIPMENT_FACE_SHIELD,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(66).Value = CType(EQUIPMENT_DUST_MASK,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(67).Value = CType(EQUIPMENT_CHEMICAL_PACK,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(68).Value = CType(EQUIPMENT_ELECTRIC_GLOVES,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(69).Value = CType(EQUIPMENT_OTHER,Boolean)
-            If (EQUIPMENT_OTHER_DETAIL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(70).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(70).Value = CType(EQUIPMENT_OTHER_DETAIL,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(71).Value = CType(LAW_MC,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(72).Value = CType(LAW_CHEMECALS,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(73).Value = CType(LAW_ENVIRONMENTAL,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(74).Value = CType(LAW_HIGH_PRESSURE_GAS,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(75).Value = CType(LAW_PREVENT_STOP_FIRE,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(76).Value = CType(LAW_FACTORY,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(77).Value = CType(LAW_FUEL_REGULATORY,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(78).Value = CType(LAW_OTHER,Boolean)
-            If (LAW_OTHER_DETAIL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(79).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(79).Value = CType(LAW_OTHER_DETAIL,String)
-            End If
-            If (LAW_NAME Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(80).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(80).Value = CType(LAW_NAME,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(81).Value = CType(LAW_NOTICE,Boolean)
-            If (LAW_NOTICE_DETAIL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(82).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(82).Value = CType(LAW_NOTICE_DETAIL,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(83).Value = CType(LAW_APPROVE,Boolean)
-            If (LAW_APPROVE_DETAIL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(84).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(84).Value = CType(LAW_APPROVE_DETAIL,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(85).Value = CType(LAW_CHECK,Boolean)
-            If (LAW_CHECK_DETAIL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(86).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(86).Value = CType(LAW_CHECK_DETAIL,String)
-            End If
-            If (IMG_TEMP_STAMP Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(87).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(87).Value = CType(IMG_TEMP_STAMP,String)
-            End If
-            If (IMG_TEMP_STAMP_CONTENT_TYPE Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(88).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(88).Value = CType(IMG_TEMP_STAMP_CONTENT_TYPE,String)
-            End If
-            If (IMG_TEMP_STAMP_DATA Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(89).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(89).Value = CType(IMG_TEMP_STAMP_DATA,Byte())
-            End If
-            If (REQUEST_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(90).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(90).Value = CType(REQUEST_NAME_APPROVE,String)
-            End If
-            If (REQUEST_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(91).Value = CType(REQUEST_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(91).Value = Global.System.DBNull.Value
-            End If
-            If (SECT_MGR_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(92).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(92).Value = CType(SECT_MGR_NAME_APPROVE,String)
-            End If
-            If (SECT_MGR_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(93).Value = CType(SECT_MGR_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(93).Value = Global.System.DBNull.Value
-            End If
-            If (DEPT_MGR_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(94).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(94).Value = CType(DEPT_MGR_NAME_APPROVE,String)
-            End If
-            If (DEPT_MGR_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(95).Value = CType(DEPT_MGR_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(95).Value = Global.System.DBNull.Value
-            End If
-            If (DIV_MGR_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(96).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(96).Value = CType(DIV_MGR_NAME_APPROVE,String)
-            End If
-            If (DIV_MGR_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(97).Value = CType(DIV_MGR_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(97).Value = Global.System.DBNull.Value
-            End If
-            If (MCEQ_SUBCOM_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(98).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(98).Value = CType(MCEQ_SUBCOM_NAME_APPROVE,String)
-            End If
-            If (MCEQ_SUBCOM_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(99).Value = CType(MCEQ_SUBCOM_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(99).Value = Global.System.DBNull.Value
-            End If
-            If (SAFETY_OFFICER_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(100).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(100).Value = CType(SAFETY_OFFICER_NAME_APPROVE,String)
-            End If
-            If (SAFETY_OFFICER_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(101).Value = CType(SAFETY_OFFICER_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(101).Value = Global.System.DBNull.Value
-            End If
-            If (SAFETY_MGR_NAME_APPROVE Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(102).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(102).Value = CType(SAFETY_MGR_NAME_APPROVE,String)
-            End If
-            If (SAFETY_MGR_APPROVE_DATE.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(103).Value = CType(SAFETY_MGR_APPROVE_DATE.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(103).Value = Global.System.DBNull.Value
-            End If
-            If (OPNO_ADD Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(104).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(104).Value = CType(OPNO_ADD,String)
-            End If
-            If (DATE_ADD.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(105).Value = CType(DATE_ADD.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(105).Value = Global.System.DBNull.Value
-            End If
-            If (OPNO_UPDATE Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(106).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(106).Value = CType(OPNO_UPDATE,String)
-            End If
-            If (DATE_UPDATE.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(107).Value = CType(DATE_UPDATE.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(107).Value = Global.System.DBNull.Value
-            End If
-            If (STATUS_ID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(108).Value = CType(STATUS_ID.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(108).Value = Global.System.DBNull.Value
-            End If
-            If (STATUS_NAME Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(109).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(109).Value = CType(STATUS_NAME,String)
-            End If
-            If (IP Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(110).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(110).Value = CType(IP,String)
-            End If
-            If (DOCUMENT_ATTACH_NAME Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(111).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(111).Value = CType(DOCUMENT_ATTACH_NAME,String)
-            End If
-            If (DOCUMENT_ATTACH_CONTENT_TYPE Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(112).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(112).Value = CType(DOCUMENT_ATTACH_CONTENT_TYPE,String)
-            End If
-            If (DOCUMENT_ATTACH_DATA Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(113).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(113).Value = CType(DOCUMENT_ATTACH_DATA,Byte())
-            End If
-            If (IMAGE_ATTACH_NAME Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(114).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(114).Value = CType(IMAGE_ATTACH_NAME,String)
-            End If
-            If (IMAGE_ATTACH_CONTENT_TYPE Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(115).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(115).Value = CType(IMAGE_ATTACH_CONTENT_TYPE,String)
-            End If
-            If (IMAGE_ATTACH_DATA Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(116).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(116).Value = CType(IMAGE_ATTACH_DATA,Byte())
-            End If
-            If (LAYOUT_ATTACH_NAME Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(117).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(117).Value = CType(LAYOUT_ATTACH_NAME,String)
-            End If
-            If (LAYOUT_ATTACH_CONTENT_TYPE Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(118).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(118).Value = CType(LAYOUT_ATTACH_CONTENT_TYPE,String)
-            End If
-            If (LAYOUT_ATTACH_DATA Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(119).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(119).Value = CType(LAYOUT_ATTACH_DATA,Byte())
-            End If
-            If (Original_MC_NO Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_MC_NO")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(120).Value = CType(Original_MC_NO,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal REGISTER_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal REGISTER_NEW_MC As Boolean,  _
-                    ByVal CANCEL_MC As Boolean,  _
-                    ByVal CATEGORY1_NEW_MC As Boolean,  _
-                    ByVal CATEGORY1_TF_MC As Boolean,  _
-                    ByVal CATEGORY1_OTH_MC As Boolean,  _
-                    ByVal CATEGORY1_MC_OTHER_DETAIL As String,  _
-                    ByVal CATEGORY2_NEW_MODEL_MC As Boolean,  _
-                    ByVal CATEGORY2_ORIGINAL_MODEL_MC As Boolean,  _
-                    ByVal CATEGORY2_OTH_MODEL_MC As Boolean,  _
-                    ByVal CATEGORY2_MC_OTHER_DETAIL As String,  _
-                    ByVal MAKER As String,  _
-                    ByVal COUNTRY As String,  _
-                    ByVal SUPPLIER As String,  _
-                    ByVal PROVIDER As String,  _
-                    ByVal TEL As String,  _
-                    ByVal TYPE_MC As String,  _
-                    ByVal SIZE_HP_MC As String,  _
-                    ByVal DIVISION As String,  _
-                    ByVal DEPARTMENT As String,  _
-                    ByVal SECTION As String,  _
-                    ByVal MC_NAME As String,  _
-                    ByVal MC_NO1 As String,  _
-                    ByVal MC_NO2 As String,  _
-                    ByVal MC_NO3 As String,  _
-                    ByVal MC_NO4 As String,  _
-                    ByVal MC_NO5 As String,  _
-                    ByVal MC_NO6 As String,  _
-                    ByVal MC_NO7 As String,  _
-                    ByVal MC_NO8 As String,  _
-                    ByVal MC_NO9 As String,  _
-                    ByVal MC_NO10 As String,  _
-                    ByVal DANGER_CHEME_1 As Boolean,  _
-                    ByVal DANGER_CHEME_2 As Boolean,  _
-                    ByVal DANGER_CHEME_3 As Boolean,  _
-                    ByVal DANGER_CHEME_4 As Boolean,  _
-                    ByVal DANGER_CHEME_NAME As String,  _
-                    ByVal CAS_NO As String,  _
-                    ByVal FLAMMABLE As Boolean,  _
-                    ByVal CORROSIVE As Boolean,  _
-                    ByVal POISON As Boolean,  _
-                    ByVal GAS As Boolean,  _
-                    ByVal SUBSTANCE_OTHER As Boolean,  _
-                    ByVal SUBSTANCE_OTHER_DETAIL As String,  _
-                    ByVal OBJ_POWDER As Boolean,  _
-                    ByVal OBJ_HEAT As Boolean,  _
-                    ByVal OBJ_NOISE As Boolean,  _
-                    ByVal OBJ_VIBRATE As Boolean,  _
-                    ByVal OBJ_POISONGAS As Boolean,  _
-                    ByVal OBJ_WASTE_WATER As Boolean,  _
-                    ByVal OBJ_RAY As Boolean,  _
-                    ByVal OBJ_SMOKE As Boolean,  _
-                    ByVal OBJ_ELECTRIC_WAVE As Boolean,  _
-                    ByVal OBJ_OTHER As Boolean,  _
-                    ByVal OBJ_OTHER_DETAIL As String,  _
-                    ByVal OBJ_CHEME_NAME As String,  _
-                    ByVal EQUIPMENT_HELMET As Boolean,  _
-                    ByVal EQUIPMENT_GLASSES As Boolean,  _
-                    ByVal EQUIPMENT_CHEMICAL_MASK As Boolean,  _
-                    ByVal EQUIPMENT_BIB_PROTECT_CHEMECAL As Boolean,  _
-                    ByVal EQUIPMENT_CHEMICAL_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_HEAT_RESISTANT_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_CUT_PROTECT_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_EYE_COVER As Boolean,  _
-                    ByVal EQUIPMENT_FACE_SHIELD As Boolean,  _
-                    ByVal EQUIPMENT_DUST_MASK As Boolean,  _
-                    ByVal EQUIPMENT_CHEMICAL_PACK As Boolean,  _
-                    ByVal EQUIPMENT_ELECTRIC_GLOVES As Boolean,  _
-                    ByVal EQUIPMENT_OTHER As Boolean,  _
-                    ByVal EQUIPMENT_OTHER_DETAIL As String,  _
-                    ByVal LAW_MC As Boolean,  _
-                    ByVal LAW_CHEMECALS As Boolean,  _
-                    ByVal LAW_ENVIRONMENTAL As Boolean,  _
-                    ByVal LAW_HIGH_PRESSURE_GAS As Boolean,  _
-                    ByVal LAW_PREVENT_STOP_FIRE As Boolean,  _
-                    ByVal LAW_FACTORY As Boolean,  _
-                    ByVal LAW_FUEL_REGULATORY As Boolean,  _
-                    ByVal LAW_OTHER As Boolean,  _
-                    ByVal LAW_OTHER_DETAIL As String,  _
-                    ByVal LAW_NAME As String,  _
-                    ByVal LAW_NOTICE As Boolean,  _
-                    ByVal LAW_NOTICE_DETAIL As String,  _
-                    ByVal LAW_APPROVE As Boolean,  _
-                    ByVal LAW_APPROVE_DETAIL As String,  _
-                    ByVal LAW_CHECK As Boolean,  _
-                    ByVal LAW_CHECK_DETAIL As String,  _
-                    ByVal IMG_TEMP_STAMP As String,  _
-                    ByVal IMG_TEMP_STAMP_CONTENT_TYPE As String,  _
-                    ByVal IMG_TEMP_STAMP_DATA() As Byte,  _
-                    ByVal REQUEST_NAME_APPROVE As String,  _
-                    ByVal REQUEST_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal SECT_MGR_NAME_APPROVE As String,  _
-                    ByVal SECT_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal DEPT_MGR_NAME_APPROVE As String,  _
-                    ByVal DEPT_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal DIV_MGR_NAME_APPROVE As String,  _
-                    ByVal DIV_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal MCEQ_SUBCOM_NAME_APPROVE As String,  _
-                    ByVal MCEQ_SUBCOM_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal SAFETY_OFFICER_NAME_APPROVE As String,  _
-                    ByVal SAFETY_OFFICER_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal SAFETY_MGR_NAME_APPROVE As String,  _
-                    ByVal SAFETY_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
-                    ByVal OPNO_ADD As String,  _
-                    ByVal DATE_ADD As Global.System.Nullable(Of Date),  _
-                    ByVal OPNO_UPDATE As String,  _
-                    ByVal DATE_UPDATE As Global.System.Nullable(Of Date),  _
-                    ByVal STATUS_ID As Global.System.Nullable(Of Integer),  _
-                    ByVal STATUS_NAME As String,  _
-                    ByVal IP As String,  _
-                    ByVal DOCUMENT_ATTACH_NAME As String,  _
-                    ByVal DOCUMENT_ATTACH_CONTENT_TYPE As String,  _
-                    ByVal DOCUMENT_ATTACH_DATA() As Byte,  _
-                    ByVal IMAGE_ATTACH_NAME As String,  _
-                    ByVal IMAGE_ATTACH_CONTENT_TYPE As String,  _
-                    ByVal IMAGE_ATTACH_DATA() As Byte,  _
-                    ByVal LAYOUT_ATTACH_NAME As String,  _
-                    ByVal LAYOUT_ATTACH_CONTENT_TYPE As String,  _
-                    ByVal LAYOUT_ATTACH_DATA() As Byte,  _
-                    ByVal Original_MC_NO As String) As Integer
-            Return Me.Update(Original_MC_NO, REGISTER_DATE, REGISTER_NEW_MC, CANCEL_MC, CATEGORY1_NEW_MC, CATEGORY1_TF_MC, CATEGORY1_OTH_MC, CATEGORY1_MC_OTHER_DETAIL, CATEGORY2_NEW_MODEL_MC, CATEGORY2_ORIGINAL_MODEL_MC, CATEGORY2_OTH_MODEL_MC, CATEGORY2_MC_OTHER_DETAIL, MAKER, COUNTRY, SUPPLIER, PROVIDER, TEL, TYPE_MC, SIZE_HP_MC, DIVISION, DEPARTMENT, SECTION, MC_NAME, MC_NO1, MC_NO2, MC_NO3, MC_NO4, MC_NO5, MC_NO6, MC_NO7, MC_NO8, MC_NO9, MC_NO10, DANGER_CHEME_1, DANGER_CHEME_2, DANGER_CHEME_3, DANGER_CHEME_4, DANGER_CHEME_NAME, CAS_NO, FLAMMABLE, CORROSIVE, POISON, GAS, SUBSTANCE_OTHER, SUBSTANCE_OTHER_DETAIL, OBJ_POWDER, OBJ_HEAT, OBJ_NOISE, OBJ_VIBRATE, OBJ_POISONGAS, OBJ_WASTE_WATER, OBJ_RAY, OBJ_SMOKE, OBJ_ELECTRIC_WAVE, OBJ_OTHER, OBJ_OTHER_DETAIL, OBJ_CHEME_NAME, EQUIPMENT_HELMET, EQUIPMENT_GLASSES, EQUIPMENT_CHEMICAL_MASK, EQUIPMENT_BIB_PROTECT_CHEMECAL, EQUIPMENT_CHEMICAL_GLOVES, EQUIPMENT_HEAT_RESISTANT_GLOVES, EQUIPMENT_CUT_PROTECT_GLOVES, EQUIPMENT_EYE_COVER, EQUIPMENT_FACE_SHIELD, EQUIPMENT_DUST_MASK, EQUIPMENT_CHEMICAL_PACK, EQUIPMENT_ELECTRIC_GLOVES, EQUIPMENT_OTHER, EQUIPMENT_OTHER_DETAIL, LAW_MC, LAW_CHEMECALS, LAW_ENVIRONMENTAL, LAW_HIGH_PRESSURE_GAS, LAW_PREVENT_STOP_FIRE, LAW_FACTORY, LAW_FUEL_REGULATORY, LAW_OTHER, LAW_OTHER_DETAIL, LAW_NAME, LAW_NOTICE, LAW_NOTICE_DETAIL, LAW_APPROVE, LAW_APPROVE_DETAIL, LAW_CHECK, LAW_CHECK_DETAIL, IMG_TEMP_STAMP, IMG_TEMP_STAMP_CONTENT_TYPE, IMG_TEMP_STAMP_DATA, REQUEST_NAME_APPROVE, REQUEST_APPROVE_DATE, SECT_MGR_NAME_APPROVE, SECT_MGR_APPROVE_DATE, DEPT_MGR_NAME_APPROVE, DEPT_MGR_APPROVE_DATE, DIV_MGR_NAME_APPROVE, DIV_MGR_APPROVE_DATE, MCEQ_SUBCOM_NAME_APPROVE, MCEQ_SUBCOM_APPROVE_DATE, SAFETY_OFFICER_NAME_APPROVE, SAFETY_OFFICER_APPROVE_DATE, SAFETY_MGR_NAME_APPROVE, SAFETY_MGR_APPROVE_DATE, OPNO_ADD, DATE_ADD, OPNO_UPDATE, DATE_UPDATE, STATUS_ID, STATUS_NAME, IP, DOCUMENT_ATTACH_NAME, DOCUMENT_ATTACH_CONTENT_TYPE, DOCUMENT_ATTACH_DATA, IMAGE_ATTACH_NAME, IMAGE_ATTACH_CONTENT_TYPE, IMAGE_ATTACH_DATA, LAYOUT_ATTACH_NAME, LAYOUT_ATTACH_CONTENT_TYPE, LAYOUT_ATTACH_DATA, Original_MC_NO)
-        End Function
-    End Class
     
     '''<summary>
     '''Represents the connection and commands used to retrieve and save data.
@@ -34407,6 +32464,1788 @@ Namespace DSMachineTableAdapters
     End Class
     
     '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class TB_MACHINE_DATATableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "TB_MACHINE_DATA"
+            tableMapping.ColumnMappings.Add("ID", "ID")
+            tableMapping.ColumnMappings.Add("MC_NO", "MC_NO")
+            tableMapping.ColumnMappings.Add("REGISTER_DATE", "REGISTER_DATE")
+            tableMapping.ColumnMappings.Add("REGISTER_NEW_MC", "REGISTER_NEW_MC")
+            tableMapping.ColumnMappings.Add("CANCEL_MC", "CANCEL_MC")
+            tableMapping.ColumnMappings.Add("CATEGORY1_NEW_MC", "CATEGORY1_NEW_MC")
+            tableMapping.ColumnMappings.Add("CATEGORY1_TF_MC", "CATEGORY1_TF_MC")
+            tableMapping.ColumnMappings.Add("CATEGORY1_OTH_MC", "CATEGORY1_OTH_MC")
+            tableMapping.ColumnMappings.Add("CATEGORY1_MC_OTHER_DETAIL", "CATEGORY1_MC_OTHER_DETAIL")
+            tableMapping.ColumnMappings.Add("CATEGORY2_NEW_MODEL_MC", "CATEGORY2_NEW_MODEL_MC")
+            tableMapping.ColumnMappings.Add("CATEGORY2_ORIGINAL_MODEL_MC", "CATEGORY2_ORIGINAL_MODEL_MC")
+            tableMapping.ColumnMappings.Add("CATEGORY2_OTH_MODEL_MC", "CATEGORY2_OTH_MODEL_MC")
+            tableMapping.ColumnMappings.Add("CATEGORY2_MC_OTHER_DETAIL", "CATEGORY2_MC_OTHER_DETAIL")
+            tableMapping.ColumnMappings.Add("MAKER", "MAKER")
+            tableMapping.ColumnMappings.Add("COUNTRY", "COUNTRY")
+            tableMapping.ColumnMappings.Add("SUPPLIER", "SUPPLIER")
+            tableMapping.ColumnMappings.Add("PROVIDER", "PROVIDER")
+            tableMapping.ColumnMappings.Add("TEL", "TEL")
+            tableMapping.ColumnMappings.Add("TYPE_MC", "TYPE_MC")
+            tableMapping.ColumnMappings.Add("SIZE_HP_MC", "SIZE_HP_MC")
+            tableMapping.ColumnMappings.Add("DIVISION", "DIVISION")
+            tableMapping.ColumnMappings.Add("DEPARTMENT", "DEPARTMENT")
+            tableMapping.ColumnMappings.Add("SECTION", "SECTION")
+            tableMapping.ColumnMappings.Add("MC_NAME", "MC_NAME")
+            tableMapping.ColumnMappings.Add("MC_NO1", "MC_NO1")
+            tableMapping.ColumnMappings.Add("MC_NO2", "MC_NO2")
+            tableMapping.ColumnMappings.Add("MC_NO3", "MC_NO3")
+            tableMapping.ColumnMappings.Add("MC_NO4", "MC_NO4")
+            tableMapping.ColumnMappings.Add("MC_NO5", "MC_NO5")
+            tableMapping.ColumnMappings.Add("MC_NO6", "MC_NO6")
+            tableMapping.ColumnMappings.Add("MC_NO7", "MC_NO7")
+            tableMapping.ColumnMappings.Add("MC_NO8", "MC_NO8")
+            tableMapping.ColumnMappings.Add("MC_NO9", "MC_NO9")
+            tableMapping.ColumnMappings.Add("MC_NO10", "MC_NO10")
+            tableMapping.ColumnMappings.Add("DANGER_CHEME_1", "DANGER_CHEME_1")
+            tableMapping.ColumnMappings.Add("DANGER_CHEME_2", "DANGER_CHEME_2")
+            tableMapping.ColumnMappings.Add("DANGER_CHEME_3", "DANGER_CHEME_3")
+            tableMapping.ColumnMappings.Add("DANGER_CHEME_4", "DANGER_CHEME_4")
+            tableMapping.ColumnMappings.Add("DANGER_CHEME_NAME", "DANGER_CHEME_NAME")
+            tableMapping.ColumnMappings.Add("CAS_NO", "CAS_NO")
+            tableMapping.ColumnMappings.Add("FLAMMABLE", "FLAMMABLE")
+            tableMapping.ColumnMappings.Add("CORROSIVE", "CORROSIVE")
+            tableMapping.ColumnMappings.Add("POISON", "POISON")
+            tableMapping.ColumnMappings.Add("GAS", "GAS")
+            tableMapping.ColumnMappings.Add("SUBSTANCE_OTHER", "SUBSTANCE_OTHER")
+            tableMapping.ColumnMappings.Add("SUBSTANCE_OTHER_DETAIL", "SUBSTANCE_OTHER_DETAIL")
+            tableMapping.ColumnMappings.Add("OBJ_POWDER", "OBJ_POWDER")
+            tableMapping.ColumnMappings.Add("OBJ_HEAT", "OBJ_HEAT")
+            tableMapping.ColumnMappings.Add("OBJ_NOISE", "OBJ_NOISE")
+            tableMapping.ColumnMappings.Add("OBJ_VIBRATE", "OBJ_VIBRATE")
+            tableMapping.ColumnMappings.Add("OBJ_POISONGAS", "OBJ_POISONGAS")
+            tableMapping.ColumnMappings.Add("OBJ_WASTE_WATER", "OBJ_WASTE_WATER")
+            tableMapping.ColumnMappings.Add("OBJ_RAY", "OBJ_RAY")
+            tableMapping.ColumnMappings.Add("OBJ_SMOKE", "OBJ_SMOKE")
+            tableMapping.ColumnMappings.Add("OBJ_ELECTRIC_WAVE", "OBJ_ELECTRIC_WAVE")
+            tableMapping.ColumnMappings.Add("OBJ_OTHER", "OBJ_OTHER")
+            tableMapping.ColumnMappings.Add("OBJ_OTHER_DETAIL", "OBJ_OTHER_DETAIL")
+            tableMapping.ColumnMappings.Add("OBJ_CHEME_NAME", "OBJ_CHEME_NAME")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_HELMET", "EQUIPMENT_HELMET")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_GLASSES", "EQUIPMENT_GLASSES")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_CHEMICAL_MASK", "EQUIPMENT_CHEMICAL_MASK")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_BIB_PROTECT_CHEMECAL", "EQUIPMENT_BIB_PROTECT_CHEMECAL")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_CHEMICAL_GLOVES", "EQUIPMENT_CHEMICAL_GLOVES")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_HEAT_RESISTANT_GLOVES", "EQUIPMENT_HEAT_RESISTANT_GLOVES")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_CUT_PROTECT_GLOVES", "EQUIPMENT_CUT_PROTECT_GLOVES")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_EYE_COVER", "EQUIPMENT_EYE_COVER")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_FACE_SHIELD", "EQUIPMENT_FACE_SHIELD")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_DUST_MASK", "EQUIPMENT_DUST_MASK")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_CHEMICAL_PACK", "EQUIPMENT_CHEMICAL_PACK")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_ELECTRIC_GLOVES", "EQUIPMENT_ELECTRIC_GLOVES")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_OTHER", "EQUIPMENT_OTHER")
+            tableMapping.ColumnMappings.Add("EQUIPMENT_OTHER_DETAIL", "EQUIPMENT_OTHER_DETAIL")
+            tableMapping.ColumnMappings.Add("LAW_MC", "LAW_MC")
+            tableMapping.ColumnMappings.Add("LAW_CHEMECALS", "LAW_CHEMECALS")
+            tableMapping.ColumnMappings.Add("LAW_ENVIRONMENTAL", "LAW_ENVIRONMENTAL")
+            tableMapping.ColumnMappings.Add("LAW_HIGH_PRESSURE_GAS", "LAW_HIGH_PRESSURE_GAS")
+            tableMapping.ColumnMappings.Add("LAW_PREVENT_STOP_FIRE", "LAW_PREVENT_STOP_FIRE")
+            tableMapping.ColumnMappings.Add("LAW_FACTORY", "LAW_FACTORY")
+            tableMapping.ColumnMappings.Add("LAW_FUEL_REGULATORY", "LAW_FUEL_REGULATORY")
+            tableMapping.ColumnMappings.Add("LAW_OTHER", "LAW_OTHER")
+            tableMapping.ColumnMappings.Add("LAW_OTHER_DETAIL", "LAW_OTHER_DETAIL")
+            tableMapping.ColumnMappings.Add("LAW_NAME", "LAW_NAME")
+            tableMapping.ColumnMappings.Add("LAW_NOTICE", "LAW_NOTICE")
+            tableMapping.ColumnMappings.Add("LAW_NOTICE_DETAIL", "LAW_NOTICE_DETAIL")
+            tableMapping.ColumnMappings.Add("LAW_APPROVE", "LAW_APPROVE")
+            tableMapping.ColumnMappings.Add("LAW_APPROVE_DETAIL", "LAW_APPROVE_DETAIL")
+            tableMapping.ColumnMappings.Add("LAW_CHECK", "LAW_CHECK")
+            tableMapping.ColumnMappings.Add("LAW_CHECK_DETAIL", "LAW_CHECK_DETAIL")
+            tableMapping.ColumnMappings.Add("IMG_TEMP_STAMP", "IMG_TEMP_STAMP")
+            tableMapping.ColumnMappings.Add("IMG_TEMP_STAMP_CONTENT_TYPE", "IMG_TEMP_STAMP_CONTENT_TYPE")
+            tableMapping.ColumnMappings.Add("IMG_TEMP_STAMP_DATA", "IMG_TEMP_STAMP_DATA")
+            tableMapping.ColumnMappings.Add("REQUEST_NAME_APPROVE", "REQUEST_NAME_APPROVE")
+            tableMapping.ColumnMappings.Add("REQUEST_APPROVE_DATE", "REQUEST_APPROVE_DATE")
+            tableMapping.ColumnMappings.Add("SECT_MGR_NAME_APPROVE", "SECT_MGR_NAME_APPROVE")
+            tableMapping.ColumnMappings.Add("SECT_MGR_APPROVE_DATE", "SECT_MGR_APPROVE_DATE")
+            tableMapping.ColumnMappings.Add("DEPT_MGR_NAME_APPROVE", "DEPT_MGR_NAME_APPROVE")
+            tableMapping.ColumnMappings.Add("DEPT_MGR_APPROVE_DATE", "DEPT_MGR_APPROVE_DATE")
+            tableMapping.ColumnMappings.Add("DIV_MGR_NAME_APPROVE", "DIV_MGR_NAME_APPROVE")
+            tableMapping.ColumnMappings.Add("DIV_MGR_APPROVE_DATE", "DIV_MGR_APPROVE_DATE")
+            tableMapping.ColumnMappings.Add("MCEQ_SUBCOM_NAME_APPROVE", "MCEQ_SUBCOM_NAME_APPROVE")
+            tableMapping.ColumnMappings.Add("MCEQ_SUBCOM_APPROVE_DATE", "MCEQ_SUBCOM_APPROVE_DATE")
+            tableMapping.ColumnMappings.Add("SAFETY_OFFICER_NAME_APPROVE", "SAFETY_OFFICER_NAME_APPROVE")
+            tableMapping.ColumnMappings.Add("SAFETY_OFFICER_APPROVE_DATE", "SAFETY_OFFICER_APPROVE_DATE")
+            tableMapping.ColumnMappings.Add("SAFETY_MGR_NAME_APPROVE", "SAFETY_MGR_NAME_APPROVE")
+            tableMapping.ColumnMappings.Add("SAFETY_MGR_APPROVE_DATE", "SAFETY_MGR_APPROVE_DATE")
+            tableMapping.ColumnMappings.Add("OPNO_ADD", "OPNO_ADD")
+            tableMapping.ColumnMappings.Add("DATE_ADD", "DATE_ADD")
+            tableMapping.ColumnMappings.Add("OPNO_UPDATE", "OPNO_UPDATE")
+            tableMapping.ColumnMappings.Add("DATE_UPDATE", "DATE_UPDATE")
+            tableMapping.ColumnMappings.Add("STATUS_ID", "STATUS_ID")
+            tableMapping.ColumnMappings.Add("STATUS_NAME", "STATUS_NAME")
+            tableMapping.ColumnMappings.Add("IP", "IP")
+            tableMapping.ColumnMappings.Add("DOCUMENT_ATTACH_NAME", "DOCUMENT_ATTACH_NAME")
+            tableMapping.ColumnMappings.Add("DOCUMENT_ATTACH_CONTENT_TYPE", "DOCUMENT_ATTACH_CONTENT_TYPE")
+            tableMapping.ColumnMappings.Add("DOCUMENT_ATTACH_DATA", "DOCUMENT_ATTACH_DATA")
+            tableMapping.ColumnMappings.Add("IMAGE_ATTACH_NAME", "IMAGE_ATTACH_NAME")
+            tableMapping.ColumnMappings.Add("IMAGE_ATTACH_CONTENT_TYPE", "IMAGE_ATTACH_CONTENT_TYPE")
+            tableMapping.ColumnMappings.Add("IMAGE_ATTACH_DATA", "IMAGE_ATTACH_DATA")
+            tableMapping.ColumnMappings.Add("LAYOUT_ATTACH_NAME", "LAYOUT_ATTACH_NAME")
+            tableMapping.ColumnMappings.Add("LAYOUT_ATTACH_CONTENT_TYPE", "LAYOUT_ATTACH_CONTENT_TYPE")
+            tableMapping.ColumnMappings.Add("LAYOUT_ATTACH_DATA", "LAYOUT_ATTACH_DATA")
+            Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [TB_MACHINE_DATA] WHERE (([ID] = @Original_ID))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.InsertCommand.Connection = Me.Connection
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [TB_MACHINE_DATA] ([MC_NO], [REGISTER_DATE], [REGISTER_NEW_MC], [CANC"& _ 
+                "EL_MC], [CATEGORY1_NEW_MC], [CATEGORY1_TF_MC], [CATEGORY1_OTH_MC], [CATEGORY1_MC"& _ 
+                "_OTHER_DETAIL], [CATEGORY2_NEW_MODEL_MC], [CATEGORY2_ORIGINAL_MODEL_MC], [CATEGO"& _ 
+                "RY2_OTH_MODEL_MC], [CATEGORY2_MC_OTHER_DETAIL], [MAKER], [COUNTRY], [SUPPLIER], "& _ 
+                "[PROVIDER], [TEL], [TYPE_MC], [SIZE_HP_MC], [DIVISION], [DEPARTMENT], [SECTION],"& _ 
+                " [MC_NAME], [MC_NO1], [MC_NO2], [MC_NO3], [MC_NO4], [MC_NO5], [MC_NO6], [MC_NO7]"& _ 
+                ", [MC_NO8], [MC_NO9], [MC_NO10], [DANGER_CHEME_1], [DANGER_CHEME_2], [DANGER_CHE"& _ 
+                "ME_3], [DANGER_CHEME_4], [DANGER_CHEME_NAME], [CAS_NO], [FLAMMABLE], [CORROSIVE]"& _ 
+                ", [POISON], [GAS], [SUBSTANCE_OTHER], [SUBSTANCE_OTHER_DETAIL], [OBJ_POWDER], [O"& _ 
+                "BJ_HEAT], [OBJ_NOISE], [OBJ_VIBRATE], [OBJ_POISONGAS], [OBJ_WASTE_WATER], [OBJ_R"& _ 
+                "AY], [OBJ_SMOKE], [OBJ_ELECTRIC_WAVE], [OBJ_OTHER], [OBJ_OTHER_DETAIL], [OBJ_CHE"& _ 
+                "ME_NAME], [EQUIPMENT_HELMET], [EQUIPMENT_GLASSES], [EQUIPMENT_CHEMICAL_MASK], [E"& _ 
+                "QUIPMENT_BIB_PROTECT_CHEMECAL], [EQUIPMENT_CHEMICAL_GLOVES], [EQUIPMENT_HEAT_RES"& _ 
+                "ISTANT_GLOVES], [EQUIPMENT_CUT_PROTECT_GLOVES], [EQUIPMENT_EYE_COVER], [EQUIPMEN"& _ 
+                "T_FACE_SHIELD], [EQUIPMENT_DUST_MASK], [EQUIPMENT_CHEMICAL_PACK], [EQUIPMENT_ELE"& _ 
+                "CTRIC_GLOVES], [EQUIPMENT_OTHER], [EQUIPMENT_OTHER_DETAIL], [LAW_MC], [LAW_CHEME"& _ 
+                "CALS], [LAW_ENVIRONMENTAL], [LAW_HIGH_PRESSURE_GAS], [LAW_PREVENT_STOP_FIRE], [L"& _ 
+                "AW_FACTORY], [LAW_FUEL_REGULATORY], [LAW_OTHER], [LAW_OTHER_DETAIL], [LAW_NAME],"& _ 
+                " [LAW_NOTICE], [LAW_NOTICE_DETAIL], [LAW_APPROVE], [LAW_APPROVE_DETAIL], [LAW_CH"& _ 
+                "ECK], [LAW_CHECK_DETAIL], [IMG_TEMP_STAMP], [IMG_TEMP_STAMP_CONTENT_TYPE], [IMG_"& _ 
+                "TEMP_STAMP_DATA], [REQUEST_NAME_APPROVE], [REQUEST_APPROVE_DATE], [SECT_MGR_NAME"& _ 
+                "_APPROVE], [SECT_MGR_APPROVE_DATE], [DEPT_MGR_NAME_APPROVE], [DEPT_MGR_APPROVE_D"& _ 
+                "ATE], [DIV_MGR_NAME_APPROVE], [DIV_MGR_APPROVE_DATE], [MCEQ_SUBCOM_NAME_APPROVE]"& _ 
+                ", [MCEQ_SUBCOM_APPROVE_DATE], [SAFETY_OFFICER_NAME_APPROVE], [SAFETY_OFFICER_APP"& _ 
+                "ROVE_DATE], [SAFETY_MGR_NAME_APPROVE], [SAFETY_MGR_APPROVE_DATE], [OPNO_ADD], [D"& _ 
+                "ATE_ADD], [OPNO_UPDATE], [DATE_UPDATE], [STATUS_ID], [STATUS_NAME], [IP], [DOCUM"& _ 
+                "ENT_ATTACH_NAME], [DOCUMENT_ATTACH_CONTENT_TYPE], [DOCUMENT_ATTACH_DATA], [IMAGE"& _ 
+                "_ATTACH_NAME], [IMAGE_ATTACH_CONTENT_TYPE], [IMAGE_ATTACH_DATA], [LAYOUT_ATTACH_"& _ 
+                "NAME], [LAYOUT_ATTACH_CONTENT_TYPE], [LAYOUT_ATTACH_DATA]) VALUES (@MC_NO, @REGI"& _ 
+                "STER_DATE, @REGISTER_NEW_MC, @CANCEL_MC, @CATEGORY1_NEW_MC, @CATEGORY1_TF_MC, @C"& _ 
+                "ATEGORY1_OTH_MC, @CATEGORY1_MC_OTHER_DETAIL, @CATEGORY2_NEW_MODEL_MC, @CATEGORY2"& _ 
+                "_ORIGINAL_MODEL_MC, @CATEGORY2_OTH_MODEL_MC, @CATEGORY2_MC_OTHER_DETAIL, @MAKER,"& _ 
+                " @COUNTRY, @SUPPLIER, @PROVIDER, @TEL, @TYPE_MC, @SIZE_HP_MC, @DIVISION, @DEPART"& _ 
+                "MENT, @SECTION, @MC_NAME, @MC_NO1, @MC_NO2, @MC_NO3, @MC_NO4, @MC_NO5, @MC_NO6, "& _ 
+                "@MC_NO7, @MC_NO8, @MC_NO9, @MC_NO10, @DANGER_CHEME_1, @DANGER_CHEME_2, @DANGER_C"& _ 
+                "HEME_3, @DANGER_CHEME_4, @DANGER_CHEME_NAME, @CAS_NO, @FLAMMABLE, @CORROSIVE, @P"& _ 
+                "OISON, @GAS, @SUBSTANCE_OTHER, @SUBSTANCE_OTHER_DETAIL, @OBJ_POWDER, @OBJ_HEAT, "& _ 
+                "@OBJ_NOISE, @OBJ_VIBRATE, @OBJ_POISONGAS, @OBJ_WASTE_WATER, @OBJ_RAY, @OBJ_SMOKE"& _ 
+                ", @OBJ_ELECTRIC_WAVE, @OBJ_OTHER, @OBJ_OTHER_DETAIL, @OBJ_CHEME_NAME, @EQUIPMENT"& _ 
+                "_HELMET, @EQUIPMENT_GLASSES, @EQUIPMENT_CHEMICAL_MASK, @EQUIPMENT_BIB_PROTECT_CH"& _ 
+                "EMECAL, @EQUIPMENT_CHEMICAL_GLOVES, @EQUIPMENT_HEAT_RESISTANT_GLOVES, @EQUIPMENT"& _ 
+                "_CUT_PROTECT_GLOVES, @EQUIPMENT_EYE_COVER, @EQUIPMENT_FACE_SHIELD, @EQUIPMENT_DU"& _ 
+                "ST_MASK, @EQUIPMENT_CHEMICAL_PACK, @EQUIPMENT_ELECTRIC_GLOVES, @EQUIPMENT_OTHER,"& _ 
+                " @EQUIPMENT_OTHER_DETAIL, @LAW_MC, @LAW_CHEMECALS, @LAW_ENVIRONMENTAL, @LAW_HIGH"& _ 
+                "_PRESSURE_GAS, @LAW_PREVENT_STOP_FIRE, @LAW_FACTORY, @LAW_FUEL_REGULATORY, @LAW_"& _ 
+                "OTHER, @LAW_OTHER_DETAIL, @LAW_NAME, @LAW_NOTICE, @LAW_NOTICE_DETAIL, @LAW_APPRO"& _ 
+                "VE, @LAW_APPROVE_DETAIL, @LAW_CHECK, @LAW_CHECK_DETAIL, @IMG_TEMP_STAMP, @IMG_TE"& _ 
+                "MP_STAMP_CONTENT_TYPE, @IMG_TEMP_STAMP_DATA, @REQUEST_NAME_APPROVE, @REQUEST_APP"& _ 
+                "ROVE_DATE, @SECT_MGR_NAME_APPROVE, @SECT_MGR_APPROVE_DATE, @DEPT_MGR_NAME_APPROV"& _ 
+                "E, @DEPT_MGR_APPROVE_DATE, @DIV_MGR_NAME_APPROVE, @DIV_MGR_APPROVE_DATE, @MCEQ_S"& _ 
+                "UBCOM_NAME_APPROVE, @MCEQ_SUBCOM_APPROVE_DATE, @SAFETY_OFFICER_NAME_APPROVE, @SA"& _ 
+                "FETY_OFFICER_APPROVE_DATE, @SAFETY_MGR_NAME_APPROVE, @SAFETY_MGR_APPROVE_DATE, @"& _ 
+                "OPNO_ADD, @DATE_ADD, @OPNO_UPDATE, @DATE_UPDATE, @STATUS_ID, @STATUS_NAME, @IP, "& _ 
+                "@DOCUMENT_ATTACH_NAME, @DOCUMENT_ATTACH_CONTENT_TYPE, @DOCUMENT_ATTACH_DATA, @IM"& _ 
+                "AGE_ATTACH_NAME, @IMAGE_ATTACH_CONTENT_TYPE, @IMAGE_ATTACH_DATA, @LAYOUT_ATTACH_"& _ 
+                "NAME, @LAYOUT_ATTACH_CONTENT_TYPE, @LAYOUT_ATTACH_DATA)"
+            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REGISTER_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REGISTER_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REGISTER_NEW_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REGISTER_NEW_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CANCEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CANCEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_NEW_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_NEW_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_TF_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_TF_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_OTH_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_OTH_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_MC_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_MC_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_NEW_MODEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_NEW_MODEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_ORIGINAL_MODEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_ORIGINAL_MODEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_OTH_MODEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_OTH_MODEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_MC_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_MC_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MAKER", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MAKER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@COUNTRY", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "COUNTRY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUPPLIER", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUPPLIER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PROVIDER", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PROVIDER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TEL", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TEL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TYPE_MC", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TYPE_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SIZE_HP_MC", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SIZE_HP_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIVISION", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIVISION", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DEPARTMENT", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DEPARTMENT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SECTION", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SECTION", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO1", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO1", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO2", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO2", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO3", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO3", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO4", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO4", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO5", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO5", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO6", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO6", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO7", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO7", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO8", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO8", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO9", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO9", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO10", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO10", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_1", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_1", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_2", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_2", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_3", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_3", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_4", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_4", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CAS_NO", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CAS_NO", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FLAMMABLE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FLAMMABLE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CORROSIVE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CORROSIVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@POISON", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "POISON", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GAS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GAS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUBSTANCE_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUBSTANCE_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUBSTANCE_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUBSTANCE_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_POWDER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_POWDER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_HEAT", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_HEAT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_NOISE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_NOISE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_VIBRATE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_VIBRATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_POISONGAS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_POISONGAS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_WASTE_WATER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_WASTE_WATER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_RAY", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_RAY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_SMOKE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_SMOKE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_ELECTRIC_WAVE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_ELECTRIC_WAVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_CHEME_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_CHEME_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_HELMET", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_HELMET", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_GLASSES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_GLASSES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CHEMICAL_MASK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CHEMICAL_MASK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_BIB_PROTECT_CHEMECAL", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_BIB_PROTECT_CHEMECAL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CHEMICAL_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CHEMICAL_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_HEAT_RESISTANT_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_HEAT_RESISTANT_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CUT_PROTECT_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CUT_PROTECT_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_EYE_COVER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_EYE_COVER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_FACE_SHIELD", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_FACE_SHIELD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_DUST_MASK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_DUST_MASK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CHEMICAL_PACK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CHEMICAL_PACK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_ELECTRIC_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_ELECTRIC_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_CHEMECALS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_CHEMECALS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_ENVIRONMENTAL", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_ENVIRONMENTAL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_HIGH_PRESSURE_GAS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_HIGH_PRESSURE_GAS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_PREVENT_STOP_FIRE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_PREVENT_STOP_FIRE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_FACTORY", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_FACTORY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_FUEL_REGULATORY", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_FUEL_REGULATORY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_NOTICE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_NOTICE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_NOTICE_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_NOTICE_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_APPROVE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_APPROVE_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_APPROVE_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_CHECK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_CHECK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_CHECK_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_CHECK_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMG_TEMP_STAMP", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMG_TEMP_STAMP", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMG_TEMP_STAMP_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMG_TEMP_STAMP_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMG_TEMP_STAMP_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMG_TEMP_STAMP_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REQUEST_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REQUEST_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REQUEST_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REQUEST_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SECT_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SECT_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SECT_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SECT_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DEPT_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DEPT_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DEPT_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DEPT_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIV_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIV_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIV_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIV_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MCEQ_SUBCOM_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MCEQ_SUBCOM_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MCEQ_SUBCOM_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MCEQ_SUBCOM_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_OFFICER_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_OFFICER_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_OFFICER_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_OFFICER_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OPNO_ADD", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OPNO_ADD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DATE_ADD", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DATE_ADD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OPNO_UPDATE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OPNO_UPDATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DATE_UPDATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DATE_UPDATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@STATUS_ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "STATUS_ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@STATUS_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "STATUS_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IP", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IP", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DOCUMENT_ATTACH_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DOCUMENT_ATTACH_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DOCUMENT_ATTACH_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DOCUMENT_ATTACH_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DOCUMENT_ATTACH_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DOCUMENT_ATTACH_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMAGE_ATTACH_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMAGE_ATTACH_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMAGE_ATTACH_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMAGE_ATTACH_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMAGE_ATTACH_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMAGE_ATTACH_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAYOUT_ATTACH_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAYOUT_ATTACH_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAYOUT_ATTACH_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAYOUT_ATTACH_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAYOUT_ATTACH_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAYOUT_ATTACH_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [TB_MACHINE_DATA] SET [MC_NO] = @MC_NO, [REGISTER_DATE] = @REGISTER_DATE, "& _ 
+                "[REGISTER_NEW_MC] = @REGISTER_NEW_MC, [CANCEL_MC] = @CANCEL_MC, [CATEGORY1_NEW_M"& _ 
+                "C] = @CATEGORY1_NEW_MC, [CATEGORY1_TF_MC] = @CATEGORY1_TF_MC, [CATEGORY1_OTH_MC]"& _ 
+                " = @CATEGORY1_OTH_MC, [CATEGORY1_MC_OTHER_DETAIL] = @CATEGORY1_MC_OTHER_DETAIL, "& _ 
+                "[CATEGORY2_NEW_MODEL_MC] = @CATEGORY2_NEW_MODEL_MC, [CATEGORY2_ORIGINAL_MODEL_MC"& _ 
+                "] = @CATEGORY2_ORIGINAL_MODEL_MC, [CATEGORY2_OTH_MODEL_MC] = @CATEGORY2_OTH_MODE"& _ 
+                "L_MC, [CATEGORY2_MC_OTHER_DETAIL] = @CATEGORY2_MC_OTHER_DETAIL, [MAKER] = @MAKER"& _ 
+                ", [COUNTRY] = @COUNTRY, [SUPPLIER] = @SUPPLIER, [PROVIDER] = @PROVIDER, [TEL] = "& _ 
+                "@TEL, [TYPE_MC] = @TYPE_MC, [SIZE_HP_MC] = @SIZE_HP_MC, [DIVISION] = @DIVISION, "& _ 
+                "[DEPARTMENT] = @DEPARTMENT, [SECTION] = @SECTION, [MC_NAME] = @MC_NAME, [MC_NO1]"& _ 
+                " = @MC_NO1, [MC_NO2] = @MC_NO2, [MC_NO3] = @MC_NO3, [MC_NO4] = @MC_NO4, [MC_NO5]"& _ 
+                " = @MC_NO5, [MC_NO6] = @MC_NO6, [MC_NO7] = @MC_NO7, [MC_NO8] = @MC_NO8, [MC_NO9]"& _ 
+                " = @MC_NO9, [MC_NO10] = @MC_NO10, [DANGER_CHEME_1] = @DANGER_CHEME_1, [DANGER_CH"& _ 
+                "EME_2] = @DANGER_CHEME_2, [DANGER_CHEME_3] = @DANGER_CHEME_3, [DANGER_CHEME_4] ="& _ 
+                " @DANGER_CHEME_4, [DANGER_CHEME_NAME] = @DANGER_CHEME_NAME, [CAS_NO] = @CAS_NO, "& _ 
+                "[FLAMMABLE] = @FLAMMABLE, [CORROSIVE] = @CORROSIVE, [POISON] = @POISON, [GAS] = "& _ 
+                "@GAS, [SUBSTANCE_OTHER] = @SUBSTANCE_OTHER, [SUBSTANCE_OTHER_DETAIL] = @SUBSTANC"& _ 
+                "E_OTHER_DETAIL, [OBJ_POWDER] = @OBJ_POWDER, [OBJ_HEAT] = @OBJ_HEAT, [OBJ_NOISE] "& _ 
+                "= @OBJ_NOISE, [OBJ_VIBRATE] = @OBJ_VIBRATE, [OBJ_POISONGAS] = @OBJ_POISONGAS, [O"& _ 
+                "BJ_WASTE_WATER] = @OBJ_WASTE_WATER, [OBJ_RAY] = @OBJ_RAY, [OBJ_SMOKE] = @OBJ_SMO"& _ 
+                "KE, [OBJ_ELECTRIC_WAVE] = @OBJ_ELECTRIC_WAVE, [OBJ_OTHER] = @OBJ_OTHER, [OBJ_OTH"& _ 
+                "ER_DETAIL] = @OBJ_OTHER_DETAIL, [OBJ_CHEME_NAME] = @OBJ_CHEME_NAME, [EQUIPMENT_H"& _ 
+                "ELMET] = @EQUIPMENT_HELMET, [EQUIPMENT_GLASSES] = @EQUIPMENT_GLASSES, [EQUIPMENT"& _ 
+                "_CHEMICAL_MASK] = @EQUIPMENT_CHEMICAL_MASK, [EQUIPMENT_BIB_PROTECT_CHEMECAL] = @"& _ 
+                "EQUIPMENT_BIB_PROTECT_CHEMECAL, [EQUIPMENT_CHEMICAL_GLOVES] = @EQUIPMENT_CHEMICA"& _ 
+                "L_GLOVES, [EQUIPMENT_HEAT_RESISTANT_GLOVES] = @EQUIPMENT_HEAT_RESISTANT_GLOVES, "& _ 
+                "[EQUIPMENT_CUT_PROTECT_GLOVES] = @EQUIPMENT_CUT_PROTECT_GLOVES, [EQUIPMENT_EYE_C"& _ 
+                "OVER] = @EQUIPMENT_EYE_COVER, [EQUIPMENT_FACE_SHIELD] = @EQUIPMENT_FACE_SHIELD, "& _ 
+                "[EQUIPMENT_DUST_MASK] = @EQUIPMENT_DUST_MASK, [EQUIPMENT_CHEMICAL_PACK] = @EQUIP"& _ 
+                "MENT_CHEMICAL_PACK, [EQUIPMENT_ELECTRIC_GLOVES] = @EQUIPMENT_ELECTRIC_GLOVES, [E"& _ 
+                "QUIPMENT_OTHER] = @EQUIPMENT_OTHER, [EQUIPMENT_OTHER_DETAIL] = @EQUIPMENT_OTHER_"& _ 
+                "DETAIL, [LAW_MC] = @LAW_MC, [LAW_CHEMECALS] = @LAW_CHEMECALS, [LAW_ENVIRONMENTAL"& _ 
+                "] = @LAW_ENVIRONMENTAL, [LAW_HIGH_PRESSURE_GAS] = @LAW_HIGH_PRESSURE_GAS, [LAW_P"& _ 
+                "REVENT_STOP_FIRE] = @LAW_PREVENT_STOP_FIRE, [LAW_FACTORY] = @LAW_FACTORY, [LAW_F"& _ 
+                "UEL_REGULATORY] = @LAW_FUEL_REGULATORY, [LAW_OTHER] = @LAW_OTHER, [LAW_OTHER_DET"& _ 
+                "AIL] = @LAW_OTHER_DETAIL, [LAW_NAME] = @LAW_NAME, [LAW_NOTICE] = @LAW_NOTICE, [L"& _ 
+                "AW_NOTICE_DETAIL] = @LAW_NOTICE_DETAIL, [LAW_APPROVE] = @LAW_APPROVE, [LAW_APPRO"& _ 
+                "VE_DETAIL] = @LAW_APPROVE_DETAIL, [LAW_CHECK] = @LAW_CHECK, [LAW_CHECK_DETAIL] ="& _ 
+                " @LAW_CHECK_DETAIL, [IMG_TEMP_STAMP] = @IMG_TEMP_STAMP, [IMG_TEMP_STAMP_CONTENT_"& _ 
+                "TYPE] = @IMG_TEMP_STAMP_CONTENT_TYPE, [IMG_TEMP_STAMP_DATA] = @IMG_TEMP_STAMP_DA"& _ 
+                "TA, [REQUEST_NAME_APPROVE] = @REQUEST_NAME_APPROVE, [REQUEST_APPROVE_DATE] = @RE"& _ 
+                "QUEST_APPROVE_DATE, [SECT_MGR_NAME_APPROVE] = @SECT_MGR_NAME_APPROVE, [SECT_MGR_"& _ 
+                "APPROVE_DATE] = @SECT_MGR_APPROVE_DATE, [DEPT_MGR_NAME_APPROVE] = @DEPT_MGR_NAME"& _ 
+                "_APPROVE, [DEPT_MGR_APPROVE_DATE] = @DEPT_MGR_APPROVE_DATE, [DIV_MGR_NAME_APPROV"& _ 
+                "E] = @DIV_MGR_NAME_APPROVE, [DIV_MGR_APPROVE_DATE] = @DIV_MGR_APPROVE_DATE, [MCE"& _ 
+                "Q_SUBCOM_NAME_APPROVE] = @MCEQ_SUBCOM_NAME_APPROVE, [MCEQ_SUBCOM_APPROVE_DATE] ="& _ 
+                " @MCEQ_SUBCOM_APPROVE_DATE, [SAFETY_OFFICER_NAME_APPROVE] = @SAFETY_OFFICER_NAME"& _ 
+                "_APPROVE, [SAFETY_OFFICER_APPROVE_DATE] = @SAFETY_OFFICER_APPROVE_DATE, [SAFETY_"& _ 
+                "MGR_NAME_APPROVE] = @SAFETY_MGR_NAME_APPROVE, [SAFETY_MGR_APPROVE_DATE] = @SAFET"& _ 
+                "Y_MGR_APPROVE_DATE, [OPNO_ADD] = @OPNO_ADD, [DATE_ADD] = @DATE_ADD, [OPNO_UPDATE"& _ 
+                "] = @OPNO_UPDATE, [DATE_UPDATE] = @DATE_UPDATE, [STATUS_ID] = @STATUS_ID, [STATU"& _ 
+                "S_NAME] = @STATUS_NAME, [IP] = @IP, [DOCUMENT_ATTACH_NAME] = @DOCUMENT_ATTACH_NA"& _ 
+                "ME, [DOCUMENT_ATTACH_CONTENT_TYPE] = @DOCUMENT_ATTACH_CONTENT_TYPE, [DOCUMENT_AT"& _ 
+                "TACH_DATA] = @DOCUMENT_ATTACH_DATA, [IMAGE_ATTACH_NAME] = @IMAGE_ATTACH_NAME, [I"& _ 
+                "MAGE_ATTACH_CONTENT_TYPE] = @IMAGE_ATTACH_CONTENT_TYPE, [IMAGE_ATTACH_DATA] = @I"& _ 
+                "MAGE_ATTACH_DATA, [LAYOUT_ATTACH_NAME] = @LAYOUT_ATTACH_NAME, [LAYOUT_ATTACH_CON"& _ 
+                "TENT_TYPE] = @LAYOUT_ATTACH_CONTENT_TYPE, [LAYOUT_ATTACH_DATA] = @LAYOUT_ATTACH_"& _ 
+                "DATA WHERE (([ID] = @Original_ID))"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REGISTER_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REGISTER_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REGISTER_NEW_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REGISTER_NEW_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CANCEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CANCEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_NEW_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_NEW_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_TF_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_TF_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_OTH_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_OTH_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY1_MC_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY1_MC_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_NEW_MODEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_NEW_MODEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_ORIGINAL_MODEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_ORIGINAL_MODEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_OTH_MODEL_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_OTH_MODEL_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CATEGORY2_MC_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CATEGORY2_MC_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MAKER", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MAKER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@COUNTRY", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "COUNTRY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUPPLIER", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUPPLIER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PROVIDER", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PROVIDER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TEL", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TEL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TYPE_MC", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TYPE_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SIZE_HP_MC", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SIZE_HP_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIVISION", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIVISION", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DEPARTMENT", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DEPARTMENT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SECTION", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SECTION", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO1", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO1", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO2", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO2", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO3", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO3", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO4", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO4", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO5", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO5", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO6", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO6", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO7", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO7", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO8", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO8", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO9", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO9", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MC_NO10", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MC_NO10", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_1", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_1", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_2", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_2", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_3", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_3", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_4", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_4", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DANGER_CHEME_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DANGER_CHEME_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CAS_NO", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CAS_NO", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FLAMMABLE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FLAMMABLE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CORROSIVE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CORROSIVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@POISON", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "POISON", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GAS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GAS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUBSTANCE_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUBSTANCE_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUBSTANCE_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUBSTANCE_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_POWDER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_POWDER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_HEAT", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_HEAT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_NOISE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_NOISE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_VIBRATE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_VIBRATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_POISONGAS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_POISONGAS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_WASTE_WATER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_WASTE_WATER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_RAY", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_RAY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_SMOKE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_SMOKE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_ELECTRIC_WAVE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_ELECTRIC_WAVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OBJ_CHEME_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OBJ_CHEME_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_HELMET", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_HELMET", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_GLASSES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_GLASSES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CHEMICAL_MASK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CHEMICAL_MASK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_BIB_PROTECT_CHEMECAL", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_BIB_PROTECT_CHEMECAL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CHEMICAL_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CHEMICAL_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_HEAT_RESISTANT_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_HEAT_RESISTANT_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CUT_PROTECT_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CUT_PROTECT_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_EYE_COVER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_EYE_COVER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_FACE_SHIELD", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_FACE_SHIELD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_DUST_MASK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_DUST_MASK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_CHEMICAL_PACK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_CHEMICAL_PACK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_ELECTRIC_GLOVES", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_ELECTRIC_GLOVES", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EQUIPMENT_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EQUIPMENT_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_MC", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_MC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_CHEMECALS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_CHEMECALS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_ENVIRONMENTAL", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_ENVIRONMENTAL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_HIGH_PRESSURE_GAS", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_HIGH_PRESSURE_GAS", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_PREVENT_STOP_FIRE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_PREVENT_STOP_FIRE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_FACTORY", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_FACTORY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_FUEL_REGULATORY", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_FUEL_REGULATORY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_OTHER", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_OTHER", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_OTHER_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_OTHER_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_NOTICE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_NOTICE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_NOTICE_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_NOTICE_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_APPROVE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_APPROVE_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_APPROVE_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_CHECK", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_CHECK", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAW_CHECK_DETAIL", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAW_CHECK_DETAIL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMG_TEMP_STAMP", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMG_TEMP_STAMP", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMG_TEMP_STAMP_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMG_TEMP_STAMP_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMG_TEMP_STAMP_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMG_TEMP_STAMP_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REQUEST_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REQUEST_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@REQUEST_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "REQUEST_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SECT_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SECT_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SECT_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SECT_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DEPT_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DEPT_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DEPT_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DEPT_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIV_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIV_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIV_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIV_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MCEQ_SUBCOM_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MCEQ_SUBCOM_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MCEQ_SUBCOM_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MCEQ_SUBCOM_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_OFFICER_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_OFFICER_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_OFFICER_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_OFFICER_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_MGR_NAME_APPROVE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_MGR_NAME_APPROVE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SAFETY_MGR_APPROVE_DATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SAFETY_MGR_APPROVE_DATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OPNO_ADD", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OPNO_ADD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DATE_ADD", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DATE_ADD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OPNO_UPDATE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OPNO_UPDATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DATE_UPDATE", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DATE_UPDATE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@STATUS_ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "STATUS_ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@STATUS_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "STATUS_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IP", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IP", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DOCUMENT_ATTACH_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DOCUMENT_ATTACH_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DOCUMENT_ATTACH_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DOCUMENT_ATTACH_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DOCUMENT_ATTACH_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DOCUMENT_ATTACH_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMAGE_ATTACH_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMAGE_ATTACH_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMAGE_ATTACH_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMAGE_ATTACH_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IMAGE_ATTACH_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IMAGE_ATTACH_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAYOUT_ATTACH_NAME", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAYOUT_ATTACH_NAME", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAYOUT_ATTACH_CONTENT_TYPE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAYOUT_ATTACH_CONTENT_TYPE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LAYOUT_ATTACH_DATA", Global.System.Data.SqlDbType.VarBinary, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LAYOUT_ATTACH_DATA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("ConMC").ConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT        TB_MACHINE_DATA.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            TB_MACHINE_DATA"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As DSMachine.TB_MACHINE_DATADataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As DSMachine.TB_MACHINE_DATADataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As DSMachine.TB_MACHINE_DATADataTable = New DSMachine.TB_MACHINE_DATADataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As DSMachine.TB_MACHINE_DATADataTable) As Integer
+            Return Me.Adapter.Update(dataTable)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As DSMachine) As Integer
+            Return Me.Adapter.Update(dataSet, "TB_MACHINE_DATA")
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(dataRows)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete(ByVal Original_ID As Integer) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ID,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.DeleteCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.DeleteCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
+        Public Overloads Overridable Function Insert( _
+                    ByVal MC_NO As String,  _
+                    ByVal REGISTER_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal REGISTER_NEW_MC As Boolean,  _
+                    ByVal CANCEL_MC As Boolean,  _
+                    ByVal CATEGORY1_NEW_MC As Boolean,  _
+                    ByVal CATEGORY1_TF_MC As Boolean,  _
+                    ByVal CATEGORY1_OTH_MC As Boolean,  _
+                    ByVal CATEGORY1_MC_OTHER_DETAIL As String,  _
+                    ByVal CATEGORY2_NEW_MODEL_MC As Boolean,  _
+                    ByVal CATEGORY2_ORIGINAL_MODEL_MC As Boolean,  _
+                    ByVal CATEGORY2_OTH_MODEL_MC As Boolean,  _
+                    ByVal CATEGORY2_MC_OTHER_DETAIL As String,  _
+                    ByVal MAKER As String,  _
+                    ByVal COUNTRY As String,  _
+                    ByVal SUPPLIER As String,  _
+                    ByVal PROVIDER As String,  _
+                    ByVal TEL As String,  _
+                    ByVal TYPE_MC As String,  _
+                    ByVal SIZE_HP_MC As String,  _
+                    ByVal DIVISION As String,  _
+                    ByVal DEPARTMENT As String,  _
+                    ByVal SECTION As String,  _
+                    ByVal MC_NAME As String,  _
+                    ByVal MC_NO1 As String,  _
+                    ByVal MC_NO2 As String,  _
+                    ByVal MC_NO3 As String,  _
+                    ByVal MC_NO4 As String,  _
+                    ByVal MC_NO5 As String,  _
+                    ByVal MC_NO6 As String,  _
+                    ByVal MC_NO7 As String,  _
+                    ByVal MC_NO8 As String,  _
+                    ByVal MC_NO9 As String,  _
+                    ByVal MC_NO10 As String,  _
+                    ByVal DANGER_CHEME_1 As Boolean,  _
+                    ByVal DANGER_CHEME_2 As Boolean,  _
+                    ByVal DANGER_CHEME_3 As Boolean,  _
+                    ByVal DANGER_CHEME_4 As Boolean,  _
+                    ByVal DANGER_CHEME_NAME As String,  _
+                    ByVal CAS_NO As String,  _
+                    ByVal FLAMMABLE As Boolean,  _
+                    ByVal CORROSIVE As Boolean,  _
+                    ByVal POISON As Boolean,  _
+                    ByVal GAS As Boolean,  _
+                    ByVal SUBSTANCE_OTHER As Boolean,  _
+                    ByVal SUBSTANCE_OTHER_DETAIL As String,  _
+                    ByVal OBJ_POWDER As Boolean,  _
+                    ByVal OBJ_HEAT As Boolean,  _
+                    ByVal OBJ_NOISE As Boolean,  _
+                    ByVal OBJ_VIBRATE As Boolean,  _
+                    ByVal OBJ_POISONGAS As Boolean,  _
+                    ByVal OBJ_WASTE_WATER As Boolean,  _
+                    ByVal OBJ_RAY As Boolean,  _
+                    ByVal OBJ_SMOKE As Boolean,  _
+                    ByVal OBJ_ELECTRIC_WAVE As Boolean,  _
+                    ByVal OBJ_OTHER As Boolean,  _
+                    ByVal OBJ_OTHER_DETAIL As String,  _
+                    ByVal OBJ_CHEME_NAME As String,  _
+                    ByVal EQUIPMENT_HELMET As Boolean,  _
+                    ByVal EQUIPMENT_GLASSES As Boolean,  _
+                    ByVal EQUIPMENT_CHEMICAL_MASK As Boolean,  _
+                    ByVal EQUIPMENT_BIB_PROTECT_CHEMECAL As Boolean,  _
+                    ByVal EQUIPMENT_CHEMICAL_GLOVES As Boolean,  _
+                    ByVal EQUIPMENT_HEAT_RESISTANT_GLOVES As Boolean,  _
+                    ByVal EQUIPMENT_CUT_PROTECT_GLOVES As Boolean,  _
+                    ByVal EQUIPMENT_EYE_COVER As Boolean,  _
+                    ByVal EQUIPMENT_FACE_SHIELD As Boolean,  _
+                    ByVal EQUIPMENT_DUST_MASK As Boolean,  _
+                    ByVal EQUIPMENT_CHEMICAL_PACK As Boolean,  _
+                    ByVal EQUIPMENT_ELECTRIC_GLOVES As Boolean,  _
+                    ByVal EQUIPMENT_OTHER As Boolean,  _
+                    ByVal EQUIPMENT_OTHER_DETAIL As String,  _
+                    ByVal LAW_MC As Boolean,  _
+                    ByVal LAW_CHEMECALS As Boolean,  _
+                    ByVal LAW_ENVIRONMENTAL As Boolean,  _
+                    ByVal LAW_HIGH_PRESSURE_GAS As Boolean,  _
+                    ByVal LAW_PREVENT_STOP_FIRE As Boolean,  _
+                    ByVal LAW_FACTORY As Boolean,  _
+                    ByVal LAW_FUEL_REGULATORY As Boolean,  _
+                    ByVal LAW_OTHER As Boolean,  _
+                    ByVal LAW_OTHER_DETAIL As String,  _
+                    ByVal LAW_NAME As String,  _
+                    ByVal LAW_NOTICE As Boolean,  _
+                    ByVal LAW_NOTICE_DETAIL As String,  _
+                    ByVal LAW_APPROVE As Boolean,  _
+                    ByVal LAW_APPROVE_DETAIL As String,  _
+                    ByVal LAW_CHECK As Boolean,  _
+                    ByVal LAW_CHECK_DETAIL As String,  _
+                    ByVal IMG_TEMP_STAMP As String,  _
+                    ByVal IMG_TEMP_STAMP_CONTENT_TYPE As String,  _
+                    ByVal IMG_TEMP_STAMP_DATA() As Byte,  _
+                    ByVal REQUEST_NAME_APPROVE As String,  _
+                    ByVal REQUEST_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal SECT_MGR_NAME_APPROVE As String,  _
+                    ByVal SECT_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal DEPT_MGR_NAME_APPROVE As String,  _
+                    ByVal DEPT_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal DIV_MGR_NAME_APPROVE As String,  _
+                    ByVal DIV_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal MCEQ_SUBCOM_NAME_APPROVE As String,  _
+                    ByVal MCEQ_SUBCOM_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal SAFETY_OFFICER_NAME_APPROVE As String,  _
+                    ByVal SAFETY_OFFICER_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal SAFETY_MGR_NAME_APPROVE As String,  _
+                    ByVal SAFETY_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal OPNO_ADD As String,  _
+                    ByVal DATE_ADD As Global.System.Nullable(Of Date),  _
+                    ByVal OPNO_UPDATE As String,  _
+                    ByVal DATE_UPDATE As Global.System.Nullable(Of Date),  _
+                    ByVal STATUS_ID As Global.System.Nullable(Of Integer),  _
+                    ByVal STATUS_NAME As String,  _
+                    ByVal IP As String,  _
+                    ByVal DOCUMENT_ATTACH_NAME As String,  _
+                    ByVal DOCUMENT_ATTACH_CONTENT_TYPE As String,  _
+                    ByVal DOCUMENT_ATTACH_DATA() As Byte,  _
+                    ByVal IMAGE_ATTACH_NAME As String,  _
+                    ByVal IMAGE_ATTACH_CONTENT_TYPE As String,  _
+                    ByVal IMAGE_ATTACH_DATA() As Byte,  _
+                    ByVal LAYOUT_ATTACH_NAME As String,  _
+                    ByVal LAYOUT_ATTACH_CONTENT_TYPE As String,  _
+                    ByVal LAYOUT_ATTACH_DATA() As Byte) As Integer
+            If (MC_NO Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("MC_NO")
+            Else
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(MC_NO,String)
+            End If
+            If (REGISTER_DATE.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(REGISTER_DATE.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.InsertCommand.Parameters(2).Value = CType(REGISTER_NEW_MC,Boolean)
+            Me.Adapter.InsertCommand.Parameters(3).Value = CType(CANCEL_MC,Boolean)
+            Me.Adapter.InsertCommand.Parameters(4).Value = CType(CATEGORY1_NEW_MC,Boolean)
+            Me.Adapter.InsertCommand.Parameters(5).Value = CType(CATEGORY1_TF_MC,Boolean)
+            Me.Adapter.InsertCommand.Parameters(6).Value = CType(CATEGORY1_OTH_MC,Boolean)
+            If (CATEGORY1_MC_OTHER_DETAIL Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(CATEGORY1_MC_OTHER_DETAIL,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(8).Value = CType(CATEGORY2_NEW_MODEL_MC,Boolean)
+            Me.Adapter.InsertCommand.Parameters(9).Value = CType(CATEGORY2_ORIGINAL_MODEL_MC,Boolean)
+            Me.Adapter.InsertCommand.Parameters(10).Value = CType(CATEGORY2_OTH_MODEL_MC,Boolean)
+            If (CATEGORY2_MC_OTHER_DETAIL Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(CATEGORY2_MC_OTHER_DETAIL,String)
+            End If
+            If (MAKER Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(MAKER,String)
+            End If
+            If (COUNTRY Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(COUNTRY,String)
+            End If
+            If (SUPPLIER Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(SUPPLIER,String)
+            End If
+            If (PROVIDER Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(PROVIDER,String)
+            End If
+            If (TEL Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(TEL,String)
+            End If
+            If (TYPE_MC Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(TYPE_MC,String)
+            End If
+            If (SIZE_HP_MC Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(18).Value = CType(SIZE_HP_MC,String)
+            End If
+            If (DIVISION Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(19).Value = CType(DIVISION,String)
+            End If
+            If (DEPARTMENT Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(20).Value = CType(DEPARTMENT,String)
+            End If
+            If (SECTION Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(21).Value = CType(SECTION,String)
+            End If
+            If (MC_NAME Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(22).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(22).Value = CType(MC_NAME,String)
+            End If
+            If (MC_NO1 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(23).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(23).Value = CType(MC_NO1,String)
+            End If
+            If (MC_NO2 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(24).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(24).Value = CType(MC_NO2,String)
+            End If
+            If (MC_NO3 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(25).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(25).Value = CType(MC_NO3,String)
+            End If
+            If (MC_NO4 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(26).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(26).Value = CType(MC_NO4,String)
+            End If
+            If (MC_NO5 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(27).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(27).Value = CType(MC_NO5,String)
+            End If
+            If (MC_NO6 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(28).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(28).Value = CType(MC_NO6,String)
+            End If
+            If (MC_NO7 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(29).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(29).Value = CType(MC_NO7,String)
+            End If
+            If (MC_NO8 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(30).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(30).Value = CType(MC_NO8,String)
+            End If
+            If (MC_NO9 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(31).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(31).Value = CType(MC_NO9,String)
+            End If
+            If (MC_NO10 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(32).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(32).Value = CType(MC_NO10,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(33).Value = CType(DANGER_CHEME_1,Boolean)
+            Me.Adapter.InsertCommand.Parameters(34).Value = CType(DANGER_CHEME_2,Boolean)
+            Me.Adapter.InsertCommand.Parameters(35).Value = CType(DANGER_CHEME_3,Boolean)
+            Me.Adapter.InsertCommand.Parameters(36).Value = CType(DANGER_CHEME_4,Boolean)
+            If (DANGER_CHEME_NAME Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(37).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(37).Value = CType(DANGER_CHEME_NAME,String)
+            End If
+            If (CAS_NO Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(38).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(38).Value = CType(CAS_NO,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(39).Value = CType(FLAMMABLE,Boolean)
+            Me.Adapter.InsertCommand.Parameters(40).Value = CType(CORROSIVE,Boolean)
+            Me.Adapter.InsertCommand.Parameters(41).Value = CType(POISON,Boolean)
+            Me.Adapter.InsertCommand.Parameters(42).Value = CType(GAS,Boolean)
+            Me.Adapter.InsertCommand.Parameters(43).Value = CType(SUBSTANCE_OTHER,Boolean)
+            If (SUBSTANCE_OTHER_DETAIL Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(44).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(44).Value = CType(SUBSTANCE_OTHER_DETAIL,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(45).Value = CType(OBJ_POWDER,Boolean)
+            Me.Adapter.InsertCommand.Parameters(46).Value = CType(OBJ_HEAT,Boolean)
+            Me.Adapter.InsertCommand.Parameters(47).Value = CType(OBJ_NOISE,Boolean)
+            Me.Adapter.InsertCommand.Parameters(48).Value = CType(OBJ_VIBRATE,Boolean)
+            Me.Adapter.InsertCommand.Parameters(49).Value = CType(OBJ_POISONGAS,Boolean)
+            Me.Adapter.InsertCommand.Parameters(50).Value = CType(OBJ_WASTE_WATER,Boolean)
+            Me.Adapter.InsertCommand.Parameters(51).Value = CType(OBJ_RAY,Boolean)
+            Me.Adapter.InsertCommand.Parameters(52).Value = CType(OBJ_SMOKE,Boolean)
+            Me.Adapter.InsertCommand.Parameters(53).Value = CType(OBJ_ELECTRIC_WAVE,Boolean)
+            Me.Adapter.InsertCommand.Parameters(54).Value = CType(OBJ_OTHER,Boolean)
+            If (OBJ_OTHER_DETAIL Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(55).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(55).Value = CType(OBJ_OTHER_DETAIL,String)
+            End If
+            If (OBJ_CHEME_NAME Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(56).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(56).Value = CType(OBJ_CHEME_NAME,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(57).Value = CType(EQUIPMENT_HELMET,Boolean)
+            Me.Adapter.InsertCommand.Parameters(58).Value = CType(EQUIPMENT_GLASSES,Boolean)
+            Me.Adapter.InsertCommand.Parameters(59).Value = CType(EQUIPMENT_CHEMICAL_MASK,Boolean)
+            Me.Adapter.InsertCommand.Parameters(60).Value = CType(EQUIPMENT_BIB_PROTECT_CHEMECAL,Boolean)
+            Me.Adapter.InsertCommand.Parameters(61).Value = CType(EQUIPMENT_CHEMICAL_GLOVES,Boolean)
+            Me.Adapter.InsertCommand.Parameters(62).Value = CType(EQUIPMENT_HEAT_RESISTANT_GLOVES,Boolean)
+            Me.Adapter.InsertCommand.Parameters(63).Value = CType(EQUIPMENT_CUT_PROTECT_GLOVES,Boolean)
+            Me.Adapter.InsertCommand.Parameters(64).Value = CType(EQUIPMENT_EYE_COVER,Boolean)
+            Me.Adapter.InsertCommand.Parameters(65).Value = CType(EQUIPMENT_FACE_SHIELD,Boolean)
+            Me.Adapter.InsertCommand.Parameters(66).Value = CType(EQUIPMENT_DUST_MASK,Boolean)
+            Me.Adapter.InsertCommand.Parameters(67).Value = CType(EQUIPMENT_CHEMICAL_PACK,Boolean)
+            Me.Adapter.InsertCommand.Parameters(68).Value = CType(EQUIPMENT_ELECTRIC_GLOVES,Boolean)
+            Me.Adapter.InsertCommand.Parameters(69).Value = CType(EQUIPMENT_OTHER,Boolean)
+            If (EQUIPMENT_OTHER_DETAIL Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(70).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(70).Value = CType(EQUIPMENT_OTHER_DETAIL,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(71).Value = CType(LAW_MC,Boolean)
+            Me.Adapter.InsertCommand.Parameters(72).Value = CType(LAW_CHEMECALS,Boolean)
+            Me.Adapter.InsertCommand.Parameters(73).Value = CType(LAW_ENVIRONMENTAL,Boolean)
+            Me.Adapter.InsertCommand.Parameters(74).Value = CType(LAW_HIGH_PRESSURE_GAS,Boolean)
+            Me.Adapter.InsertCommand.Parameters(75).Value = CType(LAW_PREVENT_STOP_FIRE,Boolean)
+            Me.Adapter.InsertCommand.Parameters(76).Value = CType(LAW_FACTORY,Boolean)
+            Me.Adapter.InsertCommand.Parameters(77).Value = CType(LAW_FUEL_REGULATORY,Boolean)
+            Me.Adapter.InsertCommand.Parameters(78).Value = CType(LAW_OTHER,Boolean)
+            If (LAW_OTHER_DETAIL Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(79).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(79).Value = CType(LAW_OTHER_DETAIL,String)
+            End If
+            If (LAW_NAME Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(80).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(80).Value = CType(LAW_NAME,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(81).Value = CType(LAW_NOTICE,Boolean)
+            If (LAW_NOTICE_DETAIL Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(82).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(82).Value = CType(LAW_NOTICE_DETAIL,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(83).Value = CType(LAW_APPROVE,Boolean)
+            If (LAW_APPROVE_DETAIL Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(84).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(84).Value = CType(LAW_APPROVE_DETAIL,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(85).Value = CType(LAW_CHECK,Boolean)
+            If (LAW_CHECK_DETAIL Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(86).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(86).Value = CType(LAW_CHECK_DETAIL,String)
+            End If
+            If (IMG_TEMP_STAMP Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(87).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(87).Value = CType(IMG_TEMP_STAMP,String)
+            End If
+            If (IMG_TEMP_STAMP_CONTENT_TYPE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(88).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(88).Value = CType(IMG_TEMP_STAMP_CONTENT_TYPE,String)
+            End If
+            If (IMG_TEMP_STAMP_DATA Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(89).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(89).Value = CType(IMG_TEMP_STAMP_DATA,Byte())
+            End If
+            If (REQUEST_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(90).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(90).Value = CType(REQUEST_NAME_APPROVE,String)
+            End If
+            If (REQUEST_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(91).Value = CType(REQUEST_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(91).Value = Global.System.DBNull.Value
+            End If
+            If (SECT_MGR_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(92).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(92).Value = CType(SECT_MGR_NAME_APPROVE,String)
+            End If
+            If (SECT_MGR_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(93).Value = CType(SECT_MGR_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(93).Value = Global.System.DBNull.Value
+            End If
+            If (DEPT_MGR_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(94).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(94).Value = CType(DEPT_MGR_NAME_APPROVE,String)
+            End If
+            If (DEPT_MGR_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(95).Value = CType(DEPT_MGR_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(95).Value = Global.System.DBNull.Value
+            End If
+            If (DIV_MGR_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(96).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(96).Value = CType(DIV_MGR_NAME_APPROVE,String)
+            End If
+            If (DIV_MGR_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(97).Value = CType(DIV_MGR_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(97).Value = Global.System.DBNull.Value
+            End If
+            If (MCEQ_SUBCOM_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(98).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(98).Value = CType(MCEQ_SUBCOM_NAME_APPROVE,String)
+            End If
+            If (MCEQ_SUBCOM_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(99).Value = CType(MCEQ_SUBCOM_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(99).Value = Global.System.DBNull.Value
+            End If
+            If (SAFETY_OFFICER_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(100).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(100).Value = CType(SAFETY_OFFICER_NAME_APPROVE,String)
+            End If
+            If (SAFETY_OFFICER_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(101).Value = CType(SAFETY_OFFICER_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(101).Value = Global.System.DBNull.Value
+            End If
+            If (SAFETY_MGR_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(102).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(102).Value = CType(SAFETY_MGR_NAME_APPROVE,String)
+            End If
+            If (SAFETY_MGR_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(103).Value = CType(SAFETY_MGR_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(103).Value = Global.System.DBNull.Value
+            End If
+            If (OPNO_ADD Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(104).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(104).Value = CType(OPNO_ADD,String)
+            End If
+            If (DATE_ADD.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(105).Value = CType(DATE_ADD.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(105).Value = Global.System.DBNull.Value
+            End If
+            If (OPNO_UPDATE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(106).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(106).Value = CType(OPNO_UPDATE,String)
+            End If
+            If (DATE_UPDATE.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(107).Value = CType(DATE_UPDATE.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(107).Value = Global.System.DBNull.Value
+            End If
+            If (STATUS_ID.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(108).Value = CType(STATUS_ID.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(108).Value = Global.System.DBNull.Value
+            End If
+            If (STATUS_NAME Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(109).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(109).Value = CType(STATUS_NAME,String)
+            End If
+            If (IP Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(110).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(110).Value = CType(IP,String)
+            End If
+            If (DOCUMENT_ATTACH_NAME Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(111).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(111).Value = CType(DOCUMENT_ATTACH_NAME,String)
+            End If
+            If (DOCUMENT_ATTACH_CONTENT_TYPE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(112).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(112).Value = CType(DOCUMENT_ATTACH_CONTENT_TYPE,String)
+            End If
+            If (DOCUMENT_ATTACH_DATA Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(113).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(113).Value = CType(DOCUMENT_ATTACH_DATA,Byte())
+            End If
+            If (IMAGE_ATTACH_NAME Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(114).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(114).Value = CType(IMAGE_ATTACH_NAME,String)
+            End If
+            If (IMAGE_ATTACH_CONTENT_TYPE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(115).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(115).Value = CType(IMAGE_ATTACH_CONTENT_TYPE,String)
+            End If
+            If (IMAGE_ATTACH_DATA Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(116).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(116).Value = CType(IMAGE_ATTACH_DATA,Byte())
+            End If
+            If (LAYOUT_ATTACH_NAME Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(117).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(117).Value = CType(LAYOUT_ATTACH_NAME,String)
+            End If
+            If (LAYOUT_ATTACH_CONTENT_TYPE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(118).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(118).Value = CType(LAYOUT_ATTACH_CONTENT_TYPE,String)
+            End If
+            If (LAYOUT_ATTACH_DATA Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(119).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(119).Value = CType(LAYOUT_ATTACH_DATA,Byte())
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.InsertCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.InsertCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal MC_NO As String,  _
+                    ByVal REGISTER_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal REGISTER_NEW_MC As Boolean,  _
+                    ByVal CANCEL_MC As Boolean,  _
+                    ByVal CATEGORY1_NEW_MC As Boolean,  _
+                    ByVal CATEGORY1_TF_MC As Boolean,  _
+                    ByVal CATEGORY1_OTH_MC As Boolean,  _
+                    ByVal CATEGORY1_MC_OTHER_DETAIL As String,  _
+                    ByVal CATEGORY2_NEW_MODEL_MC As Boolean,  _
+                    ByVal CATEGORY2_ORIGINAL_MODEL_MC As Boolean,  _
+                    ByVal CATEGORY2_OTH_MODEL_MC As Boolean,  _
+                    ByVal CATEGORY2_MC_OTHER_DETAIL As String,  _
+                    ByVal MAKER As String,  _
+                    ByVal COUNTRY As String,  _
+                    ByVal SUPPLIER As String,  _
+                    ByVal PROVIDER As String,  _
+                    ByVal TEL As String,  _
+                    ByVal TYPE_MC As String,  _
+                    ByVal SIZE_HP_MC As String,  _
+                    ByVal DIVISION As String,  _
+                    ByVal DEPARTMENT As String,  _
+                    ByVal SECTION As String,  _
+                    ByVal MC_NAME As String,  _
+                    ByVal MC_NO1 As String,  _
+                    ByVal MC_NO2 As String,  _
+                    ByVal MC_NO3 As String,  _
+                    ByVal MC_NO4 As String,  _
+                    ByVal MC_NO5 As String,  _
+                    ByVal MC_NO6 As String,  _
+                    ByVal MC_NO7 As String,  _
+                    ByVal MC_NO8 As String,  _
+                    ByVal MC_NO9 As String,  _
+                    ByVal MC_NO10 As String,  _
+                    ByVal DANGER_CHEME_1 As Boolean,  _
+                    ByVal DANGER_CHEME_2 As Boolean,  _
+                    ByVal DANGER_CHEME_3 As Boolean,  _
+                    ByVal DANGER_CHEME_4 As Boolean,  _
+                    ByVal DANGER_CHEME_NAME As String,  _
+                    ByVal CAS_NO As String,  _
+                    ByVal FLAMMABLE As Boolean,  _
+                    ByVal CORROSIVE As Boolean,  _
+                    ByVal POISON As Boolean,  _
+                    ByVal GAS As Boolean,  _
+                    ByVal SUBSTANCE_OTHER As Boolean,  _
+                    ByVal SUBSTANCE_OTHER_DETAIL As String,  _
+                    ByVal OBJ_POWDER As Boolean,  _
+                    ByVal OBJ_HEAT As Boolean,  _
+                    ByVal OBJ_NOISE As Boolean,  _
+                    ByVal OBJ_VIBRATE As Boolean,  _
+                    ByVal OBJ_POISONGAS As Boolean,  _
+                    ByVal OBJ_WASTE_WATER As Boolean,  _
+                    ByVal OBJ_RAY As Boolean,  _
+                    ByVal OBJ_SMOKE As Boolean,  _
+                    ByVal OBJ_ELECTRIC_WAVE As Boolean,  _
+                    ByVal OBJ_OTHER As Boolean,  _
+                    ByVal OBJ_OTHER_DETAIL As String,  _
+                    ByVal OBJ_CHEME_NAME As String,  _
+                    ByVal EQUIPMENT_HELMET As Boolean,  _
+                    ByVal EQUIPMENT_GLASSES As Boolean,  _
+                    ByVal EQUIPMENT_CHEMICAL_MASK As Boolean,  _
+                    ByVal EQUIPMENT_BIB_PROTECT_CHEMECAL As Boolean,  _
+                    ByVal EQUIPMENT_CHEMICAL_GLOVES As Boolean,  _
+                    ByVal EQUIPMENT_HEAT_RESISTANT_GLOVES As Boolean,  _
+                    ByVal EQUIPMENT_CUT_PROTECT_GLOVES As Boolean,  _
+                    ByVal EQUIPMENT_EYE_COVER As Boolean,  _
+                    ByVal EQUIPMENT_FACE_SHIELD As Boolean,  _
+                    ByVal EQUIPMENT_DUST_MASK As Boolean,  _
+                    ByVal EQUIPMENT_CHEMICAL_PACK As Boolean,  _
+                    ByVal EQUIPMENT_ELECTRIC_GLOVES As Boolean,  _
+                    ByVal EQUIPMENT_OTHER As Boolean,  _
+                    ByVal EQUIPMENT_OTHER_DETAIL As String,  _
+                    ByVal LAW_MC As Boolean,  _
+                    ByVal LAW_CHEMECALS As Boolean,  _
+                    ByVal LAW_ENVIRONMENTAL As Boolean,  _
+                    ByVal LAW_HIGH_PRESSURE_GAS As Boolean,  _
+                    ByVal LAW_PREVENT_STOP_FIRE As Boolean,  _
+                    ByVal LAW_FACTORY As Boolean,  _
+                    ByVal LAW_FUEL_REGULATORY As Boolean,  _
+                    ByVal LAW_OTHER As Boolean,  _
+                    ByVal LAW_OTHER_DETAIL As String,  _
+                    ByVal LAW_NAME As String,  _
+                    ByVal LAW_NOTICE As Boolean,  _
+                    ByVal LAW_NOTICE_DETAIL As String,  _
+                    ByVal LAW_APPROVE As Boolean,  _
+                    ByVal LAW_APPROVE_DETAIL As String,  _
+                    ByVal LAW_CHECK As Boolean,  _
+                    ByVal LAW_CHECK_DETAIL As String,  _
+                    ByVal IMG_TEMP_STAMP As String,  _
+                    ByVal IMG_TEMP_STAMP_CONTENT_TYPE As String,  _
+                    ByVal IMG_TEMP_STAMP_DATA() As Byte,  _
+                    ByVal REQUEST_NAME_APPROVE As String,  _
+                    ByVal REQUEST_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal SECT_MGR_NAME_APPROVE As String,  _
+                    ByVal SECT_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal DEPT_MGR_NAME_APPROVE As String,  _
+                    ByVal DEPT_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal DIV_MGR_NAME_APPROVE As String,  _
+                    ByVal DIV_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal MCEQ_SUBCOM_NAME_APPROVE As String,  _
+                    ByVal MCEQ_SUBCOM_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal SAFETY_OFFICER_NAME_APPROVE As String,  _
+                    ByVal SAFETY_OFFICER_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal SAFETY_MGR_NAME_APPROVE As String,  _
+                    ByVal SAFETY_MGR_APPROVE_DATE As Global.System.Nullable(Of Date),  _
+                    ByVal OPNO_ADD As String,  _
+                    ByVal DATE_ADD As Global.System.Nullable(Of Date),  _
+                    ByVal OPNO_UPDATE As String,  _
+                    ByVal DATE_UPDATE As Global.System.Nullable(Of Date),  _
+                    ByVal STATUS_ID As Global.System.Nullable(Of Integer),  _
+                    ByVal STATUS_NAME As String,  _
+                    ByVal IP As String,  _
+                    ByVal DOCUMENT_ATTACH_NAME As String,  _
+                    ByVal DOCUMENT_ATTACH_CONTENT_TYPE As String,  _
+                    ByVal DOCUMENT_ATTACH_DATA() As Byte,  _
+                    ByVal IMAGE_ATTACH_NAME As String,  _
+                    ByVal IMAGE_ATTACH_CONTENT_TYPE As String,  _
+                    ByVal IMAGE_ATTACH_DATA() As Byte,  _
+                    ByVal LAYOUT_ATTACH_NAME As String,  _
+                    ByVal LAYOUT_ATTACH_CONTENT_TYPE As String,  _
+                    ByVal LAYOUT_ATTACH_DATA() As Byte,  _
+                    ByVal Original_ID As Integer) As Integer
+            If (MC_NO Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("MC_NO")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(MC_NO,String)
+            End If
+            If (REGISTER_DATE.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(REGISTER_DATE.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(REGISTER_NEW_MC,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(CANCEL_MC,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(CATEGORY1_NEW_MC,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(CATEGORY1_TF_MC,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(CATEGORY1_OTH_MC,Boolean)
+            If (CATEGORY1_MC_OTHER_DETAIL Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(CATEGORY1_MC_OTHER_DETAIL,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(CATEGORY2_NEW_MODEL_MC,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(CATEGORY2_ORIGINAL_MODEL_MC,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(CATEGORY2_OTH_MODEL_MC,Boolean)
+            If (CATEGORY2_MC_OTHER_DETAIL Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(CATEGORY2_MC_OTHER_DETAIL,String)
+            End If
+            If (MAKER Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(MAKER,String)
+            End If
+            If (COUNTRY Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(COUNTRY,String)
+            End If
+            If (SUPPLIER Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(SUPPLIER,String)
+            End If
+            If (PROVIDER Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(PROVIDER,String)
+            End If
+            If (TEL Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(TEL,String)
+            End If
+            If (TYPE_MC Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(TYPE_MC,String)
+            End If
+            If (SIZE_HP_MC Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(SIZE_HP_MC,String)
+            End If
+            If (DIVISION Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(DIVISION,String)
+            End If
+            If (DEPARTMENT Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(DEPARTMENT,String)
+            End If
+            If (SECTION Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(SECTION,String)
+            End If
+            If (MC_NAME Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(MC_NAME,String)
+            End If
+            If (MC_NO1 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(MC_NO1,String)
+            End If
+            If (MC_NO2 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(MC_NO2,String)
+            End If
+            If (MC_NO3 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(MC_NO3,String)
+            End If
+            If (MC_NO4 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(MC_NO4,String)
+            End If
+            If (MC_NO5 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(MC_NO5,String)
+            End If
+            If (MC_NO6 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(MC_NO6,String)
+            End If
+            If (MC_NO7 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(MC_NO7,String)
+            End If
+            If (MC_NO8 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(MC_NO8,String)
+            End If
+            If (MC_NO9 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(MC_NO9,String)
+            End If
+            If (MC_NO10 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(MC_NO10,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(33).Value = CType(DANGER_CHEME_1,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(34).Value = CType(DANGER_CHEME_2,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(35).Value = CType(DANGER_CHEME_3,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(36).Value = CType(DANGER_CHEME_4,Boolean)
+            If (DANGER_CHEME_NAME Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(37).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(DANGER_CHEME_NAME,String)
+            End If
+            If (CAS_NO Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(38).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(CAS_NO,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(39).Value = CType(FLAMMABLE,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(40).Value = CType(CORROSIVE,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(41).Value = CType(POISON,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(42).Value = CType(GAS,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(43).Value = CType(SUBSTANCE_OTHER,Boolean)
+            If (SUBSTANCE_OTHER_DETAIL Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(44).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(SUBSTANCE_OTHER_DETAIL,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(45).Value = CType(OBJ_POWDER,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(46).Value = CType(OBJ_HEAT,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(47).Value = CType(OBJ_NOISE,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(48).Value = CType(OBJ_VIBRATE,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(49).Value = CType(OBJ_POISONGAS,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(50).Value = CType(OBJ_WASTE_WATER,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(51).Value = CType(OBJ_RAY,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(52).Value = CType(OBJ_SMOKE,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(53).Value = CType(OBJ_ELECTRIC_WAVE,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(54).Value = CType(OBJ_OTHER,Boolean)
+            If (OBJ_OTHER_DETAIL Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(55).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(OBJ_OTHER_DETAIL,String)
+            End If
+            If (OBJ_CHEME_NAME Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(56).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(OBJ_CHEME_NAME,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(57).Value = CType(EQUIPMENT_HELMET,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(58).Value = CType(EQUIPMENT_GLASSES,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(59).Value = CType(EQUIPMENT_CHEMICAL_MASK,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(60).Value = CType(EQUIPMENT_BIB_PROTECT_CHEMECAL,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(61).Value = CType(EQUIPMENT_CHEMICAL_GLOVES,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(62).Value = CType(EQUIPMENT_HEAT_RESISTANT_GLOVES,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(63).Value = CType(EQUIPMENT_CUT_PROTECT_GLOVES,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(64).Value = CType(EQUIPMENT_EYE_COVER,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(65).Value = CType(EQUIPMENT_FACE_SHIELD,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(66).Value = CType(EQUIPMENT_DUST_MASK,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(67).Value = CType(EQUIPMENT_CHEMICAL_PACK,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(68).Value = CType(EQUIPMENT_ELECTRIC_GLOVES,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(69).Value = CType(EQUIPMENT_OTHER,Boolean)
+            If (EQUIPMENT_OTHER_DETAIL Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(70).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(70).Value = CType(EQUIPMENT_OTHER_DETAIL,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(71).Value = CType(LAW_MC,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(72).Value = CType(LAW_CHEMECALS,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(73).Value = CType(LAW_ENVIRONMENTAL,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(74).Value = CType(LAW_HIGH_PRESSURE_GAS,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(75).Value = CType(LAW_PREVENT_STOP_FIRE,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(76).Value = CType(LAW_FACTORY,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(77).Value = CType(LAW_FUEL_REGULATORY,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(78).Value = CType(LAW_OTHER,Boolean)
+            If (LAW_OTHER_DETAIL Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(79).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(79).Value = CType(LAW_OTHER_DETAIL,String)
+            End If
+            If (LAW_NAME Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(80).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(80).Value = CType(LAW_NAME,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(81).Value = CType(LAW_NOTICE,Boolean)
+            If (LAW_NOTICE_DETAIL Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(82).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(82).Value = CType(LAW_NOTICE_DETAIL,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(83).Value = CType(LAW_APPROVE,Boolean)
+            If (LAW_APPROVE_DETAIL Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(84).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(84).Value = CType(LAW_APPROVE_DETAIL,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(85).Value = CType(LAW_CHECK,Boolean)
+            If (LAW_CHECK_DETAIL Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(86).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(86).Value = CType(LAW_CHECK_DETAIL,String)
+            End If
+            If (IMG_TEMP_STAMP Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(87).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(87).Value = CType(IMG_TEMP_STAMP,String)
+            End If
+            If (IMG_TEMP_STAMP_CONTENT_TYPE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(88).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(88).Value = CType(IMG_TEMP_STAMP_CONTENT_TYPE,String)
+            End If
+            If (IMG_TEMP_STAMP_DATA Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(89).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(89).Value = CType(IMG_TEMP_STAMP_DATA,Byte())
+            End If
+            If (REQUEST_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(90).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(90).Value = CType(REQUEST_NAME_APPROVE,String)
+            End If
+            If (REQUEST_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(91).Value = CType(REQUEST_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(91).Value = Global.System.DBNull.Value
+            End If
+            If (SECT_MGR_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(92).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(92).Value = CType(SECT_MGR_NAME_APPROVE,String)
+            End If
+            If (SECT_MGR_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(93).Value = CType(SECT_MGR_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(93).Value = Global.System.DBNull.Value
+            End If
+            If (DEPT_MGR_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(94).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(94).Value = CType(DEPT_MGR_NAME_APPROVE,String)
+            End If
+            If (DEPT_MGR_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(95).Value = CType(DEPT_MGR_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(95).Value = Global.System.DBNull.Value
+            End If
+            If (DIV_MGR_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(96).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(96).Value = CType(DIV_MGR_NAME_APPROVE,String)
+            End If
+            If (DIV_MGR_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(97).Value = CType(DIV_MGR_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(97).Value = Global.System.DBNull.Value
+            End If
+            If (MCEQ_SUBCOM_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(98).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(98).Value = CType(MCEQ_SUBCOM_NAME_APPROVE,String)
+            End If
+            If (MCEQ_SUBCOM_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(99).Value = CType(MCEQ_SUBCOM_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(99).Value = Global.System.DBNull.Value
+            End If
+            If (SAFETY_OFFICER_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(100).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(100).Value = CType(SAFETY_OFFICER_NAME_APPROVE,String)
+            End If
+            If (SAFETY_OFFICER_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(101).Value = CType(SAFETY_OFFICER_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(101).Value = Global.System.DBNull.Value
+            End If
+            If (SAFETY_MGR_NAME_APPROVE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(102).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(102).Value = CType(SAFETY_MGR_NAME_APPROVE,String)
+            End If
+            If (SAFETY_MGR_APPROVE_DATE.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(103).Value = CType(SAFETY_MGR_APPROVE_DATE.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(103).Value = Global.System.DBNull.Value
+            End If
+            If (OPNO_ADD Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(104).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(104).Value = CType(OPNO_ADD,String)
+            End If
+            If (DATE_ADD.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(105).Value = CType(DATE_ADD.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(105).Value = Global.System.DBNull.Value
+            End If
+            If (OPNO_UPDATE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(106).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(106).Value = CType(OPNO_UPDATE,String)
+            End If
+            If (DATE_UPDATE.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(107).Value = CType(DATE_UPDATE.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(107).Value = Global.System.DBNull.Value
+            End If
+            If (STATUS_ID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(108).Value = CType(STATUS_ID.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(108).Value = Global.System.DBNull.Value
+            End If
+            If (STATUS_NAME Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(109).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(109).Value = CType(STATUS_NAME,String)
+            End If
+            If (IP Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(110).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(110).Value = CType(IP,String)
+            End If
+            If (DOCUMENT_ATTACH_NAME Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(111).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(111).Value = CType(DOCUMENT_ATTACH_NAME,String)
+            End If
+            If (DOCUMENT_ATTACH_CONTENT_TYPE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(112).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(112).Value = CType(DOCUMENT_ATTACH_CONTENT_TYPE,String)
+            End If
+            If (DOCUMENT_ATTACH_DATA Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(113).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(113).Value = CType(DOCUMENT_ATTACH_DATA,Byte())
+            End If
+            If (IMAGE_ATTACH_NAME Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(114).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(114).Value = CType(IMAGE_ATTACH_NAME,String)
+            End If
+            If (IMAGE_ATTACH_CONTENT_TYPE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(115).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(115).Value = CType(IMAGE_ATTACH_CONTENT_TYPE,String)
+            End If
+            If (IMAGE_ATTACH_DATA Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(116).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(116).Value = CType(IMAGE_ATTACH_DATA,Byte())
+            End If
+            If (LAYOUT_ATTACH_NAME Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(117).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(117).Value = CType(LAYOUT_ATTACH_NAME,String)
+            End If
+            If (LAYOUT_ATTACH_CONTENT_TYPE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(118).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(118).Value = CType(LAYOUT_ATTACH_CONTENT_TYPE,String)
+            End If
+            If (LAYOUT_ATTACH_DATA Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(119).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(119).Value = CType(LAYOUT_ATTACH_DATA,Byte())
+            End If
+            Me.Adapter.UpdateCommand.Parameters(120).Value = CType(Original_ID,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+    End Class
+    
+    '''<summary>
     '''TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     '''</summary>
     <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -34419,13 +34258,13 @@ Namespace DSMachineTableAdapters
         
         Private _updateOrder As UpdateOrderOption
         
-        Private _tB_MACHINE_DATATableAdapter As TB_MACHINE_DATATableAdapter
-        
         Private _tB_EQUIPMENT_CHECKTableAdapter As TB_EQUIPMENT_CHECKTableAdapter
         
         Private _tMP_REPORT2TableAdapter As TMP_REPORT2TableAdapter
         
         Private _tB_MACHINE_TOOL_CHECK_P3TableAdapter As TB_MACHINE_TOOL_CHECK_P3TableAdapter
+        
+        Private _tB_MACHINE_DATATableAdapter As TB_MACHINE_DATATableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -34439,20 +34278,6 @@ Namespace DSMachineTableAdapters
             End Get
             Set
                 Me._updateOrder = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
-            "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property TB_MACHINE_DATATableAdapter() As TB_MACHINE_DATATableAdapter
-            Get
-                Return Me._tB_MACHINE_DATATableAdapter
-            End Get
-            Set
-                Me._tB_MACHINE_DATATableAdapter = value
             End Set
         End Property
         
@@ -34499,6 +34324,20 @@ Namespace DSMachineTableAdapters
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
+            "a", "System.Drawing.Design.UITypeEditor")>  _
+        Public Property TB_MACHINE_DATATableAdapter() As TB_MACHINE_DATATableAdapter
+            Get
+                Return Me._tB_MACHINE_DATATableAdapter
+            End Get
+            Set
+                Me._tB_MACHINE_DATATableAdapter = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property BackupDataSetBeforeUpdate() As Boolean
             Get
@@ -34517,10 +34356,6 @@ Namespace DSMachineTableAdapters
                 If (Not (Me._connection) Is Nothing) Then
                     Return Me._connection
                 End If
-                If ((Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._tB_MACHINE_DATATableAdapter.Connection) Is Nothing)) Then
-                    Return Me._tB_MACHINE_DATATableAdapter.Connection
-                End If
                 If ((Not (Me._tB_EQUIPMENT_CHECKTableAdapter) Is Nothing)  _
                             AndAlso (Not (Me._tB_EQUIPMENT_CHECKTableAdapter.Connection) Is Nothing)) Then
                     Return Me._tB_EQUIPMENT_CHECKTableAdapter.Connection
@@ -34532,6 +34367,10 @@ Namespace DSMachineTableAdapters
                 If ((Not (Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter) Is Nothing)  _
                             AndAlso (Not (Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter.Connection) Is Nothing)) Then
                     Return Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter.Connection
+                End If
+                If ((Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._tB_MACHINE_DATATableAdapter.Connection) Is Nothing)) Then
+                    Return Me._tB_MACHINE_DATATableAdapter.Connection
                 End If
                 Return Nothing
             End Get
@@ -34546,9 +34385,6 @@ Namespace DSMachineTableAdapters
         Public ReadOnly Property TableAdapterInstanceCount() As Integer
             Get
                 Dim count As Integer = 0
-                If (Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing) Then
-                    count = (count + 1)
-                End If
                 If (Not (Me._tB_EQUIPMENT_CHECKTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
@@ -34556,6 +34392,9 @@ Namespace DSMachineTableAdapters
                     count = (count + 1)
                 End If
                 If (Not (Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter) Is Nothing) Then
+                    count = (count + 1)
+                End If
+                If (Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -34569,15 +34408,6 @@ Namespace DSMachineTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Function UpdateUpdatedRows(ByVal dataSet As DSMachine, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.TB_MACHINE_DATA.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._tB_MACHINE_DATATableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
             If (Not (Me._tB_EQUIPMENT_CHECKTableAdapter) Is Nothing) Then
                 Dim updatedRows() As Global.System.Data.DataRow = dataSet.TB_EQUIPMENT_CHECK.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
@@ -34605,6 +34435,15 @@ Namespace DSMachineTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
+            If (Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.TB_MACHINE_DATA.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._tB_MACHINE_DATATableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
             Return result
         End Function
         
@@ -34615,14 +34454,6 @@ Namespace DSMachineTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Function UpdateInsertedRows(ByVal dataSet As DSMachine, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.TB_MACHINE_DATA.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._tB_MACHINE_DATATableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             If (Not (Me._tB_EQUIPMENT_CHECKTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet.TB_EQUIPMENT_CHECK.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
@@ -34647,6 +34478,14 @@ Namespace DSMachineTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
+            If (Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.TB_MACHINE_DATA.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._tB_MACHINE_DATATableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
             Return result
         End Function
         
@@ -34657,6 +34496,14 @@ Namespace DSMachineTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As DSMachine, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
+            If (Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.TB_MACHINE_DATA.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._tB_MACHINE_DATATableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
             If (Not (Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.TB_MACHINE_TOOL_CHECK_P3.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
@@ -34678,14 +34525,6 @@ Namespace DSMachineTableAdapters
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._tB_EQUIPMENT_CHECKTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.TB_MACHINE_DATA.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._tB_MACHINE_DATATableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -34730,11 +34569,6 @@ Namespace DSMachineTableAdapters
             If (dataSet.HasChanges = false) Then
                 Return 0
             End If
-            If ((Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._tB_MACHINE_DATATableAdapter.Connection) = false)) Then
-                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
-                        "tring.")
-            End If
             If ((Not (Me._tB_EQUIPMENT_CHECKTableAdapter) Is Nothing)  _
                         AndAlso (Me.MatchTableAdapterConnection(Me._tB_EQUIPMENT_CHECKTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
@@ -34747,6 +34581,11 @@ Namespace DSMachineTableAdapters
             End If
             If ((Not (Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter) Is Nothing)  _
                         AndAlso (Me.MatchTableAdapterConnection(Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter.Connection) = false)) Then
+                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
+                        "tring.")
+            End If
+            If ((Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._tB_MACHINE_DATATableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
@@ -34782,15 +34621,6 @@ Namespace DSMachineTableAdapters
             Try 
                 '---- Prepare for update -----------
                 '
-                If (Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._tB_MACHINE_DATATableAdapter, Me._tB_MACHINE_DATATableAdapter.Connection)
-                    Me._tB_MACHINE_DATATableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
-                    Me._tB_MACHINE_DATATableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
-                    If Me._tB_MACHINE_DATATableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._tB_MACHINE_DATATableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._tB_MACHINE_DATATableAdapter.Adapter)
-                    End If
-                End If
                 If (Not (Me._tB_EQUIPMENT_CHECKTableAdapter) Is Nothing) Then
                     revertConnections.Add(Me._tB_EQUIPMENT_CHECKTableAdapter, Me._tB_EQUIPMENT_CHECKTableAdapter.Connection)
                     Me._tB_EQUIPMENT_CHECKTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
@@ -34816,6 +34646,15 @@ Namespace DSMachineTableAdapters
                     If Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter.Adapter.AcceptChangesDuringUpdate Then
                         Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter.Adapter.AcceptChangesDuringUpdate = false
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter.Adapter)
+                    End If
+                End If
+                If (Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._tB_MACHINE_DATATableAdapter, Me._tB_MACHINE_DATATableAdapter.Connection)
+                    Me._tB_MACHINE_DATATableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
+                    Me._tB_MACHINE_DATATableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
+                    If Me._tB_MACHINE_DATATableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._tB_MACHINE_DATATableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._tB_MACHINE_DATATableAdapter.Adapter)
                     End If
                 End If
                 '
@@ -34878,10 +34717,6 @@ Namespace DSMachineTableAdapters
                 If workConnOpened Then
                     workConnection.Close
                 End If
-                If (Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing) Then
-                    Me._tB_MACHINE_DATATableAdapter.Connection = CType(revertConnections(Me._tB_MACHINE_DATATableAdapter),Global.System.Data.SqlClient.SqlConnection)
-                    Me._tB_MACHINE_DATATableAdapter.Transaction = Nothing
-                End If
                 If (Not (Me._tB_EQUIPMENT_CHECKTableAdapter) Is Nothing) Then
                     Me._tB_EQUIPMENT_CHECKTableAdapter.Connection = CType(revertConnections(Me._tB_EQUIPMENT_CHECKTableAdapter),Global.System.Data.SqlClient.SqlConnection)
                     Me._tB_EQUIPMENT_CHECKTableAdapter.Transaction = Nothing
@@ -34893,6 +34728,10 @@ Namespace DSMachineTableAdapters
                 If (Not (Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter) Is Nothing) Then
                     Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter.Connection = CType(revertConnections(Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter),Global.System.Data.SqlClient.SqlConnection)
                     Me._tB_MACHINE_TOOL_CHECK_P3TableAdapter.Transaction = Nothing
+                End If
+                If (Not (Me._tB_MACHINE_DATATableAdapter) Is Nothing) Then
+                    Me._tB_MACHINE_DATATableAdapter.Connection = CType(revertConnections(Me._tB_MACHINE_DATATableAdapter),Global.System.Data.SqlClient.SqlConnection)
+                    Me._tB_MACHINE_DATATableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter

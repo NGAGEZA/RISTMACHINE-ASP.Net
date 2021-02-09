@@ -461,8 +461,7 @@ Public Class Main
                     db.TB_MACHINE_DATAs.InsertOnSubmit(insertMc)
                     db.SubmitChanges()
                     'db.Dispose()
-                    '#send mail to request entry for preview details
-                    SendEmailToRequest
+                  
 
                     'SendEmailToSectMgr()
                     'Session.Remove("opnologin")
@@ -831,7 +830,7 @@ Public Class Main
     End Sub
 
     Private Sub Getdatapreview()
-        Dim mcno As String
+        'Dim mcnoz As String
         mcno = Decrypt(HttpUtility.UrlDecode(Request.QueryString("rmcno")))
         
         Using db As New DBRISTMCDataContext()
@@ -1266,10 +1265,6 @@ Public Class Main
                 
                 Dim opreq As String
 
-
-
-               
-                         
                 Dim reqno = db.TB_MACHINE_DATAs.Where(Function(c) c.MC_NO = Mcno).Select(Function(x) New With{x.OPNO_ADD}).ToList()
 
                 For Each x In reqno
@@ -2313,6 +2308,7 @@ Public Class Main
                     'Response.Flush()
                     'Response.[End]()
                 End If
+            Catch unusedThreadAbortException1 As Threading.ThreadAbortException
             Catch ex As Exception
                 dim errorSend = New ExceptionLogging()
                 errorSend.SendErrorTomail(ex)

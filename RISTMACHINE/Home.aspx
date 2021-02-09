@@ -102,11 +102,11 @@
             $("#btnprint").bind("click",
                 function() {
                     debugger;
-                    var p = document.getElementById(('<%= reportmcno.ClientID %>'));
-                    var pNo = document.getElementById(('<%= report_pageno.ClientID %>'));
-                    var pmcno = p.options[p.selectedIndex].text;
-                    var pageno = pNo.options[pNo.selectedIndex].text;
-                    var url = "GetReport.aspx?pmcno=" + encodeURIComponent(pmcno) + "&pageno=" + pageno;
+                    const p = document.getElementById(('<%= reportmcno.ClientID %>'));
+                    const pNo = document.getElementById(('<%= report_pageno.ClientID %>'));
+                    const pmcno = p.options[p.selectedIndex].text;
+                    const pageno = pNo.options[pNo.selectedIndex].text;
+                    const url = "GetReport.aspx?pmcno=" + encodeURIComponent(pmcno) + "&pageno=" + pageno;
                     window.location.href = url;
                    
                 });
@@ -120,9 +120,9 @@
             $("#btnstatus").bind("click",
                 function() {
                     
-                    var v = document.getElementById(('<%= statusmcno.ClientID %>'));
-                    var checkmcno = v.options[v.selectedIndex].text;
-                    var url = "CheckStatus.aspx?checkmcno=" + encodeURIComponent(checkmcno);
+                    const v = document.getElementById(('<%= statusmcno.ClientID %>'));
+                    const checkmcno = v.options[v.selectedIndex].text;
+                    const url = "CheckStatus.aspx?checkmcno=" + encodeURIComponent(checkmcno);
                     window.location.href = url;
                    
                 });
@@ -210,8 +210,21 @@
                     </div>
                 </a>
             </div>
-           
         </div>
+        <div class="col-sm-3 col-xs-6 col-md-3">
+            <div class="wrimagecard wrimagecard-topimage">
+                <a href="ViewApprove.aspx">
+                    <div class="wrimagecard-topimage_header" style="background-color:#5bd262; background-color:rgba(91, 210, 98, 0.1)">
+                        <div style="text-align: center;" ><i class="fa fa-check" style="color: #5bd262"></i></div>
+                    </div>
+                    <div class="wrimagecard-topimage_title">
+                        <h4><b>Approve</b> View and Approve</h4>
+                    </div>
+                </a>
+            </div>
+        
+        </div>
+
     </div>
        
 
