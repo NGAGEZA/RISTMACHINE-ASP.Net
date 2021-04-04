@@ -32,6 +32,24 @@ Partial Public Class Securitychecktool
     Protected WithEvents lbstatus As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''lbnamefilebefore control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbnamefilebefore As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lnkdownloadbefore control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkdownloadbefore As Global.System.Web.UI.WebControls.LinkButton
+    
+    '''<summary>
     '''select_imp1_1 control.
     '''</summary>
     '''<remarks>
@@ -2568,4 +2586,13 @@ Partial Public Class Securitychecktool
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvDetailsMcno As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''gvmailapprove control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvmailapprove As Global.System.Web.UI.WebControls.GridView
 End Class

@@ -113,21 +113,21 @@
                                 message: 'Organize field can\'t be empty'
                             }
                         }
-                    },
-
-                    upfileers: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please select pdf file'
-                            },
-                            file: {
-                                extension: 'pdf',
-                                type: 'application/pdf',
-                                minFiles: 1,
-                                message: 'The selected file is not valid'
-                            }
-                        }
                     }
+
+                    //upfileers: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'Please select pdf file'
+                    //        },
+                    //        file: {
+                    //            extension: 'pdf',
+                    //            type: 'application/pdf',
+                    //            minFiles: 1,
+                    //            message: 'The selected file is not valid'
+                    //        }
+                    //    }
+                    //}
                     
                  
                 }
@@ -177,9 +177,7 @@
                 allowedFileExtensions: ["pdf"]
             });
 
-            //$(".btn-upload-ers").on("click", function() {
-            //    $("#upfileers").fileinput('upload');
-            //});
+            
         }
 
        

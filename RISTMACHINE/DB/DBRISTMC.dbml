@@ -888,6 +888,9 @@
       <Column Name="STATUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="STATUS_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="IP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DOCUMENT_ATTACH_NAME" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="DOCUMENT_ATTACH_CONTENT_TYPE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DOCUMENT_ATTACH_DATA" Type="System.Byte[]" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
     </Type>
   </Table>
   <Function Name="dbo.Insert_User" Method="Insert_User">

@@ -1,5 +1,12 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/RMaster.Master" CodeBehind="ViewApprove.aspx.vb" Inherits="RISTMACHINE.ViewApprove" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        // Popup window code
+        function newPopup(url) {
+            const popupWindow = window.open(
+                url,'popUpWindow','height=500,width=600,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
@@ -10,8 +17,13 @@
             </div>
            
         </div>
-        
-        <div class="row">
+    <div class="row">
+        <div class="table-responsive">
+            <asp:Literal ID = "ltTable" runat = "server" />
+        </div>
+    </div>
+
+        <%--<div class="row">
             <div class="col-lg-12">
                 <div class="table-responsive">
                     <asp:GridView ID="gviewapprove" Width="100%"  AutoGenerateColumns="False" runat="server" 
@@ -36,7 +48,7 @@
                     </asp:GridView>
                 </div>
             </div>
-        </div>
+        </div>--%>
 
     </div>
 </asp:Content>

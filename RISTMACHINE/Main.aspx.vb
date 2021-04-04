@@ -342,7 +342,7 @@ Public Class Main
                 If nameuploadErs Isnot Nothing
 
 
-                    filePathuploadErs = Server.MapPath("upload/" & nameuploadErs & "")
+                    filePathuploadErs = Server.MapPath("upload/Ers/" & nameuploadErs & "")
                     filenameuploadErs = Path.GetFileName(filePathuploadErs)
                     fsuploadErs = New FileStream(filePathuploadErs, FileMode.Open, FileAccess.Read)
                     bruploadErs = New BinaryReader(fsuploadErs)
@@ -352,15 +352,7 @@ Public Class Main
                     fsuploadErs.Close()
 
 
-                    'filePathupload2 = Server.MapPath("upload/" & nameupload2 & "")
-                    'filenameupload2 = Path.GetFileName(filePathupload2)
-                    'fsupload2 = New FileStream(filePathupload2, FileMode.Open, FileAccess.Read)
-                    'brupload2 = New BinaryReader(fsupload2)
-                    'bytesupload2 = brupload2.ReadBytes(Convert.ToInt32(fsupload2.Length))
-                    'doccontentype2 = MimeMapping.GetMimeMapping(filenameupload2)
-                    'brupload2.Close()
-                    'fsupload2.Close()
-
+                    
                 End If
 
 
@@ -1193,10 +1185,10 @@ Public Class Main
 
                
 
-                Dim reqno = db.TB_MACHINE_DATAs.Where(Function(x) x.MC_NO = Mcno).Select(Function(x) New With{x.OPNO_ADD})
+                Dim reqno = db.TB_MACHINE_DATAs.Where(Function(x) x.MC_NO = Mcno).Select(Function(x) New With{.OpnoAdd=x.OPNO_ADD})
 
                 For Each x In reqno
-                    opreq = x.OPNO_ADD
+                    opreq = x.OpnoAdd
                 Next
 
 
@@ -1265,10 +1257,10 @@ Public Class Main
                 
                 Dim opreq As String
 
-                Dim reqno = db.TB_MACHINE_DATAs.Where(Function(c) c.MC_NO = Mcno).Select(Function(x) New With{x.OPNO_ADD}).ToList()
+                Dim reqno = db.TB_MACHINE_DATAs.Where(Function(c) c.MC_NO = Mcno).Select(Function(x) New With{.OpnoAdd=x.OPNO_ADD}).ToList()
 
                 For Each x In reqno
-                    opreq = x.OPNO_ADD
+                    opreq = x.OpnoAdd
                 Next
 
                
@@ -1337,10 +1329,10 @@ Public Class Main
                 Dim opreq As String
                 Dim reqno = From c In db.TB_MACHINE_DATAs
                         Where c.MC_NO = Mcno
-                        Select New With {c.OPNO_ADD}
+                        Select New With {.OpnoAdd=c.OPNO_ADD}
                          
                 For Each x In reqno
-                    opreq = x.OPNO_ADD
+                    opreq = x.OpnoAdd
                 Next
 
                 Dim d = From t In db.TB_FLOW_REQUESTs
@@ -2234,9 +2226,7 @@ Public Class Main
             Dim ip as String = If(ipcookie IsNot Nothing, ipcookie.Value.Split("="c)(1), "undefined")
             Dim opnocookie As HttpCookie = Request.Cookies("opno")
             Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
-                
 
-           
             Try
                 
                 Dim p3 = New TB_MACHINE_TOOL_CHECK_P3()
@@ -2302,11 +2292,9 @@ Public Class Main
                         Response.BinaryWrite(file.DOCUMENT_ATTACH_DATA)
                         Response.Flush()
                         Response.[End]()
+
                     Next
-                    
-                   
-                    'Response.Flush()
-                    'Response.[End]()
+
                 End If
             Catch unusedThreadAbortException1 As Threading.ThreadAbortException
             Catch ex As Exception

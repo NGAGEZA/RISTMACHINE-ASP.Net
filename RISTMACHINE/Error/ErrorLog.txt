@@ -200,3 +200,84 @@ Source: System.Data
 TargetSite: Void EnableConstraints()
 -----------------------------------------------------------
 
+Time: 23/02/2021 01:55:09 PM
+-----------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at System.Web.HttpResponse.BinaryWrite(Byte[] buffer)
+   at RISTMACHINE.Securitychecktool.DownloadFilebefore() in F:\VS\ROHM 2018\RISTMACHINE\RISTMACHINE-ASP.Net\RISTMACHINE\Securitychecktool.aspx.vb:line 1592
+Source: System.Web
+TargetSite: Void BinaryWrite(Byte[])
+-----------------------------------------------------------
+
+Time: 03/04/2021 01:01:18 PM
+-----------------------------------------------------------
+Message: Nullable object must have a value.
+StackTrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at RISTMACHINE.Securitychecktool.CheckStatus(String mcno) in F:\VS\ROHM 2018\RISTMACHINE\RISTMACHINE-ASP.Net\RISTMACHINE\Securitychecktool.aspx.vb:line 571
+Source: mscorlib
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+-----------------------------------------------------------
+
+Time: 03/04/2021 01:04:24 PM
+-----------------------------------------------------------
+Message: Nullable object must have a value.
+StackTrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at RISTMACHINE.Securitychecktool.CheckStatus(String mcno) in F:\VS\ROHM 2018\RISTMACHINE\RISTMACHINE-ASP.Net\RISTMACHINE\Securitychecktool.aspx.vb:line 571
+Source: mscorlib
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+-----------------------------------------------------------
+
+Time: 03/04/2021 01:05:30 PM
+-----------------------------------------------------------
+Message: Nullable object must have a value.
+StackTrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at RISTMACHINE.Securitychecktool.CheckStatus(String mcno) in F:\VS\ROHM 2018\RISTMACHINE\RISTMACHINE-ASP.Net\RISTMACHINE\Securitychecktool.aspx.vb:line 571
+Source: mscorlib
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+-----------------------------------------------------------
+
+Time: 03/04/2021 01:06:31 PM
+-----------------------------------------------------------
+Message: Nullable object must have a value.
+StackTrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at RISTMACHINE.Securitychecktool.CheckStatus(String mcno) in F:\VS\ROHM 2018\RISTMACHINE\RISTMACHINE-ASP.Net\RISTMACHINE\Securitychecktool.aspx.vb:line 571
+Source: mscorlib
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+-----------------------------------------------------------
+
+Time: 03/04/2021 01:07:10 PM
+-----------------------------------------------------------
+Message: Nullable object must have a value.
+StackTrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at RISTMACHINE.Securitychecktool.CheckStatus(String mcno) in F:\VS\ROHM 2018\RISTMACHINE\RISTMACHINE-ASP.Net\RISTMACHINE\Securitychecktool.aspx.vb:line 571
+Source: mscorlib
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+-----------------------------------------------------------
+
+Time: 03/04/2021 02:08:33 PM
+-----------------------------------------------------------
+Message: Could not find file 'F:\VS\ROHM 2018\RISTMACHINE\RISTMACHINE-ASP.Net\RISTMACHINE\upload\undefined'.
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at RISTMACHINE.Securitychecktool.UpdateData() in F:\VS\ROHM 2018\RISTMACHINE\RISTMACHINE-ASP.Net\RISTMACHINE\Securitychecktool.aspx.vb:line 997
+Source: mscorlib
+TargetSite: Void WinIOError(Int32, System.String)
+-----------------------------------------------------------
+
+Time: 03/04/2021 02:26:27 PM
+-----------------------------------------------------------
+Message: Could not find file 'F:\VS\ROHM 2018\RISTMACHINE\RISTMACHINE-ASP.Net\RISTMACHINE\upload\undefined'.
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at RISTMACHINE.Securitychecktool.UpdateData() in F:\VS\ROHM 2018\RISTMACHINE\RISTMACHINE-ASP.Net\RISTMACHINE\Securitychecktool.aspx.vb:line 1008
+Source: mscorlib
+TargetSite: Void WinIOError(Int32, System.String)
+-----------------------------------------------------------
+

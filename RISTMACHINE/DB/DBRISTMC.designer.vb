@@ -13376,6 +13376,12 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 	
 	Private _IP As String
 	
+	Private _DOCUMENT_ATTACH_NAME As String
+	
+	Private _DOCUMENT_ATTACH_CONTENT_TYPE As String
+	
+	Private _DOCUMENT_ATTACH_DATA() As Byte
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -14550,6 +14556,18 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
     Partial Private Sub OnIPChanging(value As String)
     End Sub
     Partial Private Sub OnIPChanged()
+    End Sub
+    Partial Private Sub OnDOCUMENT_ATTACH_NAMEChanging(value As String)
+    End Sub
+    Partial Private Sub OnDOCUMENT_ATTACH_NAMEChanged()
+    End Sub
+    Partial Private Sub OnDOCUMENT_ATTACH_CONTENT_TYPEChanging(value As String)
+    End Sub
+    Partial Private Sub OnDOCUMENT_ATTACH_CONTENT_TYPEChanged()
+    End Sub
+    Partial Private Sub OnDOCUMENT_ATTACH_DATAChanging(value As Byte())
+    End Sub
+    Partial Private Sub OnDOCUMENT_ATTACH_DATAChanged()
     End Sub
     #End Region
 	
@@ -19227,6 +19245,54 @@ Partial Public Class TB_MACHINE_TOOL_CHECK_P3
 				Me._IP = value
 				Me.SendPropertyChanged("IP")
 				Me.OnIPChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DOCUMENT_ATTACH_NAME", DbType:="VarChar(150)")>  _
+	Public Property DOCUMENT_ATTACH_NAME() As String
+		Get
+			Return Me._DOCUMENT_ATTACH_NAME
+		End Get
+		Set
+			If (String.Equals(Me._DOCUMENT_ATTACH_NAME, value) = false) Then
+				Me.OnDOCUMENT_ATTACH_NAMEChanging(value)
+				Me.SendPropertyChanging
+				Me._DOCUMENT_ATTACH_NAME = value
+				Me.SendPropertyChanged("DOCUMENT_ATTACH_NAME")
+				Me.OnDOCUMENT_ATTACH_NAMEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DOCUMENT_ATTACH_CONTENT_TYPE", DbType:="VarChar(50)")>  _
+	Public Property DOCUMENT_ATTACH_CONTENT_TYPE() As String
+		Get
+			Return Me._DOCUMENT_ATTACH_CONTENT_TYPE
+		End Get
+		Set
+			If (String.Equals(Me._DOCUMENT_ATTACH_CONTENT_TYPE, value) = false) Then
+				Me.OnDOCUMENT_ATTACH_CONTENT_TYPEChanging(value)
+				Me.SendPropertyChanging
+				Me._DOCUMENT_ATTACH_CONTENT_TYPE = value
+				Me.SendPropertyChanged("DOCUMENT_ATTACH_CONTENT_TYPE")
+				Me.OnDOCUMENT_ATTACH_CONTENT_TYPEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DOCUMENT_ATTACH_DATA", DbType:="VarBinary(MAX)", UpdateCheck:=UpdateCheck.Never)>  _
+	Public Property DOCUMENT_ATTACH_DATA() As Byte()
+		Get
+			Return Me._DOCUMENT_ATTACH_DATA
+		End Get
+		Set
+			If (Object.Equals(Me._DOCUMENT_ATTACH_DATA, value) = false) Then
+				Me.OnDOCUMENT_ATTACH_DATAChanging(value)
+				Me.SendPropertyChanging
+				Me._DOCUMENT_ATTACH_DATA = value
+				Me.SendPropertyChanged("DOCUMENT_ATTACH_DATA")
+				Me.OnDOCUMENT_ATTACH_DATAChanged
 			End If
 		End Set
 	End Property

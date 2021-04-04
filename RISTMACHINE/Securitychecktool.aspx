@@ -76,6 +76,23 @@
         });
 
 
+        function setupFileUploadBoxbefore() {
+            //setup file upload 
+            $("#upfilebefore").fileinput({
+                uploadUrl: "ReceieveFile.aspx",
+                uploadAsync: true,
+                showUpload: true,
+                showRemove: true,
+                dropZoneEnabled: true,
+                required: true,
+                maxFileCount: 1,
+                //mainClass: "input-group-lg",
+                allowedFileExtensions: ["pdf"]
+            });
+
+            
+        }
+
     </script>
     
     <script src="Scripts/select-enable-input.js"></script>
@@ -94,7 +111,61 @@
                 <p class="text-right font800"><asp:Label ID="lbstatus" runat="server" CssClass="text-danger" ></asp:Label></p>
             </div>
         </div>  
+        <div class="row fd_animate">
         
+            <div class="panel panel-info ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Upload file Before</h3>
+                    <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                            <div class="form-group">
+                                <%--<form id="form1" enctype="multipart/form-data">--%>
+                                    <label>PDF BEFORE</label>
+                                    <input id="upfilebefore" name="upfilebefore" type="file" data-show-preview="false" data-fv-not-empty="true" data-preview-file-type="text" data-fv-file___min-files data-fv-file___max-files	data-fv-file___extension data-fv-file___type >
+                                <script>
+                                    //setup
+                                    setupFileUploadBoxbefore();
+                                </script>
+                                    
+                                <%--</form>--%>
+                            </div>
+                            <hr/>
+                            
+                            <div class="row">
+
+                               
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <asp:Label ID="lbnamefilebefore" runat="server" Text="" Visible="False"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <asp:LinkButton ID="lnkdownloadbefore" runat="server" CssClass="btn btn-block btn-success" OnClick="DownloadFilebefore"   Visible="False"><i class="fa fa-cloud-download" aria-hidden="true"></i></asp:LinkButton>
+     
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                     
+
+                        </div>
+                        <div class="col-md-6">
+                            
+
+                        </div>
+                    
+                    </div>
+                </div>
+             
+            </div>
+    </div>
         <div class="row fd_animate">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -2251,6 +2322,38 @@
                 </div>
             </div>
         </div>
+    
+    
+     <%--Start-Gridview for show on send email--%>
+        <div class="row" style="display:none">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <asp:GridView ID="gvmailapprove" Width="100%"  AutoGenerateColumns="False" runat="server" 
+                                  BackColor="LightSlateGray"
+                                  ForeColor="AliceBlue"
+                                  BorderColor="LightYellow">
+                        <Columns>
+                            <asp:BoundField DataField="MC_NO" HeaderText="MC No."  HeaderStyle-CssClass="text-center"/>
+                            <asp:BoundField DataField="REGISTER_DATE" HeaderText="REGISTER_DATE" DataFormatString="{0:dd/M/yyyy}" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                            <asp:BoundField DataField="MAKER" HeaderText="MAKER"  HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+                            <asp:BoundField DataField="COUNTRY" HeaderText="COUNTRY" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+                            <asp:BoundField DataField="SUPPLIER" HeaderText="SUPPLIER" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+                            <asp:BoundField DataField="PROVIDER" HeaderText="PROVIDER" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+                            <asp:BoundField DataField="TEL" HeaderText="TEL" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+                            <asp:BoundField DataField="TYPE_MC" HeaderText="TYPE MC" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+                            <asp:BoundField DataField="DIVISION" HeaderText="DIVISION" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+                            <asp:BoundField DataField="DEPARTMENT" HeaderText="DEPARTMENT" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+                            <asp:BoundField DataField="SECTION" HeaderText="SECTION" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+                            <%--<asp:BoundField DataField="STATUS_NAME" HeaderText="STATUS" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>--%>
+                            
+                        </Columns>
+                        <HeaderStyle BackColor="DarkSeaGreen" ForeColor="Gainsboro" />
+                        <AlternatingRowStyle BackColor="SlateGray" CssClass="gvfont"/>
+                    </asp:GridView>
+                </div>
+            </div>
+        </div>
+        <%--End-Gridview for show on send email--%>
     
     <a href="#" class="cd-top js-cd-top">Top</a>
     <script src="Scripts/main.js"></script>

@@ -19,6 +19,8 @@ Public Class ReceieveFile
 
         Dim postedFileErs As HttpPostedFile = Request.Files("upfileers")
 
+        Dim postedFilebefore As HttpPostedFile = Request.Files("upfilebefore")
+
         If postedFilefront Isnot Nothing Then
 
             Try
@@ -193,6 +195,55 @@ Public Class ReceieveFile
         If postedFileErs Isnot Nothing Then
 
             Try
+                Dim path As String = Server.MapPath("upload\Ers\")
+
+                For i = 0 To Request.Files.Count - 1
+                    Dim g As Guid
+                    g = Guid.NewGuid()
+                    Dim file = Request.Files(i)
+                    path += g.ToString() & "-" + file.FileName
+                    Dim extension As String = file.ContentType
+                    file.SaveAs(path)
+                    'Done
+                    Dim json = Newtonsoft.Json.JsonConvert.SerializeObject(New customResponse With {.Url = "upload\Ers\" & g.ToString() & "-" + file.FileName})
+                   
+                    Response.Write(json)
+
+                    'Create a Cookie with a suitable Key.
+                    Dim uploadCookie As New HttpCookie("fileErs")
+
+                    'Set the Cookie value.
+                    uploadCookie.Values("fileErs") = g.ToString() & "-" + file.FileName
+
+                    'Set the Expiry date.
+                    uploadCookie.Expires = DateTime.Now.AddHours(1)
+
+                    'Add the Cookie to Browser.
+                    Response.Cookies.Add(uploadCookie)
+
+                   
+                    
+                Next
+                
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim jsonError As String = Newtonsoft.Json.JsonConvert.SerializeObject(ex)
+
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & jsonError & """);", True)
+               
+            End Try
+            
+            Response.[End]()
+           
+        End If
+
+        If postedFilebefore Isnot Nothing Then
+
+            Try
                 Dim path As String = Server.MapPath("upload\")
 
                 For i = 0 To Request.Files.Count - 1
@@ -208,10 +259,10 @@ Public Class ReceieveFile
                     Response.Write(json)
 
                     'Create a Cookie with a suitable Key.
-                    Dim uploadCookie As New HttpCookie("fileErs")
+                    Dim uploadCookie As New HttpCookie("filebefore")
 
                     'Set the Cookie value.
-                    uploadCookie.Values("fileErs") = g.ToString() & "-" + file.FileName
+                    uploadCookie.Values("filebefore") = g.ToString() & "-" + file.FileName
 
                     'Set the Expiry date.
                     uploadCookie.Expires = DateTime.Now.AddHours(1)

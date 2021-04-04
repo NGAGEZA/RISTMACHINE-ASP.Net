@@ -14,11 +14,11 @@ Option Explicit On
 Partial Public Class ViewApprove
     
     '''<summary>
-    '''gviewapprove control.
+    '''ltTable control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents gviewapprove As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents ltTable As Global.System.Web.UI.WebControls.Literal
 End Class

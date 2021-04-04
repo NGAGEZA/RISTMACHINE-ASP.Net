@@ -11,16 +11,18 @@ Public Class GetReport
     Dim ReadOnly _rpt2 As New ReportDocument()
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not Page.User.Identity.IsAuthenticated Then
-            FormsAuthentication.RedirectToLoginPage()
-        Else 
+
+
+        'If Not Page.User.Identity.IsAuthenticated Then
+        '    FormsAuthentication.RedirectToLoginPage()
+        'Else 
 
             If Not IsPostBack Then
 
                 If Not String.IsNullOrEmpty(Request.QueryString("pmcno")) And Not String.IsNullOrEmpty(Request.QueryString("pageno")) Then
 
                     Select Case Request.QueryString("pageno")
-                        'Page
+                            'Page
                         Case "1"
                             Printpage1()
                         Case "2"
@@ -31,17 +33,110 @@ Public Class GetReport
                     End Select
 
 
-                    
+
                 Else
                     ClientScript.RegisterStartupScript(Me.GetType(), "alert", "datanotfound()", True)
 
                 End If
+                If Not String.IsNullOrEmpty(Request.QueryString("ersmcno")) 
+
+                    Dim ersmcno As String = Request.QueryString("ersmcno")
+                    DownloadFileErs(ersmcno)
+                    
+                End If
+
+                If Not String.IsNullOrEmpty(Request.QueryString("att3mcno")) 
+
+                    Dim att3Mcno As String = Request.QueryString("att3mcno")
+                    DownloadFileAtchbefore(att3Mcno)
+                    
+                End If
+
 
             End If
 
 
-        End If
+        'End If
        
+    End Sub
+
+    Private Sub DownloadFileErs(ersmcno As String)
+       
+        Using db As New  DBRISTMCDataContext
+            Try
+                ' Mcno = Request.QueryString("emcno")
+                Dim getfile As IEnumerable(Of TB_MACHINE_DATA) = db.TB_MACHINE_DATAs.Where(Function(r) r.MC_NO = ersmcno).ToList()
+                If getfile IsNot Nothing Then
+
+                    For Each file In getfile
+
+                        Response.ContentType = file.DOCUMENT_ATTACH_CONTENT_TYPE
+                        Response.AddHeader("content-disposition", "inline; filename=" & file.DOCUMENT_ATTACH_NAME)
+                        Response.BinaryWrite(file.DOCUMENT_ATTACH_DATA)
+                        Response.Flush()
+                        Response.[End]()
+
+                    Next
+                    
+                   
+                End If
+            Catch unusedThreadAbortException1 As Threading.ThreadAbortException
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+            Finally
+                db.Dispose()
+            End Try
+                
+        End Using
+
+    End Sub
+    Private Sub DownloadFileAtchbefore(att3Mcno As String)
+       
+        Using db As New  DBRISTMCDataContext
+            Try
+                ' Mcno = Request.QueryString("emcno")
+                Dim getfile As IEnumerable(Of TB_MACHINE_TOOL_CHECK_P3) = db.TB_MACHINE_TOOL_CHECK_P3s.Where(Function(r) r.MC_NO = att3Mcno).ToList()
+                If getfile IsNot Nothing Then
+
+                    For Each file In getfile
+
+                        Response.ContentType = file.DOCUMENT_ATTACH_CONTENT_TYPE
+                        Response.AddHeader("content-disposition", "inline; filename=" & file.DOCUMENT_ATTACH_NAME)
+                        Response.BinaryWrite(file.DOCUMENT_ATTACH_DATA)
+                        Response.Flush()
+                        Response.[End]()
+
+                    Next
+                    
+                   
+                End If
+            Catch unusedThreadAbortException1 As Threading.ThreadAbortException
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+            Finally
+                db.Dispose()
+            End Try
+                
+        End Using
+
     End Sub
 
    
@@ -663,6 +758,7 @@ Public Class GetReport
             End Try
       
     End Sub
+
     Private Sub Printpage3()
         Try
             Dim mcno As String

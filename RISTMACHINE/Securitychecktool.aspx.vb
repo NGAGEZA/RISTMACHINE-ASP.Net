@@ -18,44 +18,93 @@ Public Class Securitychecktool
             FormsAuthentication.RedirectToLoginPage()
 
         Else
-            'Getdata for edit Page 3
-            'If Not String.IsNullOrEmpty(Request.QueryString("ep3mcno")) Then
-            '    Mcno = Request.QueryString("ep3mcno")
-            '    lbmcno.Text = Mcno
-            '   if FindMcno(Mcno) = 0
-
-            '       lnksave.Text = "Save"
-
-            '   End If
-
-            '    Status = Request.QueryString("Status")
-            '    if Status = ""
-            '        lnksave.Text = "Save"
-            '        Getdata()
-            '        Else 
-                       
-            '            lnksave.Text = "UPDATE"
-            '    End If
-
-
-
-
-            'End If
-
+            'Getdata for edit
             If Not String.IsNullOrEmpty(Request.QueryString("ep3mcno")) Then
 
-                If lnksave.Text <> "UPDATE"
-                    Getdata()
+                Mcno = Request.QueryString("ep3mcno")
+
+                Select Case CheckStatus(Mcno)
+
+                    Case 0 '0 = Not Finish
+
+                      If lnksave.Text <> "UPDATE"
+                          Getdata()
+
+                          lnksave.Text = "UPDATE"
+                      End If
+                       
+                    Case 1
+                        lnksave.Text = "CAN'T UPDATE"
+                End Select
+
+
+                'If lnksave.Text <> "UPDATE"
+                '    Getdata()
+
+                '    lnksave.Text = "UPDATE"
+                'End If
+
+
+                Exit Sub
+             End If
+
+            'If Not String.IsNullOrEmpty(Request.QueryString("ep3mcno")) Then
+
+            '    Select Case CheckStatus(Request.QueryString("ep3mcno"))
+            '        Case 0
+                        
+            '            lnksave.Text = "UPDATE"
+            '            Getdata()
+
+            '        Case 1
+            '            lnksave.Text = "CAN'T UPDATE"
+            '    End Select
+
+                   
+            'Else
+            '    lnksave.Text = "Save"
+
+            '    'If CountAttfilePageThree(Request.QueryString("ep3mcno")) <> 0 
+                     
                     
-                    lnksave.Text = "UPDATE"
-                End If
+
+                   
+
+            '    'End If
 
                 
-                Exit Sub
-            End If
+            '    Exit Sub
+            'End If
 
         End If
     End Sub
+
+    Private Shared Function CountAttfilePageThree(mcno As String) As Integer
+        Dim countfile As Integer
+        Using db As New  DBRISTMCDataContext
+            
+            Try
+                ' Mcno = Request.QueryString("emcno")
+                Dim getfilecount  = db.TB_MACHINE_TOOL_CHECK_P3s.Count(Function (x) x.MC_NO = mcno)
+
+                countfile = getfilecount
+               
+            
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+               
+
+            Finally
+                
+                db.Dispose()
+            End Try
+                
+        End Using
+        Return countfile
+    End Function
 
     Private Function FindMcno(fmcno As String) As Integer
         ' local variable declaration */
@@ -68,6 +117,7 @@ Public Class Securitychecktool
                 result = getdata
 
             Catch ex As Exception
+                
                 dim errorSend = New ExceptionLogging()
                 errorSend.SendErrorTomail(ex)
                 'Write Error to Log.txt
@@ -77,10 +127,8 @@ Public Class Securitychecktool
                 message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
                 message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
 
-                    
-                
-
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+
             Finally
 
                 FindMcno = result
@@ -101,7 +149,7 @@ Public Class Securitychecktool
 
                 
                 Dim getdata = db.TB_MACHINE_TOOL_CHECK_P3s.Where(Function(x) x.MC_NO = Mcno).ToList()
-
+                
 
                 If getdata IsNot Nothing Then
 
@@ -460,6 +508,17 @@ Public Class Securitychecktool
                         select_str54_D.Value = s.E4_D_BEFORE_START_WORK
                         tb_str54_D.Value = s.E4_D_BEFORE_START_WORK_NOTE
 
+
+                        'CHECK ATTACH FILE FOR BUUTON DOWNLOAD
+                        If Not String.IsNullOrEmpty(s.DOCUMENT_ATTACH_NAME) Then
+                            lnkdownloadbefore.Visible = True
+                            lbnamefilebefore.Visible = True
+                            lbnamefilebefore.Text = s.DOCUMENT_ATTACH_NAME
+                        Else 
+                            lnkdownloadbefore.Visible = False
+                            lbnamefilebefore.Visible = False
+                        End If
+
                     Next
 
                 End If
@@ -483,23 +542,84 @@ Public Class Securitychecktool
     End Sub
     Protected Sub Callfunction()
         Select Case lnksave.Text
-          
             Case "UPDATE"
                 UpdateData()
             Case "Save"
                 InsertData()
-
-
-           
         End Select
     End Sub
     'Public Function DbNullOrStringValue(value As String) As Object
     '    Dim dt As Date
     '    If Date.TryParse(value, dt) Then
-           
+
     '        Return value
     '    End If
     '    'Return true
+    'End Function
+
+    Public Shared Function CheckStatus(mcno As String) As Integer
+
+        'Dim dt As Date
+        'If Date.TryParse(value, dt) Then
+
+        '    Return value
+        'End If
+        Dim statusid As Integer
+        Dim statusname As String
+        Using db As New  DBRISTMCDataContext
+            
+            Try
+                ' Mcno = Request.QueryString("emcno")
+                Dim getstatus  = db.TB_MACHINE_TOOL_CHECK_P3s.Where(Function(x) x.MC_NO = mcno).ToList()
+
+                For Each g In getstatus
+                    statusid = CInt(g.STATUS_ID)
+                    statusname = g.STATUS_NAME
+                Next
+              
+            
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+               
+            Finally
+                
+                db.Dispose()
+            End Try
+                
+        End Using
+
+
+        Return statusid
+    End Function
+
+
+    'Private Shared Function CountAttfilePageTwo(mcno As String) As Integer
+    '    Dim countfile As Integer
+    '    Using db As New  DBRISTMCDataContext
+            
+    '        Try
+    '            ' Mcno = Request.QueryString("emcno")
+    '            Dim getfilecount  = db.TB_FILE_ATTACHes.Count(Function(x) x.MC_NO = mcno)
+
+    '            countfile = getfilecount
+               
+            
+    '        Catch ex As Exception
+    '            dim errorSend = New ExceptionLogging()
+    '            errorSend.SendErrorTomail(ex)
+    '            'Write Error to Log.txt
+    '            ExceptionLogging.LogError(ex)
+               
+    '        Finally
+                
+    '            db.Dispose()
+    '        End Try
+                
+    '    End Using
+    '    Return countfile
     'End Function
 
     Private Sub UpdateData
@@ -507,8 +627,6 @@ Public Class Securitychecktool
 
             Try
                 Mcno = Request.QueryString("ep3mcno")
-
-
 
                 Dim opnocookie As HttpCookie = Request.Cookies("opno")
                 Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
@@ -884,13 +1002,55 @@ Public Class Securitychecktool
                     p3.OPNO_UPDATE = opno
                     p3.DATE_UPDATE = Date.Now
 
+                   
+                    If lbnamefilebefore.Text.Trim() = ""
+                        ''//Function Save Attach file  3 
+                        Dim uploadfilebefore As HttpCookie = Request.Cookies("filebefore")
+                        Dim nameuploadbefore as String = If(uploadfilebefore IsNot Nothing, uploadfilebefore.Value.Split("="c)(1), "undefined")
+                        'Dim nameuploadErs = CType(Session("fileErs"), String)
+                        Dim filePathuploadbefore as String
+                        Dim filenameuploadbefore As String
+                        Dim fsuploadbefore As FileStream
+                        Dim bruploadbefore As BinaryReader
+                        Dim bytesuploadbefore As Byte()
+                        Dim doccontentypebefore As string
+
+               
+
+                        If nameuploadbefore Isnot Nothing
+
+
+                            filePathuploadbefore = Server.MapPath("upload/" & nameuploadbefore & "")
+                            filenameuploadbefore = Path.GetFileName(filePathuploadbefore)
+                            fsuploadbefore = New FileStream(filePathuploadbefore, FileMode.Open, FileAccess.Read)
+                            bruploadbefore = New BinaryReader(fsuploadbefore)
+                            bytesuploadbefore = bruploadbefore.ReadBytes(Convert.ToInt32(fsuploadbefore.Length))
+                            doccontentypebefore = MimeMapping.GetMimeMapping(filenameuploadbefore)
+                            bruploadbefore.Close()
+                            fsuploadbefore.Close()
+
+                        End If
+
+
+                        p3.DOCUMENT_ATTACH_NAME = filenameuploadbefore
+                        p3.DOCUMENT_ATTACH_CONTENT_TYPE = doccontentypebefore
+                        p3.DOCUMENT_ATTACH_DATA = bytesuploadbefore
+                    End If
+                   
+
+                    p3.STATUS_ID = 1
+                    p3.STATUS_NAME = "REQUESTED"
+
+
                     db.SubmitChanges()
 
 
                 End If
 
+                SendEmailToRequest()
 
-
+                SendEmailToSectMgr
+                
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "UpdateComplete()", True)
             Catch ex As Exception
                 dim errorSend = New ExceptionLogging()
@@ -912,11 +1072,8 @@ Public Class Securitychecktool
     End Sub
 
     Private Sub InsertData
-     
-        
 
         Using db = New DBRISTMCDataContext
-
             Try
 
                 Dim opnocookie As HttpCookie = Request.Cookies("opno")
@@ -1288,6 +1445,42 @@ Public Class Securitychecktool
                 p3.E4_D_BEFORE_START_WORK = select_str54_D.Items(select_str54_D.SelectedIndex).Value
                 p3.E4_D_BEFORE_START_WORK_NOTE = tb_str54_D.Value
 
+                ''//Function Save Attach file  3 
+                Dim uploadfilebefore As HttpCookie = Request.Cookies("filebefore")
+                Dim nameuploadbefore as String = If(uploadfilebefore IsNot Nothing, uploadfilebefore.Value.Split("="c)(1), "undefined")
+                'Dim nameuploadErs = CType(Session("fileErs"), String)
+                Dim filePathuploadbefore as String
+                Dim filenameuploadbefore As String
+                Dim fsuploadbefore As FileStream
+                Dim bruploadbefore As BinaryReader
+                Dim bytesuploadbefore As Byte()
+                Dim doccontentypebefore As string
+
+               
+
+                If nameuploadbefore Isnot Nothing
+
+                    filePathuploadbefore = Server.MapPath("upload/" & nameuploadbefore & "")
+                    filenameuploadbefore = Path.GetFileName(filePathuploadbefore)
+                    fsuploadbefore = New FileStream(filePathuploadbefore, FileMode.Open, FileAccess.Read)
+                    bruploadbefore = New BinaryReader(fsuploadbefore)
+                    bytesuploadbefore = bruploadbefore.ReadBytes(Convert.ToInt32(fsuploadbefore.Length))
+                    doccontentypebefore = MimeMapping.GetMimeMapping(filenameuploadbefore)
+                    bruploadbefore.Close()
+                    fsuploadbefore.Close()
+                    
+                End If
+
+                p3.DOCUMENT_ATTACH_NAME = filenameuploadbefore
+                p3.DOCUMENT_ATTACH_CONTENT_TYPE = doccontentypebefore
+                p3.DOCUMENT_ATTACH_DATA = bytesuploadbefore
+
+
+
+                p3.IP = ip
+                p3.OPNO_UPDATE = opno
+                p3.DATE_UPDATE = Date.Now
+
                 db.TB_MACHINE_TOOL_CHECK_P3s.InsertOnSubmit(p3)
                 db.SubmitChanges()
 
@@ -1346,7 +1539,7 @@ Public Class Securitychecktool
                             mm.Subject = "Your Machine Register No " & Mcno 
                             mm.Body = String.Format("Hi {0},<br /><br />
                                                     Your machine register no. " & Mcno & "<br /><br />
-                                                    Please see details link <a href='http://10.29.1.86/RISTMACHINE/Main.aspx?rmcno={1} '>Click</a> <br /><br />
+                                                    Please see details link <a href='http://10.29.1.86/RISTMACHINE/ViewApprove.aspx?rmcno={1} '>Click</a> <br /><br />
                                                     <hr />" & sw.ToString() & "<br /><br />
                                                     Thank You.", username, rmcno)
                             mm.IsBodyHtml = True
@@ -1388,6 +1581,106 @@ Public Class Securitychecktool
 
 
         
+    End Sub
+
+    Private sub SendEmailToSectMgr
+        Dim emailsectEnc As string 
+        Dim emailsect As string 
+        Dim opnosect As string
+        Dim sectmcno As String = HttpUtility.UrlEncode(Encrypt(Mcno))
+
+        Using db As New DBRISTMCDataContext()
+            Try
+                'searchflow step for sectmgr with req opno
+                Dim opreq As String = String.Empty
+
+               
+
+                Dim reqno = db.TB_MACHINE_DATAs.Where(Function(x) x.MC_NO = Mcno).Select(Function(x) New With{.OpnoAdd=x.OPNO_ADD})
+
+                For Each x In reqno
+                    opreq = x.OpnoAdd
+                Next
+
+
+               
+                Dim s = db.TB_FLOW_REQUESTs.Where(Function(x) x.REQUEST_OP = opreq)
+
+
+                For Each e In s
+                    
+                    opnosect = e.SECT_MGR_STAMP
+                    emailsect = e.SECT_MGR_EMAIL
+                    emailsectEnc = HttpUtility.UrlEncode(Encrypt(e.SECT_MGR_EMAIL))
+                    
+                    BindGridForMgr
+                    Using sw As New StringWriter()
+                        Using hw As New HtmlTextWriter(sw)
+                            gvmailapprove.RenderControl(hw)
+                            Dim mm As New MailMessage("RISTMCSYSTEM@rist.local", emailsect)
+                            mm.Subject = "Machine Register No. "& Mcno & ""
+                            mm.Body = String.Format("Hi {0},<br /><br />
+                                                    Machine register no. " & Mcno & "<br /><br />
+                                                    Waiting for Sect.Mgr Approve
+                                                    Please see details link <a href='http://10.29.1.86/RISTMACHINE/Main.aspx?smcno={1}&semail={2}'>Click</a> <br /><br />
+                                                    <hr />" & sw.ToString() & "<br /><br />
+                                                    Thank You.", opnosect, sectmcno, emailsectEnc)
+                            mm.IsBodyHtml = True
+                            Dim smtp As New SmtpClient()
+                            smtp.Host = "10.29.1.240"
+                            smtp.EnableSsl = False
+                            Dim networkCred As New NetworkCredential()
+                            networkCred.UserName = "RISTMCSYSTEM@rist.local"
+                            networkCred.Password = "Rist2018"
+                            smtp.UseDefaultCredentials = True
+                            smtp.Credentials = networkCred
+                            smtp.Port = 25
+                            smtp.Send(mm)
+                        End Using
+                    End Using
+                   
+                Next
+
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True) 
+            Finally
+                db.Dispose()
+            End Try
+        End Using
+    End sub
+    Private Sub BindGridForMgr()
+        Using db As New DBRISTMCDataContext()
+            Try
+                gvmailapprove.DataSource = From m In db.TB_MACHINE_DATAs
+                    Where m.MC_NO = Mcno
+                    Select New with {m.MC_NO, m.MAKER, m.COUNTRY, m.SUPPLIER, m.PROVIDER, m.TEL, 
+                        m.DIVISION, m.DEPARTMENT, m.SECTION, m.REGISTER_DATE,m.TYPE_MC,m.STATUS_NAME}
+                gvmailapprove.DataBind()
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+            Finally
+                db.Dispose()
+            End Try
+            
+        End Using
     End Sub
     Private Sub BindGrid()
         Using db As New DBRISTMCDataContext()
@@ -1461,6 +1754,46 @@ Public Class Securitychecktool
         End Using
         Return cipherText
     End Function
+
+
+    Protected Sub DownloadFilebefore
+       
+        Using db As New  DBRISTMCDataContext
+            Try
+                Mcno = Request.QueryString("ep3mcno")
+                Dim getfile As IEnumerable(Of TB_MACHINE_TOOL_CHECK_P3) = db.TB_MACHINE_TOOL_CHECK_P3s.Where(Function(r) r.MC_NO = Mcno).ToList()
+                If getfile IsNot Nothing Then
+
+                    For Each file In getfile
+
+                        Response.ContentType = file.DOCUMENT_ATTACH_CONTENT_TYPE
+                        Response.AddHeader("content-disposition", "attachment; filename=" & file.DOCUMENT_ATTACH_NAME)
+                        Response.BinaryWrite(file.DOCUMENT_ATTACH_DATA)
+                        Response.Flush()
+                        Response.[End]()
+
+                    Next
+
+                End If
+            Catch unusedThreadAbortException1 As Threading.ThreadAbortException
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+            Finally
+                db.Dispose()
+            End Try
+                
+        End Using
+
+    End Sub
 
 
 
