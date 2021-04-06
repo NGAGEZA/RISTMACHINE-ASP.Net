@@ -557,7 +557,7 @@ Public Class Securitychecktool
     '    'Return true
     'End Function
 
-    Public Shared Function CheckStatus(mcno As String) As Integer
+    Private Shared Function CheckStatus(mcno As String) As Integer
 
         'Dim dt As Date
         'If Date.TryParse(value, dt) Then
@@ -1622,7 +1622,7 @@ Public Class Securitychecktool
                             mm.Body = String.Format("Hi {0},<br /><br />
                                                     Machine register no. " & Mcno & "<br /><br />
                                                     Waiting for Sect.Mgr Approve
-                                                    Please see details link <a href='http://10.29.1.86/RISTMACHINE/Main.aspx?smcno={1}&semail={2}'>Click</a> <br /><br />
+                                                    Please see details link <a href='http://10.29.1.86/RISTMACHINE/ViewApprove.aspx?smcno={1}&semail={2}'>Click</a> <br /><br />
                                                     <hr />" & sw.ToString() & "<br /><br />
                                                     Thank You.", opnosect, sectmcno, emailsectEnc)
                             mm.IsBodyHtml = True
@@ -1660,10 +1660,12 @@ Public Class Securitychecktool
     Private Sub BindGridForMgr()
         Using db As New DBRISTMCDataContext()
             Try
-                gvmailapprove.DataSource = From m In db.TB_MACHINE_DATAs
-                    Where m.MC_NO = Mcno
-                    Select New with {m.MC_NO, m.MAKER, m.COUNTRY, m.SUPPLIER, m.PROVIDER, m.TEL, 
-                        m.DIVISION, m.DEPARTMENT, m.SECTION, m.REGISTER_DATE,m.TYPE_MC,m.STATUS_NAME}
+                Mcno = Request.QueryString("ep3mcno")
+
+                gvmailapprove.DataSource = db.TB_MACHINE_DATAs.
+                    Where(Function(m) m.MC_NO = Mcno).
+                    Select(Function(m) New with {m.MC_NO, m.MAKER, m.COUNTRY, m.SUPPLIER, m.PROVIDER, m.TEL, 
+                        m.DIVISION, m.DEPARTMENT, m.SECTION, m.REGISTER_DATE,m.TYPE_MC,m.STATUS_NAME})
                 gvmailapprove.DataBind()
             Catch ex As Exception
                 dim errorSend = New ExceptionLogging()

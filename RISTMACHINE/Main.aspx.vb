@@ -113,6 +113,43 @@ Public Class Main
         End If
         
     End Sub
+    Private Shared Function CheckStatus(mcno As String) As Integer
+
+        'Dim dt As Date
+        'If Date.TryParse(value, dt) Then
+
+        '    Return value
+        'End If
+        Dim statusid As Integer
+        Dim statusname As String
+        Using db As New  DBRISTMCDataContext
+            
+            Try
+                ' Mcno = Request.QueryString("emcno")
+                Dim getstatus  = db.TB_MACHINE_TOOL_CHECK_P3s.Where(Function(x) x.MC_NO = mcno).ToList()
+
+                For Each g In getstatus
+                    statusid = CInt(g.STATUS_ID)
+                    statusname = g.STATUS_NAME
+                Next
+              
+            
+            Catch ex As Exception
+                dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+               
+            Finally
+                
+                db.Dispose()
+            End Try
+                
+        End Using
+
+
+        Return statusid
+    End Function
    Private Sub Checkflow()
        Using db As New DBRISTMCDataContext
             Try

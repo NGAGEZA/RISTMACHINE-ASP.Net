@@ -16,13 +16,24 @@ Public Class ViewApprove
             FormsAuthentication.RedirectToLoginPage()
 
         Else
-            Mcno = Request.QueryString("rmcno")
-            Mcno = "MC-065"
+            
             'get data for review data from email request
-            If Not String.IsNullOrEmpty(Mcno) Then
+            'If Not String.IsNullOrEmpty(Mcno) Then
 
-                MakeTable
+            '    MakeTable
                 
+            '    Exit Sub
+            'End If
+            'get data for review data from email request
+            If Not String.IsNullOrEmpty(Request.QueryString("rmcno")) Then
+                Mcno = Decrypt(HttpUtility.UrlDecode(Request.QueryString("rmcno")))
+                MakeTable()
+                Exit Sub
+            End If
+            'get data for Sect.mgr preview approve
+            If Not String.IsNullOrEmpty(Request.QueryString("smcno")) Then
+                Mcno = Decrypt(HttpUtility.UrlDecode(Request.QueryString("smcno")))
+                MakeTable()
                 Exit Sub
             End If
 
@@ -152,7 +163,7 @@ Public Class ViewApprove
                 'Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
 
                 'For Test
-                mcno = "MC-065"
+                'mcno = "MC-065"
 
                 Dim getdata = db.TB_MACHINE_DATAs.Where(Function(x) x.MC_NO = Mcno).Select(Function(x) New With {.No = 0,
                                                                                               .OpnoAdd = x.OPNO_ADD,

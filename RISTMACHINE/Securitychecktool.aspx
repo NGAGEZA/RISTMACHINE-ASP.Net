@@ -2344,7 +2344,7 @@
                             <asp:BoundField DataField="DIVISION" HeaderText="DIVISION" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
                             <asp:BoundField DataField="DEPARTMENT" HeaderText="DEPARTMENT" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
                             <asp:BoundField DataField="SECTION" HeaderText="SECTION" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
-                            <%--<asp:BoundField DataField="STATUS_NAME" HeaderText="STATUS" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>--%>
+                            <asp:BoundField DataField="STATUS_NAME" HeaderText="STATUS" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
                             
                         </Columns>
                         <HeaderStyle BackColor="DarkSeaGreen" ForeColor="Gainsboro" />
