@@ -21,4 +21,31 @@ Partial Public Class ViewApprove
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ltTable As Global.System.Web.UI.WebControls.Literal
+    
+    '''<summary>
+    '''lbmsg control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbmsg As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''btnSample control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSample As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''gvmailapprove control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvmailapprove As Global.System.Web.UI.WebControls.GridView
 End Class

@@ -2269,13 +2269,13 @@ Public Class Main
                 Dim p3 = New TB_MACHINE_TOOL_CHECK_P3()
 
 
-                Dim dt As Date
-
-
                 p3.MC_NO = Mcno
                 p3.OPNO_ADD = opno
                 p3.DATE_ADD = DateTime.Now
                 p3.IP = ip
+                p3.STATUS_ID = 0
+                p3.STATUS_NAME = "REQUEST NOT FINISH"
+
 
                 db.TB_MACHINE_TOOL_CHECK_P3s.InsertOnSubmit(p3)
                 db.SubmitChanges()

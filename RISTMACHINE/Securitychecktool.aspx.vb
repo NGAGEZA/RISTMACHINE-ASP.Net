@@ -143,7 +143,7 @@ Public Class Securitychecktool
     Private Sub Getdata()
 
         Mcno = Request.QueryString("ep3mcno")
-        Status = Request.QueryString("Status")
+        Status = Request.QueryString("status")
         Using db As New DBRISTMCDataContext()
             Try
 

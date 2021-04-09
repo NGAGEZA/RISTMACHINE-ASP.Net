@@ -1006,7 +1006,7 @@ Public Class EquipmentCheck
     Private Sub Getdata()
         
         Mcno = Request.QueryString("ep2mcno")
-        Status = Request.QueryString("Status")
+        Status = Request.QueryString("status")
         If Mcno IsNot Nothing
             Using db As New DBRISTMCDataContext()
                 Try

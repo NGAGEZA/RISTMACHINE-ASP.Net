@@ -11,7 +11,7 @@
 
                     const ep3Mcno = e.textContent;
                     const status = s.textContent;
-                    const url = "Securitychecktool.aspx?ep3mcno=" + ep3Mcno + "&Status="+ status;;
+                    const url = "Securitychecktool.aspx?ep3mcno=" + ep3Mcno;
                     window.location.href = url;
 
                    

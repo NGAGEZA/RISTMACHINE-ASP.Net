@@ -13,7 +13,7 @@
 
                     const ep2Mcno = e.textContent;
                     const status = s.textContent;
-                    const url = "EquipmentCheck.aspx?ep2mcno=" + ep2Mcno + "&Status="+ status;;
+                    const url = "EquipmentCheck.aspx?ep2mcno=" + ep2Mcno;
                     window.location.href = url;
 
                 });
