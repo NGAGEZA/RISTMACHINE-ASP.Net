@@ -26,6 +26,7 @@ Public Class ViewApprove
 
             '    Exit Sub
             'End If
+
             'get data for review data from email request
             If Not String.IsNullOrEmpty(Request.QueryString("rmcno")) Then
                 Mcno = Decrypt(HttpUtility.UrlDecode(Request.QueryString("rmcno")))
@@ -375,10 +376,10 @@ Public Class ViewApprove
         Return statusid
     End Function
     Private Shared Function Encrypt(clearText As String) As String
-        Dim EncryptionKey As String = "RISTMC18NOVSYS"
+        Const encryptionKey = "RISTMC18NOVSYS"
         Dim clearBytes As Byte() = Encoding.Unicode.GetBytes(clearText)
         Using encryptor As Aes = Aes.Create()
-            Dim pdb As New Rfc2898DeriveBytes(EncryptionKey, New Byte() {&H49, &H76, &H61, &H6E, &H20, &H4D,
+            Dim pdb As New Rfc2898DeriveBytes(encryptionKey, New Byte() {&H49, &H76, &H61, &H6E, &H20, &H4D,
                                                                          &H65, &H64, &H76, &H65, &H64, &H65,
                                                                          &H76})
             encryptor.Key = pdb.GetBytes(32)
@@ -396,7 +397,7 @@ Public Class ViewApprove
     Private Sub BindGridForMgr()
         Using db As New DBRISTMCDataContext()
             Try
-                Mcno = Request.QueryString("ep3mcno")
+                'Mcno = Request.QueryString("ep3mcno")
 
                 gvmailapprove.DataSource = db.TB_MACHINE_DATAs.
                     Where(Function(m) m.MC_NO = Mcno).
@@ -421,9 +422,9 @@ Public Class ViewApprove
         End Using
     End Sub
     Private Sub SendEmailToDeptMgr()
-        Dim emaildeptEnc As String = String.Empty
-        Dim emaildept As String = String.Empty
-        Dim opnodept As String = String.Empty
+        Dim emaildeptEnc As String
+        Dim emaildept As String
+        Dim opnodept As String
         Dim deptmcno As String = HttpUtility.UrlEncode(Encrypt(Mcno))
         Using db As New DBRISTMCDataContext()
             Try
@@ -626,28 +627,40 @@ Public Class ViewApprove
             Try
                 'get op req from tb machine data
                 Dim opnoreq As String = String.Empty
-                Dim q = From t In db.TB_MACHINE_DATAs
-                        Where t.MC_NO = Mcno
-                        Select t
+
+                Dim q = db.TB_MACHINE_DATAs.
+                        Where(Function(t) t.MC_NO = Mcno).ToList()
 
                 For Each o In q
                     opnoreq = o.OPNO_ADD
                 Next
                 'get flow deptmgr approve
                 Dim deptmgrname As String
-                Dim dept = From f In db.TB_FLOW_REQUESTs
-                           Where f.REQUEST_OP = opnoreq And f.DEPT_MGR_EMAIL = emaildept
-                           Select f
+
+                Dim dept = db.TB_FLOW_REQUESTs.
+                        Where(Function(f) f.REQUEST_OP = opnoreq And f.DEPT_MGR_EMAIL = emaildept)
 
                 For Each a In dept
                     deptmgrname = a.DEPT_MGR_STAMP
                 Next
 
-                Dim s As TB_MACHINE_DATA = (From u In db.TB_MACHINE_DATAs Where u.MC_NO = Mcno Select u).FirstOrDefault()
+                Dim s As TB_MACHINE_DATA = db.TB_MACHINE_DATAs.FirstOrDefault(Function(u) u.MC_NO = Mcno)
                 s.DEPT_MGR_NAME_APPROVE = deptmgrname
                 s.DEPT_MGR_APPROVE_DATE = DateTime.Now
                 s.STATUS_ID = 3
                 s.STATUS_NAME = "@Dept.Mgr Approved"
+
+                Dim x As TB_MACHINE_TOOL_CHECK_P3 = db.TB_MACHINE_TOOL_CHECK_P3s.FirstOrDefault(Function(u) u.MC_NO = Mcno)
+                x.STATUS_ID = 3
+                x.STATUS_NAME = "@Dept.Mgr Approved"
+
+
+                'Dim s As TB_MACHINE_DATA = (From u In db.TB_MACHINE_DATAs Where u.MC_NO = Mcno Select u).FirstOrDefault()
+                's.DEPT_MGR_NAME_APPROVE = deptmgrname
+                's.DEPT_MGR_APPROVE_DATE = DateTime.Now
+                's.STATUS_ID = 3
+                's.STATUS_NAME = "@Dept.Mgr Approved"
+
                 db.SubmitChanges()
                 db.Dispose()
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "mgrapprove()", True)
@@ -668,6 +681,10 @@ Public Class ViewApprove
                 ' SendEmailToDivMgr
             End Try
         End Using
+    End Sub
+
+    Public Overrides Sub VerifyRenderingInServerForm(control As Control)
+        ' Verifies that the control is rendered
     End Sub
 
 End Class
