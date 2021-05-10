@@ -34,11 +34,25 @@ Public Class Main
             'Getdata for edit
             If Not String.IsNullOrEmpty(Request.QueryString("emcno")) Then
 
-                If lnksave.Text <> "UPDATE"
-                    Getdata()
-                    
-                    lnksave.Text = "UPDATE"
-                End If
+                Mcno = Request.QueryString("emcno")
+
+                Select Case CheckStatus(Mcno)
+
+                    Case 0 '0 = Not Finish
+
+                        If lnksave.Text <> "UPDATE"
+                            Getdata()
+
+                            lnksave.Text = "UPDATE"
+                        End If
+
+                    Case 1, 2, 3
+                        ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alertnotupdate()", True)
+                        lnksave.Text = "CAN'T UPDATE"
+
+
+
+                End Select
 
                 
             Exit Sub

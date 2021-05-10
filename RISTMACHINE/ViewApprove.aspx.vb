@@ -336,6 +336,36 @@ Public Class ViewApprove
             Exit Sub
         End If
 
+        'get data for Div.mgr preview approve
+        If Not String.IsNullOrEmpty(Request.QueryString("dimcno")) Then
+            Mcno = Decrypt(HttpUtility.UrlDecode(Request.QueryString("dimcno")))
+            ApproveDivmgr()
+            Exit Sub
+        End If
+
+        'get data for Sub-Com preview approve
+        If Not String.IsNullOrEmpty(Request.QueryString("scmcno")) Then
+            Mcno = Decrypt(HttpUtility.UrlDecode(Request.QueryString("scmcno")))
+            ApproveSubCom()
+            Exit Sub
+        End If
+
+        'get data for Safety Officer preview approve
+        If Not String.IsNullOrEmpty(Request.QueryString("sfmcno")) Then
+            Mcno = Decrypt(HttpUtility.UrlDecode(Request.QueryString("sfmcno")))
+            ApproveSafetyOfficer()
+            Exit Sub
+        End If
+
+        'get data for Safety Mgr preview approve
+        If Not String.IsNullOrEmpty(Request.QueryString("sfmgrmcno")) Then
+            Mcno = Decrypt(HttpUtility.UrlDecode(Request.QueryString("sfmgrmcno")))
+            ApproveSafetyMgr()
+            Exit Sub
+        End If
+
+
+
     End Sub
 
     Private Shared Function CheckStatus(mcno As String) As Integer
@@ -346,7 +376,6 @@ Public Class ViewApprove
         '    Return value
         'End If
         Dim statusid As Integer
-        Dim statusname As String
         Using db As New DBRISTMCDataContext
 
             Try
@@ -355,7 +384,6 @@ Public Class ViewApprove
 
                 For Each g In getstatus
                     statusid = CInt(g.STATUS_ID)
-                    statusname = g.STATUS_NAME
                 Next
 
 
@@ -421,6 +449,8 @@ Public Class ViewApprove
 
         End Using
     End Sub
+
+
     Private Sub SendEmailToDeptMgr()
         Dim emaildeptEnc As String
         Dim emaildept As String
@@ -494,25 +524,21 @@ Public Class ViewApprove
     End Sub
 
     Private Sub SendEmailToDivMgr()
-        Dim emaildivEnc As String = String.Empty
-        Dim emaildiv As String = String.Empty
-        Dim opnodiv As String = String.Empty
+        Dim emaildivEnc As String
+        Dim emaildiv As String
+        Dim opnodiv As String
         Dim divmcno As String = HttpUtility.UrlEncode(Encrypt(Mcno))
         Using db As New DBRISTMCDataContext()
             Try
                 'searchflow step for divmgr with req opno
                 Dim opreq As String
-                Dim reqno = From c In db.TB_MACHINE_DATAs
-                            Where c.MC_NO = Mcno
-                            Select New With {.OpnoAdd = c.OPNO_ADD}
+                Dim reqno = db.TB_MACHINE_DATAs.Where(Function(c) c.MC_NO = Mcno).Select(Function(x) New With {.OpnoAdd = x.OPNO_ADD}).ToList()
 
                 For Each x In reqno
                     opreq = x.OpnoAdd
                 Next
 
-                Dim d = From t In db.TB_FLOW_REQUESTs
-                        Where t.REQUEST_OP = opreq
-                        Select t
+                Dim d = db.TB_FLOW_REQUESTs.Where(Function(c) c.REQUEST_OP = opreq).ToList()
 
                 For Each e In d
                     opnodiv = e.DIV_MGR_OP
@@ -531,6 +557,192 @@ Public Class ViewApprove
                                                     Please see details link <a href='http://10.29.1.86/RISTMACHINE/ViewApprove.aspx?dimcno={1}&diemail={2}'>Click</a> <br /><br />
                                                     <hr />" & sw.ToString() & "<br /><br />
                                                     Thank You.", opnodiv, divmcno, emaildivEnc)
+                            mm.IsBodyHtml = True
+                            Dim smtp As New SmtpClient()
+                            smtp.Host = "10.29.1.240"
+                            smtp.EnableSsl = False
+                            Dim networkCred As New NetworkCredential()
+                            networkCred.UserName = "RISTMCSYSTEM@rist.local"
+                            networkCred.Password = "Rist2018"
+                            smtp.UseDefaultCredentials = True
+                            smtp.Credentials = networkCred
+                            smtp.Port = 25
+                            smtp.Send(mm)
+                        End Using
+                    End Using
+
+                Next
+
+            Catch ex As Exception
+                Dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+            Finally
+                db.Dispose()
+            End Try
+        End Using
+    End Sub
+
+    Private Sub SendEmailToSubCom()
+        Dim emailSubcomEnc As String
+        Dim emailSubcom As String
+        Dim opnoSubcom As String
+        Dim subcommcno As String = HttpUtility.UrlEncode(Encrypt(Mcno))
+        Using db As New DBRISTMCDataContext()
+            Try
+
+
+                Dim d = db.TB_FLOW_SAFETies.ToList()
+
+                For Each e In d
+                    opnoSubcom = e.MCESUBCOM_OP
+                    emailSubcom = e.MCESUBCOM_EMAIL
+                    emailSubcomEnc = HttpUtility.UrlEncode(Encrypt(e.MCESUBCOM_EMAIL))
+
+                    BindGridForMgr()
+
+                    Using sw As New StringWriter()
+                        Using hw As New HtmlTextWriter(sw)
+                            gvmailapprove.RenderControl(hw)
+                            Dim mm As New MailMessage("RISTMCSYSTEM@rist.local", emailSubcom)
+                            mm.Subject = "Machine Register No. " & Mcno & ""
+                            mm.Body = String.Format("Hi {0},<br /><br />
+                                                    Machine register no. " & Mcno & "<br /><br />
+                                                    Waiting for Sub-Com Approve
+                                                    Please see details link <a href='http://10.29.1.86/RISTMACHINE/ViewApprove.aspx?scmcno={1}&scemail={2}'>Click</a> <br /><br />
+                                                    <hr />" & sw.ToString() & "<br /><br />
+                                                    Thank You.", opnoSubcom, subcommcno, emailSubcomEnc)
+                            mm.IsBodyHtml = True
+                            Dim smtp As New SmtpClient()
+                            smtp.Host = "10.29.1.240"
+                            smtp.EnableSsl = False
+                            Dim networkCred As New NetworkCredential()
+                            networkCred.UserName = "RISTMCSYSTEM@rist.local"
+                            networkCred.Password = "Rist2018"
+                            smtp.UseDefaultCredentials = True
+                            smtp.Credentials = networkCred
+                            smtp.Port = 25
+                            smtp.Send(mm)
+                        End Using
+                    End Using
+
+                Next
+
+            Catch ex As Exception
+                Dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+            Finally
+                db.Dispose()
+            End Try
+        End Using
+    End Sub
+
+    Private Sub SendEmailToSafetyOfficer()
+        Dim emailSfofficerEnc As String
+        Dim emailSfofficer As String
+        Dim opnoSfofficer As String
+        Dim sfofficermcno As String = HttpUtility.UrlEncode(Encrypt(Mcno))
+        Using db As New DBRISTMCDataContext()
+            Try
+
+
+                Dim d = db.TB_FLOW_SAFETies.ToList()
+
+                For Each e In d
+                    opnoSfofficer = e.SAFETYOFF_OP
+                    emailSfofficer = e.SAFETYOFF_EMAIL
+                    emailSfofficerEnc = HttpUtility.UrlEncode(Encrypt(e.SAFETYOFF_EMAIL))
+
+                    BindGridForMgr()
+
+                    Using sw As New StringWriter()
+                        Using hw As New HtmlTextWriter(sw)
+                            gvmailapprove.RenderControl(hw)
+                            Dim mm As New MailMessage("RISTMCSYSTEM@rist.local", emailSfofficer)
+                            mm.Subject = "Machine Register No. " & Mcno & ""
+                            mm.Body = String.Format("Hi {0},<br /><br />
+                                                    Machine register no. " & Mcno & "<br /><br />
+                                                    Waiting for Safety Officer Approve
+                                                    Please see details link <a href='http://10.29.1.86/RISTMACHINE/ViewApprove.aspx?sfmcno={1}&sfemail={2}'>Click</a> <br /><br />
+                                                    <hr />" & sw.ToString() & "<br /><br />
+                                                    Thank You.", opnoSfofficer, sfofficermcno, emailSfofficerEnc)
+                            mm.IsBodyHtml = True
+                            Dim smtp As New SmtpClient()
+                            smtp.Host = "10.29.1.240"
+                            smtp.EnableSsl = False
+                            Dim networkCred As New NetworkCredential()
+                            networkCred.UserName = "RISTMCSYSTEM@rist.local"
+                            networkCred.Password = "Rist2018"
+                            smtp.UseDefaultCredentials = True
+                            smtp.Credentials = networkCred
+                            smtp.Port = 25
+                            smtp.Send(mm)
+                        End Using
+                    End Using
+
+                Next
+
+            Catch ex As Exception
+                Dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+            Finally
+                db.Dispose()
+            End Try
+        End Using
+    End Sub
+
+    Private Sub SendEmailToSafetyMgr()
+        Dim emailSfmgrEnc As String
+        Dim emailSfmgr As String
+        Dim opnoSfmgr As String
+        Dim sfmgrmcno As String = HttpUtility.UrlEncode(Encrypt(Mcno))
+        Using db As New DBRISTMCDataContext()
+            Try
+
+                Dim d = db.TB_FLOW_SAFETies.ToList()
+                'Dim d = From t In db.TB_FLOW_SAFETies Select t
+
+                For Each e In d
+                    opnoSfmgr = e.SAFETYMGR_OP
+                    emailSfmgr = e.SAFETYMGR_EMAIL
+                    emailSfmgrEnc = HttpUtility.UrlEncode(Encrypt(e.SAFETYMGR_EMAIL))
+
+                    BindGridForMgr()
+
+                    Using sw As New StringWriter()
+                        Using hw As New HtmlTextWriter(sw)
+                            gvmailapprove.RenderControl(hw)
+                            Dim mm As New MailMessage("RISTMCSYSTEM@rist.local", emailSfmgr)
+                            mm.Subject = "Machine Register No. " & Mcno & ""
+                            mm.Body = String.Format("Hi {0},<br /><br />
+                                                    Machine register no. " & Mcno & "<br /><br />
+                                                    Waiting for Safety Mgr. Approve
+                                                    Please see details link <a href='http://10.29.1.86/RISTMACHINE/ViewApprove.aspx?sfmgrmcno={1}&sfmgremail={2}'>Click</a> <br /><br />
+                                                    <hr />" & sw.ToString() & "<br /><br />
+                                                    Thank You.", opnoSfmgr, sfmgrmcno, emailSfmgrEnc)
                             mm.IsBodyHtml = True
                             Dim smtp As New SmtpClient()
                             smtp.Host = "10.29.1.240"
@@ -678,7 +890,190 @@ Public Class ViewApprove
 
             Finally
                 db.Dispose()
-                ' SendEmailToDivMgr
+                SendEmailToDivMgr()
+            End Try
+        End Using
+    End Sub
+    '3-Division mgr Approve
+    Private Sub ApproveDivmgr()
+        Dim emaildiv = Decrypt(HttpUtility.UrlDecode(Request.QueryString("diemail")))
+        Using db As New DBRISTMCDataContext
+            Try
+                'get op req from tb machine data
+                Dim opnoreq As String = String.Empty
+
+                Dim q = db.TB_MACHINE_DATAs.
+                        Where(Function(t) t.MC_NO = Mcno).ToList()
+
+                For Each o In q
+                    opnoreq = o.OPNO_ADD
+                Next
+                'get flow deptmgr approve
+                Dim divmgrname As String
+
+                Dim div = db.TB_FLOW_REQUESTs.
+                        Where(Function(f) f.REQUEST_OP = opnoreq And f.DIV_MGR_EMAIL = emaildiv)
+
+                For Each a In div
+                    divmgrname = a.DIV_MGR_STAMP
+                Next
+
+                'Dim s As TB_MACHINE_DATA = (From u In db.TB_MACHINE_DATAs Where u.MC_NO = Mcno Select u).FirstOrDefault()
+                's.DIV_MGR_NAME_APPROVE = divmgrname
+                's.DIV_MGR_APPROVE_DATE = DateTime.Now
+                's.STATUS_ID = 4
+                's.STATUS_NAME = "@Div.Mgr Approved"
+
+
+                Dim s As TB_MACHINE_DATA = db.TB_MACHINE_DATAs.FirstOrDefault(Function(u) u.MC_NO = Mcno)
+                s.DIV_MGR_NAME_APPROVE = divmgrname
+                s.DIV_MGR_APPROVE_DATE = DateTime.Now
+                s.STATUS_ID = 4
+                s.STATUS_NAME = "@Div.Mgr Approved"
+
+                Dim x As TB_MACHINE_TOOL_CHECK_P3 = db.TB_MACHINE_TOOL_CHECK_P3s.FirstOrDefault(Function(u) u.MC_NO = Mcno)
+                x.STATUS_ID = 4
+                x.STATUS_NAME = "@Div.Mgr Approved"
+
+                db.SubmitChanges()
+                db.Dispose()
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "mgrapprove()", True)
+            Catch ex As Exception
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+
+            Finally
+                db.Dispose()
+                SendEmailToSubCom
+            End Try
+        End Using
+    End Sub
+    '4-Sub-Com Approve
+    Private Sub ApproveSubCom()
+        Dim emailsubcom = Decrypt(HttpUtility.UrlDecode(Request.QueryString("scemail")))
+        Using db As New DBRISTMCDataContext
+            Try
+
+                Dim subcomname As String
+                Dim subcom = db.TB_FLOW_SAFETies.
+                             Where(Function(f) f.MCESUBCOM_EMAIL = emailsubcom).ToList()
+
+
+                For Each a In subcom
+                    subcomname = a.MCESUBCOM_STAMP
+                Next
+
+                Dim s As TB_MACHINE_DATA = db.TB_MACHINE_DATAs.FirstOrDefault(Function(u) u.MC_NO = Mcno)
+                s.MCEQ_SUBCOM_NAME_APPROVE = subcomname
+                s.MCEQ_SUBCOM_APPROVE_DATE = DateTime.Now
+                s.STATUS_ID = 5
+                s.STATUS_NAME = "@Sub-Com Approved"
+                db.SubmitChanges()
+                db.Dispose()
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "mgrapprove()", True)
+            Catch ex As Exception
+                Dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+
+            Finally
+                db.Dispose()
+                SendEmailToSafetyOfficer
+            End Try
+        End Using
+    End Sub
+
+    '5-Safety-offer Approve
+    Private Sub ApproveSafetyOfficer()
+        Dim emailsfofficer = Decrypt(HttpUtility.UrlDecode(Request.QueryString("sfemail")))
+        Using db As New DBRISTMCDataContext
+            Try
+
+                Dim sfname As String
+                Dim safetyofficer = db.TB_FLOW_SAFETies.
+                                    Where(Function(f) f.SAFETYOFF_EMAIL = emailsfofficer).ToList()
+
+
+                For Each a In safetyofficer
+                    sfname = a.SAFETYOFF_STAMP
+                Next
+
+                Dim s As TB_MACHINE_DATA = db.TB_MACHINE_DATAs.FirstOrDefault(Function(u) u.MC_NO = Mcno)
+                s.SAFETY_OFFICER_NAME_APPROVE = sfname
+                s.SAFETY_OFFICER_APPROVE_DATE = DateTime.Now
+                s.STATUS_ID = 6
+                s.STATUS_NAME = "@Safety Officer Approved"
+                db.SubmitChanges()
+                db.Dispose()
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "mgrapprove()", True)
+            Catch ex As Exception
+                Dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+
+            Finally
+                db.Dispose()
+                SendEmailToSafetyMgr
+            End Try
+        End Using
+    End Sub
+
+    '6-Safety-mgr Approve
+    Private Sub ApproveSafetyMgr()
+        Dim emailsfmgr = Decrypt(HttpUtility.UrlDecode(Request.QueryString("sfmgremail")))
+        Using db As New DBRISTMCDataContext
+            Try
+
+                Dim sfmgrname As String
+                Dim safetymgr = db.TB_FLOW_SAFETies.
+                                Where(Function(f) f.SAFETYMGR_EMAIL = emailsfmgr).ToList()
+
+
+                For Each a In safetymgr
+                    sfmgrname = a.SAFETYMGR_STAMP
+                Next
+
+                Dim s As TB_MACHINE_DATA = db.TB_MACHINE_DATAs.FirstOrDefault(Function(u) u.MC_NO = Mcno)
+                s.SAFETY_MGR_NAME_APPROVE = sfmgrname
+                s.SAFETY_MGR_APPROVE_DATE = DateTime.Now
+                s.STATUS_ID = 7
+                s.STATUS_NAME = "@Safety Mgr Approved"
+                db.SubmitChanges()
+                db.Dispose()
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "mgrapprove()", True)
+            Catch ex As Exception
+                Dim errorSend = New ExceptionLogging()
+                errorSend.SendErrorTomail(ex)
+                'Write Error to Log.txt
+                ExceptionLogging.LogError(ex)
+                Dim message As String = $"Message: {ex.Message}\n\n"
+                message &= $"StackTrace: {ex.StackTrace.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"Source: {ex.Source.Replace(Environment.NewLine, String.Empty)}\n\n"
+                message &= $"TargetSite: {ex.TargetSite.ToString().Replace(Environment.NewLine, String.Empty)}"
+
+                ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert(""" & message & """);", True)
+
+            Finally
+                db.Dispose()
+                SendEmailToSafetyMgr()
             End Try
         End Using
     End Sub

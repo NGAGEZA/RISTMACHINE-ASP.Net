@@ -32,9 +32,12 @@ Public Class Securitychecktool
 
                           lnksave.Text = "UPDATE"
                       End If
-                       
-                    Case 1
+
+                    Case 1, 2, 3
                         lnksave.Text = "CAN'T UPDATE"
+
+
+
                 End Select
 
 
@@ -1687,10 +1690,10 @@ Public Class Securitychecktool
     Private Sub BindGrid()
         Using db As New DBRISTMCDataContext()
             Try
-                gvDetailsMcno.DataSource = From m In db.TB_MACHINE_DATAs
-                    Where m.MC_NO = Mcno
-                    Select New with {m.MC_NO, m.MAKER, m.COUNTRY, m.SUPPLIER, m.PROVIDER, m.TEL, 
-                        m.DIVISION, m.DEPARTMENT, m.SECTION, m.REGISTER_DATE}
+                gvDetailsMcno.DataSource = db.TB_MACHINE_DATAs.
+                Where(Function(m) m.MC_NO = Mcno).
+                Select(Function(m) New With {m.MC_NO, m.MAKER, m.COUNTRY, m.SUPPLIER, m.PROVIDER, m.TEL,
+                        m.DIVISION, m.DEPARTMENT, m.SECTION, m.REGISTER_DATE})
                 gvDetailsMcno.DataBind()
             Catch ex As Exception
                 dim errorSend = New ExceptionLogging()

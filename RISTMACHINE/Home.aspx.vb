@@ -25,10 +25,12 @@ Public Class Home
         Dim opnocookie As HttpCookie = Request.Cookies("opno")
         Dim opno as String = If(opnocookie IsNot Nothing, opnocookie.Value.Split("="c)(1), "undefined")
         Using db As New DBRISTMCDataContext()
-            editmcno.DataSource = From p In db.TB_MACHINE_DATAs
-                                  Where p.OPNO_ADD = opno
-                                  Order By p.MC_NO Descending
-                             Select New With {p.ID, p.MC_NO}
+            editmcno.DataSource = db.TB_MACHINE_DATAs.
+                Where(Function(p) p.OPNO_ADD = opno).
+                OrderByDescending(Function(p) p.MC_NO).
+                Select(Function(p) New With{p.ID,p.MC_NO})
+                             '     Order By(Function(p) p.MC_NO Descending).
+                             'Select New With {p.ID, p.MC_NO}
             editmcno.DataTextField = "MC_NO"
             editmcno.DataValueField = "ID"
             editmcno.DataBind()

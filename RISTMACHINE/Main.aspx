@@ -21,6 +21,26 @@
     
     </script>
     <script type="text/javascript">
+        function alertnotupdate() {
+            bootbox.dialog({
+                message: "<h4 class='text-center'><i class='fa fa-exclamation-triangle fa-3x text-danger'></i><br/>Can't update because In the approval phase.</h4>",
+                title: "<h3 class='text-center text-nowrap'>RIST MACHINE SYSTEM ONLINE</h3>",
+                buttons: {
+                    danger: {
+                        label: 'OK',
+                        className: "btn-success",
+                        callback: function () {
+                            setTimeout(function () {
+                                //txtemail.focus();
+                                window.location.href="home.aspx";
+                            }, 10);
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
 
         $(document).on('click',
             '.panel-heading span.clickable',

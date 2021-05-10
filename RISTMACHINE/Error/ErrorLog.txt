@@ -281,3 +281,13 @@ Source: mscorlib
 TargetSite: Void WinIOError(Int32, System.String)
 -----------------------------------------------------------
 
+Time: 10/05/2021 07:41:09 PM
+-----------------------------------------------------------
+Message: Nullable object must have a value.
+StackTrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at RISTMACHINE.Main.CheckStatus(String mcno) in F:\VS\ROHM 2018\RISTMACHINE\RISTMACHINE-ASP.Net\RISTMACHINE\Main.aspx.vb:line 145
+Source: mscorlib
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+-----------------------------------------------------------
+
