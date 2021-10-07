@@ -1077,7 +1077,7 @@ Public Class ViewApprove
             End Try
         End Using
     End Sub
-
+    'Test Git
     Public Overrides Sub VerifyRenderingInServerForm(control As Control)
         ' Verifies that the control is rendered
     End Sub
